@@ -1,0 +1,964 @@
+<!doctype html>
+<html lang="pl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Zdalna pomoc IT: sklepy internetowe, serwery, poczta, automatyzacja | GitCloud</title>
+<meta name="description" content="Zdalna pomoc IT dla firm i osób prywatnych z całej Polski: naprawa sklepów i stron internetowych, serwery, poczta, automatyzacja. Diagnoza od 50 zł, wycena z góry, kontakt pisemny.">
+<link rel="canonical" href="https://gitcloud.pl/uslugi/">
+<meta name="robots" content="index, follow">
+<meta name="author" content="Aleh Pauliukovich">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://gitcloud.pl/uslugi/">
+<meta property="og:title" content="Zdalna pomoc IT: sklepy internetowe, serwery, poczta, automatyzacja">
+<meta property="og:description" content="Naprawa sklepów i stron, serwery, poczta, automatyzacja. Diagnoza od 50 zł, wycena z góry, kontakt pisemny.">
+<meta property="og:locale" content="pl_PL">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"ProfessionalService","name":"Aleh Pauliukovich, zdalna pomoc IT","url":"https://gitcloud.pl/uslugi/","email":"mailto:pauliukovichaleh@gmail.com","areaServed":"PL","priceRange":"50-120 zł","description":"Naprawa sklepów i stron internetowych, serwery, poczta, automatyzacja. Praca zdalna, kontakt pisemny."}
+</script>
+<style>
+  :root {
+    /* paleta przeniesiona 1:1 z głównego panelu GitCloud (theme.css, motyw "Kolor") */
+    --bg: #05070c;
+    --bg-panel: #0d1016;
+    --bg-panel-hover: #141822;
+    --bg-row: #0a0d13;
+    --bg-deep: #05070c;
+    --border: #121a2c;
+    --border-soft: #0e1420;
+    --ink: #d9e1ff;
+    --ink-soft: #9aa4c7;
+    --muted: #7fa0c0;
+    --accent: #5aa4ff;
+    --accent-2: #1c74ff;
+    --accent-dim: #2f5f99;
+    --ok: #3ecf8e;
+    --warn: #e0b34d;
+    --crit: #e35d5d;
+    --font-body: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    --font-mono: 'IBM Plex Mono', 'SF Mono', Consolas, monospace;
+  }
+
+  html { color-scheme: dark; scroll-behavior: smooth; }
+  * { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: var(--font-body);
+    font-size: 15px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    position: relative;
+    overflow-x: hidden;
+  }
+
+  /* ---------- tło przeniesione z głównego panelu GitCloud (.bg-anim, theme.css) ---------- */
+  .bg-anim {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 0;
+    overflow: hidden;
+  }
+  .bg-anim::before {
+    content: "";
+    position: absolute;
+    inset: -12%;
+    background:
+      radial-gradient(620px 620px at 20% 20%, rgba(90,164,255,.16), transparent 62%),
+      radial-gradient(520px 520px at 82% 12%, rgba(28,116,255,.12), transparent 60%),
+      radial-gradient(680px 680px at 76% 72%, rgba(90,164,255,.14), transparent 64%),
+      radial-gradient(460px 460px at 12% 78%, rgba(28,116,255,.10), transparent 60%),
+      repeating-linear-gradient(115deg, rgba(255,255,255,.03) 0 2px, transparent 2px 8px);
+    mix-blend-mode: screen;
+    opacity: .55;
+    filter: blur(.3px);
+  }
+  .bg-anim::after {
+    content: "";
+    position: absolute;
+    inset: -14%;
+    background:
+      linear-gradient(180deg, rgba(90,164,255,.08) 0%, rgba(0,0,0,0) 35%, rgba(28,116,255,.06) 65%, rgba(0,0,0,0) 95%),
+      repeating-linear-gradient(105deg, transparent 0 68%, rgba(255,255,255,.05) 68.5% 69.2%, transparent 69.2% 100%);
+    background-size: 120% 200%, 260% 160%;
+    opacity: .28;
+  }
+
+  ::selection { background: var(--accent); color: #051217; }
+  a { color: inherit; }
+  img { display: block; max-width: 100%; }
+
+  .wrap {
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: 0 clamp(18px, 4vw, 40px);
+  }
+
+  /* ---------- topbar ---------- */
+  header.topbar {
+    position: sticky;
+    top: 0;
+    z-index: 30;
+    background: rgba(5,7,12,.82);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--border);
+  }
+  .topbar-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+    height: 60px;
+  }
+  /* logo przeniesione 1:1 z głównego panelu GitCloud (.logo-text, theme.css) */
+  .brand {
+    display: flex;
+    align-items: baseline;
+    gap: 0;
+    text-decoration: none;
+    font-weight: 900;
+    font-size: 21px;
+    letter-spacing: .3px;
+    line-height: 1;
+    flex-shrink: 0;
+  }
+  .brand .git { color: var(--accent); }
+  .brand .cloud { color: #ffffff; }
+  .brand .dim { color: var(--muted); font-weight: 600; font-size: 15px; margin-left: 2px; }
+
+  nav.tabs {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    overflow-x: auto;
+  }
+  nav.tabs a {
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--muted);
+    text-decoration: none;
+    padding: 8px 14px;
+    border-radius: 6px;
+    white-space: nowrap;
+    transition: color 0.15s ease, background 0.15s ease;
+  }
+  nav.tabs a:hover { color: var(--ink-soft); background: rgba(255,255,255,.04); }
+  nav.tabs a.active { color: var(--ink); background: rgba(90,164,255,.1); }
+
+  main { position: relative; z-index: 1; }
+
+  /* ---------- generic section shells (alternating backgrounds, PRTG-style) ---------- */
+  /* przezroczyste tła, żeby .bg-anim (przeniesiony z głównego panelu) prześwitywał przez całą stronę */
+  section { padding: clamp(48px, 7vw, 84px) 0; }
+  .sec-flat { background: transparent; border-bottom: 1px solid var(--border-soft); }
+  .sec-panel { background: rgba(13,16,22,.55); border-bottom: 1px solid var(--border-soft); }
+  .sec-accent {
+    background: linear-gradient(135deg, rgba(13,58,77,.75) 0%, rgba(18,58,82,.75) 55%, rgba(26,47,82,.75) 100%);
+    border-bottom: 1px solid var(--border-soft);
+  }
+  .sec-cta {
+    background: linear-gradient(120deg, rgba(10,26,46,.8) 0%, rgba(13,36,56,.8) 100%);
+    border-bottom: 1px solid var(--border-soft);
+  }
+
+  .section-head {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: clamp(24px, 3vw, 36px);
+  }
+  .section-head.center { align-items: center; text-align: center; }
+  h2.section-title {
+    font-size: clamp(1.5rem, 4vw, 1.9rem);
+    font-weight: 700;
+    letter-spacing: -0.015em;
+    line-height: 1.15;
+    margin: 0;
+    text-wrap: balance;
+  }
+  .section-sub {
+    font-size: 14px;
+    color: var(--ink-soft);
+    max-width: 60ch;
+    margin: 10px auto 0;
+  }
+
+  /* ---------- hero ---------- */
+  .hero {
+    padding: clamp(56px, 8vw, 96px) 0 clamp(48px, 6vw, 72px);
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    inset: -20% -10% auto -10%;
+    height: 480px;
+    background: radial-gradient(ellipse 60% 100% at 50% 0%, rgba(90,164,255,0.18), transparent 70%);
+    pointer-events: none;
+  }
+  .hero-inner { position: relative; max-width: 780px; margin: 0 auto; }
+  .eyebrow {
+    display: block;
+    font-family: var(--font-mono);
+    font-size: 12px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 18px;
+  }
+  h1.headline {
+    font-size: clamp(2rem, 5vw, 3.2rem);
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    line-height: 1.12;
+    margin: 0 0 20px;
+    text-wrap: balance;
+  }
+  h1.headline .accent { color: var(--accent); }
+  .lede {
+    font-size: clamp(1rem, 1.6vw, 1.15rem);
+    color: var(--ink-soft);
+    max-width: 56ch;
+    margin: 0 auto 32px;
+  }
+  .checklist {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 34px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    align-items: center;
+  }
+  .checklist li {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    font-size: 14px;
+    color: var(--ink-soft);
+  }
+  .checklist svg { width: 15px; height: 15px; color: var(--ok); flex-shrink: 0; }
+
+  .hero-actions { display: flex; gap: 12px; flex-wrap: wrap; justify-content: center; margin-bottom: 56px; }
+  .btn {
+    font-size: 13.5px;
+    font-weight: 600;
+    padding: 12px 24px;
+    border-radius: 6px;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    transition: filter 0.15s ease, border-color 0.15s ease, transform 0.15s ease;
+  }
+  .btn-primary { background: var(--accent); color: #04181f; }
+  .btn-primary:hover { filter: brightness(1.08); transform: translateY(-1px); }
+  .btn-ghost { background: transparent; color: var(--ink-soft); border: 1px solid var(--border); }
+  .btn-ghost:hover { border-color: var(--accent-dim); color: var(--ink); }
+
+  /* trust strip */
+  .trust-strip {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: clamp(28px, 5vw, 56px);
+    flex-wrap: wrap;
+    opacity: 0.85;
+  }
+  .trust-item {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    font-family: var(--font-mono);
+    font-size: 12.5px;
+    color: var(--muted);
+    white-space: nowrap;
+  }
+  .trust-item svg { width: 16px; height: 16px; color: var(--accent-dim); flex-shrink: 0; }
+
+  /* ---------- browser-frame screenshot mount ---------- */
+  .browser-frame {
+    background: var(--bg-panel);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 40px 80px -40px rgba(0,0,0,0.55);
+  }
+  .browser-frame .bf-bar {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 14px;
+    background: var(--bg-row);
+    border-bottom: 1px solid var(--border);
+  }
+  .bf-bar .bdot { width: 9px; height: 9px; border-radius: 50%; background: #333c4d; }
+  .bf-bar .burl {
+    margin-left: 8px;
+    font-family: var(--font-mono);
+    font-size: 11px;
+    color: var(--muted);
+    background: var(--bg-deep);
+    border: 1px solid var(--border-soft);
+    border-radius: 4px;
+    padding: 3px 10px;
+    flex: 1;
+    max-width: 260px;
+  }
+  .browser-frame .bf-body { background: #0a0c10; }
+  .browser-frame .bf-body img { width: 100%; display: block; }
+
+  /* ---------- showcase tabs + demo panels ---------- */
+  .showcase-tabs {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    margin-bottom: 18px;
+    flex-wrap: wrap;
+  }
+  .sw-tab {
+    position: relative;
+    font-family: var(--font-mono);
+    font-size: 12.5px;
+    font-weight: 500;
+    color: var(--muted);
+    background: var(--bg-row);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 8px 16px;
+    cursor: pointer;
+    overflow: hidden;
+    isolation: isolate;
+    transition: color 0.15s ease, border-color 0.15s ease;
+  }
+  .sw-tab:hover { color: var(--ink-soft); border-color: var(--accent-dim); }
+  .sw-tab.active { color: var(--bg); border-color: var(--accent); font-weight: 600; }
+  /* pasek postępu autoodtwarzania - wypełnia się pod aktywną zakładką, ta sama animacja co interwał JS */
+  .sw-tab .sw-tab-fill {
+    position: absolute;
+    inset: 0;
+    background: var(--accent);
+    transform: scaleX(0);
+    transform-origin: left;
+    z-index: -1;
+  }
+  .sw-tab.active .sw-tab-fill.run { animation: sw-progress var(--sw-interval, 5s) linear forwards; }
+  @keyframes sw-progress { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+  .sw-tab-label { position: relative; z-index: 1; }
+  .sw-tab.active:not(.autoplay-on) .sw-tab-fill { transform: scaleX(1); animation: none; }
+
+  .sw-panel { display: none; padding: 22px; animation: sw-fade-in 0.35s ease; }
+  .sw-panel.active { display: block; }
+  .sw-panel img { width: 100%; display: block; border-radius: 4px; }
+  @keyframes sw-fade-in { from { opacity: 0; transform: translateY(4px); } to { opacity: 1; transform: translateY(0); } }
+  @media (prefers-reduced-motion: reduce) {
+    .sw-panel { animation: none; }
+    .sw-tab .sw-tab-fill.run { animation: none; transform: scaleX(1); }
+  }
+
+  .demo-alerts { display: flex; flex-direction: column; gap: 1px; background: var(--border-soft); border-radius: 6px; overflow: hidden; }
+  .d-alert {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 13px 16px;
+    background: #14171d;
+    border-left: 3px solid var(--border);
+    font-size: 12.5px;
+  }
+  .d-alert.crit { border-left-color: var(--crit); }
+  .d-alert.warn { border-left-color: var(--warn); }
+  .d-badge { font-family: var(--font-mono); font-size: 11px; color: var(--accent); background: rgba(90,164,255,.1); border: 1px solid rgba(90,164,255,.3); border-radius: 10px; padding: 2px 8px; flex-shrink: 0; }
+  .d-main { flex: 1; display: flex; flex-direction: column; gap: 2px; min-width: 0; }
+  .d-main b { font-size: 13px; color: var(--ink); font-weight: 600; }
+  .d-main span { color: var(--muted); font-size: 11.5px; }
+  .d-time { font-family: var(--font-mono); font-size: 10.5px; color: var(--muted); white-space: nowrap; flex-shrink: 0; }
+
+  .demo-vm-wrap { overflow-x: auto; }
+  table.demo-vm { width: 100%; border-collapse: collapse; font-size: 12.5px; }
+  table.demo-vm th {
+    text-align: left;
+    font-family: var(--font-mono);
+    font-size: 10.5px;
+    text-transform: uppercase;
+    letter-spacing: .03em;
+    color: var(--muted);
+    padding: 8px 12px;
+    border-bottom: 1px solid var(--border);
+  }
+  table.demo-vm td {
+    padding: 10px 12px;
+    border-bottom: 1px solid var(--border-soft);
+    color: var(--ink-soft);
+    font-family: var(--font-mono);
+    white-space: nowrap;
+  }
+  table.demo-vm td.ok { color: var(--ok); }
+  table.demo-vm td.warn { color: var(--warn); }
+
+  .bf-caption {
+    text-align: center;
+    font-size: 12.5px;
+    color: var(--muted);
+    margin-top: 14px;
+  }
+
+  /* ---------- feature grid (icon cards, PRTG-style) ---------- */
+  .feature-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    overflow: hidden;
+  }
+  @media (max-width: 940px) { .feature-grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 560px) { .feature-grid { grid-template-columns: 1fr; } }
+  .feature-card {
+    background: var(--bg-panel);
+    padding: 24px 20px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+  }
+  .feature-icon {
+    width: 42px; height: 42px;
+    display: flex; align-items: center; justify-content: center;
+    color: var(--accent);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    background: rgba(90,164,255,0.06);
+    margin-bottom: 4px;
+  }
+  .feature-icon svg { width: 22px; height: 22px; }
+  .feature-card h3 { font-size: 14.5px; font-weight: 600; margin: 0; }
+  .feature-card p { font-size: 12.5px; color: var(--muted); margin: 0; line-height: 1.5; }
+
+  /* ---------- two-col narrative w/ illustration ---------- */
+  .narrative-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: clamp(32px, 5vw, 56px);
+    align-items: center;
+  }
+  @media (max-width: 860px) { .narrative-grid { grid-template-columns: 1fr; } }
+  .narrative-grid.reverse .nar-copy { order: 2; }
+  .narrative-grid.reverse .nar-visual { order: 1; }
+  @media (max-width: 860px) { .narrative-grid.reverse .nar-copy, .narrative-grid.reverse .nar-visual { order: unset; } }
+
+  .nar-copy h3 {
+    font-family: var(--font-mono);
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin: 0 0 12px;
+    line-height: 1.4;
+  }
+  .nar-copy p { color: var(--ink-soft); margin: 0 0 14px; max-width: 52ch; }
+  .nar-copy p:last-of-type { margin-bottom: 0; }
+  .nar-copy strong { color: var(--ink); font-weight: 600; }
+  .nar-copy a.inline-link { color: var(--accent); text-decoration: underline; text-decoration-color: rgba(90,164,255,0.35); }
+
+  .nar-visual {
+    background: var(--bg-panel);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 20px;
+  }
+  .nar-visual svg { width: 100%; height: auto; display: block; }
+  figure { margin: 0; }
+  figcaption { font-size: 12px; color: var(--muted); text-align: center; margin-top: 12px; }
+
+  /* ---------- module grid ---------- */
+  .module-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    overflow: hidden;
+  }
+  @media (max-width: 900px) { .module-grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 600px) { .module-grid { grid-template-columns: 1fr; } }
+
+  .module {
+    background: var(--bg-panel);
+    padding: 20px 20px 18px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    transition: background 0.15s ease;
+  }
+  .module:hover { background: var(--bg-panel-hover); }
+  .module-top { display: flex; align-items: center; gap: 10px; }
+  .module-icon {
+    width: 28px; height: 28px;
+    display: flex; align-items: center; justify-content: center;
+    color: var(--accent);
+    border: 1px solid var(--border);
+    border-radius: 5px;
+    background: rgba(90,164,255,0.06);
+    flex-shrink: 0;
+  }
+  .module-icon svg { width: 15px; height: 15px; }
+  .module h3 { font-size: 14.5px; font-weight: 600; margin: 0; color: var(--ink); }
+  .module p { font-size: 13px; color: var(--muted); margin: 0; line-height: 1.55; }
+  .module .tag {
+    margin-top: auto;
+    padding-top: 8px;
+    font-family: var(--font-mono);
+    font-size: 10.5px;
+    color: var(--accent-dim);
+    letter-spacing: 0.02em;
+  }
+
+  /* ---------- about ---------- */
+  .about-grid {
+    display: grid;
+    grid-template-columns: 0.85fr 1.15fr;
+    gap: clamp(24px, 4vw, 44px);
+    align-items: center;
+  }
+  @media (max-width: 780px) { .about-grid { grid-template-columns: 1fr; } }
+
+  .about-term {
+    background: var(--bg-deep);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 30px 60px -35px rgba(0,0,0,0.6);
+  }
+  .about-term .term-bar {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 11px 14px;
+    background: var(--bg-row);
+    border-bottom: 1px solid var(--border);
+  }
+  .about-term .tdot { width: 9px; height: 9px; border-radius: 50%; background: #2a3242; }
+  .about-term .term-title {
+    margin-left: 8px;
+    font-family: var(--font-mono);
+    font-size: 11px;
+    color: var(--muted);
+    letter-spacing: 0.02em;
+  }
+  .about-term .term-body {
+    padding: 20px 20px 22px;
+    font-family: var(--font-mono);
+    font-size: 12.5px;
+    line-height: 1.95;
+  }
+  .about-term .term-body .l { display: flex; gap: 6px; white-space: pre; }
+  .about-term .term-body .prompt { color: var(--accent-dim); flex-shrink: 0; }
+  .about-term .term-body .cmd { color: var(--ink); }
+  .about-term .term-body .ok { color: var(--accent); }
+  .about-term .term-body .dim { color: var(--muted); }
+  .about-term .term-body .cursor {
+    display: inline-block;
+    width: 6px; height: 13px;
+    background: var(--accent);
+    margin-left: 2px;
+    animation: about-blink 1.1s steps(1) infinite;
+    vertical-align: -2px;
+  }
+  @keyframes about-blink { 50% { opacity: 0; } }
+  @media (prefers-reduced-motion: reduce) { .about-term .term-body .cursor { animation: none; } }
+
+  .about-bio { color: var(--ink-soft); max-width: 60ch; margin: 0 0 18px; }
+  .about-bio strong { color: var(--ink); font-weight: 600; }
+
+  .contact-row { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 22px; }
+  .chip {
+    font-family: var(--font-mono);
+    font-size: 12.5px;
+    color: var(--ink-soft);
+    background: var(--bg-row);
+    border: 1px solid var(--border);
+    padding: 8px 13px;
+    border-radius: 5px;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    transition: border-color 0.15s ease, color 0.15s ease;
+  }
+  .chip:hover { border-color: var(--accent-dim); color: var(--accent); }
+  .chip-primary { border-color: rgba(90,164,255,0.35); color: var(--accent); }
+  .chip-primary:hover { border-color: var(--accent); }
+  .chip svg { width: 13px; height: 13px; flex-shrink: 0; }
+
+  /* ---------- stat strip ---------- */
+  .stat-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    overflow: hidden;
+  }
+  @media (max-width: 700px) { .stat-grid { grid-template-columns: repeat(2, 1fr); } }
+  .stat {
+    background: var(--bg-panel);
+    padding: 20px 18px;
+    text-align: center;
+    opacity: 0;
+    transform: translateY(14px);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+    transition-delay: var(--stat-delay, 0s);
+  }
+  .stat.in-view { opacity: 1; transform: translateY(0); }
+  .stat-num {
+    font-family: var(--font-mono);
+    font-size: clamp(1.5rem, 2.4vw, 1.9rem);
+    font-weight: 600;
+    color: var(--accent);
+    font-variant-numeric: tabular-nums;
+    line-height: 1;
+    display: inline-block;
+  }
+  .stat-label { margin-top: 8px; font-size: 12.5px; color: var(--muted); line-height: 1.4; }
+  @media (prefers-reduced-motion: reduce) {
+    .stat { opacity: 1; transform: none; transition: none; }
+  }
+
+  /* ---------- FAQ accordion ---------- */
+  .faq-list { max-width: 760px; margin: 0 auto; display: flex; flex-direction: column; gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 8px; overflow: hidden; }
+  .faq-item { background: var(--bg-panel); }
+  .faq-item summary {
+    list-style: none;
+    cursor: pointer;
+    padding: 16px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    font-size: 14px;
+    font-weight: 600;
+  }
+  .faq-item summary::-webkit-details-marker { display: none; }
+  .faq-item summary .chev {
+    width: 18px; height: 18px;
+    flex-shrink: 0;
+    color: var(--muted);
+    transition: transform 0.2s ease;
+  }
+  .faq-item[open] summary .chev { transform: rotate(180deg); color: var(--accent); }
+  .faq-item .faq-body { padding: 0 20px 18px; font-size: 13.5px; color: var(--ink-soft); max-width: 68ch; }
+
+  /* ---------- final CTA ---------- */
+  .sec-cta { padding: clamp(56px, 8vw, 88px) 0; }
+  .cta-grid {
+    display: grid;
+    grid-template-columns: 1.1fr 0.9fr;
+    gap: clamp(32px, 6vw, 64px);
+    align-items: center;
+  }
+  @media (max-width: 780px) { .cta-grid { grid-template-columns: 1fr; } }
+
+  .cta-final-title {
+    font-size: clamp(1.6rem, 3vw, 2.1rem);
+    font-weight: 700;
+    letter-spacing: -0.015em;
+    margin: 0 0 14px;
+    text-wrap: balance;
+  }
+  .cta-copy .section-sub { margin: 0 0 26px; max-width: 46ch; }
+
+  .cta-reasons {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 28px;
+    display: flex;
+    flex-direction: column;
+    gap: 11px;
+  }
+  .cta-reasons li {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    font-size: 13.5px;
+    color: var(--ink-soft);
+  }
+  .cta-reasons svg { width: 15px; height: 15px; color: var(--ok); flex-shrink: 0; margin-top: 2px; }
+
+  .back-link {
+    display: inline-block;
+    font-size: 13px;
+    color: var(--muted);
+    text-decoration: none;
+    transition: color 0.15s ease;
+  }
+  .back-link:hover { color: var(--ink-soft); }
+
+  /* ---------- contact ---------- */
+  .contact-card {
+    background: var(--bg-panel);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 32px clamp(24px, 5vw, 40px);
+    text-align: center;
+  }
+  .contact-card .ct-label { font-family: var(--font-mono); font-size: 11px; color: var(--muted); margin-bottom: 14px; }
+  .contact-card .ct-email { font-size: 18px; font-weight: 700; margin-bottom: 22px; word-break: break-all; }
+  .contact-card .btn { width: 100%; justify-content: center; }
+
+  footer.wrap {
+    padding: 22px clamp(18px, 4vw, 40px) 36px;
+    max-width: 1180px;
+    margin: 0 auto;
+    font-family: var(--font-mono);
+    font-size: 11.5px;
+    color: var(--muted);
+  }
+  .footer-row { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; }
+  .footer-link { color: var(--muted); text-decoration: none; transition: color 0.15s ease; }
+  .footer-link:hover { color: var(--ink-soft); }
+
+  /* --- podstrona /uslugi: tylko to, czego nie ma w stylach strony głównej --- */
+  :root { --font-body: 'Manrope', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; }
+  .headline, .section-title, .cta-final-title { letter-spacing: -0.02em; }
+  .feature-grid.cols-2 { grid-template-columns: repeat(2, 1fr); }
+  .feature-grid.cols-3 { grid-template-columns: repeat(3, 1fr); }
+  .feature-grid.cols-2 .feature-card { text-align: left; align-items: flex-start; }
+  .feature-grid.cols-2 .feature-card h3 { font-size: 17px; }
+  .feature-card ul { margin: 10px 0 0; padding-left: 18px; color: var(--ink-soft); font-size: 14px; line-height: 1.6; }
+  .case-result { margin-top: 10px; color: var(--ok); font-size: 13.5px; font-family: var(--font-mono); }
+  .price-list { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; }
+  .price { background: var(--bg-panel); padding: 26px 24px; }
+  .price .p-label { font-size: 13px; text-transform: uppercase; letter-spacing: .12em; color: var(--muted); }
+  .price .p-num { font-family: var(--font-mono); font-size: 34px; font-weight: 600; color: var(--ink); margin: 8px 0 6px; }
+  .price .p-desc { color: var(--ink-soft); font-size: 14px; line-height: 1.55; }
+  .steps { counter-reset: s; display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin: 0; padding: 0; list-style: none; }
+  .steps li { counter-increment: s; background: var(--bg-panel); border: 1px solid var(--border); border-radius: 10px; padding: 20px; color: var(--ink-soft); font-size: 14.5px; line-height: 1.55; }
+  .steps li::before { content: "0" counter(s); display: block; font-family: var(--font-mono); color: var(--accent); font-size: 13px; margin-bottom: 8px; }
+  .steps li strong { color: var(--ink); display: block; margin-bottom: 4px; }
+  .who { display: grid; grid-template-columns: 220px 1fr; gap: clamp(24px, 4vw, 44px); align-items: center; }
+  .who img { width: 220px; height: 220px; border-radius: 14px; border: 1px solid var(--border); object-fit: cover; display: block; }
+  @media (max-width: 860px) { .feature-grid.cols-2, .feature-grid.cols-3, .price-list, .steps { grid-template-columns: 1fr; } .who { grid-template-columns: 1fr; } .who img { width: 160px; height: 160px; } }
+</style>
+</head>
+<body>
+
+<div class="bg-anim" aria-hidden="true"></div>
+
+<header class="topbar">
+  <div class="wrap topbar-inner">
+    <a class="brand" href="/"><span class="git">Git</span><span class="cloud">Cloud</span><span class="dim">.pl</span></a>
+    <nav class="tabs">
+      <a href="#top" class="active">Usługi</a>
+      <a href="#realizacje">Realizacje</a>
+      <a href="#cennik">Cennik</a>
+      <a href="#jak">Jak pracuję</a>
+      <a href="#kontakt">Kontakt</a>
+      <a href="/">Platforma</a>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+
+  <section class="hero">
+    <div class="wrap hero-inner">
+      <div class="eyebrow">Zdalna pomoc IT dla firm i osób prywatnych</div>
+      <h1 class="headline">Sklep, poczta albo serwer <span class="accent">znów działa</span>. Zdalnie i z ceną z góry.</h1>
+      <p class="lede">Naprawiam i konfiguruję to, co przeszkadza w sprzedaży i pracy: sklepy i strony internetowe, pocztę, serwery, kopie zapasowe. Automatyzuję to, co dziś robi się ręcznie. Pracuję zdalnie dla klientów z całej Polski.</p>
+      <ul class="checklist">
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12l5 5L20 7"/></svg>Najpierw diagnoza, potem cena naprawy podana z góry</li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12l5 5L20 7"/></svg>Przed każdą zmianą kopia obecnego stanu, po zmianie sprawdzenie wyniku</li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12l5 5L20 7"/></svg>Kontakt pisemny, odpowiedź tego samego dnia</li>
+      </ul>
+      <div class="hero-actions">
+        <a class="btn btn-primary" href="#kontakt">Opisz sprawę</a>
+        <a class="btn btn-ghost" href="#cennik">Zobacz cennik</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec-panel">
+    <div class="wrap">
+      <div class="section-head">
+        <h2 class="section-title">W czym pomagam</h2>
+        <p class="section-sub">Cztery obszary, w których biorę odpowiedzialność za wynik.</p>
+      </div>
+      <div class="feature-grid">
+        <div class="feature-card">
+          <div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 7h18l-1.5 9.5a2 2 0 0 1-2 1.5H6.5a2 2 0 0 1-2-1.5L3 7z"/><path d="M8 7V5a4 4 0 0 1 8 0v2"/></svg></div>
+          <h3>Sklepy i strony</h3>
+          <p>Shoper, WordPress, WooCommerce: błędy koszyka i formularzy, skrypty, integracje, przeniesienie na nowy hosting.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="4" width="18" height="7" rx="1.5"/><rect x="3" y="13" width="18" height="7" rx="1.5"/><path d="M7 7.5h.01M7 16.5h.01"/></svg></div>
+          <h3>Serwery i poczta</h3>
+          <p>Linux i Windows Server, Google Workspace i Microsoft 365, DNS, certyfikaty SSL, VPN, kopie zapasowe, monitoring.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 2l2.4 6.6L21 11l-6.6 2.4L12 20l-2.4-6.6L3 11l6.6-2.4L12 2z"/></svg></div>
+          <h3>Automatyzacja</h3>
+          <p>Skrypty w Pythonie i PowerShellu, integracje przez API, automatyczne raporty, asystenci oparci o AI.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 17h4v-6H3v6zm7 0h4V7h-4v10zm7 0h4v-3h-4v3z"/></svg></div>
+          <h3>Dane dla sprzedaży</h3>
+          <p>Analiza ofert i konkurencji na Allegro z wyliczeniem marży, bazy firm do sprzedaży B2B.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="realizacje" class="sec-flat">
+    <div class="wrap">
+      <div class="section-head">
+        <h2 class="section-title">Ostatnie realizacje</h2>
+        <p class="section-sub">Dwa zlecenia z ostatnich tygodni. Nazwy klientów pomijam.</p>
+      </div>
+      <div class="feature-grid cols-2">
+        <div class="feature-card">
+          <h3>Koszyk sklepu, który nie przyjmował zamówień z zagranicy</h3>
+          <p>Sklep na platformie Shoper, pięć domen (PL, CZ, SK, DE, RO). W wersjach zagranicznych koszyk nie przechodził do kolejnego kroku i nie pokazywał żadnego komunikatu.</p>
+          <ul>
+            <li>Przyczyna: klucz Google reCAPTCHA zarejestrowany tylko dla domeny polskiej.</li>
+            <li>Dodatkowo błąd składni we własnym skrypcie sklepu, przez który nie działała podmiana danych kontaktowych w wersjach językowych.</li>
+            <li>Poprawka z kopią poprzedniej wersji, test koszyka na wszystkich pięciu domenach.</li>
+          </ul>
+          <div class="case-result">wynik: sklep przyjął zamówienie z zagranicy tego samego dnia</div>
+        </div>
+        <div class="feature-card">
+          <h3>Co wdrożyć na Allegro, żeby sprzedawać jak konkurencja</h3>
+          <p>Sprzedawca z portfolio około 900 pozycji. Konkurenci sprzedawali te same produkty wielokrotnie lepiej przy tej samej cenie.</p>
+          <ul>
+            <li>Automatyczne zebranie ofert konkurencji: ceny, pojemności, zestawy, widoczność.</li>
+            <li>Wyliczenie marży według kosztów klienta dla każdej propozycji.</li>
+            <li>Codzienny automatyczny pomiar pozycji i cen.</li>
+          </ul>
+          <div class="case-result">wynik: lista decyzji do wdrożenia z wyliczeniem zysku i linkami do źródeł</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="cennik" class="sec-panel">
+    <div class="wrap">
+      <div class="section-head">
+        <h2 class="section-title">Cennik</h2>
+        <p class="section-sub">Większe zadania wyceniam z góry po diagnozie, bez niespodzianek. Umowa i faktura na życzenie, np. przez Useme.</p>
+      </div>
+      <div class="price-list">
+        <div class="price">
+          <div class="p-label">Diagnoza zdalna</div>
+          <div class="p-num">50 zł</div>
+          <div class="p-desc">Opis przyczyny problemu i cena naprawy. Od tego zaczynamy.</div>
+        </div>
+        <div class="price">
+          <div class="p-label">Drobna sprawa</div>
+          <div class="p-num">60 zł</div>
+          <div class="p-desc">Do pół godziny pracy: ustawienie, poprawka, krótka konfiguracja.</div>
+        </div>
+        <div class="price">
+          <div class="p-label">Godzina pracy</div>
+          <div class="p-num">120 zł</div>
+          <div class="p-desc">Naprawy, wdrożenia, automatyzacje rozliczane według czasu.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="jak" class="sec-flat">
+    <div class="wrap">
+      <div class="section-head">
+        <h2 class="section-title">Jak pracuję</h2>
+      </div>
+      <ol class="steps">
+        <li><strong>Opis sprawy</strong>Piszesz, co nie działa albo co ma powstać. Dopytuję o szczegóły tego samego dnia.</li>
+        <li><strong>Diagnoza i wycena</strong>Sprawdzam przyczynę i podaję cenę oraz termin, zanim cokolwiek zmienię.</li>
+        <li><strong>Wykonanie</strong>Dostęp na osobnym koncie, kopia obecnego stanu przed zmianą, praca zdalna.</li>
+        <li><strong>Sprawdzenie i opis</strong>Test wyniku i krótki opis zmian. Poprawki do zgodności z ustaleniami są w cenie.</li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="sec-panel">
+    <div class="wrap">
+      <div class="section-head">
+        <h2 class="section-title">Kto wykonuje pracę</h2>
+      </div>
+      <div class="who">
+        <img src="/img/aleh.jpg" alt="Aleh Pauliukovich" width="220" height="220">
+        <div class="about-copy">
+          <p class="about-bio"><strong>Aleh Pauliukovich</strong>, administrator IT z ponad czteroletnim doświadczeniem: Windows Server i Active Directory, Linux, Microsoft 365, sieci i VPN, automatyzacja w Pythonie i PowerShellu.</p>
+          <p class="about-bio">Zbudowałem od podstaw <a class="inline-link" href="/">GitCloud</a>, platformę do monitoringu i automatyzacji sieci dostawcy internetu. Tę samą dokładność stosuję w małych zleceniach: każda zmiana ma kopię, test i opis.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="faq" class="sec-flat">
+    <div class="wrap">
+      <div class="section-head">
+        <h2 class="section-title">Częste pytania</h2>
+      </div>
+      <div class="faq-list">
+        <details class="faq-item" open>
+          <summary>Czy wszystko odbywa się zdalnie?<svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></summary>
+          <div class="faq-body">Tak. Pracuję przez zdalny dostęp i panele administracyjne. Naprawy sprzętu i wizyty na miejscu nie wykonuję.</div>
+        </details>
+        <details class="faq-item">
+          <summary>Jak wygląda kontakt?<svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></summary>
+          <div class="faq-body">Pisemnie: e-mail albo czat na platformie, przez którą trafiło zlecenie. Odpowiadam tego samego dnia. Dzięki temu wszystkie ustalenia są zapisane.</div>
+        </details>
+        <details class="faq-item">
+          <summary>Jak wygląda płatność?<svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></summary>
+          <div class="faq-body">Sposób płatności ustalamy przed rozpoczęciem pracy. Na życzenie umowa i faktura przez platformę Useme, która zabezpiecza płatność do czasu przyjęcia pracy.</div>
+        </details>
+        <details class="faq-item">
+          <summary>Czy moje dostępy są bezpieczne?<svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></summary>
+          <div class="faq-body">Proszę o osobne konto z potrzebnymi uprawnieniami. Po zakończeniu pracy można je usunąć albo zmienić hasło. Przed zmianami zapisuję kopię obecnego stanu.</div>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <section id="kontakt" class="sec-cta cta-final">
+    <div class="wrap cta-grid">
+      <div class="cta-copy">
+        <h2 class="cta-final-title">Opisz sprawę, odpowiem tego samego dnia</h2>
+        <p class="section-sub">Wystarczą trzy rzeczy: adres strony lub nazwa usługi, co nie działa i od kiedy.</p>
+        <ul class="cta-reasons">
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12l5 5L20 7"/></svg>Diagnoza zdalna za 50 zł, cena naprawy z góry</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12l5 5L20 7"/></svg>Bez formularzy i pośredników, piszesz wprost na maila</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12l5 5L20 7"/></svg>Umowa i faktura na życzenie</li>
+        </ul>
+      </div>
+      <div class="contact-card">
+        <div class="ct-label">// napisz bezpośrednio</div>
+        <div class="ct-email">pauliukovichaleh@gmail.com</div>
+        <a class="btn btn-primary" href="mailto:pauliukovichaleh@gmail.com?subject=Zdalna%20pomoc%20IT">Napisz wiadomość →</a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="wrap footer-row">
+  <div>© 2026 GitCloud. Aleh Pauliukovich.</div>
+  <a class="footer-link" href="/privacy.html">Polityka prywatności</a>
+</footer>
+
+</body>
+</html>
