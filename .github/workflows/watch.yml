@@ -5,6 +5,11 @@ on:
   schedule:
     - cron: "7,22,37,52 * * * *"
   workflow_dispatch:
+    inputs:
+      test:
+        description: wyslij wiadomosc testowa
+        type: boolean
+        default: false
 permissions:
   contents: read
 concurrency: watch
@@ -26,6 +31,7 @@ jobs:
         run: |
           code() { curl -s -o /dev/null -m 20 --retry 2 --retry-delay 10 --retry-all-errors -w '%{http_code}' "$@"; }
           say() { curl -s -m 20 -o /dev/null "https://api.telegram.org/bot$TG_TOKEN/sendMessage" --data-urlencode "chat_id=$TG_CHAT" --data-urlencode "text=$1"; }
+          [ "${{ inputs.test }}" != true ] || say "🛰 Внешний сторож (GitHub) установлен: проверяю сайт и узел Oracle каждые 15 минут, напишу при сбое."
           fail=""
           [ "$(code https://gitcloud.pl/)" = 200 ] || fail="$fail сайт gitcloud.pl не открывается;"
           [ "$(code -X POST https://hook.gitcloud.pl/hook/sms)" = 404 ] || fail="$fail узел Oracle не отвечает (приём SMS, VPN, сторож дома);"
