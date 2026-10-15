@@ -14,28 +14,53 @@
 <meta property="og:title" content="GitCloud — platforma operacyjna sieci ISP">
 <meta property="og:description" content="Monitoring, automatyzacja i bezpieczeństwo infrastruktury sieci ISP w jednym panelu. Prowadzona przez Aleh Pauliukovich.">
 <meta property="og:locale" content="pl_PL">
+<meta property="og:site_name" content="GitCloud">
+<meta property="og:image" content="https://gitcloud.pl/img/dashboard-ports.jpeg">
 
-<meta name="twitter:card" content="summary">
+<meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="GitCloud — platforma operacyjna sieci ISP">
 <meta name="twitter:description" content="Monitoring, automatyzacja i bezpieczeństwo infrastruktury sieci ISP w jednym panelu.">
 
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
-  "@type": "Person",
-  "name": "Aleh Pauliukovich",
-  "url": "https://gitcloud.pl/",
-  "jobTitle": "Założyciel i prowadzący GitCloud",
-  "email": "mailto:pauliukovichaleh@gmail.com",
-  "knowsAbout": ["monitoring sieci", "automatyzacja infrastruktury", "SSH", "ISP"],
-  "worksFor": {
-    "@type": "Organization",
-    "name": "GitCloud",
-    "url": "https://gitcloud.pl/"
-  }
+  "@graph": [
+    {
+      "@type": "WebSite",
+      "@id": "https://gitcloud.pl/#website",
+      "name": "GitCloud",
+      "alternateName": ["gitcloud.pl", "Git Cloud"],
+      "url": "https://gitcloud.pl/",
+      "inLanguage": "pl-PL",
+      "publisher": { "@id": "https://gitcloud.pl/#org" }
+    },
+    {
+      "@type": "Organization",
+      "@id": "https://gitcloud.pl/#org",
+      "name": "GitCloud",
+      "url": "https://gitcloud.pl/",
+      "logo": "https://gitcloud.pl/favicon-192.png",
+      "email": "mailto:pauliukovichaleh@gmail.com",
+      "founder": { "@id": "https://gitcloud.pl/#aleh" }
+    },
+    {
+      "@type": "Person",
+      "@id": "https://gitcloud.pl/#aleh",
+      "name": "Aleh Pauliukovich",
+      "url": "https://gitcloud.pl/",
+      "image": "https://gitcloud.pl/img/aleh.jpg",
+      "jobTitle": "Założyciel i prowadzący GitCloud",
+      "email": "mailto:pauliukovichaleh@gmail.com",
+      "knowsAbout": ["monitoring sieci", "automatyzacja infrastruktury", "SSH", "ISP"],
+      "worksFor": { "@id": "https://gitcloud.pl/#org" }
+    }
+  ]
 }
 </script>
 
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/favicon-192.png" sizes="192x192" type="image/png">
+<link rel="apple-touch-icon" href="/favicon-192.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
