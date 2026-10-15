@@ -828,14 +828,14 @@
     <div class="wrap">
       <div class="section-head center">
         <h2 class="section-title">Tak wygląda konsola GitCloud</h2>
-        <p class="section-sub">Cztery widoki tej samej platformy — sieć, alerty, mapa i zasoby. Dane poniżej są demonstracyjne.</p>
+        <p class="section-sub">Cztery widoki tej samej platformy: porty urządzenia, cała sieć, maszyny wirtualne i koszty automatyzacji AI. Dane poniżej są demonstracyjne.</p>
       </div>
 
       <div class="showcase-tabs" role="tablist" aria-label="Widoki konsoli GitCloud">
         <button class="sw-tab active" data-panel="sw-porty" role="tab" aria-selected="true"><span class="sw-tab-fill"></span><span class="sw-tab-label">Porty</span></button>
-        <button class="sw-tab" data-panel="sw-alerty" role="tab" aria-selected="false"><span class="sw-tab-fill"></span><span class="sw-tab-label">Alerty</span></button>
-        <button class="sw-tab" data-panel="sw-mapa" role="tab" aria-selected="false"><span class="sw-tab-fill"></span><span class="sw-tab-label">Mapa</span></button>
-        <button class="sw-tab" data-panel="sw-vm" role="tab" aria-selected="false"><span class="sw-tab-fill"></span><span class="sw-tab-label">Zasoby</span></button>
+        <button class="sw-tab" data-panel="sw-siec" role="tab" aria-selected="false"><span class="sw-tab-fill"></span><span class="sw-tab-label">Sieć</span></button>
+        <button class="sw-tab" data-panel="sw-vm" role="tab" aria-selected="false"><span class="sw-tab-fill"></span><span class="sw-tab-label">Infrastruktura</span></button>
+        <button class="sw-tab" data-panel="sw-ai" role="tab" aria-selected="false"><span class="sw-tab-fill"></span><span class="sw-tab-label">Automatyzacje</span></button>
       </div>
 
       <div class="browser-frame" style="max-width:920px;margin:0 auto;">
@@ -849,66 +849,16 @@
             <img src="img/dashboard-ports.jpeg" alt="Panel GitCloud pokazujący porty przełącznika, ruch sieciowy i temperaturę urządzenia" loading="lazy">
           </div>
 
-          <div class="sw-panel" id="sw-alerty">
-            <div class="demo-alerts">
-              <div class="d-alert crit"><span class="d-badge">🔗 2</span><div class="d-main"><b>Router-Brzeg-03 (Lokalizacja A)</b><span>Urządzenie niedostępne: 10.20.30.41</span></div><span class="d-time">10:20</span></div>
-              <div class="d-alert crit"><span class="d-badge">🔗 2</span><div class="d-main"><b>olt-demo-01 (Lokalizacja B)</b><span>Urządzenie niedostępne: olt-demo-01</span></div><span class="d-time">10:20</span></div>
-              <div class="d-alert crit"><span class="d-badge">🔗 3</span><div class="d-main"><b>SW-DEMO-01</b><span>Port nieaktywny (Ethernet0/0/1)</span></div><span class="d-time">10:15</span></div>
-              <div class="d-alert crit"><div class="d-main"><b>Zadanie nie powiodło się</b><span>demo_tls_scan</span></div><span class="d-time">04:45</span></div>
-              <div class="d-alert crit"><div class="d-main"><b>olt-demo-02 (Lokalizacja C)</b><span>Wysoka temperatura: SFP GPON 0/4/0</span></div><span class="d-time">wczoraj</span></div>
-              <div class="d-alert warn"><div class="d-main"><b>olt-demo-01 nie widoczny w panelu</b><span>filtr restartów ONT nieaktywny</span></div><span class="d-time">2 dni temu</span></div>
-            </div>
-          </div>
-
-          <div class="sw-panel" id="sw-mapa">
-            <svg viewBox="0 0 700 380" role="img" aria-label="Uproszczona mapa regionu z przykładowymi węzłami sieci i biurami obsługi, dane demonstracyjne" style="width:100%;height:auto;display:block;background:#0a0c10;">
-              <rect width="700" height="380" fill="#0a0c10"/>
-              <g stroke="#1a2030" stroke-width="1">
-                <path d="M0 90 H700 M0 200 H700 M0 300 H700" opacity=".5"/>
-                <path d="M120 0 V380 M330 0 V380 M540 0 V380" opacity=".5"/>
-              </g>
-              <g stroke="#2f5f99" stroke-width="1.4" opacity=".8">
-                <line x1="180" y1="120" x2="330" y2="210"/>
-                <line x1="330" y1="210" x2="470" y2="150"/>
-                <line x1="330" y1="210" x2="380" y2="290"/>
-                <line x1="330" y1="210" x2="230" y2="280"/>
-              </g>
-              <g font-family="Inter, sans-serif" font-size="11" fill="#9aa4c7">
-                <circle cx="180" cy="120" r="9" fill="#0d1016" stroke="#3ecf8e" stroke-width="2"/>
-                <text x="180" y="105" text-anchor="middle">Węzeł-A</text>
-                <circle cx="330" cy="210" r="11" fill="#0d1016" stroke="#5aa4ff" stroke-width="2.4"/>
-                <text x="330" y="192" text-anchor="middle" fill="#d9e1ff" font-weight="600">Serwerownia</text>
-                <circle cx="470" cy="150" r="9" fill="#0d1016" stroke="#3ecf8e" stroke-width="2"/>
-                <text x="470" y="135" text-anchor="middle">Węzeł-B</text>
-                <circle cx="380" cy="290" r="9" fill="#0d1016" stroke="#e0b34d" stroke-width="2"/>
-                <text x="380" y="308" text-anchor="middle">Biuro Obsługi</text>
-                <circle cx="230" cy="280" r="9" fill="#0d1016" stroke="#3ecf8e" stroke-width="2"/>
-                <text x="230" y="298" text-anchor="middle">Węzeł-C</text>
-              </g>
-              <g font-family="'IBM Plex Mono',monospace" font-size="10">
-                <rect x="470" y="20" width="200" height="86" rx="6" fill="#0d1016" stroke="#1f2937"/>
-                <text x="482" y="38" fill="#d9e1ff" font-weight="600" font-family="Inter, sans-serif">Węzeł-B · port 1/4</text>
-                <text x="482" y="55" fill="#3ecf8e">● Online</text>
-                <text x="482" y="70" fill="#7fa0c0">10.20.x.x/29</text>
-                <text x="482" y="86" fill="#7fa0c0">RX/TX: −8.1 / −5.6 dBm</text>
-              </g>
-            </svg>
+          <div class="sw-panel" id="sw-siec">
+            <img src="img/demo-siec.jpg" alt="Lista urządzeń sieci w GitCloud: przełączniki, routery, firewalle i OLT z portami, adresem IP, lokalizacją, statusem, kopią konfiguracji i czasem pracy" loading="lazy">
           </div>
 
           <div class="sw-panel" id="sw-vm">
-            <div class="demo-vm-wrap">
-              <table class="demo-vm">
-                <thead><tr><th>Nazwa</th><th>ID</th><th>Typ</th><th>Lokalizacja</th><th>vCPU</th><th>RAM</th><th>Status</th></tr></thead>
-                <tbody>
-                  <tr><td>edge-gateway-01</td><td>#101</td><td>VM</td><td>Region A</td><td>4 (2%)</td><td>2.1 / 4 GB</td><td class="ok">Uruchomiona</td></tr>
-                  <tr><td>monitoring-core</td><td>#104</td><td>VM</td><td>Region B</td><td>6 (12%)</td><td>5.8 / 10 GB</td><td class="ok">Uruchomiona</td></tr>
-                  <tr><td>db-primary</td><td>#129</td><td>LXC</td><td>Region B</td><td>2 (1%)</td><td>0.6 / 4 GB</td><td class="ok">Uruchomiona</td></tr>
-                  <tr><td>backup-collector</td><td>#155</td><td>LXC</td><td>Region A</td><td>2 (3%)</td><td>1.1 / 2 GB</td><td class="ok">Uruchomiona</td></tr>
-                  <tr><td>legacy-radius</td><td>#108</td><td>VM</td><td>Region A</td><td>4 (0.4%)</td><td>0.9 / 2 GB</td><td class="warn">Niedostępny</td></tr>
-                  <tr><td>vpn-gateway</td><td>#122</td><td>VM</td><td>Region C</td><td>4 (3.6%)</td><td>3.1 / 4 GB</td><td class="ok">Uruchomiona</td></tr>
-                </tbody>
-              </table>
-            </div>
+            <img src="img/demo-infrastruktura.jpg" alt="Maszyny wirtualne i kontenery w GitCloud: lokalizacja, oczekujące aktualizacje, zużycie vCPU i RAM, adres IP, data ostatniej kopii zapasowej i status" loading="lazy">
+          </div>
+
+          <div class="sw-panel" id="sw-ai">
+            <img src="img/demo-automatyzacje.jpg" alt="Koszty automatyzacji AI w GitCloud: liczba wywołań i błędów, koszt dzienny, tygodniowy i miesięczny, udział modeli oraz zestawienie skryptów i ostatnich wywołań" loading="lazy">
           </div>
 
         </div>
@@ -1352,11 +1302,11 @@
   /* ---- karuzela zakładek konsoli: autoplay + pasek postępu + pauza na hover/interakcję ---- */
   var urls = {
     'sw-porty': 'gitcloud.local/siec/urzadzenie',
-    'sw-alerty': 'gitcloud.local/alerty',
-    'sw-mapa': 'gitcloud.local/mapa',
-    'sw-vm': 'gitcloud.local/infrastruktura'
+    'sw-siec': 'gitcloud.local/siec',
+    'sw-vm': 'gitcloud.local/infrastruktura',
+    'sw-ai': 'gitcloud.local/automatyzacje'
   };
-  var order = ['sw-porty', 'sw-alerty', 'sw-mapa', 'sw-vm'];
+  var order = ['sw-porty', 'sw-siec', 'sw-vm', 'sw-ai'];
   var INTERVAL_MS = 5000;
   var tabs = document.querySelectorAll('.sw-tab');
   var urlEl = document.getElementById('sw-url');
