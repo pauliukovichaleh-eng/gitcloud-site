@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="pl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pilot serwera na ESP32-S3 i symulator ekranu | Projekty GitCloud</title>
+<meta name="description" content="Własny firmware dla kolorowego pilota: stan serwera, muzyka, sceny domu i asystent głosowy, połączenie przez Bluetooth LE.">
+<link rel="canonical" href="https://gitcloud.pl/projekty/pilot-esp32/">
+<meta name="robots" content="index, follow">
+<meta name="author" content="Aleh Pauliukovich">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://gitcloud.pl/projekty/pilot-esp32/">
+<meta property="og:title" content="Pilot serwera na ESP32-S3 i symulator ekranu | Projekty GitCloud">
+<meta property="og:description" content="Własny firmware dla kolorowego pilota: stan serwera, muzyka, sceny domu i asystent głosowy, połączenie przez Bluetooth LE.">
+<meta property="og:image" content="https://gitcloud.pl/img/projekty/pilot-ekran.png">
+<meta property="og:locale" content="pl_PL">
+<meta property="og:site_name" content="GitCloud">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/favicon-192.png" sizes="192x192" type="image/png">
+<link rel="apple-touch-icon" href="/favicon-192.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/projekty.css">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "CreativeWork", "name": "Pilot serwera na ESP32-S3 i symulator ekranu", "description": "Własny firmware dla kolorowego pilota: stan serwera, muzyka, sceny domu i asystent głosowy, połączenie przez Bluetooth LE.", "url": "https://gitcloud.pl/projekty/pilot-esp32/", "inLanguage": "pl", "dateCreated": "2026", "keywords": "C++, ESP32-S3, PlatformIO, NimBLE, Bluetooth LE GATT, Python, bleak, TFLite Micro", "author": {"@type": "Person", "name": "Aleh Pauliukovich", "url": "https://gitcloud.pl/"}, "image": "https://gitcloud.pl/img/projekty/pilot-ekran.png"}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "GitCloud", "item": "https://gitcloud.pl/"}, {"@type": "ListItem", "position": 2, "name": "Projekty", "item": "https://gitcloud.pl/projekty/"}, {"@type": "ListItem", "position": 3, "name": "Pilot serwera na ESP32-S3 i symulator ekranu", "item": "https://gitcloud.pl/projekty/pilot-esp32/"}]}</script>
+</head>
+<body>
+<header class="topbar">
+  <div class="wrap topbar-inner">
+    <a class="brand" href="/"><span class="git">Git</span><span class="cloud">Cloud</span><span class="dim">.pl</span></a>
+    <nav class="tabs">
+      <a href="/projekty/" class="active">Projekty</a>
+      <a href="/uslugi/">Usługi</a>
+      <a href="/">Platforma</a>
+    </nav>
+  </div>
+</header>
+<main>
+<section class="hero">
+  <div class="wrap">
+    <div class="crumbs"><a href="/projekty/">Projekty</a> / <span class="cat cat-wlasne">Systemy własne</span></div>
+    <h1>Pilot serwera na ESP32-S3 i symulator ekranu</h1>
+    <p class="lead">Własny firmware dla kolorowego pilota: stan serwera, muzyka, sceny domu i asystent głosowy, połączenie przez Bluetooth LE.</p>
+    <div class="meta-row"><span>Rok: <b>2026</b></span><span>Status: <b>W codziennym użyciu</b></span></div>
+    <figure class="media"><img src="/img/projekty/pilot-ekran.png" alt="Ekran startowy pilota z symulatora" class="px" width="960" height="474"></figure>
+  </div>
+</section>
+<div class="wrap"><div class="layout">
+  <div>
+    <section><h2>Zadanie</h2><p>Potrzebny był fizyczny pilot do serwera domowego i komputera: głośność, muzyka, tryby pracy, stan usług i alerty pod ręką, bez otwierania terminala. Urządzenie nie może trzymać żadnych haseł do sieci.</p></section>
+    <section><h2>Rozwiązanie</h2><p>Firmware w C++ dla LilyGO T-Embed (ESP32-S3): pokrętło, przyciski, ekran 320×170 z polskimi i cyrylicznymi czcionkami, pierścień LED. Komunikacja wyłącznie przez Bluetooth LE z zaszyfrowaną usługą GATT; agent po stronie serwera (Python, bleak) wysyła stan i wykonuje tylko polecenia z białej listy. Do pracy nad interfejsem powstał symulator: ten sam kod ekranu kompiluje się na komputerze, scenariusze klikają menu i zapisują zrzuty, a porównanie ze zrzutami wzorcowymi jest krokiem budowania firmware. Tła i zasoby pilot pobiera po sumie kontrolnej, awarie są dekodowane automatycznie z pliku ELF.</p></section>
+    <section><h2>Wynik</h2><ul class="results"><li>Ponad 1800 commitów w repozytorium projektu</li><li>9,2 h pracy na baterii przy stale włączonym ekranie (pomiar z 28.09.2026)</li><li>Zmiana interfejsu przechodzi przez porównanie zrzutów w symulatorze przed wgraniem</li><li>Urządzenie bez Wi-Fi i bez haseł: serwer wykonuje tylko dozwolone akcje</li></ul></section>
+  </div>
+  <aside>
+    <div class="box"><h3>Rola</h3><p>Projekt sprzętowo-programowy, firmware, agent hosta, symulator i testy.</p></div>
+    <div class="box"><h3>Stack</h3><div class="tags"><span class="tag">C++</span><span class="tag">ESP32-S3</span><span class="tag">PlatformIO</span><span class="tag">NimBLE</span><span class="tag">Bluetooth LE GATT</span><span class="tag">Python</span><span class="tag">bleak</span><span class="tag">TFLite Micro</span></div></div>
+    
+  </aside>
+</div></div>
+
+<div class="wrap"><div class="pager">
+  <a href="/projekty/platforma-isp/"><small>Poprzedni</small>GitCloud: platforma operacyjna dla operatora sieci</a>
+  <a href="/projekty/glowy-agentow/" style="text-align:right"><small>Następny</small>Wirtualne głowy agentów AI</a>
+</div></div>
+</main>
+<footer><div class="wrap footer-row">
+  <div>© 2026 GitCloud. Aleh Pauliukovich.</div>
+  <a class="footer-link" href="/privacy.html">Polityka prywatności</a>
+</div></footer>
+</body>
+</html>
