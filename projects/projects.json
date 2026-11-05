@@ -62,7 +62,8 @@
           "href": "/isp/",
           "label": "Strona platformy dla operatorów sieci"
         }
-      ]
+      ],
+      "thumb": "/img/projekty/isp-karta.jpg"
     },
     {
       "slug": "pilot-esp32",
@@ -77,7 +78,27 @@
       "gallery": [
         {
           "src": "/img/projekty/pilot-ekran.png",
-          "alt": "Ekran startowy pilota (zrzut z symulatora)",
+          "alt": "Ekran startowy pilota",
+          "pixelated": true
+        },
+        {
+          "src": "/img/projekty/pilot-kafelki.png",
+          "alt": "Menu kafelków: serwer, kopie, sieć, dom",
+          "pixelated": true
+        },
+        {
+          "src": "/img/projekty/pilot-wykres.png",
+          "alt": "Wykres CPU z progiem alarmu",
+          "pixelated": true
+        },
+        {
+          "src": "/img/projekty/pilot-kopie.png",
+          "alt": "Stan kopii zapasowych",
+          "pixelated": true
+        },
+        {
+          "src": "/img/projekty/pilot-radio.png",
+          "alt": "Statystyki publicznej sieci Meshtastic",
           "pixelated": true
         }
       ],
@@ -100,7 +121,8 @@
         "Zmiana interfejsu przechodzi przez porównanie zrzutów w symulatorze przed wgraniem",
         "Urządzenie bez Wi-Fi i bez haseł: serwer wykonuje tylko dozwolone akcje"
       ],
-      "links": []
+      "links": [],
+      "gallery_note": "Zrzuty z symulatora ekranu (ten sam kod co w firmware, dane testowe scenariuszy)."
     },
     {
       "slug": "glowy-agentow",
@@ -117,12 +139,23 @@
       },
       "gallery": [
         {
-          "src": "/img/projekty/glowy.jpg",
-          "alt": "Głowa agentki"
+          "video": "/img/projekty/glowa-sally.mp4",
+          "src": "/img/projekty/glowa-sally.jpg",
+          "alt": "Sally, agentka od finansów i spraw urzędowych, mówi własnym głosem"
+        },
+        {
+          "video": "/img/projekty/glowa-tony.mp4",
+          "src": "/img/projekty/glowa-tony.jpg",
+          "alt": "Tony, agent techniczny od serwera i alertów"
+        },
+        {
+          "video": "/img/projekty/glowa-mark.mp4",
+          "src": "/img/projekty/glowa-mark.jpg",
+          "alt": "Mark, agent od modernizacji systemów"
         },
         {
           "src": "/img/projekty/glowy-zmiana.jpg",
-          "alt": "Głowa agenta technicznego w serwerowni"
+          "alt": "Zmiana postaci w trakcie rozmowy"
         }
       ],
       "problem": "Agenci AI mówili tylko głosem z głośnika. Celem była żywa twarz z mimiką i ruchem ust, w pełni na własnym sprzęcie i bez płatnych modeli 3D.",
@@ -185,8 +218,13 @@
       "lead": "Sesja Linux zbudowana od zera wokół panelu i konsoli: bez ramek okien, z własnym paskiem, konsolą, menedżerem plików i odtwarzaczem.",
       "year": "2026",
       "status": "Domyślna sesja na dwóch komputerach",
-      "image": "",
-      "gallery": [],
+      "image": "/img/projekty/pulpit-pliki.jpg",
+      "gallery": [
+        {
+          "src": "/img/projekty/pulpit-pliki.jpg",
+          "alt": "GitCloud Files: siatka z miniaturami"
+        }
+      ],
       "problem": "Standardowy pulpit rozpraszał: dziesiątki okien, powiadomienia, różne style. Potrzebne było jedno spójne środowisko, w którym panel i konsola dla asystenta AI są zawsze na miejscu.",
       "solution": "Sesja w kompozytorze sway: po lewej panel w oknie na WebKit, po prawej własna konsola (serwer kart i xterm.js), na górze pasek webowy z odtwarzaczem, centrum dźwięku, powiadomieniami i wyszukiwarką. Własny menedżer plików i odtwarzacz muzyki zamiast zewnętrznych aplikacji. Konfiguracja w jednym repozytorium Ansible, oba komputery pobierają zmiany same; strażnik interfejsu robi zrzuty stron, sprawdza zdrowie co 15 minut i przywraca okno po awarii.",
       "stack": [
@@ -205,7 +243,9 @@
         "Samokontrola interfejsu co 15 minut z automatycznym przywróceniem",
         "Zapasowa sesja GNOME zawsze dostępna z ekranu logowania"
       ],
-      "links": []
+      "links": [],
+      "image_alt": "Menedżer plików GitCloud Files w widoku siatki",
+      "gallery_note": "Zrzuty na przykładowym katalogu domowym z wymyślonymi plikami. Interfejs pulpitu jest po rosyjsku, w języku właściciela."
     },
     {
       "slug": "koszyk-sklep-5-domen",

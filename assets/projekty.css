@@ -78,8 +78,9 @@ ul.results li{padding:12px 14px 12px 36px;background:var(--bg-row);border:1px so
 ul.results li::before{content:"";position:absolute;left:14px;top:19px;width:8px;height:8px;border-radius:2px;background:var(--ok)}
 .gallery{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:12px;padding-bottom:24px}
 .gallery figure{margin:0;border:1px solid var(--border);border-radius:10px;overflow:hidden;background:#000}
-.gallery img{width:100%;aspect-ratio:16/9;object-fit:cover}
-.gallery img.px{object-fit:contain;image-rendering:pixelated}
+.gallery img,.gallery video{width:100%;aspect-ratio:16/9;object-fit:cover;background:#000}
+.gnote{font-size:13px;color:var(--muted);margin:-12px 0 24px}
+.gallery img.px{object-fit:contain;image-rendering:pixelated;aspect-ratio:320/170}
 .gallery figcaption{font-size:12px;color:var(--muted);padding:8px 10px;background:var(--bg-panel)}
 .pager{display:flex;justify-content:space-between;gap:12px;border-top:1px solid var(--border-soft);padding:24px 0 48px}
 .pager a{text-decoration:none;color:var(--ink-soft);font-size:14px;max-width:48%}

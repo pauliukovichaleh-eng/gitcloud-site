@@ -23,6 +23,8 @@ OUT = ROOT / "projekty"
 SITE = "https://gitcloud.pl"
 
 # Nazwy, których nie wolno publikować bez zgody właściciela (pracodawca, klienci, lokalizacje).
+OG_DEFAULT = "/img/og.jpg"  # tools/og/og.html → zrzut 1200x630
+
 FORBIDDEN = [
     "staleks", "laito", "bestomed", "bestovet", "lukoszek", "mikrosilika", "wianecka", "kuriata",
     "łomianki", "lomianki", "hornówek", "hornowek",
@@ -69,7 +71,7 @@ def validate(data: dict) -> list[str]:
         seen.add(tag)
         if p.get("category") not in cats:
             errs.append(f"{tag}: nieznana kategoria {p.get('category')}")
-        for src in [p.get("image")] + [g["src"] for g in p.get("gallery", [])] + \
+        for src in [p.get("image"), p.get("thumb")] + [g.get(k) for g in p.get("gallery", []) for k in ("src", "video")] + \
                    [p.get("video", {}).get("src"), p.get("video", {}).get("poster")]:
             if src and src.startswith("/") and not (ROOT / src.lstrip("/")).is_file():
                 errs.append(f"{tag}: brak pliku {src}")
@@ -89,7 +91,12 @@ def nav(active: str) -> str:
 
 def head(title: str, desc: str, path: str, extra: str = "", image: str = "", active: str = "/projekty/") -> str:
     url = SITE + path
-    og_img = f'<meta property="og:image" content="{SITE}{escape(image)}">\n' if image else ""
+    if not image or image.endswith(".png"):      # brak zdjęcia albo mały zrzut piksela: wspólna karta 1200x630
+        image = OG_DEFAULT
+    og_img = f'<meta property="og:image" content="{SITE}{escape(image)}">\n'
+    if image == OG_DEFAULT:
+        og_img += ('<meta property="og:image:width" content="1200">\n<meta property="og:image:height" content="630">\n'
+                   '<meta name="twitter:card" content="summary_large_image">\n')
     return f"""<!doctype html>
 <html lang="pl">
 <head>
@@ -137,22 +144,23 @@ def jsonld(obj: dict) -> str:
     return '<script type="application/ld+json">' + json.dumps(obj, ensure_ascii=False) + "</script>\n"
 
 
-def thumb(p: dict) -> str:
-    img = p.get("image")
+def thumb(p: dict, eager: bool = False) -> str:
+    img = p.get("thumb") or p.get("image")      # thumb: lżejsza wersja 640 px do kart
     if img:
         cls = ' class="px"' if p.get("pixelated") else ""
+        load = 'fetchpriority="high"' if eager else 'loading="lazy" decoding="async"'   # pierwsza karta = LCP katalogu
         return (f'<div class="thumb"><img src="{escape(img)}" alt="{escape(p.get("image_alt", p["title"]))}"'
-                f'{cls} loading="lazy" decoding="async" width="640" height="360"></div>')
+                f'{cls} {load} width="640" height="360"></div>')
     rgb = CAT_RGB.get(p["category"], "90,164,255")
     big = escape(p["stack"][0])
     sub = escape(" · ".join(p["stack"][1:4]))
     return f'<div class="thumb gen" style="--rgb:{rgb}" aria-hidden="true"><div class="big">{big}</div><div class="sub">{sub}</div></div>'
 
 
-def card(p: dict, cats: dict, h: str = "h2") -> str:
+def card(p: dict, cats: dict, h: str = "h2", eager: bool = False) -> str:
     tags = "".join(f'<span class="tag">{escape(t)}</span>' for t in p["stack"][:5])
     return f"""  <a class="card" href="/projekty/{p['slug']}/" data-cat="{p['category']}">
-    {thumb(p)}
+    {thumb(p, eager)}
     <div class="body">
       <span class="cat cat-{p['category']}">{escape(cats[p['category']])} · {escape(p.get('year', ''))}</span>
       <{h}>{escape(p['title'])}</{h}>
@@ -169,7 +177,7 @@ def build_index(data: dict) -> str:
     btns = [f'<button type="button" data-f="*" aria-pressed="true">Wszystkie<span class="n">{len(projects)}</span></button>']
     btns += [f'<button type="button" data-f="{c}" aria-pressed="false">{escape(n)}<span class="n">{counts[c]}</span></button>'
              for c, n in cats.items() if counts[c]]
-    cards = [card(p, cats) for p in projects]
+    cards = [card(p, cats, eager=(i == 0)) for i, p in enumerate(projects)]
     ld = jsonld({
         "@context": "https://schema.org", "@type": "CollectionPage", "name": "Projekty GitCloud",
         "url": f"{SITE}/projekty/", "inLanguage": "pl",
@@ -220,11 +228,19 @@ def build_page(data: dict, i: int) -> str:
     gallery = ""
     extra_imgs = [g for g in p.get("gallery", []) if g["src"] != p.get("image") or p.get("video")]
     if extra_imgs:
-        figs = "".join(
-            f'<figure><img src="{escape(g["src"])}" alt="{escape(g["alt"])}"{" class=px" if g.get("pixelated") else ""} '
-            f'loading="lazy" width="480" height="270"><figcaption>{escape(g["alt"])}</figcaption></figure>'
-            for g in extra_imgs)
-        gallery = f'<div class="wrap"><div class="gallery">{figs}</div></div>'
+        def fig(g):
+            if g.get("video"):
+                el = (f'<video src="{escape(g["video"])}" poster="{escape(g["src"])}" muted loop playsinline controls '
+                      f'preload="none" width="480" height="237" aria-label="{escape(g["alt"])}"></video>')
+            else:
+                el = (f'<img src="{escape(g["src"])}" alt="{escape(g["alt"])}"{" class=px" if g.get("pixelated") else ""} '
+                      f'loading="lazy" width="480" height="270">')
+            return f'<figure>{el}<figcaption>{escape(g["alt"])}</figcaption></figure>'
+        figs = "".join(fig(g) for g in extra_imgs)
+        note = f'<p class="gnote">{escape(p["gallery_note"])}</p>' if p.get("gallery_note") else ""
+        gallery = f'<div class="wrap"><div class="gallery">{figs}</div>{note}</div>'
+    elif p.get("gallery_note"):
+        gallery = f'<div class="wrap"><p class="gnote" style="margin-top:12px">{escape(p["gallery_note"])}</p></div>'
     results = "".join(f"<li>{escape(r)}</li>" for r in p["results"])
     tags = "".join(f'<span class="tag">{escape(t)}</span>' for t in p["stack"])
     links = ""
@@ -343,7 +359,11 @@ def build_home(data: dict) -> str:
     title = "GitCloud: pracownia AI. Agenci, automatyzacja, platformy | Aleh Pauliukovich"
     desc = ("Pracownia AI Aleha Pauliukovicha: agenci AI, automatyzacja, platformy dla zespołów IT i sieci, "
             "zlecenia dla sklepów internetowych. Katalog projektów z zadaniem, rozwiązaniem i wynikiem.")
-    return head(title, desc, "/", ld, "/img/projekty/glowy.jpg", active="/").replace(
+    # stare kotwice landingu ISP (gitcloud.pl/#platforma, #faq …) prowadzą teraz na /isp/#…
+    old_anchors = ('<script>(function(){var h=location.hash.slice(1);'
+                   'if(/^(platforma|mozliwosci|faq|zalozyciel|stat-grid|sw-[a-z]+)$/.test(h))'
+                   'location.replace("/isp/#"+h)})();</script>\n')
+    return head(title, desc, "/", old_anchors + ld, OG_DEFAULT, active="/").replace(
         "<main>", '<main class="home">', 1) + f"""<section class="hero home-hero">
   <div class="wrap hero-grid">
     <div>
