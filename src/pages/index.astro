@@ -55,11 +55,11 @@ const rules = [
 
 const shots = [
   ['dashboard', 'Dashboard', 'Pulpit zespołu: alerty z czasem trwania, podsumowania i sugestie AI w jednej kolumnie.'],
+  ['siec', 'Urządzenia', 'Wszystkie urządzenia sieci: porty aktywne i z błędami, status, kopie konfiguracji, uptime.'],
+  ['ruch-asn', 'Ruch ASN', 'Ruch według operatorów i sesje BGP, z progami PNI zaznaczonymi na czerwono.'],
   ['ai-advisor', 'AI Advisor', 'Propozycje modernizacji z uzasadnieniem z danych sieci; zaakceptowane trafiają do kalendarza.'],
   ['ai-router', 'Router AI', 'Każde wywołanie modelu policzone: dostawca, model, błędy i koszt dzień po dniu.'],
-  ['automatyzacje', 'Automatyzacje', 'Harmonogram zadań: synchronizacje, kopie, alerty, z czasem trwania i liczbą awarii.'],
   ['proxmox-all', 'Infrastruktura', 'Maszyny wirtualne i kontenery ze wszystkich lokalizacji, z zasobami i stanem kopii.'],
-  ['loki-log', 'Logi', 'Logi z całej sieci w jednym widoku, z filtrem po hoście, poziomie i treści.'],
 ];
 
 const caps = [
@@ -208,7 +208,7 @@ const jsonld = {
         <div class="console-view">
           {shots.map(([k, t, s], i) => (
             <figure class={`shot${i === 0 ? ' is-on' : ''}`} data-shot={k} role="tabpanel">
-              <a class="shot-open" href={`/img/demo/${k}.webp`} target="_blank" rel="noopener" aria-label={`Otwórz zrzut ${t} w pełnym rozmiarze`}><img src={`/img/demo/${k}.webp`} alt={`Konsola GitCloud, widok ${t} (dane demonstracyjne)`} width="1600" height="1000" loading={i === 0 ? 'eager' : 'lazy'} decoding="async" /></a>
+              <a class="shot-open" href={`/img/demo/${k}.webp`} target="_blank" rel="noopener" aria-label={`Otwórz zrzut ${t} w pełnym rozmiarze`}><img src={`/img/demo/${k}.webp`} alt={`Konsola GitCloud, widok ${t} (dane demonstracyjne)`} width="2000" height="1250" loading={i === 0 ? 'eager' : 'lazy'} decoding="async" /></a>
               <figcaption>{s}</figcaption>
             </figure>
           ))}

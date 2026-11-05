@@ -29,6 +29,14 @@
           "alt": "Pulpit: alerty i powiadomienia zespołu"
         },
         {
+          "src": "/img/demo/siec.webp",
+          "alt": "Urządzenia sieciowe: porty, status i kopie konfiguracji"
+        },
+        {
+          "src": "/img/demo/ruch-asn.webp",
+          "alt": "Ruch według operatorów (ASN) i sesje BGP"
+        },
+        {
           "src": "/img/demo/ai-advisor.webp",
           "alt": "AI Advisor: propozycje modernizacji z uzasadnieniem"
         },
@@ -37,16 +45,8 @@
           "alt": "Router AI: wywołania i koszt modeli"
         },
         {
-          "src": "/img/demo/automatyzacje.webp",
-          "alt": "Automatyzacje: harmonogram zadań i wyniki"
-        },
-        {
           "src": "/img/demo/proxmox-all.webp",
           "alt": "Infrastruktura: maszyny wirtualne i kontenery"
-        },
-        {
-          "src": "/img/demo/loki-log.webp",
-          "alt": "Logi z całej sieci w jednym miejscu"
         }
       ],
       "problem": "Zespół sieciowy pracował na kilku osobnych narzędziach: monitoring w jednym miejscu, inwentaryzacja w arkuszu, dostęp przez stałe klucze, kopie zapasowe bez sprawdzania odtwarzania. Stan sieci trzeba było składać ręcznie.",
@@ -86,27 +86,30 @@
       "status": "W codziennym użyciu",
       "image": "/img/projekty/pilot-kafelki.png",
       "image_alt": "Menu kafelków pilota z symulatora",
-      "pixelated": true,
       "gallery": [
         {
           "src": "/img/projekty/pilot-kafelki.png",
-          "alt": "Menu kafelków: serwer, kopie, sieć, dom",
-          "pixelated": true
+          "alt": "Menu kafelków: serwer, kopie, sieć, dom"
+        },
+        {
+          "src": "/img/projekty/pilot-claude.png",
+          "alt": "Sesja z asystentem: mów, kliknij i wyślij"
+        },
+        {
+          "src": "/img/projekty/pilot-muzyka.png",
+          "alt": "Odtwarzacz muzyki z paskiem postępu"
         },
         {
           "src": "/img/projekty/pilot-wykres.png",
-          "alt": "Wykres CPU z progiem alarmu",
-          "pixelated": true
+          "alt": "Wykres CPU z progiem alarmu"
         },
         {
-          "src": "/img/projekty/pilot-kopie.png",
-          "alt": "Stan kopii zapasowych",
-          "pixelated": true
+          "src": "/img/projekty/pilot-maszyny.png",
+          "alt": "Maszyny wirtualne i kontenery z zasobami"
         },
         {
-          "src": "/img/projekty/pilot-radio.png",
-          "alt": "Statystyki publicznej sieci Meshtastic",
-          "pixelated": true
+          "src": "/img/projekty/pilot-pin.png",
+          "alt": "Ważne polecenie (restart zapory) wymaga PIN-u"
         }
       ],
       "problem": "Potrzebny był fizyczny pilot do serwera domowego i komputera: głośność, muzyka, tryby pracy, stan usług i alerty pod ręką, bez otwierania terminala. Urządzenie nie może trzymać żadnych haseł do sieci.",
@@ -129,7 +132,7 @@
         "Urządzenie bez Wi-Fi i bez haseł: serwer wykonuje tylko dozwolone akcje"
       ],
       "links": [],
-      "gallery_note": "Zrzuty z symulatora ekranu (ten sam kod co w firmware, dane testowe scenariuszy)."
+      "gallery_note": "Zrzuty z symulatora ekranu: ten sam kod co w firmware, dane testowe; ekran 320×170 pokazany w skali 4:1. Interfejs pilota jest po polsku i rosyjsku."
     },
     {
       "slug": "glowy-agentow",

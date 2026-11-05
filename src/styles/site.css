@@ -545,3 +545,7 @@ p{ margin:0; }
 .st-body p{ font-size:14px; color:var(--fg); line-height:1.6; }
 .st-body p .lbl{ color:var(--cc); margin-bottom:4px; font-size:11.5px; }
 @media (max-width:620px){ .st-body{ padding:0 14px 14px; } .pd-stages summary b{ font-size:14px; } }
+
+/* ekrany pilota (320×170 ×4): całe, bez przycinania, na tle ekranu */
+.card-media img[src*="/pilot-"], .pd img[src*="/pilot-"]{ object-fit:contain; background:#03060a; }
+.card-media img[src*="/pilot-"]{ padding:6px; }
