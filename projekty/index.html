@@ -28,9 +28,10 @@
   <div class="wrap topbar-inner">
     <a class="brand" href="/"><span class="git">Git</span><span class="cloud">Cloud</span><span class="dim">.pl</span></a>
     <nav class="tabs">
+      <a href="/">Pracownia</a>
       <a href="/projekty/" class="active">Projekty</a>
       <a href="/uslugi/">Usługi</a>
-      <a href="/">Platforma</a>
+      <a href="/isp/"><span class="lg">Platforma </span>ISP</a>
     </nav>
   </div>
 </header>
@@ -125,7 +126,8 @@
 (function(){var b=document.querySelectorAll('.filters button'),c=document.querySelectorAll('#grid .card');
 b.forEach(function(x){x.addEventListener('click',function(){var f=x.dataset.f;
 b.forEach(function(y){y.setAttribute('aria-pressed',y===x?'true':'false')});
-c.forEach(function(k){k.hidden=!(f==='*'||k.dataset.cat===f)});})});})();
+c.forEach(function(k){k.hidden=!(f==='*'||k.dataset.cat===f)});})});
+var h=location.hash.slice(1);if(h){var t=document.querySelector('.filters button[data-f="'+h+'"]');if(t)t.click();}})();
 </script>
 </main>
 <footer><div class="wrap footer-row">

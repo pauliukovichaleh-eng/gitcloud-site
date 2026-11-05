@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Buduje katalog projektów gitcloud.pl z projects/projects.json.
 
-  python3 tools/build_projects.py          -> projekty/index.html, projekty/<slug>/index.html, sitemap.xml
+  python3 tools/build_projects.py          -> index.html (strona główna), projekty/index.html, projekty/<slug>/index.html, sitemap.xml
   python3 tools/build_projects.py --check  -> tylko sprawdzenie danych (kod 1 przy błędzie)
 
 Zasady (strona publiczna): bez nazw pracodawcy i klientów, bez długich myślników, bez prywatnych adresów IP.
@@ -73,11 +73,21 @@ def validate(data: dict) -> list[str]:
                    [p.get("video", {}).get("src"), p.get("video", {}).get("poster")]:
             if src and src.startswith("/") and not (ROOT / src.lstrip("/")).is_file():
                 errs.append(f"{tag}: brak pliku {src}")
+    for f in data.get("featured", []):
+        if f not in seen:
+            errs.append(f"featured: nie ma projektu {f}")
     errs += problems_in(json.dumps(data, ensure_ascii=False), "projects.json")
     return errs
 
 
-def head(title: str, desc: str, path: str, extra: str = "", image: str = "") -> str:
+NAV = [("/", "Pracownia"), ("/projekty/", "Projekty"), ("/uslugi/", "Usługi"), ("/isp/", '<span class="lg">Platforma </span>ISP')]
+
+
+def nav(active: str) -> str:
+    return "\n".join(f'      <a href="{h}"{" class=\"active\"" if h == active else ""}>{n}</a>' for h, n in NAV)
+
+
+def head(title: str, desc: str, path: str, extra: str = "", image: str = "", active: str = "/projekty/") -> str:
     url = SITE + path
     og_img = f'<meta property="og:image" content="{SITE}{escape(image)}">\n' if image else ""
     return f"""<!doctype html>
@@ -107,9 +117,7 @@ def head(title: str, desc: str, path: str, extra: str = "", image: str = "") -> 
   <div class="wrap topbar-inner">
     <a class="brand" href="/"><span class="git">Git</span><span class="cloud">Cloud</span><span class="dim">.pl</span></a>
     <nav class="tabs">
-      <a href="/projekty/" class="active">Projekty</a>
-      <a href="/uslugi/">Usługi</a>
-      <a href="/">Platforma</a>
+{nav(active)}
     </nav>
   </div>
 </header>
@@ -141,6 +149,19 @@ def thumb(p: dict) -> str:
     return f'<div class="thumb gen" style="--rgb:{rgb}" aria-hidden="true"><div class="big">{big}</div><div class="sub">{sub}</div></div>'
 
 
+def card(p: dict, cats: dict, h: str = "h2") -> str:
+    tags = "".join(f'<span class="tag">{escape(t)}</span>' for t in p["stack"][:5])
+    return f"""  <a class="card" href="/projekty/{p['slug']}/" data-cat="{p['category']}">
+    {thumb(p)}
+    <div class="body">
+      <span class="cat cat-{p['category']}">{escape(cats[p['category']])} · {escape(p.get('year', ''))}</span>
+      <{h}>{escape(p['title'])}</{h}>
+      <p>{escape(p['lead'])}</p>
+      <div class="tags">{tags}</div>
+    </div>
+  </a>"""
+
+
 def build_index(data: dict) -> str:
     cats = data["categories"]
     projects = data["projects"]
@@ -148,18 +169,7 @@ def build_index(data: dict) -> str:
     btns = [f'<button type="button" data-f="*" aria-pressed="true">Wszystkie<span class="n">{len(projects)}</span></button>']
     btns += [f'<button type="button" data-f="{c}" aria-pressed="false">{escape(n)}<span class="n">{counts[c]}</span></button>'
              for c, n in cats.items() if counts[c]]
-    cards = []
-    for p in projects:
-        tags = "".join(f'<span class="tag">{escape(t)}</span>' for t in p["stack"][:5])
-        cards.append(f"""  <a class="card" href="/projekty/{p['slug']}/" data-cat="{p['category']}">
-    {thumb(p)}
-    <div class="body">
-      <span class="cat cat-{p['category']}">{escape(cats[p['category']])} · {escape(p.get('year', ''))}</span>
-      <h2>{escape(p['title'])}</h2>
-      <p>{escape(p['lead'])}</p>
-      <div class="tags">{tags}</div>
-    </div>
-  </a>""")
+    cards = [card(p, cats) for p in projects]
     ld = jsonld({
         "@context": "https://schema.org", "@type": "CollectionPage", "name": "Projekty GitCloud",
         "url": f"{SITE}/projekty/", "inLanguage": "pl",
@@ -187,7 +197,8 @@ def build_index(data: dict) -> str:
 (function(){{var b=document.querySelectorAll('.filters button'),c=document.querySelectorAll('#grid .card');
 b.forEach(function(x){{x.addEventListener('click',function(){{var f=x.dataset.f;
 b.forEach(function(y){{y.setAttribute('aria-pressed',y===x?'true':'false')}});
-c.forEach(function(k){{k.hidden=!(f==='*'||k.dataset.cat===f)}});}})}});}})();
+c.forEach(function(k){{k.hidden=!(f==='*'||k.dataset.cat===f)}});}})}});
+var h=location.hash.slice(1);if(h){{var t=document.querySelector('.filters button[data-f="'+h+'"]');if(t)t.click();}}}})();
 </script>
 """ + FOOT + "</body>\n</html>\n"
 
@@ -261,8 +272,165 @@ def build_page(data: dict, i: int) -> str:
 """ + FOOT + "</body>\n</html>\n"
 
 
+DIRECTIONS = [
+    ("wlasne", "01", "Agenci i automatyzacja AI",
+     "Agenci z podziałem ról, którzy pracują w nocy i uczą się na błędach. Głos, twarz 3D, pilot sprzętowy i pulpit, "
+     "wszystko na własnej infrastrukturze.", "/projekty/#wlasne", "Systemy własne"),
+    ("platformy", "02", "Platformy dla zespołów IT i sieci",
+     "Jedna konsola zamiast dziesięciu narzędzi: monitoring, inwentarz, dostęp przez krótkie certyfikaty SSH, "
+     "sprawdzane kopie zapasowe i AI, które zna sprzęt.", "/isp/", "Platforma dla operatorów sieci"),
+    ("zlecenia", "03", "Zlecenia: sklepy, SEO, dane",
+     "Naprawy i wdrożenia dla sklepów internetowych, audyty SEO, bazy firm B2B. Cena z góry, kopia przed zmianą, "
+     "rozliczenie przez platformę po odbiorze.", "/uslugi/", "Usługi i cennik"),
+]
+
+PRINCIPLES = [
+    ("Najpierw dane, potem model",
+     "AI dostaje kontekst z własnej bazy: inwentarz, historię, procedury. Dopiero wtedy odpowiada albo działa."),
+    ("Kopia przed każdą zmianą",
+     "Każda zmiana ma kopię poprzedniego stanu, test wyniku i krótki opis. Odtwarzanie kopii jest sprawdzane, nie zakładane."),
+    ("Człowiek zatwierdza",
+     "Agent przygotowuje decyzję z wariantami, właściciel wybiera. Nic, co trafia do klienta, nie wychodzi bez akceptacji."),
+    ("Własna infrastruktura",
+     "Serwer, bazy i modele lokalne tam, gdzie to ma sens. Płatne modele tylko do zadań, w których realnie wygrywają."),
+]
+
+
+def build_home(data: dict) -> str:
+    cats = data["categories"]
+    projects = data["projects"]
+    by_slug = {p["slug"]: p for p in projects}
+    featured = [by_slug[s] for s in data.get("featured", [])] or projects[:6]
+    counts = {c: sum(1 for p in projects if p["category"] == c) for c in cats}
+    dirs = "".join(f"""
+      <a class="dir" href="{href}" style="--c:var(--c-{c})">
+        <span class="num">{num}</span>
+        <h3>{escape(t)}</h3>
+        <p>{escape(d)}</p>
+        <span class="more">{escape(more)} <span class="n">{counts.get(c, 0)} w katalogu</span> &rarr;</span>
+      </a>""" for c, num, t, d, href, more in DIRECTIONS)
+    cards = "\n".join(card(p, cats, "h3") for p in featured)
+    princ = "".join(f"<li><strong>{escape(a)}</strong><span>{escape(b)}</span></li>" for a, b in PRINCIPLES)
+    video = by_slug.get("glowy-agentow", {}).get("video")
+    hero_media = (f'<a class="hero-media" href="/projekty/glowy-agentow/" aria-label="Projekt: wirtualne głowy agentów AI">'
+                  f'<video src="{escape(video["src"])}" poster="{escape(video.get("poster", ""))}" muted loop playsinline autoplay '
+                  f'preload="metadata" width="640" height="316"></video>'
+                  f'<span class="cap">Agentka AI mówi własnym głosem, ruch ust z fonemów · <b>projekt &rarr;</b></span></a>') if video else ""
+    ld = jsonld({
+        "@context": "https://schema.org",
+        "@graph": [
+            {"@type": "WebSite", "@id": f"{SITE}/#website", "name": "GitCloud",
+             "alternateName": ["gitcloud.pl", "Git Cloud", "Pracownia AI GitCloud"],
+             "url": f"{SITE}/", "inLanguage": "pl-PL", "publisher": {"@id": f"{SITE}/#org"}},
+            {"@type": "Organization", "@id": f"{SITE}/#org", "name": "GitCloud", "url": f"{SITE}/",
+             "logo": f"{SITE}/favicon-192.png",
+             "description": "Pracownia AI: agenci, automatyzacja i platformy dla zespołów IT.",
+             "founder": {"@id": f"{SITE}/#aleh"}},
+            {"@type": "Person", "@id": f"{SITE}/#aleh", "name": "Aleh Pauliukovich", "url": f"{SITE}/",
+             "image": f"{SITE}/img/aleh.jpg", "jobTitle": "Twórca pracowni AI GitCloud",
+             "knowsAbout": ["agenci AI", "automatyzacja", "LLM", "monitoring sieci", "Linux", "PostgreSQL",
+                            "Python", "ESP32", "Shoper", "SEO"],
+             "hasCredential": {"@type": "EducationalOccupationalCredential",
+                               "name": "Oracle Cloud Infrastructure Certified AI Foundations Associate",
+                               "credentialCategory": "certification",
+                               "recognizedBy": {"@type": "Organization", "name": "Oracle"}},
+             "worksFor": {"@id": f"{SITE}/#org"}},
+            {"@type": "ItemList", "name": "Wybrane projekty", "itemListElement": [
+                {"@type": "ListItem", "position": i + 1, "url": f"{SITE}/projekty/{p['slug']}/", "name": p["title"]}
+                for i, p in enumerate(featured)]},
+        ],
+    })
+    title = "GitCloud: pracownia AI. Agenci, automatyzacja, platformy | Aleh Pauliukovich"
+    desc = ("Pracownia AI Aleha Pauliukovicha: agenci AI, automatyzacja, platformy dla zespołów IT i sieci, "
+            "zlecenia dla sklepów internetowych. Katalog projektów z zadaniem, rozwiązaniem i wynikiem.")
+    return head(title, desc, "/", ld, "/img/projekty/glowy.jpg", active="/").replace(
+        "<main>", '<main class="home">', 1) + f"""<section class="hero home-hero">
+  <div class="wrap hero-grid">
+    <div>
+      <div class="kicker">Pracownia AI · Aleh Pauliukovich</div>
+      <h1>Buduję systemy z AI w środku, które <span class="hl">działają same</span> i dają się sprawdzić.</h1>
+      <p class="lead">Agenci, którzy w nocy rozwiązują alarmy serwera. Platforma, w której zespół sieciowy widzi całą sieć w jednym miejscu. Naprawy sklepów internetowych z testem na każdej domenie. Wszystko projektuję, piszę i utrzymuję sam.</p>
+      <div class="actions">
+        <a class="btn btn-primary" href="/projekty/">Zobacz projekty</a>
+        <a class="btn btn-ghost" href="#kontakt">Kontakt</a>
+      </div>
+    </div>
+    {hero_media}
+  </div>
+  <div class="wrap">
+    <ul class="facts">
+      <li><b>{len(projects)}</b><span>projektów w katalogu, z wynikiem w liczbach</span></li>
+      <li><b>3</b><span>agentów AI w codziennej pracy, także w nocy</span></li>
+      <li><b>4+</b><span>lata w administracji IT: serwery, sieci, Microsoft 365</span></li>
+      <li><b>98%</b><span>egzamin Oracle OCI AI Foundations Associate</span></li>
+    </ul>
+  </div>
+</section>
+
+<section class="band" id="kierunki">
+  <div class="wrap">
+    <div class="kicker">Czym się zajmuję</div>
+    <h2 class="sec-title">Trzy kierunki pracowni</h2>
+    <div class="dirs">{dirs}
+    </div>
+  </div>
+</section>
+
+<section class="band" id="projekty">
+  <div class="wrap">
+    <div class="sec-head">
+      <div>
+        <div class="kicker">Wybrane projekty</div>
+        <h2 class="sec-title">Co już działa</h2>
+      </div>
+      <a class="link-all" href="/projekty/">Cały katalog ({len(projects)}) &rarr;</a>
+    </div>
+    <div class="grid home-grid">
+{cards}
+    </div>
+  </div>
+</section>
+
+<section class="band" id="zasady">
+  <div class="wrap">
+    <div class="kicker">Jak pracuję</div>
+    <h2 class="sec-title">Cztery zasady w każdym projekcie</h2>
+    <ol class="principles">{princ}</ol>
+  </div>
+</section>
+
+<section class="band" id="o-mnie">
+  <div class="wrap who">
+    <img src="/img/aleh.jpg" alt="Aleh Pauliukovich" width="200" height="200" loading="lazy">
+    <div>
+      <div class="kicker">Kto prowadzi pracownię</div>
+      <h2 class="sec-title">Aleh Pauliukovich</h2>
+      <p>Administrator IT z ponad czteroletnim doświadczeniem: Windows Server i Active Directory, Microsoft 365 i Intune, Linux i Docker, sieci i VPN, automatyzacja w Pythonie i PowerShellu. Pracowałem zarówno zdalnie, jak i przy wdrożeniach na miejscu.</p>
+      <p>W pracowni łączę to z AI: modele językowe, rozpoznawanie mowy, agenci z pamięcią decyzji w PostgreSQL, firmware na ESP32. Certyfikat Oracle Cloud Infrastructure AI Foundations Associate (2026).</p>
+    </div>
+  </div>
+</section>
+
+<section class="band cta" id="kontakt">
+  <div class="wrap cta-grid">
+    <div>
+      <h2 class="sec-title">Masz proces, który da się zautomatyzować?</h2>
+      <p>Opisz go w kilku zdaniach: co dziś robi się ręcznie, ile to trwa i co jest wynikiem. Odpowiem, czy i jak to zrobić, zanim padnie jakakolwiek cena.</p>
+    </div>
+    <div class="contact-card">
+      <div class="ct-label">// kontakt</div>
+      <p>E-mail i zasady współpracy są na stronie usług. Małe zlecenia (sklepy, poczta, serwery) mają cennik z góry.</p>
+      <a class="btn btn-primary" href="/uslugi/#kontakt">Napisz wiadomość &rarr;</a>
+      <a class="btn btn-ghost" href="/uslugi/#cennik">Cennik</a>
+    </div>
+  </div>
+</section>
+""" + FOOT + "</body>\n</html>\n"
+
+
 def sitemap(projects: list[dict], today: str) -> str:
     base = [("/", "weekly", "1.0"), ("/projekty/", "weekly", "0.9"), ("/uslugi/", "monthly", "0.9"),
+            ("/isp/", "monthly", "0.8"),
             ("/privacy.html", "yearly", "0.3")]
     base += [(f"/projekty/{p['slug']}/", "monthly", "0.7") for p in projects]
     rows = "".join(f"  <url>\n    <loc>{SITE}{u}</loc>\n    <lastmod>{today}</lastmod>\n"
@@ -280,7 +448,7 @@ def main() -> int:
     if "--check" in sys.argv:
         print(f"ok: {len(data['projects'])} projektów")
         return 0
-    pages = {OUT / "index.html": build_index(data)}
+    pages = {OUT / "index.html": build_index(data), ROOT / "index.html": build_home(data)}
     for i, p in enumerate(data["projects"]):
         pages[OUT / p["slug"] / "index.html"] = build_page(data, i)
     for path, html in pages.items():

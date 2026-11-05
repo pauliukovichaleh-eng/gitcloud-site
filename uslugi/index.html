@@ -154,6 +154,7 @@
   }
   nav.tabs a:hover { color: var(--ink-soft); background: rgba(255,255,255,.04); }
   nav.tabs a.active { color: var(--ink); background: rgba(90,164,255,.1); }
+  @media (max-width: 520px) { nav.tabs .lg { display: none; } }
 
   main { position: relative; z-index: 1; }
 
@@ -766,13 +767,14 @@
   <div class="wrap topbar-inner">
     <a class="brand" href="/"><span class="git">Git</span><span class="cloud">Cloud</span><span class="dim">.pl</span></a>
     <nav class="tabs">
+      <a href="/">Pracownia</a>
       <a href="#top" class="active">Usługi</a>
       <a href="#realizacje">Realizacje</a>
       <a href="#cennik">Cennik</a>
       <a href="#jak">Jak pracuję</a>
       <a href="#kontakt">Kontakt</a>
       <a href="/projekty/">Projekty</a>
-      <a href="/">Platforma</a>
+      <a href="/isp/"><span class="lg">Platforma </span>ISP</a>
     </nav>
   </div>
 </header>
@@ -907,7 +909,7 @@
         <img src="/img/aleh.jpg" alt="Aleh Pauliukovich" width="220" height="220">
         <div class="about-copy">
           <p class="about-bio"><strong>Aleh Pauliukovich</strong>, administrator IT z ponad czteroletnim doświadczeniem: Windows Server i Active Directory, Linux, Microsoft 365, sieci i VPN, automatyzacja w Pythonie i PowerShellu.</p>
-          <p class="about-bio">Zbudowałem od podstaw <a class="inline-link" href="/">GitCloud</a>, platformę do monitoringu i automatyzacji sieci dostawcy internetu. Tę samą dokładność stosuję w małych zleceniach: każda zmiana ma kopię, test i opis.</p>
+          <p class="about-bio">Zbudowałem od podstaw <a class="inline-link" href="/isp/">GitCloud</a>, platformę do monitoringu i automatyzacji sieci dostawcy internetu. Tę samą dokładność stosuję w małych zleceniach: każda zmiana ma kopię, test i opis.</p>
         </div>
       </div>
     </div>

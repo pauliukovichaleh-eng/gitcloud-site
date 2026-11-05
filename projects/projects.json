@@ -1,10 +1,18 @@
 {
-  "_info": "Katalog projektów gitcloud.pl. Edytuj tutaj, potem: python3 tools/build_projects.py. Bez nazw klientów i pracodawcy (patrz FORBIDDEN w skrypcie).",
+  "_info": "Katalog projektów gitcloud.pl. Edytuj tutaj, potem: python3 tools/build_projects.py. Bez nazw klientów i pracodawcy (patrz FORBIDDEN w skrypcie). Lista featured = karty na stronie głównej (w tej kolejności).",
   "categories": {
     "wlasne": "Systemy własne",
     "platformy": "Platformy",
     "zlecenia": "Zlecenia dla klientów"
   },
+  "featured": [
+    "glowy-agentow",
+    "agenci-ai",
+    "platforma-isp",
+    "pilot-esp32",
+    "koszyk-sklep-5-domen",
+    "seo-storefront"
+  ],
   "projects": [
     {
       "slug": "platforma-isp",
@@ -51,8 +59,8 @@
       ],
       "links": [
         {
-          "href": "/",
-          "label": "Opis platformy na stronie głównej"
+          "href": "/isp/",
+          "label": "Strona platformy dla operatorów sieci"
         }
       ]
     },
