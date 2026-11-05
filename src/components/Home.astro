@@ -29,7 +29,7 @@ const jsonld = {
   '@context': 'https://schema.org',
   '@graph': [
     { '@type': 'WebSite', '@id': `${SITE}/#website`, name: 'GitCloud', alternateName: T.ld.altNames, url: URL0, inLanguage: T.inLanguage, publisher: { '@id': `${SITE}/#org` } },
-    { '@type': ['Organization', 'ProfessionalService'], '@id': `${SITE}/#org`, name: 'GitCloud', url: `${SITE}/`, logo: `${SITE}/favicon-192.png`, email: `mailto:${EMAIL}`, areaServed: 'PL', priceRange: T.ld.price, description: T.ld.orgDesc, founder: { '@id': `${SITE}/#aleh` } },
+    { '@type': ['Organization', 'ProfessionalService'], '@id': `${SITE}/#org`, name: 'GitCloud', url: `${SITE}/`, logo: `${SITE}/favicon-192.png`, email: `mailto:${EMAIL}`, areaServed: 'PL', description: T.ld.orgDesc, founder: { '@id': `${SITE}/#aleh` } },
     { '@type': 'Person', '@id': `${SITE}/#aleh`, name: 'Aleh Pauliukovich', url: `${SITE}/`, image: `${SITE}/img/aleh.jpg`, jobTitle: T.ld.job, knowsAbout: T.ld.knows, knowsLanguage: ['pl', 'ru', 'be', 'en'], hasCredential: { '@type': 'EducationalOccupationalCredential', name: 'Oracle Cloud Infrastructure Certified AI Foundations Associate', credentialCategory: 'certification', recognizedBy: { '@type': 'Organization', name: 'Oracle' } }, worksFor: { '@id': `${SITE}/#org` } },
     { '@type': 'ItemList', name: T.ld.list, itemListElement: ordered.map((p, i) => ({ '@type': 'ListItem', position: i + 1, url: `${URL0}#${anchor(p.slug)}`, name: p.title })) },
     { '@type': 'FAQPage', mainEntity: T.faq.map(([q, a]) => ({ '@type': 'Question', name: q, acceptedAnswer: { '@type': 'Answer', text: a } })) },
@@ -190,13 +190,12 @@ const jsonld = {
       </div>
       <div class="svc">
         <div class="prices">
-          {T.svc.prices.map(([pt, pv, ps]) => <div class="tile price"><span class="lbl">{pt}</span><b class="val mono">{pv}</b><span class="sub">{ps}</span></div>)}
+          {T.svc.prices.map(([pt, ps]) => <div class="tile deal"><b>{pt}</b><span class="sub">{ps}</span></div>)}
         </div>
         <ol class="steps">
           {T.svc.steps.map(([st, ss], i) => <li><span class="mono step-n">{i + 1}</span><div><b>{st}</b><span>{ss}</span></div></li>)}
         </ol>
       </div>
-      <p class="note">{T.svc.note}</p>
       {has('zlecenia') && <a class="link-more" href={`#${anchor('zlecenia')}`}>{T.svc.more} &rarr;</a>}
     </div>
   </section>

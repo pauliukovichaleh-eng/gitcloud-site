@@ -127,9 +127,9 @@ const en: Dict = {
       ['Sales data', 'Competitor and margin analysis, B2B company databases with potential scoring.'],
     ],
     prices: [
-      ['Diagnosis', '50 PLN', 'root cause and repair price'],
-      ['Small task', '60 PLN', 'up to half an hour of work'],
-      ['Project', 'fixed', 'full quote after diagnosis'],
+      ['One price for the whole job', 'agreed after a short diagnosis, no hourly rate'],
+      ['No surprises', 'scope, price and deadline in writing before we start'],
+      ['Pay after acceptance', 'contract and invoice via Useme on request'],
     ],
     steps: [
       ['Brief', 'A few sentences about the problem or goal.'],
@@ -137,7 +137,6 @@ const en: Dict = {
       ['Delivery', 'Separate account, state backup, remote work.'],
       ['Acceptance', 'Result test and a short change summary.'],
     ],
-    note: 'Contract and invoice on request via Useme, payment after acceptance.',
     more: 'Completed orders: stages, results, tests',
   },
   exp: {
@@ -192,7 +191,6 @@ const en: Dict = {
   ld: {
     altNames: ['gitcloud.pl', 'Git Cloud', 'GitCloud AI studio'],
     orgDesc: 'AI studio: agents, automation and platforms for IT teams, e-commerce implementations.',
-    price: 'from 50 PLN',
     job: 'System Administrator, founder of the GitCloud AI studio',
     knows: ['AI agents', 'automation', 'LLM', 'Microsoft 365', 'Linux', 'PostgreSQL', 'Python', 'Terraform', 'networking'],
     list: 'Selected work',

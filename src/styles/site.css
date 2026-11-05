@@ -597,3 +597,9 @@ p{ margin:0; }
 
 /* RU: dłuższe słowa, mniejszy nagłówek na komputerze */
 @media (min-width:961px){ html[lang="ru"] .hero h1{ font-size:clamp(34px,3.9vw,52px); } }
+
+/* zasady wyceny zamiast cennika */
+.deal{ display:flex; flex-direction:column; gap:6px; border-left:2px solid var(--neon2); }
+.deal b{ color:#fff; font-size:16px; }
+.deal b::before{ content:'✓ '; color:var(--ok); }
+@media (max-width:620px){ .prices{ grid-template-columns:1fr !important; } .deal b{ font-size:15px; } }

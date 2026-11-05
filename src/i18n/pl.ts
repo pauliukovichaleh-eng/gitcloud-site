@@ -127,9 +127,9 @@ export default {
       ['Dane dla sprzedaży', 'Analiza konkurencji i marży, bazy firm B2B z oceną potencjału.'],
     ],
     prices: [
-      ['Diagnoza', '50 zł', 'przyczyna problemu i cena naprawy'],
-      ['Drobna sprawa', '60 zł', 'do pół godziny pracy'],
-      ['Projekt', 'z góry', 'wycena całości po diagnozie'],
+      ['Cena za całość', 'ustalona po krótkiej diagnozie, bez stawki godzinowej'],
+      ['Bez niespodzianek', 'zakres, cena i termin na piśmie przed startem'],
+      ['Płatność po odbiorze', 'umowa i faktura przez Useme na życzenie'],
     ],
     steps: [
       ['Opis', 'Kilka zdań o problemie lub celu.'],
@@ -137,7 +137,6 @@ export default {
       ['Wykonanie', 'Osobne konto, kopia stanu, praca zdalna.'],
       ['Odbiór', 'Test wyniku i krótki opis zmian.'],
     ],
-    note: 'Umowa i faktura na życzenie przez Useme, płatność po odbiorze pracy.',
     more: 'Zrealizowane zlecenia: etapy, wyniki, testy',
   },
   exp: {
@@ -192,7 +191,6 @@ export default {
   ld: {
     altNames: ['gitcloud.pl', 'Git Cloud', 'Pracownia AI GitCloud'],
     orgDesc: 'Pracownia AI: agenci, automatyzacja i platformy dla zespołów IT, wdrożenia dla sklepów internetowych.',
-    price: 'od 50 zł',
     job: 'Administrator systemów, twórca pracowni AI GitCloud',
     knows: ['agenci AI', 'automatyzacja', 'LLM', 'Microsoft 365', 'Linux', 'PostgreSQL', 'Python', 'Terraform', 'sieci'],
     list: 'Realizacje',
