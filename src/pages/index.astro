@@ -9,48 +9,42 @@ const SITE = 'https://gitcloud.pl';
 const EMAIL = 'pauliukovichaleh@gmail.com';
 const title = 'GitCloud: pracownia AI. Agenci, automatyzacja, platformy | Aleh Pauliukovich';
 const description =
-  'Pracownia AI Aleha Pauliukovicha: agenci AI, automatyzacja, platformy dla zespołów IT i sieci, zlecenia dla sklepów internetowych. Jeden ekosystem GitCloud, projekty z zadaniem, rozwiązaniem i wynikiem.';
+  'Pracownia AI Aleha Pauliukovicha: agenci AI, automatyzacja procesów, platformy dla zespołów IT i sieci, wdrożenia dla sklepów internetowych. Realizacje z zadaniem, rozwiązaniem i wynikiem.';
 
 const count = (c: string) => projects.filter((p) => p.category === c).length;
 
 const layers = [
   {
-    k: 'L3', t: 'Interfejsy', s: 'gdzie człowiek widzi wynik',
+    k: 'L3', t: 'Interfejs', s: 'gdzie zespół widzi wynik',
     items: [
-      ['Konsola ISP', 'sieć, dostęp i kopie w jednym panelu', '#konsola'],
-      ['Panel osobisty', 'decyzje, sprawy i finanse jako karty z wariantami', ''],
-      ['Pilot ESP32', 'stan serwera i sceny pod pokrętłem', has('pilot-esp32') ? `#${anchor('pilot-esp32')}` : ''],
-      ['Pulpit sway', 'jedno środowisko pracy na dwóch komputerach', has('pulpit-gitcloud') ? `#${anchor('pulpit-gitcloud')}` : ''],
-      ['Głowy 3D', 'agenci mówią własnym głosem i twarzą', '#agenci'],
+      ['Konsola operatora', 'sieć, dostęp i kopie w jednym panelu', '#konsola'],
+      ['Asystent głosowy', 'agenci mówią głosem i twarzą 3D', '#agenci'],
+      ['Urządzenie ESP32', 'alerty i akcje pod ręką', has('pilot-esp32') ? `#${anchor('pilot-esp32')}` : ''],
     ],
   },
   {
-    k: 'L2', t: 'Agenci i automatyzacja', s: 'kto pracuje, także w nocy',
+    k: 'L2', t: 'Agenci i automatyzacja', s: 'kto wykonuje pracę',
     items: [
-      ['Sally', 'finanse, sprawy urzędowe, poczta i terminy', ''],
-      ['Tony', 'alarmy Netdata w nocy, błędy z logów co godzinę', ''],
-      ['Mark', 'propozycje modernizacji z dowodem z inwentarza', ''],
-      ['Router modeli', 'tanie zadania na lekkim modelu, trudne na mocnym', ''],
-      ['Rada i dziennik', 'propozycja, ocena, akceptacja człowieka, zapis w audycie', ''],
+      ['Agenci z rolami', 'własny zakres i pamięć decyzji', has('agenci-ai') ? `#${anchor('agenci-ai')}` : ''],
+      ['Router modeli', 'zadanie trafia do najtańszego modelu, który da radę', ''],
+      ['Akceptacja i audyt', 'człowiek zatwierdza, każda akcja w dzienniku', ''],
     ],
   },
   {
     k: 'L1', t: 'Dane i infrastruktura', s: 'na czym to stoi',
     items: [
-      ['PostgreSQL + pgvector', 'inwentarz, historia i pamięć decyzji agentów', ''],
-      ['Loki · Netdata', 'logi i metryki z całej sieci, alerty z sygnatur', ''],
-      ['Proxmox · Docker', 'maszyny, kontenery, izolacja usług', ''],
-      ['Kopie z testem', 'odtwarzanie sprawdzane, nie zakładane', ''],
-      ['WireGuard · SSH CA', 'dostęp przez tunel i certyfikaty ważne 12 h', ''],
+      ['Własna baza danych', 'PostgreSQL z pamięcią wektorową', ''],
+      ['Monitoring i logi', 'metryki, logi i alerty z jednego miejsca', ''],
+      ['Bezpieczeństwo i kopie', 'dostęp przez certyfikaty, kopie z testem odtworzenia', ''],
     ],
   },
 ];
 
 const rules = [
-  ['Najpierw dane, potem model', 'AI dostaje kontekst z własnej bazy: inwentarz, historię, procedury. Dopiero wtedy odpowiada albo działa.'],
-  ['Kopia przed każdą zmianą', 'Każda zmiana ma kopię poprzedniego stanu, test wyniku i krótki opis. Odtwarzanie kopii jest sprawdzane.'],
-  ['Człowiek zatwierdza', 'Agent przygotowuje decyzję z wariantami, właściciel wybiera. Nic, co trafia do klienta, nie wychodzi bez akceptacji.'],
-  ['Własna infrastruktura', 'Serwer, bazy i modele lokalne tam, gdzie to ma sens. Płatne modele tylko tam, gdzie realnie wygrywają.'],
+  ['Najpierw dane', 'AI działa na kontekście z Twoich systemów, nie na domysłach.'],
+  ['Kopia przed zmianą', 'Każdą zmianę można cofnąć, a odtworzenie jest testowane.'],
+  ['Człowiek decyduje', 'Agent proponuje warianty, decyzję podejmuje odpowiedzialna osoba.'],
+  ['Dane zostają u Ciebie', 'Modele lokalne tam, gdzie liczy się poufność.'],
 ];
 
 const shots = [
@@ -63,41 +57,40 @@ const shots = [
 ];
 
 const caps = [
-  ['Monitoring proaktywny', 'Stan urządzeń, VLAN-ów, łączy i pul IP na żywo. Progi zapełnienia pul od razu wskazały 2 regiony na granicy wyczerpania.'],
-  ['AI, które zna sprzęt', 'Model dostaje gotowe komendy CLI dla konkretnego modelu urządzenia i grupuje duplikaty alertów zamiast zalewać zespół.'],
-  ['Dostęp bez wiecznych kluczy', 'Własny urząd certyfikacji SSH: certyfikaty ważne 12 godzin, odnawiane automatycznie, status każdego hosta widoczny.'],
-  ['Kopie, którym można ufać', 'Integralność każdej kopii sprawdzana, zanim uzna się ją za bezpieczną. Cisza w logach też jest alertem.'],
+  ['Monitoring proaktywny', 'Urządzenia, łącza i pule IP na żywo, z progami ostrzeżeń.'],
+  ['AI, które zna sprzęt', 'Alerty z gotowymi komendami diagnostycznymi i bez duplikatów.'],
+  ['Dostęp bez stałych kluczy', 'Certyfikaty SSH ważne 12 godzin, odnawiane automatycznie.'],
+  ['Kopie, którym można ufać', 'Każda kopia sprawdzana, zanim zostanie uznana za bezpieczną.'],
 ];
 
 const agents = [
-  { n: 'Sally', r: 'finanse i sprawy urzędowe', d: 'Pilnuje terminów, poczty od ludzi i spraw w urzędach. Pisze projekty odpowiedzi, wysyła po akceptacji.', g: '/img/agenci/sally.gif', c: 'm' },
-  { n: 'Tony', r: 'serwer, alarmy i logi', d: 'W nocy rozwiązuje alarmy według sprawdzonych procedur, co godzinę przegląda błędy z Loki. Rano tylko podsumowanie.', g: '/img/agenci/tony.gif', c: 'b' },
-  { n: 'Mark', r: 'modernizacja i analiza', d: 'Pisze propozycje zmian z dowodem z inwentarza. Zanim cokolwiek wejdzie, ocenia je rada pozostałych agentów.', g: '/img/agenci/mark.gif', c: 'g' },
+  { n: 'Sally', r: 'korespondencja i terminy', d: 'Porządkuje pocztę i terminy, przygotowuje odpowiedzi do akceptacji.', g: '/img/agenci/sally.gif', c: 'm' },
+  { n: 'Tony', r: 'infrastruktura i alerty', d: 'Rozwiązuje alarmy według procedur, także w nocy. Rano tylko raport.', g: '/img/agenci/tony.gif', c: 'b' },
+  { n: 'Mark', r: 'modernizacja i analiza', d: 'Proponuje zmiany z dowodem z danych. Wdrożenie dopiero po ocenie.', g: '/img/agenci/mark.gif', c: 'g' },
 ];
 
 const areas = [
-  ['Sklepy i strony', 'Shoper, WordPress, WooCommerce: koszyk, formularze, skrypty, integracje, wersje językowe, przeniesienie na nowy hosting.'],
-  ['Serwery i poczta', 'Linux i Windows Server, Google Workspace i Microsoft 365, DNS, SSL, VPN, kopie zapasowe, monitoring.'],
-  ['Automatyzacja i AI', 'Skrypty w Pythonie i PowerShellu, integracje przez API, raporty, asystenci i agenci oparci o modele językowe.'],
-  ['Dane dla sprzedaży', 'Analiza ofert i konkurencji z wyliczeniem marży, bazy firm B2B z oceną potencjału i szkicami wiadomości.'],
+  ['Sklepy internetowe', 'Shoper, WooCommerce, WordPress: koszyk, wersje językowe, integracje, SEO.'],
+  ['Infrastruktura i Microsoft 365', 'Serwery Linux i Windows, poczta, DNS, VPN, kopie i monitoring.'],
+  ['Automatyzacja i AI', 'Integracje przez API, raporty, asystenci i agenci dopasowani do procesu.'],
+  ['Dane dla sprzedaży', 'Analiza konkurencji i marży, bazy firm B2B z oceną potencjału.'],
 ];
 const prices = [
-  ['Diagnoza zdalna', '50 zł', 'opis przyczyny i cena naprawy, od tego zaczynamy'],
-  ['Drobna sprawa', '60 zł', 'do pół godziny: ustawienie, poprawka, konfiguracja'],
-  ['Zadanie', 'z góry', 'większa praca wyceniona za całość po diagnozie'],
+  ['Diagnoza', '50 zł', 'przyczyna problemu i cena naprawy'],
+  ['Drobna sprawa', '60 zł', 'do pół godziny pracy'],
+  ['Projekt', 'z góry', 'wycena całości po diagnozie'],
 ];
 const steps = [
-  ['Opis', 'Piszesz, co nie działa albo co ma powstać. Dopytuję tego samego dnia.'],
-  ['Diagnoza i wycena', 'Sprawdzam przyczynę, podaję cenę i termin, zanim cokolwiek zmienię.'],
-  ['Wykonanie', 'Osobne konto, kopia obecnego stanu, praca zdalna.'],
-  ['Odbiór', 'Test wyniku i krótki opis zmian. Poprawki do zgodności z ustaleniami w cenie.'],
+  ['Opis', 'Kilka zdań o problemie lub celu.'],
+  ['Wycena', 'Przyczyna, cena i termin przed zmianami.'],
+  ['Wykonanie', 'Osobne konto, kopia stanu, praca zdalna.'],
+  ['Odbiór', 'Test wyniku i krótki opis zmian.'],
 ];
 const faq = [
-  ['Czy wszystko odbywa się zdalnie?', 'Tak. Pracuję przez zdalny dostęp i panele administracyjne. Naprawy sprzętu i wizyt na miejscu nie wykonuję.'],
-  ['Jak wygląda kontakt?', 'Pisemnie: e-mail albo czat na platformie, przez którą trafiło zlecenie. Odpowiadam tego samego dnia, więc wszystkie ustalenia są zapisane.'],
-  ['Jak wygląda płatność?', 'Ustalamy ją przed rozpoczęciem pracy. Na życzenie umowa i faktura przez Useme, które zabezpiecza płatność do czasu przyjęcia pracy.'],
-  ['Czy moje dostępy są bezpieczne?', 'Proszę o osobne konto z potrzebnymi uprawnieniami. Po zakończeniu można je usunąć albo zmienić hasło. Przed zmianami zapisuję kopię.'],
-  ['Czy GitCloud dla ISP to produkt na sprzedaż?', 'To platforma rozwijana dla konkretnej sieci. Wersja demonstracyjna działa na wymyślonym operatorze; chętnie pokażę ją na rozmowie.'],
+  ['Czy wszystko odbywa się zdalnie?', 'Tak, przez zdalny dostęp i panele administracyjne. Nie wykonuję napraw sprzętu ani wizyt na miejscu.'],
+  ['Jak wygląda kontakt i płatność?', 'Pisemnie, e-mailem lub przez platformę zlecenia, odpowiedź tego samego dnia. Na życzenie umowa i faktura przez Useme, które zabezpiecza płatność do odbioru.'],
+  ['Czy moje dostępy są bezpieczne?', 'Pracuję na osobnym koncie z minimalnymi uprawnieniami, które po zakończeniu można usunąć. Przed zmianami zapisuję kopię.'],
+  ['Czy platforma dla ISP jest dostępna?', 'To rozwiązanie rozwijane dla konkretnej sieci. Wersję demonstracyjną pokażę na rozmowie.'],
 ];
 
 const jsonld = {
@@ -122,11 +115,11 @@ const jsonld = {
     <div class="wrap hero-in">
       <div class="hero-txt">
         <div class="kicker mono"><span class="dot ok pulse"></span> gitcloud · pracownia AI<span class="k-name"> · Aleh Pauliukovich</span></div>
-        <h1>Jeden ekosystem: <span class="hl">agenci, platformy i&nbsp;sprzęt</span>, które pracują same.</h1>
-        <p class="lead">GitCloud to moja infrastruktura i sposób pracy: wspólny rdzeń danych, agenci AI z podziałem ról i interfejsy od konsoli operatora sieci po pilot na ESP32. Z tego samego warsztatu robię zlecenia dla firm i sklepów.</p>
+        <h1>AI i automatyzacja, <span class="hl">które działają w&nbsp;firmie</span>, nie tylko na prezentacji.</h1>
+        <p class="lead">Agenci AI, platformy dla zespołów IT i sieci, wdrożenia dla sklepów internetowych. Od diagnozy do działającego wyniku, z testem i opisem.</p>
         <div class="actions">
-          <a class="btn btn-p" href="#moduly">Moduły ekosystemu</a>
-          <a class="btn btn-g" href="#uslugi">Zlecenie i cennik</a>
+          <a class="btn btn-p" href="#moduly">Zobacz realizacje</a>
+          <a class="btn btn-g" href="#kontakt">Opisz zadanie</a>
         </div>
       </div>
       <EcoMap />
@@ -146,8 +139,8 @@ const jsonld = {
     <div class="wrap">
       <header class="sec-h">
         <span class="idx mono">01 / architektura</span>
-        <h2>Trzy warstwy, jeden rdzeń</h2>
-        <p>Każdy projekt to moduł tego samego systemu. Dane trafiają najpierw do własnej bazy, agenci na nich pracują, a człowiek widzi wynik w interfejsie i zatwierdza decyzję.</p>
+        <h2>Jedna architektura w każdym projekcie</h2>
+        <p>Dane, agenci i interfejs: trzy warstwy, które powtarzam w każdym wdrożeniu. Rozwiązanie łatwo rozbudować i sprawdzić.</p>
       </header>
       <div class="stack">
         {layers.map((l) => (
@@ -173,8 +166,8 @@ const jsonld = {
     <div class="wrap">
       <header class="sec-h">
         <span class="idx mono">02 / moduły</span>
-        <h2>Co już działa</h2>
-        <p>Przy każdym projekcie: zadanie, rozwiązanie, stack, moja rola i wynik w liczbach. Nazwy klientów pokazuję tylko za ich zgodą.</p>
+        <h2>Realizacje</h2>
+        <p>Zadanie, rozwiązanie i wynik w liczbach. Nazwy klientów tylko za ich zgodą.</p>
       </header>
       <div class="filters pills" role="toolbar" aria-label="Filtr projektów">
         <button type="button" class="is-on" data-f="all">Wszystkie <span class="mono">{projects.length}</span></button>
@@ -192,7 +185,7 @@ const jsonld = {
       <header class="sec-h">
         <span class="idx mono">03 / konsola isp</span>
         <h2>Cała sieć, jedna prawda, jeden panel</h2>
-        <p>GitCloud dla operatora sieci: monitoring, automatyzacja, dostęp i kopie zebrane w jedną konsolę zamiast dziesięciu narzędzi. Poniżej wersja demonstracyjna na wymyślonych danych.</p>
+        <p>Monitoring, automatyzacja, dostęp i kopie w jednej konsoli zamiast dziesięciu narzędzi. Zrzuty z wersji demonstracyjnej.</p>
       </header>
       <div class="console">
         <div class="console-bar">
@@ -226,8 +219,8 @@ const jsonld = {
     <div class="wrap">
       <header class="sec-h">
         <span class="idx mono">04 / agenci</span>
-        <h2>Zespół, który pracuje w nocy</h2>
-        <p>Trzej agenci z podziałem ról jak w firmie, z pamięcią decyzji w PostgreSQL. Mówią własnym głosem, a twarze 3D zbudowane kodem w three.js ruszają ustami według fonemów.</p>
+        <h2>Agenci AI z podziałem ról</h2>
+        <p>Każdy agent ma swój zakres, pamięć decyzji i dziennik działań. Komunikują się głosem i twarzą 3D.</p>
       </header>
       <div class="agents">
         {agents.map((a) => (
@@ -256,8 +249,8 @@ const jsonld = {
     <div class="wrap">
       <header class="sec-h">
         <span class="idx mono">05 / usługi</span>
-        <h2>Zlecenia: sklep, poczta albo serwer znów działa</h2>
-        <p>Ta sama dokładność co w ekosystemie, w małych zleceniach: każda zmiana ma kopię, test i opis. Zdalnie, dla klientów z całej Polski, z ceną z góry.</p>
+        <h2>Usługi</h2>
+        <p>Zdalnie, z ceną ustaloną po diagnozie. Każda zmiana z kopią, testem i opisem.</p>
       </header>
       <div class="areas">
         {areas.map(([t, s], i) => <div class="area"><span class="mono area-n">0{i + 1}</span><b>{t}</b><span>{s}</span></div>)}
@@ -270,7 +263,7 @@ const jsonld = {
           {steps.map(([t, s], i) => <li><span class="mono step-n">{i + 1}</span><div><b>{t}</b><span>{s}</span></div></li>)}
         </ol>
       </div>
-      <p class="note">Cena za całe zadanie, ustalona po diagnozie. Umowa i faktura na życzenie przez Useme, które trzyma płatność do odbioru pracy.</p>
+      <p class="note">Umowa i faktura na życzenie przez Useme, płatność po odbiorze pracy.</p>
       {has('zlecenia') && <a class="link-more" href={`#${anchor('zlecenia')}`}>Zrealizowane zlecenia: etapy, wyniki, testy &rarr;</a>}
     </div>
   </section>
@@ -283,9 +276,9 @@ const jsonld = {
         <div class="term-bar mono"><span class="lights" aria-hidden="true"><i></i><i></i><i></i></span> aleh@gitcloud: ~</div>
         <pre class="mono"><span class="pr">$</span> whoami --verbose
 <span class="k">imię      </span> Aleh Pauliukovich
-<span class="k">rola      </span> twórca i operator GitCloud
+<span class="k">rola      </span> AI engineer · administrator IT
 <span class="k">baza      </span> Polska, praca zdalna
-<span class="k">stack     </span> Linux · Windows · M365 · Terraform · Python · ESP32
+<span class="k">stack     </span> Python · PostgreSQL · Linux · M365 · Terraform
 <span class="k">certyfikat</span> Oracle OCI AI Foundations Associate <span class="ok">(98%)</span>
 <span class="k">kontakt   </span> odpowiadam osobiście, tego samego dnia
 <span class="pr">$</span> <span class="cur">_</span></pre>
@@ -293,8 +286,8 @@ const jsonld = {
       <div class="who-txt">
         <span class="idx mono">06 / operator</span>
         <h2>Aleh Pauliukovich</h2>
-        <p>Administrator systemów z ponad czteroletnim doświadczeniem: Microsoft 365, Intune i Google Workspace, Windows Server i Active Directory, Linux i Docker, sieci i VPN, infrastruktura jako kod (Terraform, Ansible), automatyzacja w Pythonie i PowerShellu.</p>
-        <p>W GitCloud łączę to z AI: modele językowe, rozpoznawanie mowy, agenci z pamięcią decyzji, firmware na ESP32. Kod, który tu widać opisany, sam wdrażam i sam naprawiam, gdy coś w nocy przestaje działać.</p>
+        <p>Ponad cztery lata w administracji systemów: Microsoft 365, Intune i Google Workspace, Windows Server i Active Directory, Linux, sieci i VPN, infrastruktura jako kod (Terraform, Ansible).</p>
+        <p>Dziś łączę to z AI: agenci, modele językowe i automatyzacja procesów. Odpowiadam za cały cykl: projekt, wdrożenie i utrzymanie.</p>
       </div>
     </div>
   </section>
@@ -304,15 +297,15 @@ const jsonld = {
     <div class="wrap"><div class="contact">
       <div class="contact-main">
         <span class="idx mono">07 / kontakt</span>
-        <h2>Masz proces, który da się zautomatyzować, albo coś, co przestało działać?</h2>
-        <p>Wystarczą trzy rzeczy: adres strony lub nazwa usługi, co nie działa (albo co ma powstać) i od kiedy. Odpowiem, czy i jak to zrobić, zanim padnie jakakolwiek cena.</p>
+        <h2>Opisz zadanie, odpowiem tego samego dnia</h2>
+        <p>Wystarczy kilka zdań: co nie działa albo co ma powstać. Najpierw ocena i cena, potem praca.</p>
         <div class="mail">
           <a class="btn btn-p btn-lg" href={`mailto:${EMAIL}`}>Napisz wiadomość &rarr;</a>
           <button type="button" class="btn btn-g mono copy" data-copy={EMAIL} aria-label="Skopiuj adres e-mail">{EMAIL}</button>
         </div>
         <ul class="checks">
-          <li>bez formularzy i pośredników, piszesz wprost na maila</li>
-          <li>diagnoza zdalna 50 zł, cena naprawy z góry</li>
+          <li>bezpośredni kontakt, bez pośredników</li>
+          <li>cena ustalona przed rozpoczęciem pracy</li>
           <li>umowa i faktura na życzenie</li>
         </ul>
       </div>

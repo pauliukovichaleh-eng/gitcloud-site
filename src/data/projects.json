@@ -10,7 +10,6 @@
     "agenci-ai",
     "platforma-isp",
     "pilot-esp32",
-    "pulpit-gitcloud",
     "zlecenia"
   ],
   "projects": [
@@ -18,7 +17,7 @@
       "slug": "platforma-isp",
       "category": "platformy",
       "title": "GitCloud: platforma operacyjna dla operatora sieci",
-      "lead": "Jedna konsola dla zespołu sieciowego: monitoring, automatyzacja, dostęp, kopie zapasowe i alerty z pomocą AI.",
+      "lead": "Jedna konsola dla zespołu sieciowego: monitoring, automatyzacja, dostęp i kopie, z alertami wspieranymi przez AI.",
       "year": "2026",
       "status": "Działa, wersja demonstracyjna na wymyślonych danych",
       "image": "/img/demo/dashboard.webp",
@@ -49,25 +48,23 @@
           "alt": "Infrastruktura: maszyny wirtualne i kontenery"
         }
       ],
-      "problem": "Zespół sieciowy pracował na kilku osobnych narzędziach: monitoring w jednym miejscu, inwentaryzacja w arkuszu, dostęp przez stałe klucze, kopie zapasowe bez sprawdzania odtwarzania. Stan sieci trzeba było składać ręcznie.",
-      "solution": "Platforma webowa zbudowana od podstaw: panele na żywo dla infrastruktury dostępowej, VPN, wirtualizacji i puli adresów IP, inwentaryzacja urządzeń w wielu lokalizacjach, warstwa alertów wspierana przez AI (grupowanie duplikatów, kontekst sprzętu), własny urząd certyfikacji SSH, centralne logi i orkiestracja automatyzacji. Wersja demonstracyjna działa na fikcyjnym operatorze z adresami z dokumentacyjnych pul RFC 5737; skrypt budujący wersję demo zatrzymuje się, jeśli w kodzie zostanie jakakolwiek prawdziwa nazwa.",
+      "problem": "Zespół pracował na kilku osobnych narzędziach, a pełny obraz sieci trzeba było składać ręcznie.",
+      "solution": "Platforma zbudowana od podstaw: panele na żywo, inwentarz urządzeń w wielu lokalizacjach, alerty grupowane przez AI, własny urząd certyfikacji SSH i sprawdzane kopie zapasowe. Wersja demonstracyjna działa na wymyślonym operatorze, bez prawdziwych danych.",
       "stack": [
         "PHP",
         "JavaScript",
         "PostgreSQL",
-        "WebSockets",
         "SNMP",
         "NetFlow",
         "SSH CA",
-        "Loki",
-        "Caddy"
+        "Loki"
       ],
-      "role": "Projekt, kod, baza danych i wdrożenie: całość jednoosobowo.",
+      "role": "Architektura, kod, baza danych i wdrożenie.",
       "results": [
-        "56 sekcji konsoli, wszystkie sprawdzone w wersji demo",
-        "95 tabel PostgreSQL odtworzonych z kodu i dokumentacji",
-        "Demo w izolowanym kontenerze: aplikacja tylko z prawem odczytu bazy, bez ruchu wychodzącego",
-        "Dane demo odświeżane co godzinę, czasy liczone od bieżącej chwili"
+        "56 sekcji konsoli w jednym panelu",
+        "Dostęp przez certyfikaty ważne 12 godzin zamiast stałych kluczy",
+        "Alerty z gotowymi komendami diagnostycznymi",
+        "Demo w izolowanym środowisku, tylko do odczytu"
       ],
       "links": [
         {
@@ -80,8 +77,8 @@
     {
       "slug": "pilot-esp32",
       "category": "wlasne",
-      "title": "Pilot serwera na ESP32-S3 i symulator ekranu",
-      "lead": "Własny firmware dla kolorowego pilota: stan serwera, muzyka, sceny domu i asystent głosowy, połączenie przez Bluetooth LE.",
+      "title": "Urządzenie IoT na ESP32-S3 z symulatorem ekranu",
+      "lead": "Firmware dla sprzętowego panelu: stan systemów, alerty i polecenia pod pokrętłem, łączność przez Bluetooth LE.",
       "year": "2026",
       "status": "W codziennym użyciu",
       "image": "/img/projekty/pilot-kafelki.png",
@@ -112,24 +109,21 @@
           "alt": "Ważne polecenie (restart zapory) wymaga PIN-u"
         }
       ],
-      "problem": "Potrzebny był fizyczny pilot do serwera domowego i komputera: głośność, muzyka, tryby pracy, stan usług i alerty pod ręką, bez otwierania terminala. Urządzenie nie może trzymać żadnych haseł do sieci.",
-      "solution": "Firmware w C++ dla LilyGO T-Embed (ESP32-S3): pokrętło, przyciski, ekran 320×170 z polskimi i cyrylicznymi czcionkami, pierścień LED. Komunikacja wyłącznie przez Bluetooth LE z zaszyfrowaną usługą GATT; agent po stronie serwera (Python, bleak) wysyła stan i wykonuje tylko polecenia z białej listy. Do pracy nad interfejsem powstał symulator: ten sam kod ekranu kompiluje się na komputerze, scenariusze klikają menu i zapisują zrzuty, a porównanie ze zrzutami wzorcowymi jest krokiem budowania firmware. Tła i zasoby pilot pobiera po sumie kontrolnej, awarie są dekodowane automatycznie z pliku ELF.",
+      "problem": "Potrzebny był fizyczny panel do podglądu alertów i szybkich akcji, który nie przechowuje żadnych haseł.",
+      "solution": "Firmware w C++ z szyfrowaną usługą Bluetooth LE. Serwer wykonuje tylko polecenia z białej listy, a ważne akcje wymagają PIN-u. Symulator kompiluje ten sam kod na komputerze i porównuje zrzuty ekranu przy każdym buildzie.",
       "stack": [
         "C++",
         "ESP32-S3",
         "PlatformIO",
-        "NimBLE",
-        "Bluetooth LE GATT",
-        "Python",
-        "bleak",
-        "TFLite Micro"
+        "Bluetooth LE",
+        "Python"
       ],
-      "role": "Projekt sprzętowo-programowy, firmware, agent hosta, symulator i testy.",
+      "role": "Projekt urządzenia, firmware, usługa po stronie serwera i testy.",
       "results": [
-        "Ponad 1800 commitów w repozytorium projektu",
-        "9,2 h pracy na baterii przy stale włączonym ekranie (pomiar z 28.09.2026)",
-        "Zmiana interfejsu przechodzi przez porównanie zrzutów w symulatorze przed wgraniem",
-        "Urządzenie bez Wi-Fi i bez haseł: serwer wykonuje tylko dozwolone akcje"
+        "Ponad 1800 commitów",
+        "9,2 h pracy na baterii przy włączonym ekranie",
+        "Każda zmiana interfejsu sprawdzana zrzutami",
+        "Bez Wi-Fi i haseł na urządzeniu"
       ],
       "links": [],
       "gallery_note": "Zrzuty z symulatora ekranu: ten sam kod co w firmware, dane testowe; ekran 320×170 pokazany w skali 4:1. Interfejs pilota jest po polsku i rosyjsku."
@@ -137,10 +131,10 @@
     {
       "slug": "glowy-agentow",
       "category": "wlasne",
-      "title": "Wirtualne głowy agentów AI",
-      "lead": "Trzy animowane postacie 3D, które mówią głosem agentów, z ruchem ust dopasowanym do fonemów i emocjami.",
+      "title": "Awatary 3D dla asystentów głosowych",
+      "lead": "Trzy postacie 3D, które mówią głosem agentów, z ruchem ust dopasowanym do mowy i emocjami.",
       "year": "2026",
-      "status": "Działa na projektorze i w przeglądarce",
+      "status": "Działa w przeglądarce i na ekranie zewnętrznym",
       "image": "/img/projekty/glowy.jpg",
       "image_alt": "Wirtualna głowa agentki na tle miasta nocą",
       "video": {
@@ -151,41 +145,37 @@
         {
           "video": "/img/projekty/glowa-sally.mp4",
           "src": "/img/projekty/glowa-sally.jpg",
-          "alt": "Sally, agentka od finansów i spraw urzędowych, mówi własnym głosem"
+          "alt": "Sally: korespondencja i terminy"
         },
         {
           "video": "/img/projekty/glowa-tony.mp4",
           "src": "/img/projekty/glowa-tony.jpg",
-          "alt": "Tony, agent techniczny od serwera i alertów"
+          "alt": "Tony: infrastruktura i alerty"
         },
         {
           "video": "/img/projekty/glowa-mark.mp4",
           "src": "/img/projekty/glowa-mark.jpg",
-          "alt": "Mark, agent od modernizacji systemów"
+          "alt": "Mark: modernizacja i analiza"
         },
         {
           "src": "/img/projekty/glowy-zmiana.jpg",
           "alt": "Zmiana postaci w trakcie rozmowy"
         }
       ],
-      "problem": "Agenci AI mówili tylko głosem z głośnika. Celem była żywa twarz z mimiką i ruchem ust, w pełni na własnym sprzęcie i bez płatnych modeli 3D.",
-      "solution": "Głowy budowane kodem w three.js (bez gotowych modeli): twarz z formami mimicznymi, mruganie, kierunek wzroku, emocje i ruch bezczynności. Ruch ust liczony z tekstu i dźwięku: tekst zamieniany na fonemy, a dopasowanie w czasie (algorytm Viterbiego na cechach dźwięku co 10 ms) daje sekwencję kształtów ust z koartykulacją. Obraz renderuje serwer na GPU i wysyła strumień H.264 do własnej aplikacji Android na projektorze, który tylko wyświetla.",
+      "problem": "Asystent głosowy bez twarzy jest mniej czytelny w rozmowie. Celem była żywa mimika na własnym sprzęcie, bez płatnych modeli 3D.",
+      "solution": "Głowy zbudowane kodem w three.js, ruch ust liczony z tekstu i dźwięku co 10 ms. Obraz renderuje serwer na GPU i przesyła strumień wideo do lekkiego odbiornika.",
       "stack": [
         "three.js",
         "WebGL",
-        "JavaScript",
         "Python",
         "WebSocket",
-        "VA-API H.264",
-        "Android (Java)",
-        "TTS"
+        "H.264"
       ],
-      "role": "Projekt postaci, animacja, synchronizacja ust, strumieniowanie i aplikacja Android.",
+      "role": "Projekt postaci, animacja, synchronizacja ust i strumieniowanie.",
       "results": [
-        "Dokładność synchronizacji ust około 10 do 30 ms",
-        "Opóźnienie strumienia 720p60 około 83 ms od serwera do ekranu",
-        "Odbiornik Android zużywa 16 MB pamięci zamiast 382 MB przy przeglądarce",
-        "Trzy postacie z osobnym wyglądem, głosem i zestawem emocji"
+        "Synchronizacja ust z dokładnością 10 do 30 ms",
+        "Opóźnienie obrazu 720p60 około 83 ms",
+        "Odbiornik zużywa 16 MB zamiast 382 MB pamięci"
       ],
       "links": []
     },
@@ -193,60 +183,25 @@
       "slug": "agenci-ai",
       "category": "wlasne",
       "title": "Zespół agentów AI do pracy operacyjnej",
-      "lead": "Trzej agenci z podziałem ról jak w firmie: finanse i sprawy urzędowe, utrzymanie infrastruktury, modernizacja i analiza.",
+      "lead": "Trzech agentów z podziałem ról jak w firmie: korespondencja i terminy, utrzymanie infrastruktury, modernizacja.",
       "year": "2026",
-      "status": "Działa codziennie, w tym w nocy",
+      "status": "Działa codziennie, także w nocy",
       "image": "",
       "gallery": [],
-      "problem": "Rutynowe prace (alarmy serwera, poczta, terminy, aktualizacje) zajmowały czas każdego dnia. Jeden ogólny asystent mylił kompetencje i nie uczył się na błędach.",
-      "solution": "Każdy agent ma własną rolę, gałąź umiejętności i pamięć decyzji (wektorowo w PostgreSQL). Agent techniczny co noc rozwiązuje alarmy Netdata według sprawdzonych procedur i co godzinę analizuje błędy z logów Loki. Agent modernizacji pisze propozycje zmian z dowodem z inwentarza, a dwaj pozostali oceniają je na radzie, zanim cokolwiek zostanie wdrożone. Nowe umiejętności przechodzą testy oceniane przez model sędziego, każda akcja trafia do dziennika audytu (co, dlaczego, wynik). Decyzje wymagające człowieka trafiają jako karty z wariantami do panelu.",
+      "problem": "Rutynowe zadania (alarmy, poczta, terminy, aktualizacje) zabierały czas każdego dnia, a jeden ogólny asystent mylił kompetencje.",
+      "solution": "Każdy agent ma swoją rolę, umiejętności i pamięć decyzji w PostgreSQL. Propozycje zmian ocenia rada agentów, a decyzje wymagające człowieka trafiają do panelu jako karty z wariantami. Każda akcja jest zapisana w dzienniku.",
       "stack": [
         "Python",
         "FastAPI",
         "PostgreSQL",
         "pgvector",
-        "LLM API",
-        "routing modeli",
-        "Netdata",
-        "Loki",
-        "Cronicle",
-        "systemd"
+        "LLM API"
       ],
-      "role": "Architektura, kod agentów, procedury, testy i utrzymanie.",
+      "role": "Architektura, kod agentów, procedury i testy.",
       "results": [
-        "3 agentów z rozdzielonymi kompetencjami i radą przed wdrożeniem",
-        "Alarmy serwera rozwiązywane w nocy, rano tylko podsumowanie",
-        "Tanie zadania na lekkim modelu, rozpoznawanie mowy lokalnie",
+        "Alarmy rozwiązywane w nocy, rano tylko raport",
+        "Tanie zadania na lekkim modelu, trudne na mocnym",
         "Pełny dziennik działań agentów"
-      ],
-      "links": []
-    },
-    {
-      "slug": "pulpit-gitcloud",
-      "category": "wlasne",
-      "title": "Pulpit GitCloud: własne środowisko pracy",
-      "lead": "Sesja Linux zbudowana od zera wokół panelu i konsoli: bez ramek okien, z własnym paskiem, konsolą, menedżerem plików i odtwarzaczem.",
-      "year": "2026",
-      "status": "Domyślna sesja na dwóch komputerach",
-      "image": "",
-      "gallery": [],
-      "problem": "Standardowy pulpit rozpraszał: dziesiątki okien, powiadomienia, różne style. Potrzebne było jedno spójne środowisko, w którym panel i konsola dla asystenta AI są zawsze na miejscu.",
-      "solution": "Sesja w kompozytorze sway: po lewej panel w oknie na WebKit, po prawej własna konsola (serwer kart i xterm.js), na górze pasek webowy z odtwarzaczem, centrum dźwięku, powiadomieniami i wyszukiwarką. Własny menedżer plików i odtwarzacz muzyki zamiast zewnętrznych aplikacji. Konfiguracja w jednym repozytorium Ansible, oba komputery pobierają zmiany same; strażnik interfejsu robi zrzuty stron, sprawdza zdrowie co 15 minut i przywraca okno po awarii.",
-      "stack": [
-        "sway",
-        "Wayland",
-        "GTK4",
-        "WebKit",
-        "xterm.js",
-        "Python",
-        "Ansible",
-        "mpv"
-      ],
-      "role": "Projekt interfejsu, kod komponentów i automatyzacja wdrożenia.",
-      "results": [
-        "Jedna konfiguracja dla domu i pracy, zmiana = commit",
-        "Samokontrola interfejsu co 15 minut z automatycznym przywróceniem",
-        "Zapasowa sesja GNOME zawsze dostępna z ekranu logowania"
       ],
       "links": []
     },
@@ -255,7 +210,7 @@
       "category": "zlecenia",
       "badge": "Useme",
       "title": "Zlecenia dla firm: sklep na pięciu domenach, SEO i dane B2B",
-      "lead": "Zlecenia przez Useme: kolejne etapy dla sklepu na Shoperze działającego na pięciu domenach oraz baza firm B2B dla dystrybutora. Każde przyjęte przez klienta.",
+      "lead": "Kolejne etapy dla sklepu na Shoperze działającego na pięciu domenach oraz baza firm B2B. Wszystko przyjęte przez klientów.",
       "year": "2026",
       "status": "Zlecenia Useme, wszystkie przyjęte",
       "image": "/img/projekty/zl-koszyk-karta.jpg",
@@ -278,20 +233,17 @@
           "od": "2026-11-08"
         }
       ],
-      "problem": "Małe i średnie firmy przychodzą z konkretnym problemem: sklep nie przyjmuje zamówień z zagranicy, nowy szablon gubi funkcje i tłumaczenia, przed wejściem na nowy rynek brakuje listy partnerów. Potrzebny jest wynik, który da się sprawdzić, bez ryzyka dla działającego sklepu.",
-      "solution": "Ta sama metoda w każdym zleceniu: najpierw diagnoza i cena z góry, kopia stanu przed każdą zmianą, zmiany w opisanych blokach, które da się cofnąć jednym ruchem, automatyczny test ścieżki zakupu (Playwright) na każdej domenie i krótki opis zmian oraz spraw poza zakresem do decyzji klienta.",
+      "problem": "Sklep nie przyjmował zamówień z zagranicy, nowy szablon gubił funkcje i tłumaczenia, a przed wejściem na nowy rynek brakowało listy partnerów.",
+      "solution": "W każdym zleceniu ta sama metoda: diagnoza i cena z góry, kopia przed zmianą, automatyczny test ścieżki zakupu na każdej domenie i krótki opis zmian.",
       "stack": [
         "Shoper",
         "Storefront",
         "JavaScript",
-        "CSS",
         "Playwright",
         "SEO",
-        "GA4",
-        "JSON-LD",
         "Google Sheets"
       ],
-      "role": "Diagnoza, wdrożenie, testy automatyczne, dokumentacja i komunikacja z klientem; całość jednoosobowo.",
+      "role": "Diagnoza, wdrożenie, testy i komunikacja z klientem.",
       "results": [
         "Koszyk i ścieżka zakupu sprawdzone na 5 domenach",
         "66 punktów audytu SEO przejrzanych i rozliczonych",
@@ -410,5 +362,8 @@
       "image_alt": "Koszyk sklepu i automatyczny test zamówienia na pięciu domenach (dane przykładowe)",
       "gallery_note": "Ilustracje na danych przykładowych (sklep.example, wymyślone produkty). Sklep klientki, jej dane i adresy nie są pokazywane."
     }
+  ],
+  "retired": [
+    "pulpit-gitcloud"
   ]
 }

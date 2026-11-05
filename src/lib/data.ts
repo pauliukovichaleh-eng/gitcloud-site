@@ -31,7 +31,8 @@ export const featured: Project[] = raw.featured.map((s: string) => bySlug.get(s)
 export const rest: Project[] = projects.filter((p) => !raw.featured.includes(p.slug));
 export const ordered: Project[] = [...featured, ...rest];
 export const has = (slug: string) => bySlug.has(slug);
-export const allSlugs = (raw.projects as Project[]).flatMap((p) => [p.slug, ...(p.aliases || [])]);
+// stare adresy: projekty, etapy połączone w zbiorczy i projekty wycofane (prowadzą do listy realizacji)
+export const allSlugs = [...(raw.projects as Project[]).flatMap((p) => [p.slug, ...(p.aliases || [])]), ...((raw as { retired?: string[] }).retired || [])];
 
 // Stare adresy /projekty/<slug>/ prowadzą do okna projektu na stronie głównej.
 export const anchor = (slug: string) => `p-${slug}`;

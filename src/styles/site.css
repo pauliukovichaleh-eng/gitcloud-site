@@ -158,7 +158,7 @@ p{ margin:0; }
   border:1px solid color-mix(in srgb, var(--lc) 45%, transparent); border-radius:10px; background:color-mix(in srgb, var(--lc) 8%, transparent); }
 .layer-h h3{ font-size:17px; }
 .layer-h .muted{ font-size:13px; }
-.layer-items{ list-style:none; margin:0; padding:0; display:grid; grid-template-columns:repeat(5,1fr); gap:8px; }
+.layer-items{ list-style:none; margin:0; padding:0; display:grid; grid-template-columns:repeat(3,1fr); gap:8px; }
 .layer-items > li > *{ display:flex; flex-direction:column; gap:4px; height:100%; padding:12px 13px; border-radius:10px; background:rgba(5,7,12,.55);
   border:1px solid var(--edge); text-decoration:none; transition:border-color .15s, transform .15s; }
 .layer-items b{ font-size:14px; font-weight:600; color:#fff; }
@@ -174,7 +174,7 @@ p{ margin:0; }
 .rules b{ color:#fff; font-size:15.5px; }
 .rules li > span:last-child{ font-size:13.5px; color:var(--muted); }
 .rule-n{ font-size:12px; color:var(--cyan); }
-@media (max-width:1100px){ .layer{ grid-template-columns:1fr; } .layer-items{ grid-template-columns:repeat(3,1fr); } .rules{ grid-template-columns:repeat(2,1fr); } }
+@media (max-width:1100px){ .layer{ grid-template-columns:1fr; } .rules{ grid-template-columns:repeat(2,1fr); } }
 @media (max-width:620px){ .layer-items{ grid-template-columns:1fr 1fr; } .rules{ grid-template-columns:1fr; } }
 
 /* ── MODUŁY: bento ── */
@@ -549,3 +549,9 @@ p{ margin:0; }
 /* ekrany pilota (320×170 ×4): całe, bez przycinania, na tle ekranu */
 .card-media img[src*="/pilot-"], .pd img[src*="/pilot-"]{ object-fit:contain; background:#03060a; }
 .card-media img[src*="/pilot-"]{ padding:6px; }
+
+/* 5 realizacji: duża karta tylko na dwie kolumny (bez drugiego rzędu), pod spodem trzy w rzędzie */
+@media (min-width:981px){
+  .bento:has(> .card:nth-child(5):last-child) .card-big:first-child{ grid-row:span 1; }
+  .bento:has(> .card:nth-child(5):last-child) .card-big:first-child .card-media{ min-height:0; aspect-ratio:2/1; flex:none; }
+}

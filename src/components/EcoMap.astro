@@ -11,10 +11,10 @@ const link = (slug: string, fallback: string) => (has(slug) ? `#${anchor(slug)}`
 const nodes = [
   { code: 'AI', t: 'Agenci AI', s: 'Sally · Tony · Mark', href: link('agenci-ai', '#agenci'), x: 300, y: 72, side: 'top' },
   { code: 'ISP', t: 'Konsola ISP', s: 'sieć · dostęp · kopie', href: '#konsola', x: 492, y: 166, side: 'r' },
-  { code: 'BLE', t: 'Pilot ESP32', s: 'C++ · Bluetooth LE', href: link('pilot-esp32', '#moduly'), x: 492, y: 354, side: 'r' },
-  { code: 'SHP', t: 'Zlecenia', s: 'sklepy · SEO · dane', href: '#uslugi', x: 300, y: 448, side: 'bottom' },
-  { code: 'WM', t: 'Pulpit', s: 'sway · WebKit', href: link('pulpit-gitcloud', '#moduly'), x: 108, y: 354, side: 'l' },
-  { code: '3D', t: 'Głowy agentów', s: 'three.js · głos', href: link('glowy-agentow', '#agenci'), x: 108, y: 166, side: 'l' },
+  { code: 'IoT', t: 'Urządzenie IoT', s: 'ESP32 · Bluetooth LE', href: link('pilot-esp32', '#moduly'), x: 492, y: 354, side: 'r' },
+  { code: 'WEB', t: 'Sklepy i zlecenia', s: 'Shoper · SEO · dane', href: '#uslugi', x: 300, y: 448, side: 'bottom' },
+  { code: 'API', t: 'Integracje', s: 'API · raporty', href: '#uslugi', x: 108, y: 354, side: 'l' },
+  { code: '3D', t: 'Asystent głosowy', s: 'głos · twarz 3D', href: link('glowy-agentow', '#agenci'), x: 108, y: 166, side: 'l' },
 ];
 // Ścieżka "płytki": z rdzenia poziomo/pionowo, potem skos 45° do węzła.
 const trace = (x: number, y: number) => {
@@ -31,7 +31,7 @@ const ring = nodes.map((n, i) => {
 ---
 <figure class="eco" aria-label="Mapa ekosystemu GitCloud">
   <svg viewBox="-64 6 728 508" role="img" aria-labelledby="eco-t">
-    <title id="eco-t">Rdzeń GitCloud i moduły: agenci AI, konsola ISP, pilot ESP32, zlecenia, pulpit, głowy agentów</title>
+    <title id="eco-t">Rdzeń GitCloud i moduły: agenci AI, konsola ISP, urządzenie IoT, sklepy i zlecenia, integracje, asystent głosowy</title>
     <defs>
       <radialGradient id="eco-core" cx="50%" cy="50%" r="50%">
         <stop offset="0" stop-color="#1c74ff" stop-opacity=".35" /><stop offset="1" stop-color="#1c74ff" stop-opacity="0" />
