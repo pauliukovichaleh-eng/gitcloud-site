@@ -231,6 +231,10 @@
           "src": "/img/projekty/zl-tlumaczenie.jpg",
           "alt": "Etap 4 · Ta sama karta produktu w wersji czeskiej, słowackiej, niemieckiej i rumuńskiej",
           "od": "2026-11-08"
+        },
+        {
+          "src": "/img/projekty/zl-baza-b2b.jpg",
+          "alt": "Baza firm B2B Holandia i Belgia · arkusz z oceną potencjału i szkic pierwszej wiadomości"
         }
       ],
       "problem": "Sklep nie przyjmował zamówień z zagranicy, nowy szablon gubił funkcje i tłumaczenia, a przed wejściem na nowy rynek brakowało listy partnerów.",
@@ -360,7 +364,7 @@
         "baza-b2b-nl-be"
       ],
       "image_alt": "Koszyk sklepu i automatyczny test zamówienia na pięciu domenach (dane przykładowe)",
-      "gallery_note": "Ilustracje na danych przykładowych (sklep.example, wymyślone produkty). Sklep klientki, jej dane i adresy nie są pokazywane."
+      "gallery_note": "Ilustracje na danych przykładowych (sklep.example, wymyślone produkty i firmy). Sklepy i firmy klientów, ich dane i adresy nie są pokazywane."
     }
   ],
   "retired": [
