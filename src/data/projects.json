@@ -186,8 +186,27 @@
       "lead": "Trzech agentów z podziałem ról jak w firmie: korespondencja i terminy, utrzymanie infrastruktury, modernizacja.",
       "year": "2026",
       "status": "Działa codziennie, także w nocy",
-      "image": "",
-      "gallery": [],
+      "image": "/img/projekty/panel-agenci.webp",
+      "image_alt": "Panel agentów: działania z ostatniej doby i dziennik spraw, dane przykładowe",
+      "gallery": [
+        {
+          "src": "/img/projekty/panel-agenci.webp",
+          "alt": "Agenci na dobę: co zrobili sami, co przekazali właścicielowi, dziennik spraw"
+        },
+        {
+          "src": "/img/projekty/panel-tony.webp",
+          "alt": "Karta agenta technicznego: podsumowanie dnia i skuteczność z 14 dni"
+        },
+        {
+          "src": "/img/projekty/panel-sally.webp",
+          "alt": "Karta asystentki: sprawy dnia, skuteczność i awatar 3D"
+        },
+        {
+          "src": "/img/projekty/panel-agenci-tel.webp",
+          "alt": "Ten sam panel na telefonie"
+        }
+      ],
+      "gallery_note": "Zrzuty panelu uruchomionego na danych przykładowych: wymyślony dziennik spraw, bez połączenia z bazą i siecią; brakujące polskie napisy interfejsu przetłumaczone na potrzeby zrzutów.",
       "problem": "Rutynowe zadania (alarmy, poczta, terminy, aktualizacje) zabierały czas każdego dnia, a jeden ogólny asystent mylił kompetencje.",
       "solution": "Każdy agent ma swoją rolę, umiejętności i pamięć decyzji w PostgreSQL. Propozycje zmian ocenia rada agentów, a decyzje wymagające człowieka trafiają do panelu jako karty z wariantami. Każda akcja jest zapisana w dzienniku.",
       "stack": [

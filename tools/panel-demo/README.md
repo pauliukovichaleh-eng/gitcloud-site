@@ -1,0 +1,10 @@
+# Zrzuty panelu agentów na danych przykładowych
+
+Panel (prywatne repozytorium gitcloud-ai) uruchomiony bez bazy i bez sieci: `run.py` odcina połączenia wychodzące
+i podprocesy, zapytania SQL obsługuje `fake.py` (wymyślony dziennik spraw agentów), resztę zwraca pustą.
+
+    cd ~/src/gitcloud-ai && PORT=18932 .venv/bin/python <repo>/tools/panel-demo/run.py &
+    python final.py http://my.gitcloud.pl:18932 <katalog>    # Playwright, Chrome z MAP my.gitcloud.pl 127.0.0.1
+
+`final.py` tłumaczy kilka brakujących napisów na polski i sprawdza, czy w kadrze nie ma cyrylicy.
+Obrazy: PNG → WebP (jakość 82) do public/img/projekty/panel-*.webp.
