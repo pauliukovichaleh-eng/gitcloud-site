@@ -2,7 +2,7 @@ import raw from '../data/projects.json';
 import tr from '../data/projects.i18n.json';
 import type { Lang } from '../i18n';
 
-export type Img = { src: string; alt: string; video?: string; pixelated?: boolean; od?: string };
+export type Img = { src: string; alt: string; video?: string; pixelated?: boolean; od?: string; i?: number };
 export type Stage = { slug: string; title: string; client?: string; od?: string; problem: string; solution: string; results: string[]; stack: string[] };
 export type Project = {
   slug: string; category: 'wlasne' | 'platformy' | 'zlecenia'; title: string; lead: string; year?: string;
@@ -20,7 +20,8 @@ export const categories = raw.categories as Record<string, string>;
 const visible = (o: { od?: string }) => drafts || !o.od || o.od <= today;
 export const projects: Project[] = (raw.projects as Project[]).filter(visible).map((p) => ({
   ...p,
-  gallery: (p.gallery || []).filter(visible),
+  // i = miejsce w pełnej galerii, żeby gallery_alt z tłumaczeń trafiał w ten sam obraz, gdy część czeka na datę
+  gallery: (p.gallery || []).map((g, i) => ({ ...g, i })).filter(visible),
   ...(p.stages ? { stages: p.stages.filter(visible) } : {}),
 }));
 const bySlug = new Map(projects.map((p) => [p.slug, p]));
@@ -55,7 +56,7 @@ export const localize = (p: Project, lang: Lang): Project => {
   return {
     ...p,
     ...rest,
-    gallery: (p.gallery || []).map((g, i) => (gallery_alt?.[i] ? { ...g, alt: gallery_alt[i] } : g)),
+    gallery: (p.gallery || []).map((g, j) => { const i = g.i ?? j; return gallery_alt?.[i] ? { ...g, alt: gallery_alt[i] } : g; }),
     links: (p.links || []).map((l, i) => (links_label?.[i] ? { ...l, label: links_label[i] } : l)),
     stages: p.stages?.map((s) => ({ ...s, ...(stages?.[s.slug] || {}) })),
   } as Project;

@@ -51,8 +51,9 @@
       "solution": "The same method in every order: diagnosis and a fixed price, a backup before each change, an automated checkout test on every domain and a short change summary.",
       "role": "Diagnosis, implementation, tests and client communication.",
       "results": ["Cart and checkout verified on 5 domains", "66 SEO audit items reviewed and settled", "30 B2B companies (19 NL, 11 BE) with potential scoring", "Every change backed up and reversible"],
-      "gallery_alt": ["Stage 1 · Czech cart and an automated order test on five domains", "Stage 2 · SEO audit checklist and JSON-LD structured data", "Stage 3 · Country and currency switcher in the header and a checkout test", "Stage 4 · The same product page in Czech, Slovak, German and Romanian"],
-      "gallery_note": "Illustrations on sample data (sklep.example, fictional products). The client's store, data and addresses are not shown.",
+      "gallery_alt": ["Stage 1 · Czech cart and an automated order test on five domains", "Stage 2 · SEO audit checklist and JSON-LD structured data", "Stage 3 · Country and currency switcher in the header and a checkout test", "Stage 4 · The same product page in Czech, Slovak, German and Romanian", "B2B company database, the Netherlands and Belgium · a sheet with potential scoring and a draft first message"],
+      "image_alt": "Store cart and an automated order test on five domains (sample data)",
+      "gallery_note": "Illustrations on sample data (sklep.example, fictional products and companies). Clients' stores and companies, their data and addresses are not shown.",
       "stages": {
         "koszyk-sklep-5-domen": {
           "title": "Stage 1 · A cart that rejected orders from abroad",
@@ -143,8 +144,9 @@
       "solution": "В каждом заказе один метод: диагностика и цена заранее, копия перед изменением, автоматический тест оформления заказа на каждом домене и краткое описание изменений.",
       "role": "Диагностика, внедрение, тесты и общение с клиентом.",
       "results": ["Корзина и оформление проверены на 5 доменах", "66 пунктов SEO-аудита разобраны и закрыты", "30 B2B-компаний (19 NL, 11 BE) с оценкой потенциала", "Каждое изменение с копией и возможностью отката"],
-      "gallery_alt": ["Этап 1 · Чешская корзина и автотест заказа на пяти доменах", "Этап 2 · Чек-лист SEO-аудита и структурированные данные JSON-LD", "Этап 3 · Выбор страны и валюты в шапке и тест оформления", "Этап 4 · Одна карточка товара на чешском, словацком, немецком и румынском"],
-      "gallery_note": "Иллюстрации на примерных данных (sklep.example, вымышленные товары). Магазин клиентки, её данные и адреса не показаны.",
+      "gallery_alt": ["Этап 1 · Чешская корзина и автотест заказа на пяти доменах", "Этап 2 · Чек-лист SEO-аудита и структурированные данные JSON-LD", "Этап 3 · Выбор страны и валюты в шапке и тест оформления", "Этап 4 · Одна карточка товара на чешском, словацком, немецком и румынском", "База B2B-компаний, Нидерланды и Бельгия · таблица с оценкой потенциала и черновик первого письма"],
+      "image_alt": "Корзина магазина и автотест заказа на пяти доменах (примерные данные)",
+      "gallery_note": "Иллюстрации на примерных данных (sklep.example, вымышленные товары и компании). Магазины и компании клиентов, их данные и адреса не показаны.",
       "stages": {
         "koszyk-sklep-5-domen": {
           "title": "Этап 1 · Корзина, которая не принимала заказы из-за границы",
