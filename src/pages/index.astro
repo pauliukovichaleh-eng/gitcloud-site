@@ -70,9 +70,9 @@ const caps = [
 ];
 
 const agents = [
-  { n: 'Sally', r: 'finanse i sprawy urzędowe', d: 'Pilnuje terminów, poczty od ludzi i spraw w urzędach. Pisze projekty odpowiedzi, wysyła po akceptacji.', v: '/img/projekty/glowa-sally.mp4', p: '/img/projekty/glowa-sally.jpg', c: 'm' },
-  { n: 'Tony', r: 'serwer, alarmy i logi', d: 'W nocy rozwiązuje alarmy według sprawdzonych procedur, co godzinę przegląda błędy z Loki. Rano tylko podsumowanie.', v: '/img/projekty/glowa-tony.mp4', p: '/img/projekty/glowa-tony.jpg', c: 'b' },
-  { n: 'Mark', r: 'modernizacja i analiza', d: 'Pisze propozycje zmian z dowodem z inwentarza. Zanim cokolwiek wejdzie, ocenia je rada pozostałych agentów.', v: '/img/projekty/glowa-mark.mp4', p: '/img/projekty/glowa-mark.jpg', c: 'g' },
+  { n: 'Sally', r: 'finanse i sprawy urzędowe', d: 'Pilnuje terminów, poczty od ludzi i spraw w urzędach. Pisze projekty odpowiedzi, wysyła po akceptacji.', g: '/img/agenci/sally.gif', c: 'm' },
+  { n: 'Tony', r: 'serwer, alarmy i logi', d: 'W nocy rozwiązuje alarmy według sprawdzonych procedur, co godzinę przegląda błędy z Loki. Rano tylko podsumowanie.', g: '/img/agenci/tony.gif', c: 'b' },
+  { n: 'Mark', r: 'modernizacja i analiza', d: 'Pisze propozycje zmian z dowodem z inwentarza. Zanim cokolwiek wejdzie, ocenia je rada pozostałych agentów.', g: '/img/agenci/mark.gif', c: 'g' },
 ];
 
 const areas = [
@@ -233,7 +233,7 @@ const jsonld = {
         {agents.map((a) => (
           <article class={`agent agent-${a.c}`}>
             <div class="agent-media">
-              <video src={a.v} poster={a.p} muted loop playsinline preload="none" width="640" height="316" data-inview></video>
+              <img src={a.g} alt={`${a.n}: animowana twarz agenta`} width="320" height="320" loading="lazy" decoding="async" />
               <span class="agent-tag mono">● {a.n.toLowerCase()}.agent</span>
             </div>
             <div class="agent-body">
