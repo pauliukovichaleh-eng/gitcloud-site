@@ -1,21 +1,20 @@
-<!doctype html><html lang="pl"><head><meta charset="utf-8"><style>
-html,body{margin:0;width:1200px;height:630px;overflow:hidden;background:#05070c;color:#d9e1ff;font-family:Inter,'Segoe UI',sans-serif}
-.w{position:relative;width:1200px;height:630px;background:radial-gradient(900px 500px at 85% 40%,#0f2140 0,#05070c 70%)}
-.t{position:absolute;left:72px;top:84px;width:610px}
-.k{font:600 20px 'IBM Plex Mono',monospace;color:#5aa4ff;letter-spacing:.08em;text-transform:uppercase}
-h1{font-size:58px;line-height:1.08;margin:22px 0 22px;font-weight:800;letter-spacing:-.02em}
-h1 b{color:#5aa4ff}
+<!doctype html><html lang="pl"><head><meta charset="utf-8">
+<!-- Obrazek og:image 1200x630: otworzyć po `npm run build` przez serwer dist (ścieżki /img, /favicon), zrzut 1200x630 → public/img/og.jpg -->
+<style>
+html,body{margin:0;width:1200px;height:630px;overflow:hidden;background:#05070c;color:#d9e1ff;font-family:'Inter Variable',Inter,system-ui,sans-serif}
+.w{position:relative;width:1200px;height:630px;background:radial-gradient(700px 500px at 82% 40%,rgba(28,116,255,.28),transparent 70%),radial-gradient(500px 400px at 10% 0%,rgba(90,164,255,.14),transparent 70%),#05070c}
+.w::before{content:'';position:absolute;inset:0;background-image:linear-gradient(rgba(90,164,255,.05) 1px,transparent 1px),linear-gradient(90deg,rgba(90,164,255,.05) 1px,transparent 1px);background-size:48px 48px}
+.t{position:absolute;left:72px;top:78px;width:620px}
+.b{display:flex;align-items:center;gap:14px;font-weight:900;font-size:34px;color:#fff}.b em{font-style:normal;color:#5aa4ff}
+h1{font-size:60px;line-height:1.05;margin:40px 0 24px;font-weight:800;letter-spacing:-.03em}
+h1 b{background:linear-gradient(92deg,#5aa4ff,#22e5ff);-webkit-background-clip:text;color:transparent}
 p{font-size:24px;line-height:1.4;color:#9aa4c7;margin:0}
-.tags{position:absolute;left:72px;bottom:68px;display:flex;gap:12px}
-.tags span{font:500 18px 'IBM Plex Mono',monospace;padding:8px 14px;border:1px solid #1d2a44;border-radius:8px;color:#9aa4c7}
-.tags .a{color:#5aa4ff}.tags .b{color:#3ecf8e}.tags .c{color:#e0b34d}
-.img{position:absolute;right:56px;top:96px;width:440px;height:438px;border-radius:18px;overflow:hidden;border:1px solid #1d2a44;
- background:url(../../img/projekty/glowa-sally.jpg) center/cover}
-.u{position:absolute;right:56px;bottom:28px;font:500 18px 'IBM Plex Mono',monospace;color:#7fa0c0}
+.u{position:absolute;left:72px;bottom:56px;font:500 20px 'IBM Plex Mono',monospace;color:#7fa0c0}
+.img{position:absolute;right:56px;top:70px;width:430px;height:490px;border-radius:20px;overflow:hidden;border:1px solid rgba(90,164,255,.3);box-shadow:0 30px 80px -30px rgba(28,116,255,.8);background:url(/img/demo/ai-router.webp) left top/250% auto #05070c}
+.img2{position:absolute;right:250px;bottom:46px;width:300px;height:148px;border-radius:14px;overflow:hidden;border:1px solid rgba(90,164,255,.35);background:url(/img/projekty/glowa-sally.jpg) center/cover;box-shadow:0 20px 60px -20px #000}
 </style></head><body><div class="w">
-<div class="t"><div class="k">GitCloud · pracownia AI</div>
-<h1>Systemy z AI w&nbsp;środku, które <b>działają same</b></h1>
-<p>Agenci głosowi, platformy dla operatorów sieci, firmware, sklepy i automatyzacje. Aleh Pauliukovich.</p></div>
-<div class="tags"><span class="a">Systemy własne</span><span class="b">Platformy</span><span class="c">Zlecenia</span></div>
-<div class="img"></div><div class="u">gitcloud.pl</div>
+<div class="t"><div class="b"><img src="/favicon.svg" width="48" height="48" alt=""><span><em>Git</em>Cloud</span></div>
+<h1>Jeden ekosystem: <b>agenci, platformy i sprzęt</b></h1>
+<p>Pracownia AI Aleha Pauliukovicha: agenci, automatyzacja, konsola ISP, zlecenia dla firm.</p></div>
+<div class="img"></div><div class="img2"></div><div class="u">gitcloud.pl</div>
 </div></body></html>

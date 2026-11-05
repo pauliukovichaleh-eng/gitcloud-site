@@ -1,0 +1,83 @@
+---
+// Mapa ekosystemu: rdzeń GitCloud w środku, moduły dookoła, połączone ścieżkami płytki z biegnącymi pakietami.
+import { has, anchor } from '../lib/data';
+const cx = 300, cy = 260;
+const hex = (x: number, y: number, r: number) =>
+  Array.from({ length: 6 }, (_, i) => {
+    const a = (Math.PI / 3) * i - Math.PI / 2;
+    return `${(x + r * Math.cos(a)).toFixed(1)},${(y + r * Math.sin(a)).toFixed(1)}`;
+  }).join(' ');
+const link = (slug: string, fallback: string) => (has(slug) ? `#${anchor(slug)}` : fallback);
+const nodes = [
+  { code: 'AI', t: 'Agenci AI', s: 'Sally · Tony · Mark', href: link('agenci-ai', '#agenci'), x: 300, y: 72, side: 'top' },
+  { code: 'ISP', t: 'Konsola ISP', s: 'sieć · dostęp · kopie', href: '#konsola', x: 492, y: 166, side: 'r' },
+  { code: 'BLE', t: 'Pilot ESP32', s: 'C++ · Bluetooth LE', href: link('pilot-esp32', '#moduly'), x: 492, y: 354, side: 'r' },
+  { code: 'SHP', t: 'Zlecenia', s: 'sklepy · SEO · dane', href: '#uslugi', x: 300, y: 448, side: 'bottom' },
+  { code: 'WM', t: 'Pulpit', s: 'sway · WebKit', href: link('pulpit-gitcloud', '#moduly'), x: 108, y: 354, side: 'l' },
+  { code: '3D', t: 'Głowy agentów', s: 'three.js · głos', href: link('glowy-agentow', '#agenci'), x: 108, y: 166, side: 'l' },
+];
+// Ścieżka "płytki": z rdzenia poziomo/pionowo, potem skos 45° do węzła.
+const trace = (x: number, y: number) => {
+  const dx = x - cx, dy = y - cy;
+  if (Math.abs(dx) < 1) return `M${cx} ${cy + Math.sign(dy) * 64} V${y - Math.sign(dy) * 36}`;
+  const sx = Math.sign(dx), sy = Math.sign(dy);
+  const elbow = x - sx * Math.abs(dy); // od kolana skos 45° prosto w węzeł
+  return `M${cx + sx * 58} ${cy} H${elbow} L${x - sx * 24} ${y - sy * 24}`;
+};
+const ring = nodes.map((n, i) => {
+  const m = nodes[(i + 1) % nodes.length];
+  return `M${n.x} ${n.y} L${m.x} ${m.y}`;
+});
+---
+<figure class="eco" aria-label="Mapa ekosystemu GitCloud">
+  <svg viewBox="-64 6 728 508" role="img" aria-labelledby="eco-t">
+    <title id="eco-t">Rdzeń GitCloud i moduły: agenci AI, konsola ISP, pilot ESP32, zlecenia, pulpit, głowy agentów</title>
+    <defs>
+      <radialGradient id="eco-core" cx="50%" cy="50%" r="50%">
+        <stop offset="0" stop-color="#1c74ff" stop-opacity=".35" /><stop offset="1" stop-color="#1c74ff" stop-opacity="0" />
+      </radialGradient>
+      <linearGradient id="eco-line" x1="0" y1="0" x2="1" y2="1">
+        <stop offset="0" stop-color="#5aa4ff" /><stop offset="1" stop-color="#22e5ff" />
+      </linearGradient>
+    </defs>
+    <circle cx={cx} cy={cy} r="150" fill="url(#eco-core)" />
+    <ellipse class="eco-orbit" cx={cx} cy={cy} rx="210" ry="196" />
+    <ellipse class="eco-orbit o2" cx={cx} cy={cy} rx="120" ry="112" />
+    {ring.map((d) => <path class="eco-ring" d={d} />)}
+    {nodes.map((n, i) => {
+      const d = trace(n.x, n.y);
+      return (
+        <g>
+          <path class="eco-trace" d={d} id={`eco-p${i}`} />
+          <circle class="eco-pkt" r="3">
+            <animateMotion dur={`${2.6 + i * 0.35}s`} repeatCount="indefinite" begin={`${i * 0.4}s`}>
+              <mpath href={`#eco-p${i}`} />
+            </animateMotion>
+          </circle>
+        </g>
+      );
+    })}
+    <g class="eco-core">
+      <polygon points={hex(cx, cy, 66)} class="eco-core-hex" />
+      <polygon points={hex(cx, cy, 56)} class="eco-core-in" />
+      <g transform={`translate(${cx - 26} ${cy - 34}) scale(1.62)`}>
+        <path class="eco-g" d="M27.3 9.5 16 3 4.7 9.5v13L16 29l11.3-6.5V16H17" />
+        <circle cx="16.6" cy="16" r="2.4" class="eco-g-node" />
+      </g>
+      <text x={cx} y={cy + 40} class="eco-core-t">CORE</text>
+    </g>
+    {nodes.map((n) => {
+      const tx = n.side === 'r' ? n.x + 44 : n.side === 'l' ? n.x - 44 : n.x;
+      const ty = n.side === 'top' ? n.y - 46 : n.side === 'bottom' ? n.y + 56 : n.y - 4;
+      const anchorT = n.side === 'r' ? 'start' : n.side === 'l' ? 'end' : 'middle';
+      return (
+        <a href={n.href} class="eco-node">
+          <polygon points={hex(n.x, n.y, 34)} class="eco-hex" />
+          <text x={n.x} y={n.y + 5} class="eco-code">{n.code}</text>
+          <text x={tx} y={ty} text-anchor={anchorT} class="eco-t">{n.t}</text>
+          <text x={tx} y={ty + 17} text-anchor={anchorT} class="eco-s">{n.s}</text>
+        </a>
+      );
+    })}
+  </svg>
+</figure>

@@ -1,0 +1,65 @@
+---
+import { categories, anchor, fixHref, has, type Project } from '../lib/data';
+interface Props { p: Project }
+const { p } = Astro.props;
+const g = p.gallery || [];
+const first = g[0];
+// linki do projektów jeszcze niewidocznych (pole od) pomijamy
+const links = (p.links || []).filter((l) => { const m = l.href.match(/^\/projekty\/([a-z0-9-]+)\/?$/); return !m || has(m[1]); });
+---
+<dialog class={`pd cat-${p.category}`} id={anchor(p.slug)} aria-labelledby={`${anchor(p.slug)}-t`}>
+  <div class="pd-in">
+    <header class="pd-head">
+      <span class="mono pd-path">gitcloud / moduły / {p.slug}</span>
+      <button type="button" class="pd-x" data-close aria-label="Zamknij">✕</button>
+    </header>
+    <div class="pd-body">
+      <span class="card-cat mono">{categories[p.category]}{p.year ? ` · ${p.year}` : ''}</span>
+      <h2 id={`${anchor(p.slug)}-t`}>{p.title}</h2>
+      <p class="pd-lead">{p.lead}</p>
+      {p.status && <div class="pd-status mono"><span class="dot ok pulse"></span>{p.status}</div>}
+
+      {first && (
+        <div class="pd-gal">
+          <figure class="pd-big">
+            {g.some((x) => x.video) && <video muted loop playsinline controls preload="none" poster={first.src} src={first.video} hidden={!first.video}></video>}
+            <img src={first.src} alt={first.alt} loading="lazy" decoding="async" class={first.pixelated ? 'px' : ''} hidden={!!first.video} />
+            <figcaption>{first.alt}</figcaption>
+          </figure>
+          {g.length > 1 && (
+            <div class="pd-thumbs">
+              {g.map((x, i) => (
+                <button type="button" class={i === 0 ? 'is-on' : ''} data-src={x.src} data-video={x.video || ''} data-alt={x.alt} data-px={x.pixelated ? '1' : ''} aria-label={x.alt}>
+                  <img src={x.src} alt="" loading="lazy" decoding="async" class={x.pixelated ? 'px' : ''} />
+                </button>
+              ))}
+            </div>
+          )}
+          {p.gallery_note && <p class="pd-note">{p.gallery_note}</p>}
+        </div>
+      )}
+
+      <div class="pd-grid">
+        <section><h3 class="lbl">Zadanie</h3><p>{p.problem}</p></section>
+        <section><h3 class="lbl">Rozwiązanie</h3><p>{p.solution}</p></section>
+      </div>
+      <div class="pd-grid">
+        <section>
+          <h3 class="lbl">Wynik</h3>
+          <ul class="pd-res">{p.results.map((r) => <li>{r}</li>)}</ul>
+        </section>
+        <section>
+          <h3 class="lbl">Moja rola</h3><p>{p.role}</p>
+          <h3 class="lbl">Stack</h3>
+          <div class="tags">{p.stack.map((s) => <span>{s}</span>)}</div>
+        </section>
+      </div>
+      {links.length > 0 && (
+        <nav class="pd-links">
+          <h3 class="lbl">{p.links_title || 'Zobacz też'}</h3>
+          {links.map((l) => <a href={fixHref(l.href)}>{l.label} &rarr;</a>)}
+        </nav>
+      )}
+    </div>
+  </div>
+</dialog>

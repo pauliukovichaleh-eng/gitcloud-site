@@ -1,0 +1,423 @@
+---
+import Base from '../layouts/Base.astro';
+import EcoMap from '../components/EcoMap.astro';
+import ProjectCard from '../components/ProjectCard.astro';
+import ProjectDialog from '../components/ProjectDialog.astro';
+import { ordered, projects, categories, anchor, has } from '../lib/data';
+
+const SITE = 'https://gitcloud.pl';
+const EMAIL = 'pauliukovichaleh@gmail.com';
+const title = 'GitCloud: pracownia AI. Agenci, automatyzacja, platformy | Aleh Pauliukovich';
+const description =
+  'Pracownia AI Aleha Pauliukovicha: agenci AI, automatyzacja, platformy dla zespołów IT i sieci, zlecenia dla sklepów internetowych. Jeden ekosystem GitCloud, projekty z zadaniem, rozwiązaniem i wynikiem.';
+
+const count = (c: string) => projects.filter((p) => p.category === c).length;
+
+const layers = [
+  {
+    k: 'L3', t: 'Interfejsy', s: 'gdzie człowiek widzi wynik',
+    items: [
+      ['Konsola ISP', 'sieć, dostęp i kopie w jednym panelu', '#konsola'],
+      ['Panel osobisty', 'decyzje, sprawy i finanse jako karty z wariantami', ''],
+      ['Pilot ESP32', 'stan serwera i sceny pod pokrętłem', has('pilot-esp32') ? `#${anchor('pilot-esp32')}` : ''],
+      ['Pulpit sway', 'jedno środowisko pracy na dwóch komputerach', has('pulpit-gitcloud') ? `#${anchor('pulpit-gitcloud')}` : ''],
+      ['Głowy 3D', 'agenci mówią własnym głosem i twarzą', '#agenci'],
+    ],
+  },
+  {
+    k: 'L2', t: 'Agenci i automatyzacja', s: 'kto pracuje, także w nocy',
+    items: [
+      ['Sally', 'finanse, sprawy urzędowe, poczta i terminy', ''],
+      ['Tony', 'alarmy Netdata w nocy, błędy z logów co godzinę', ''],
+      ['Mark', 'propozycje modernizacji z dowodem z inwentarza', ''],
+      ['Router modeli', 'tanie zadania na lekkim modelu, trudne na mocnym', ''],
+      ['Rada i dziennik', 'propozycja, ocena, akceptacja człowieka, zapis w audycie', ''],
+    ],
+  },
+  {
+    k: 'L1', t: 'Dane i infrastruktura', s: 'na czym to stoi',
+    items: [
+      ['PostgreSQL + pgvector', 'inwentarz, historia i pamięć decyzji agentów', ''],
+      ['Loki · Netdata', 'logi i metryki z całej sieci, alerty z sygnatur', ''],
+      ['Proxmox · Docker', 'maszyny, kontenery, izolacja usług', ''],
+      ['Kopie z testem', 'odtwarzanie sprawdzane, nie zakładane', ''],
+      ['WireGuard · SSH CA', 'dostęp przez tunel i certyfikaty ważne 12 h', ''],
+    ],
+  },
+];
+
+const rules = [
+  ['Najpierw dane, potem model', 'AI dostaje kontekst z własnej bazy: inwentarz, historię, procedury. Dopiero wtedy odpowiada albo działa.'],
+  ['Kopia przed każdą zmianą', 'Każda zmiana ma kopię poprzedniego stanu, test wyniku i krótki opis. Odtwarzanie kopii jest sprawdzane.'],
+  ['Człowiek zatwierdza', 'Agent przygotowuje decyzję z wariantami, właściciel wybiera. Nic, co trafia do klienta, nie wychodzi bez akceptacji.'],
+  ['Własna infrastruktura', 'Serwer, bazy i modele lokalne tam, gdzie to ma sens. Płatne modele tylko tam, gdzie realnie wygrywają.'],
+];
+
+const shots = [
+  ['dashboard', 'Dashboard', 'Pulpit zespołu: alerty z czasem trwania, podsumowania i sugestie AI w jednej kolumnie.'],
+  ['ai-advisor', 'AI Advisor', 'Propozycje modernizacji z uzasadnieniem z danych sieci; zaakceptowane trafiają do kalendarza.'],
+  ['ai-router', 'Router AI', 'Każde wywołanie modelu policzone: dostawca, model, błędy i koszt dzień po dniu.'],
+  ['automatyzacje', 'Automatyzacje', 'Harmonogram zadań: synchronizacje, kopie, alerty, z czasem trwania i liczbą awarii.'],
+  ['proxmox-all', 'Infrastruktura', 'Maszyny wirtualne i kontenery ze wszystkich lokalizacji, z zasobami i stanem kopii.'],
+  ['loki-log', 'Logi', 'Logi z całej sieci w jednym widoku, z filtrem po hoście, poziomie i treści.'],
+];
+
+const caps = [
+  ['Monitoring proaktywny', 'Stan urządzeń, VLAN-ów, łączy i pul IP na żywo. Progi zapełnienia pul od razu wskazały 2 regiony na granicy wyczerpania.'],
+  ['AI, które zna sprzęt', 'Model dostaje gotowe komendy CLI dla konkretnego modelu urządzenia i grupuje duplikaty alertów zamiast zalewać zespół.'],
+  ['Dostęp bez wiecznych kluczy', 'Własny urząd certyfikacji SSH: certyfikaty ważne 12 godzin, odnawiane automatycznie, status każdego hosta widoczny.'],
+  ['Kopie, którym można ufać', 'Integralność każdej kopii sprawdzana, zanim uzna się ją za bezpieczną. Cisza w logach też jest alertem.'],
+];
+
+const agents = [
+  { n: 'Sally', r: 'finanse i sprawy urzędowe', d: 'Pilnuje terminów, poczty od ludzi i spraw w urzędach. Pisze projekty odpowiedzi, wysyła po akceptacji.', v: '/img/projekty/glowa-sally.mp4', p: '/img/projekty/glowa-sally.jpg', c: 'm' },
+  { n: 'Tony', r: 'serwer, alarmy i logi', d: 'W nocy rozwiązuje alarmy według sprawdzonych procedur, co godzinę przegląda błędy z Loki. Rano tylko podsumowanie.', v: '/img/projekty/glowa-tony.mp4', p: '/img/projekty/glowa-tony.jpg', c: 'b' },
+  { n: 'Mark', r: 'modernizacja i analiza', d: 'Pisze propozycje zmian z dowodem z inwentarza. Zanim cokolwiek wejdzie, ocenia je rada pozostałych agentów.', v: '/img/projekty/glowa-mark.mp4', p: '/img/projekty/glowa-mark.jpg', c: 'g' },
+];
+
+const areas = [
+  ['Sklepy i strony', 'Shoper, WordPress, WooCommerce: koszyk, formularze, skrypty, integracje, wersje językowe, przeniesienie na nowy hosting.'],
+  ['Serwery i poczta', 'Linux i Windows Server, Google Workspace i Microsoft 365, DNS, SSL, VPN, kopie zapasowe, monitoring.'],
+  ['Automatyzacja i AI', 'Skrypty w Pythonie i PowerShellu, integracje przez API, raporty, asystenci i agenci oparci o modele językowe.'],
+  ['Dane dla sprzedaży', 'Analiza ofert i konkurencji z wyliczeniem marży, bazy firm B2B z oceną potencjału i szkicami wiadomości.'],
+];
+const prices = [
+  ['Diagnoza zdalna', '50 zł', 'opis przyczyny i cena naprawy, od tego zaczynamy'],
+  ['Drobna sprawa', '60 zł', 'do pół godziny: ustawienie, poprawka, konfiguracja'],
+  ['Zadanie', 'z góry', 'większa praca wyceniona za całość po diagnozie'],
+];
+const steps = [
+  ['Opis', 'Piszesz, co nie działa albo co ma powstać. Dopytuję tego samego dnia.'],
+  ['Diagnoza i wycena', 'Sprawdzam przyczynę, podaję cenę i termin, zanim cokolwiek zmienię.'],
+  ['Wykonanie', 'Osobne konto, kopia obecnego stanu, praca zdalna.'],
+  ['Odbiór', 'Test wyniku i krótki opis zmian. Poprawki do zgodności z ustaleniami w cenie.'],
+];
+const faq = [
+  ['Czy wszystko odbywa się zdalnie?', 'Tak. Pracuję przez zdalny dostęp i panele administracyjne. Naprawy sprzętu i wizyt na miejscu nie wykonuję.'],
+  ['Jak wygląda kontakt?', 'Pisemnie: e-mail albo czat na platformie, przez którą trafiło zlecenie. Odpowiadam tego samego dnia, więc wszystkie ustalenia są zapisane.'],
+  ['Jak wygląda płatność?', 'Ustalamy ją przed rozpoczęciem pracy. Na życzenie umowa i faktura przez Useme, które zabezpiecza płatność do czasu przyjęcia pracy.'],
+  ['Czy moje dostępy są bezpieczne?', 'Proszę o osobne konto z potrzebnymi uprawnieniami. Po zakończeniu można je usunąć albo zmienić hasło. Przed zmianami zapisuję kopię.'],
+  ['Czy GitCloud dla ISP to produkt na sprzedaż?', 'To platforma rozwijana dla konkretnej sieci. Wersja demonstracyjna działa na wymyślonym operatorze; chętnie pokażę ją na rozmowie.'],
+];
+
+const jsonld = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    { '@type': 'WebSite', '@id': `${SITE}/#website`, name: 'GitCloud', alternateName: ['gitcloud.pl', 'Git Cloud', 'Pracownia AI GitCloud'], url: `${SITE}/`, inLanguage: 'pl-PL', publisher: { '@id': `${SITE}/#org` } },
+    { '@type': ['Organization', 'ProfessionalService'], '@id': `${SITE}/#org`, name: 'GitCloud', url: `${SITE}/`, logo: `${SITE}/favicon-192.png`, email: `mailto:${EMAIL}`, areaServed: 'PL', priceRange: 'od 50 zł', description: 'Pracownia AI: agenci, automatyzacja i platformy dla zespołów IT, zdalna pomoc dla sklepów internetowych.', founder: { '@id': `${SITE}/#aleh` } },
+    { '@type': 'Person', '@id': `${SITE}/#aleh`, name: 'Aleh Pauliukovich', url: `${SITE}/`, image: `${SITE}/img/aleh.jpg`, jobTitle: 'Twórca pracowni AI GitCloud', knowsAbout: ['agenci AI', 'automatyzacja', 'LLM', 'monitoring sieci', 'Linux', 'PostgreSQL', 'Python', 'ESP32', 'Shoper', 'SEO'], hasCredential: { '@type': 'EducationalOccupationalCredential', name: 'Oracle Cloud Infrastructure Certified AI Foundations Associate', credentialCategory: 'certification', recognizedBy: { '@type': 'Organization', name: 'Oracle' } }, worksFor: { '@id': `${SITE}/#org` } },
+    { '@type': 'ItemList', name: 'Projekty', itemListElement: ordered.map((p, i) => ({ '@type': 'ListItem', position: i + 1, url: `${SITE}/#${anchor(p.slug)}`, name: p.title })) },
+    { '@type': 'FAQPage', mainEntity: faq.map(([q, a]) => ({ '@type': 'Question', name: q, acceptedAnswer: { '@type': 'Answer', text: a } })) },
+  ],
+};
+---
+<Base title={title} description={description} jsonld={jsonld}>
+  <script is:inline slot="head">
+    // Stare kotwice strony ISP (/#platforma, /#faq …) → sekcja konsoli.
+    (function () { var h = location.hash.slice(1); if (/^(platforma|mozliwosci|zalozyciel|stat-grid|sw-[a-z]+)$/.test(h)) history.replaceState(null, '', '#konsola'); })();
+  </script>
+
+  <!-- ═══ 00 · HERO: rdzeń i mapa ekosystemu ═══ -->
+  <section class="hero" id="ekosystem">
+    <div class="wrap hero-in">
+      <div class="hero-txt">
+        <div class="kicker mono"><span class="dot ok pulse"></span> gitcloud · pracownia AI · Aleh Pauliukovich</div>
+        <h1>Jeden ekosystem: <span class="hl">agenci, platformy i&nbsp;sprzęt</span>, które pracują same.</h1>
+        <p class="lead">GitCloud to moja infrastruktura i sposób pracy: wspólny rdzeń danych, agenci AI z podziałem ról i interfejsy od konsoli operatora sieci po pilot na ESP32. Z tego samego warsztatu robię zlecenia dla firm i sklepów.</p>
+        <div class="actions">
+          <a class="btn btn-p" href="#moduly">Moduły ekosystemu</a>
+          <a class="btn btn-g" href="#uslugi">Zlecenie i cennik</a>
+        </div>
+      </div>
+      <EcoMap />
+    </div>
+    <div class="wrap">
+      <ul class="kpis">
+        <li class="tile"><span class="lbl">Projekty w katalogu</span><b class="val mono">{projects.length}</b><span class="sub">z wynikiem w liczbach</span></li>
+        <li class="tile"><span class="lbl">Agenci AI</span><b class="val mono">3</b><span class="sub">w codziennej pracy, także w nocy</span></li>
+        <li class="tile"><span class="lbl">Lata w IT</span><b class="val mono">4+</b><span class="sub">serwery, sieci, Microsoft 365</span></li>
+        <li class="tile"><span class="lbl">Oracle OCI AI</span><b class="val mono">98%</b><span class="sub">egzamin AI Foundations Associate</span></li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ═══ 01 · ARCHITEKTURA: trzy warstwy ═══ -->
+  <section class="sec" id="architektura">
+    <div class="wrap">
+      <header class="sec-h">
+        <span class="idx mono">01 / architektura</span>
+        <h2>Trzy warstwy, jeden rdzeń</h2>
+        <p>Każdy projekt to moduł tego samego systemu. Dane trafiają najpierw do własnej bazy, agenci na nich pracują, a człowiek widzi wynik w interfejsie i zatwierdza decyzję.</p>
+      </header>
+      <div class="stack">
+        {layers.map((l) => (
+          <div class={`layer layer-${l.k}`}>
+            <div class="layer-h"><span class="mono layer-k">{l.k}</span><div><h3>{l.t}</h3><span class="muted">{l.s}</span></div></div>
+            <ul class="layer-items">
+              {l.items.map(([t, s, h]) => (
+                <li>{h ? <a href={h}><b>{t}</b><span>{s}</span></a> : <div><b>{t}</b><span>{s}</span></div>}</li>
+              ))}
+            </ul>
+          </div>
+        ))}
+        <div class="flow mono" aria-hidden="true"><span>dane</span><i></i><span>agent</span><i></i><span>wariant</span><i></i><span>człowiek zatwierdza</span><i></i><span>dziennik</span></div>
+      </div>
+      <ol class="rules">
+        {rules.map(([t, s], i) => <li class="tile"><span class="mono rule-n">R{i + 1}</span><b>{t}</b><span>{s}</span></li>)}
+      </ol>
+    </div>
+  </section>
+
+  <!-- ═══ 02 · MODUŁY (projekty) ═══ -->
+  <section class="sec" id="moduly">
+    <div class="wrap">
+      <header class="sec-h">
+        <span class="idx mono">02 / moduły</span>
+        <h2>Co już działa</h2>
+        <p>Przy każdym projekcie: zadanie, rozwiązanie, stack, moja rola i wynik w liczbach. Nazwy klientów pokazuję tylko za ich zgodą.</p>
+      </header>
+      <div class="filters pills" role="toolbar" aria-label="Filtr projektów">
+        <button type="button" class="is-on" data-f="all">Wszystkie <span class="mono">{projects.length}</span></button>
+        {Object.entries(categories).map(([k, v]) => count(k) > 0 && <button type="button" data-f={k}>{v} <span class="mono">{count(k)}</span></button>)}
+      </div>
+      <div class="bento">
+        {ordered.map((p, i) => <ProjectCard p={p} big={i < 3} />)}
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ 03 · KONSOLA ISP ═══ -->
+  <section class="sec" id="konsola">
+    <div class="wrap">
+      <header class="sec-h">
+        <span class="idx mono">03 / konsola isp</span>
+        <h2>Cała sieć, jedna prawda, jeden panel</h2>
+        <p>GitCloud dla operatora sieci: monitoring, automatyzacja, dostęp i kopie zebrane w jedną konsolę zamiast dziesięciu narzędzi. Poniżej wersja demonstracyjna na wymyślonych danych.</p>
+      </header>
+      <div class="console">
+        <div class="console-bar">
+          <span class="lights" aria-hidden="true"><i></i><i></i><i></i></span>
+          <span class="mono url">demo.gitcloud · <b id="shot-name">dashboard</b></span>
+          <span class="mono live"><span class="dot ok pulse"></span> dane demo, odświeżane co godzinę</span>
+        </div>
+        <div class="pills console-tabs" role="tablist" aria-label="Widoki konsoli">
+          {shots.map(([k, t], i) => (
+            <button type="button" role="tab" aria-selected={i === 0 ? 'true' : 'false'} class={i === 0 ? 'is-on' : ''} data-shot={k}>{t}</button>
+          ))}
+        </div>
+        <div class="console-view">
+          {shots.map(([k, t, s], i) => (
+            <figure class={`shot${i === 0 ? ' is-on' : ''}`} data-shot={k} role="tabpanel">
+              <img src={`/img/demo/${k}.webp`} alt={`Konsola GitCloud, widok ${t} (dane demonstracyjne)`} width="1600" height="1000" loading={i === 0 ? 'eager' : 'lazy'} decoding="async" />
+              <figcaption>{s}</figcaption>
+            </figure>
+          ))}
+        </div>
+      </div>
+      <div class="caps">
+        {caps.map(([t, s]) => <div class="cap"><b>{t}</b><span>{s}</span></div>)}
+      </div>
+      {has('platforma-isp') && <a class="link-more" href={`#${anchor('platforma-isp')}`}>Zadanie, rozwiązanie i wynik projektu &rarr;</a>}
+    </div>
+  </section>
+
+  <!-- ═══ 04 · AGENCI ═══ -->
+  <section class="sec" id="agenci">
+    <div class="wrap">
+      <header class="sec-h">
+        <span class="idx mono">04 / agenci</span>
+        <h2>Zespół, który pracuje w nocy</h2>
+        <p>Trzej agenci z podziałem ról jak w firmie, z pamięcią decyzji w PostgreSQL. Mówią własnym głosem, a twarze 3D zbudowane kodem w three.js ruszają ustami według fonemów.</p>
+      </header>
+      <div class="agents">
+        {agents.map((a) => (
+          <article class={`agent agent-${a.c}`}>
+            <div class="agent-media">
+              <video src={a.v} poster={a.p} muted loop playsinline preload="none" width="640" height="316" data-inview></video>
+              <span class="agent-tag mono">● {a.n.toLowerCase()}.agent</span>
+            </div>
+            <div class="agent-body">
+              <h3>{a.n}</h3>
+              <span class="agent-role mono">{a.r}</span>
+              <p>{a.d}</p>
+            </div>
+          </article>
+        ))}
+      </div>
+      <div class="agent-links">
+        {has('agenci-ai') && <a class="link-more" href={`#${anchor('agenci-ai')}`}>Jak działa zespół agentów &rarr;</a>}
+        {has('glowy-agentow') && <a class="link-more" href={`#${anchor('glowy-agentow')}`}>Jak powstały głowy i synchronizacja ust &rarr;</a>}
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ 05 · USŁUGI ═══ -->
+  <section class="sec" id="uslugi">
+    <div class="wrap">
+      <header class="sec-h">
+        <span class="idx mono">05 / usługi</span>
+        <h2>Zlecenia: sklep, poczta albo serwer znów działa</h2>
+        <p>Ta sama dokładność co w ekosystemie, w małych zleceniach: każda zmiana ma kopię, test i opis. Zdalnie, dla klientów z całej Polski, z ceną z góry.</p>
+      </header>
+      <div class="areas">
+        {areas.map(([t, s], i) => <div class="area"><span class="mono area-n">0{i + 1}</span><b>{t}</b><span>{s}</span></div>)}
+      </div>
+      <div class="svc">
+        <div class="prices">
+          {prices.map(([t, v, s]) => <div class="tile price"><span class="lbl">{t}</span><b class="val mono">{v}</b><span class="sub">{s}</span></div>)}
+        </div>
+        <ol class="steps">
+          {steps.map(([t, s], i) => <li><span class="mono step-n">{i + 1}</span><div><b>{t}</b><span>{s}</span></div></li>)}
+        </ol>
+      </div>
+      <p class="note">Cena za całe zadanie, ustalona po diagnozie. Umowa i faktura na życzenie przez Useme, które trzyma płatność do odbioru pracy.</p>
+    </div>
+  </section>
+
+  <!-- ═══ 06 · OPERATOR ═══ -->
+  <section class="sec" id="operator">
+    <div class="wrap who">
+      <div class="who-photo"><img src="/img/aleh.jpg" alt="Aleh Pauliukovich" width="560" height="560" loading="lazy" decoding="async" /></div>
+      <div class="term" aria-label="Kto prowadzi pracownię">
+        <div class="term-bar mono"><span class="lights" aria-hidden="true"><i></i><i></i><i></i></span> aleh@gitcloud: ~</div>
+        <pre class="mono"><span class="pr">$</span> whoami --verbose
+<span class="k">imię      </span> Aleh Pauliukovich
+<span class="k">rola      </span> twórca i operator GitCloud
+<span class="k">baza      </span> Polska, praca zdalna
+<span class="k">stack     </span> Linux · Windows · M365 · Python · ESP32
+<span class="k">certyfikat</span> Oracle OCI AI Foundations Associate <span class="ok">(98%)</span>
+<span class="k">kontakt   </span> odpowiadam osobiście, tego samego dnia
+<span class="pr">$</span> <span class="cur">_</span></pre>
+      </div>
+      <div class="who-txt">
+        <span class="idx mono">06 / operator</span>
+        <h2>Aleh Pauliukovich</h2>
+        <p>Administrator IT z ponad czteroletnim doświadczeniem: Windows Server i Active Directory, Microsoft 365 i Intune, Linux i Docker, sieci i VPN, automatyzacja w Pythonie i PowerShellu.</p>
+        <p>W GitCloud łączę to z AI: modele językowe, rozpoznawanie mowy, agenci z pamięcią decyzji, firmware na ESP32. Kod, który tu widać opisany, sam wdrażam i sam naprawiam, gdy coś w nocy przestaje działać.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ 07 · KONTAKT ═══ -->
+  <section class="sec" id="kontakt">
+    <div class="wrap"><div class="contact">
+      <div class="contact-main">
+        <span class="idx mono">07 / kontakt</span>
+        <h2>Masz proces, który da się zautomatyzować, albo coś, co przestało działać?</h2>
+        <p>Wystarczą trzy rzeczy: adres strony lub nazwa usługi, co nie działa (albo co ma powstać) i od kiedy. Odpowiem, czy i jak to zrobić, zanim padnie jakakolwiek cena.</p>
+        <div class="mail">
+          <a class="btn btn-p btn-lg" href={`mailto:${EMAIL}`}>Napisz wiadomość &rarr;</a>
+          <button type="button" class="btn btn-g mono copy" data-copy={EMAIL} aria-label="Skopiuj adres e-mail">{EMAIL}</button>
+        </div>
+        <ul class="checks">
+          <li>bez formularzy i pośredników, piszesz wprost na maila</li>
+          <li>diagnoza zdalna 50 zł, cena naprawy z góry</li>
+          <li>umowa i faktura na życzenie</li>
+        </ul>
+      </div>
+      <div class="faq">
+        {faq.map(([q, a]) => <details><summary>{q}</summary><p>{a}</p></details>)}
+      </div>
+    </div></div>
+  </section>
+
+  {ordered.map((p) => <ProjectDialog p={p} />)}
+  <div class="toast mono" id="toast" role="status" aria-live="polite"></div>
+</Base>
+
+<script>
+  const $ = <T extends Element = HTMLElement>(s: string, r: ParentNode = document) => r.querySelector<T>(s);
+  const $$ = <T extends Element = HTMLElement>(s: string, r: ParentNode = document) => Array.from(r.querySelectorAll<T>(s));
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  // ── Okna projektów: #p-<slug> otwiera okno (link z zewnątrz też), zamknięcie czyści adres.
+  const openFromHash = () => {
+    const h = decodeURIComponent(location.hash.slice(1));
+    $$<HTMLDialogElement>('dialog.pd[open]').forEach((d) => { if (d.id !== h) d.close(); });
+    if (!h.startsWith('p-')) return;
+    const d = document.getElementById(h) as HTMLDialogElement | null;
+    if (d && !d.open) {
+      d.showModal();
+      d.querySelector<HTMLElement>('.pd-body')?.scrollTo(0, 0);
+    }
+  };
+  $$<HTMLDialogElement>('dialog.pd').forEach((d) => {
+    d.addEventListener('close', () => {
+      if (location.hash === '#' + d.id) history.replaceState(null, '', location.pathname + location.search);
+      $$('video', d).forEach((v) => (v as HTMLVideoElement).pause());
+    });
+    d.addEventListener('click', (e) => { if (e.target === d) d.close(); });
+    $$('[data-close]', d).forEach((b) => b.addEventListener('click', () => d.close()));
+    // galeria w oknie
+    const big = $<HTMLImageElement>('.pd-big img', d), bigV = $<HTMLVideoElement>('.pd-big video', d), cap = $('.pd-big figcaption', d);
+    $$<HTMLButtonElement>('.pd-thumbs button', d).forEach((b) => b.addEventListener('click', () => {
+      $$('.pd-thumbs button', d).forEach((x) => x.classList.toggle('is-on', x === b));
+      const { src, video, alt, px } = b.dataset;
+      if (bigV) {
+        if (video) { bigV.hidden = false; bigV.poster = src!; bigV.src = video; bigV.play().catch(() => {}); if (big) big.hidden = true; }
+        else { bigV.pause(); bigV.hidden = true; if (big) big.hidden = false; }
+      }
+      if (big && !video) { big.src = src!; big.alt = alt || ''; big.classList.toggle('px', px === '1'); }
+      if (cap) cap.textContent = alt || '';
+    }));
+  });
+  addEventListener('hashchange', openFromHash);
+  openFromHash();
+
+  // ── Filtr modułów
+  $$<HTMLButtonElement>('.filters button').forEach((b) => b.addEventListener('click', () => {
+    const f = b.dataset.f;
+    $$('.filters button').forEach((x) => x.classList.toggle('is-on', x === b));
+    $$<HTMLElement>('.bento .card').forEach((c) => { c.hidden = !(f === 'all' || c.dataset.cat === f); });
+  }));
+
+  // ── Konsola: zakładki widoków
+  const tabs = $$<HTMLButtonElement>('.console-tabs button');
+  const show = (k: string) => {
+    tabs.forEach((t) => { const on = t.dataset.shot === k; t.classList.toggle('is-on', on); t.setAttribute('aria-selected', String(on)); });
+    $$<HTMLElement>('.console-view .shot').forEach((s) => s.classList.toggle('is-on', s.dataset.shot === k));
+    const n = $('#shot-name'); if (n) n.textContent = k;
+  };
+  tabs.forEach((t) => t.addEventListener('click', () => { show(t.dataset.shot!); stopAuto(); }));
+  let auto: number | undefined;
+  const stopAuto = () => { if (auto) clearInterval(auto); auto = undefined; };
+  const consoleEl = $('.console');
+  if (consoleEl && !reduce) {
+    new IntersectionObserver(([e]) => {
+      if (e.isIntersecting && auto === undefined && tabs.length) {
+        auto = window.setInterval(() => {
+          const i = tabs.findIndex((t) => t.classList.contains('is-on'));
+          show(tabs[(i + 1) % tabs.length].dataset.shot!);
+        }, 5200);
+      } else if (!e.isIntersecting) stopAuto();
+    }, { threshold: 0.4 }).observe(consoleEl);
+    consoleEl.addEventListener('pointerenter', stopAuto);
+  }
+
+  // ── Wideo gra tylko na ekranie
+  const vio = new IntersectionObserver((es) => es.forEach((e) => {
+    const v = e.target as HTMLVideoElement;
+    if (e.isIntersecting && !reduce) { v.preload = 'auto'; v.play().catch(() => {}); } else v.pause();
+  }), { threshold: 0.35 });
+  $$<HTMLVideoElement>('video[data-inview]').forEach((v) => vio.observe(v));
+
+  // ── Aktywna sekcja w menu
+  const spy = $$<HTMLAnchorElement>('.pills a[data-spy]');
+  const sio = new IntersectionObserver((es) => es.forEach((e) => {
+    if (e.isIntersecting) spy.forEach((a) => a.classList.toggle('is-on', a.dataset.spy === e.target.id));
+  }), { rootMargin: '-45% 0px -50% 0px' });
+  spy.forEach((a) => { const s = document.getElementById(a.dataset.spy!); if (s) sio.observe(s); });
+
+  // ── Pojawianie się bloków
+  if (!reduce) {
+    const rio = new IntersectionObserver((es) => es.forEach((e) => { if (e.isIntersecting) { e.target.classList.add('in'); rio.unobserve(e.target); } }), { threshold: 0.12 });
+    $$('.sec-h, .layer, .rules, .bento .card, .console, .caps, .agent, .areas, .svc, .who > *, .contact > *').forEach((el) => { el.classList.add('rv'); rio.observe(el); });
+  }
+
+  // ── Kopiowanie adresu
+  const toast = $('#toast');
+  $$<HTMLButtonElement>('[data-copy]').forEach((b) => b.addEventListener('click', async () => {
+    try { await navigator.clipboard.writeText(b.dataset.copy!); if (toast) { toast.textContent = 'adres skopiowany'; toast.classList.add('on'); setTimeout(() => toast.classList.remove('on'), 1800); } }
+    catch { location.href = 'mailto:' + b.dataset.copy; }
+  }));
+</script>

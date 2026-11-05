@@ -1,0 +1,25 @@
+---
+import { categories, anchor, type Project } from '../lib/data';
+interface Props { p: Project; big?: boolean }
+const { p, big = false } = Astro.props;
+const media = p.video ? 'video' : p.image ? 'img' : 'gen';
+---
+<a class={`card cat-${p.category}${big ? ' card-big' : ''}`} href={`#${anchor(p.slug)}`} data-cat={p.category}>
+  <div class={`card-media m-${media}`}>
+    {media === 'video' && <video src={p.video!.src} poster={p.video!.poster} muted loop playsinline preload="none" width="960" height="474" data-inview></video>}
+    {media === 'img' && <img src={p.image} alt={p.image_alt || p.title} class={p.pixelated ? 'px' : ''} loading="lazy" decoding="async" />}
+    {media === 'gen' && (
+      <div class="gen" aria-hidden="true">
+        <span class="gen-big mono">{p.stack[0]}</span>
+        <span class="gen-sub mono">{p.stack.slice(1, 4).join(' · ')}</span>
+      </div>
+    )}
+    <span class="card-cat mono">{categories[p.category]}{p.year ? ` · ${p.year}` : ''}</span>
+  </div>
+  <div class="card-body">
+    <h3>{p.title}</h3>
+    <p>{p.lead}</p>
+    {p.results?.[0] && <div class="card-res mono"><span class="dot ok"></span>{p.results[0]}</div>}
+    <div class="tags">{p.stack.slice(0, 5).map((s) => <span>{s}</span>)}</div>
+  </div>
+</a>
