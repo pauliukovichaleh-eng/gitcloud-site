@@ -1,6 +1,9 @@
 ---
 // Mapa ekosystemu: rdzeń GitCloud w środku, moduły dookoła, połączone ścieżkami płytki z biegnącymi pakietami.
 import { has, anchor } from '../lib/data';
+import { t, type Lang } from '../i18n';
+const { lang = 'pl' } = Astro.props as { lang?: Lang };
+const T = t(lang).eco;
 const cx = 300, cy = 260;
 const hex = (x: number, y: number, r: number) =>
   Array.from({ length: 6 }, (_, i) => {
@@ -9,12 +12,12 @@ const hex = (x: number, y: number, r: number) =>
   }).join(' ');
 const link = (slug: string, fallback: string) => (has(slug) ? `#${anchor(slug)}` : fallback);
 const nodes = [
-  { code: 'AI', t: 'Agenci AI', s: 'Sally · Tony · Mark', href: link('agenci-ai', '#agenci'), x: 300, y: 72, side: 'top' },
-  { code: 'ISP', t: 'Konsola ISP', s: 'sieć · dostęp · kopie', href: '#konsola', x: 492, y: 166, side: 'r' },
-  { code: 'IoT', t: 'Urządzenie IoT', s: 'ESP32 · Bluetooth LE', href: link('pilot-esp32', '#moduly'), x: 492, y: 354, side: 'r' },
-  { code: 'WEB', t: 'Sklepy i zlecenia', s: 'Shoper · SEO · dane', href: '#uslugi', x: 300, y: 448, side: 'bottom' },
-  { code: 'API', t: 'Integracje', s: 'API · raporty', href: '#uslugi', x: 108, y: 354, side: 'l' },
-  { code: '3D', t: 'Asystent głosowy', s: 'głos · twarz 3D', href: link('glowy-agentow', '#agenci'), x: 108, y: 166, side: 'l' },
+  { code: 'AI', t: T.nodes[0][0], s: T.nodes[0][1], href: link('agenci-ai', '#agenci'), x: 300, y: 72, side: 'top' },
+  { code: 'ISP', t: T.nodes[1][0], s: T.nodes[1][1], href: '#konsola', x: 492, y: 166, side: 'r' },
+  { code: 'IoT', t: T.nodes[2][0], s: T.nodes[2][1], href: link('pilot-esp32', '#moduly'), x: 492, y: 354, side: 'r' },
+  { code: 'WEB', t: T.nodes[3][0], s: T.nodes[3][1], href: '#uslugi', x: 300, y: 448, side: 'bottom' },
+  { code: 'API', t: T.nodes[4][0], s: T.nodes[4][1], href: '#uslugi', x: 108, y: 354, side: 'l' },
+  { code: '3D', t: T.nodes[5][0], s: T.nodes[5][1], href: link('glowy-agentow', '#agenci'), x: 108, y: 166, side: 'l' },
 ];
 // Ścieżka "płytki": z rdzenia poziomo/pionowo, potem skos 45° do węzła.
 const trace = (x: number, y: number) => {
@@ -29,9 +32,9 @@ const ring = nodes.map((n, i) => {
   return `M${n.x} ${n.y} L${m.x} ${m.y}`;
 });
 ---
-<figure class="eco" aria-label="Mapa ekosystemu GitCloud">
+<figure class="eco" aria-label={T.aria}>
   <svg viewBox="-64 6 728 508" role="img" aria-labelledby="eco-t">
-    <title id="eco-t">Rdzeń GitCloud i moduły: agenci AI, konsola ISP, urządzenie IoT, sklepy i zlecenia, integracje, asystent głosowy</title>
+    <title id="eco-t">{T.title}</title>
     <defs>
       <radialGradient id="eco-core" cx="50%" cy="50%" r="50%">
         <stop offset="0" stop-color="#1c74ff" stop-opacity=".35" /><stop offset="1" stop-color="#1c74ff" stop-opacity="0" />
@@ -80,7 +83,7 @@ const ring = nodes.map((n, i) => {
       );
     })}
   </svg>
-  <ul class="eco-list" aria-label="Moduły ekosystemu">
+  <ul class="eco-list" aria-label={T.listAria}>
     {nodes.map((n) => <li><a href={n.href}><span class="mono">{n.code}</span><b>{n.t}</b><i>{n.s}</i></a></li>)}
   </ul>
 </figure>

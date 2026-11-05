@@ -1,7 +1,10 @@
 ---
-import { categories, anchor, fixHref, has, type Project } from '../lib/data';
-interface Props { p: Project }
-const { p } = Astro.props;
+import { anchor, fixHref, has, type Project } from '../lib/data';
+import { t, type Lang } from '../i18n';
+interface Props { p: Project; lang?: Lang }
+const { p, lang = 'pl' } = Astro.props;
+const D = t(lang).dlg, U = t(lang).ui;
+const categories = t(lang).mod.categories as Record<string, string>;
 const g = p.gallery || [];
 const first = g[0];
 // linki do projektów jeszcze niewidocznych (pole od) pomijamy
@@ -10,8 +13,8 @@ const links = (p.links || []).filter((l) => { const m = l.href.match(/^\/projekt
 <dialog class={`pd cat-${p.category}`} id={anchor(p.slug)} aria-labelledby={`${anchor(p.slug)}-t`}>
   <div class="pd-in">
     <header class="pd-head">
-      <span class="mono pd-path">gitcloud / moduły / {p.slug}</span>
-      <button type="button" class="pd-x" data-close aria-label="Zamknij">✕</button>
+      <span class="mono pd-path">gitcloud / {D.path} / {p.slug}</span>
+      <button type="button" class="pd-x" data-close aria-label={U.close}>✕</button>
     </header>
     <div class="pd-body">
       <span class="card-cat mono">{categories[p.category]}{p.year ? ` · ${p.year}` : ''}</span>
@@ -41,13 +44,13 @@ const links = (p.links || []).filter((l) => { const m = l.href.match(/^\/projekt
 
       {p.stages && p.stages.length > 0 && (
         <div class="pd-stages">
-          <h3 class="lbl">Realizacje <span class="mono">{p.stages.length}</span></h3>
+          <h3 class="lbl">{D.stages} <span class="mono">{p.stages.length}</span></h3>
           {p.stages.map((st, i) => (
             <details open={i === 0} id={`s-${st.slug}`}>
               <summary><span class="mono st-n">{String(i + 1).padStart(2, '0')}</span><span><b>{st.title}</b>{st.client && <i>{st.client}</i>}</span></summary>
               <div class="st-body">
-                <p><span class="lbl">Zadanie</span>{st.problem}</p>
-                <p><span class="lbl">Rozwiązanie</span>{st.solution}</p>
+                <p><span class="lbl">{D.stageTask}</span>{st.problem}</p>
+                <p><span class="lbl">{D.stageSolution}</span>{st.solution}</p>
                 <ul class="pd-res">{st.results.map((r) => <li>{r}</li>)}</ul>
                 <div class="tags">{st.stack.map((t) => <span>{t}</span>)}</div>
               </div>
@@ -57,23 +60,23 @@ const links = (p.links || []).filter((l) => { const m = l.href.match(/^\/projekt
       )}
 
       <div class="pd-grid">
-        <section><h3 class="lbl">{p.stages ? 'Z czym przychodzą klienci' : 'Zadanie'}</h3><p>{p.problem}</p></section>
-        <section><h3 class="lbl">{p.stages ? 'Jak pracuję' : 'Rozwiązanie'}</h3><p>{p.solution}</p></section>
+        <section><h3 class="lbl">{p.stages ? D.clientsTask : D.task}</h3><p>{p.problem}</p></section>
+        <section><h3 class="lbl">{p.stages ? D.clientsHow : D.solution}</h3><p>{p.solution}</p></section>
       </div>
       <div class="pd-grid">
         <section>
-          <h3 class="lbl">Wynik</h3>
+          <h3 class="lbl">{D.result}</h3>
           <ul class="pd-res">{p.results.map((r) => <li>{r}</li>)}</ul>
         </section>
         <section>
-          <h3 class="lbl">Moja rola</h3><p>{p.role}</p>
-          <h3 class="lbl">Stack</h3>
+          <h3 class="lbl">{D.role}</h3><p>{p.role}</p>
+          <h3 class="lbl">{D.stack}</h3>
           <div class="tags">{p.stack.map((s) => <span>{s}</span>)}</div>
         </section>
       </div>
       {links.length > 0 && (
         <nav class="pd-links">
-          <h3 class="lbl">{p.links_title || 'Zobacz też'}</h3>
+          <h3 class="lbl">{lang === 'pl' && p.links_title ? p.links_title : D.more}</h3>
           {links.map((l) => <a href={fixHref(l.href)}>{l.label} &rarr;</a>)}
         </nav>
       )}

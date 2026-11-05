@@ -1,7 +1,10 @@
 ---
-import { categories, anchor, type Project } from '../lib/data';
-interface Props { p: Project; big?: boolean }
-const { p, big = false } = Astro.props;
+import { anchor, type Project } from '../lib/data';
+import { t, type Lang } from '../i18n';
+interface Props { p: Project; big?: boolean; lang?: Lang }
+const { p, big = false, lang = 'pl' } = Astro.props;
+const M = t(lang).mod;
+const categories = M.categories as Record<string, string>;
 const media = p.video ? 'video' : p.image ? 'img' : 'gen';
 ---
 <a class={`card cat-${p.category}${big ? ' card-big' : ''}`} href={`#${anchor(p.slug)}`} data-cat={p.category}>
@@ -11,7 +14,7 @@ const media = p.video ? 'video' : p.image ? 'img' : 'gen';
     {media === 'gen' && (
       <div class="gen" aria-hidden="true">
         <span class="gen-big mono">{p.badge || p.stack[0]}</span>
-        <span class="gen-sub mono">{p.stages ? `${p.stages.length} realizacji · ${p.stack.slice(0, 2).join(' · ')}` : p.stack.slice(1, 4).join(' · ')}</span>
+        <span class="gen-sub mono">{p.stages ? `${p.stages.length} ${M.deliveries} · ${p.stack.slice(0, 2).join(' · ')}` : p.stack.slice(1, 4).join(' · ')}</span>
       </div>
     )}
     <span class="card-cat mono">{categories[p.category]}{p.year ? ` · ${p.year}` : ''}</span>

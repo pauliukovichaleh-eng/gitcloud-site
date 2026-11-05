@@ -1,0 +1,187 @@
+{
+  "_info": "Tłumaczenia projects.json: język → slug → pola do podmiany (title, lead, status, problem, solution, role, results, gallery_alt[] w kolejności galerii, gallery_note, links_label[], stages{slug: {title, client, problem, solution, results}}). Czego brak, zostaje po polsku.",
+  "en": {
+    "platforma-isp": {
+      "title": "GitCloud: operations platform for a network operator",
+      "lead": "One console for the network team: monitoring, automation, access and backups, with AI-assisted alerts.",
+      "status": "Live, demo version on fictional data",
+      "problem": "The team worked across several separate tools, and the full picture of the network had to be assembled by hand.",
+      "solution": "A platform built from scratch: live panels, a device inventory across many sites, alerts grouped by AI, an in-house SSH certificate authority and verified backups. The demo runs on a fictional operator, with no real data.",
+      "role": "Architecture, code, database and deployment.",
+      "results": ["56 console sections in one panel", "Access via certificates valid for 12 hours instead of static keys", "Alerts with ready diagnostic commands", "Demo in an isolated, read-only environment"],
+      "gallery_alt": ["Dashboard: team alerts and notifications", "Network devices: ports, status and configuration backups", "Traffic by operator (ASN) and BGP sessions", "AI Advisor: upgrade proposals with justification", "AI Router: model calls and cost", "Infrastructure: virtual machines and containers"],
+      "gallery_note": "Screenshots from the demo version: fictional operator, addresses from the RFC 5737 documentation ranges.",
+      "links_label": ["ISP console section"]
+    },
+    "pilot-esp32": {
+      "title": "IoT device on ESP32-S3 with a screen simulator",
+      "lead": "Firmware for a hardware panel: system status, alerts and commands under a rotary knob, connected over Bluetooth LE.",
+      "status": "In daily use",
+      "problem": "A physical panel was needed to watch alerts and trigger quick actions, without storing any passwords on the device.",
+      "solution": "C++ firmware with an encrypted Bluetooth LE service. The server runs only allow-listed commands, and critical actions require a PIN. The simulator compiles the same code on a computer and compares screenshots on every build.",
+      "role": "Device design, firmware, server-side service and tests.",
+      "results": ["Over 1,800 commits", "9.2 h on battery with the screen on", "Every UI change verified with screenshots", "No Wi-Fi and no passwords on the device"],
+      "gallery_alt": ["Tile menu: server, backups, network, home", "Assistant session: speak, click and send", "Music player with a progress bar", "CPU chart with an alarm threshold", "Virtual machines and containers with resources", "A critical command (firewall restart) requires a PIN"],
+      "gallery_note": "Screenshots from the screen simulator: the same code as the firmware, test data; the 320×170 screen shown at 4:1. The device UI is in Polish and Russian."
+    },
+    "glowy-agentow": {
+      "title": "3D avatars for voice assistants",
+      "lead": "Three 3D characters that speak with the agents' voices, with lip movement matched to speech and emotions.",
+      "status": "Runs in the browser and on an external display",
+      "problem": "A voice assistant without a face is harder to follow in a conversation. The goal was lifelike facial expressions on own hardware, without paid 3D models.",
+      "solution": "Heads built in code with three.js, mouth movement computed from text and audio every 10 ms. The server renders on the GPU and streams video to a lightweight receiver.",
+      "role": "Character design, animation, lip sync and streaming.",
+      "results": ["Lip sync accurate to 10 to 30 ms", "720p60 latency of about 83 ms", "The receiver uses 16 MB instead of 382 MB of memory"],
+      "gallery_alt": ["Sally: correspondence and deadlines", "Tony: infrastructure and alerts", "Mark: modernization and analysis", "Switching characters mid-conversation"]
+    },
+    "agenci-ai": {
+      "title": "AI agent team for operational work",
+      "lead": "Three agents with roles like in a company: correspondence and deadlines, infrastructure operations, modernization.",
+      "status": "Runs daily, also at night",
+      "problem": "Routine tasks (alerts, mail, deadlines, updates) took time every day, and a single general assistant mixed up responsibilities.",
+      "solution": "Each agent has its own role, skills and decision memory in PostgreSQL. Change proposals are reviewed by an agent council, and decisions that need a person land in the panel as cards with options. Every action is written to a log.",
+      "role": "Architecture, agent code, runbooks and tests.",
+      "results": ["Alerts resolved overnight, only a report in the morning", "Cheap tasks on a light model, hard ones on a strong model", "Full log of agent actions"]
+    },
+    "zlecenia": {
+      "title": "Client work: a store on five domains, SEO and B2B data",
+      "lead": "Consecutive stages for a Shoper store running on five domains, and a B2B company database. All accepted by the clients.",
+      "status": "Useme orders, all accepted",
+      "problem": "The store did not accept orders from abroad, the new theme lost features and translations, and before entering a new market there was no list of partners.",
+      "solution": "The same method in every order: diagnosis and a fixed price, a backup before each change, an automated checkout test on every domain and a short change summary.",
+      "role": "Diagnosis, implementation, tests and client communication.",
+      "results": ["Cart and checkout verified on 5 domains", "66 SEO audit items reviewed and settled", "30 B2B companies (19 NL, 11 BE) with potential scoring", "Every change backed up and reversible"],
+      "gallery_alt": ["Stage 1 · Czech cart and an automated order test on five domains", "Stage 2 · SEO audit checklist and JSON-LD structured data", "Stage 3 · Country and currency switcher in the header and a checkout test", "Stage 4 · The same product page in Czech, Slovak, German and Romanian"],
+      "gallery_note": "Illustrations on sample data (sklep.example, fictional products). The client's store, data and addresses are not shown.",
+      "stages": {
+        "koszyk-sklep-5-domen": {
+          "title": "Stage 1 · A cart that rejected orders from abroad",
+          "client": "Medical supplies store (Shoper, 5 domains)",
+          "problem": "The Shoper store runs on five domains (PL, CZ, SK, DE, RO). On the foreign versions the cart stopped at the order step with no error message, and contact details were not switched per language.",
+          "solution": "Diagnosis found a Google reCAPTCHA key registered only for the Polish domain and a syntax error in the store's custom script. The client added the domains following my instructions, the fixed script was deployed with a backup of the previous version, and everything was verified with an automated cart test on all domains.",
+          "results": ["Cart works on 5 domains", "First foreign order right after the fix", "Every change backed up and reversible"]
+        },
+        "seo-storefront": {
+          "title": "Stage 2 · SEO audit during the migration to the Storefront theme",
+          "client": "Medical supplies store (Shoper, 5 domains)",
+          "problem": "The store moving to the new Storefront theme had an agency SEO audit (66 items). The recommendations had to be implemented without touching theme files without the owner's consent.",
+          "solution": "Google Tag Manager and GA4, the blog H1 and JSON-LD structured data (Organization, WebSite) added to the new theme. Meta tag patterns set according to the audit, with a backup of previous values. Completed items reported to the agency, and items needing consent described instead of applied.",
+          "results": ["66 audit items reviewed and settled", "Structured data and analytics in the new theme", "Work accepted by the client"]
+        },
+        "wybor-kraju-storefront": {
+          "title": "Stage 3 · Country switcher and order tests on 5 domains",
+          "client": "Medical supplies store (Shoper, 5 domains)",
+          "problem": "Countries are language versions of one store on five domains. After moving to the new theme the version URLs worked, but a customer on the Polish store had no way to switch country. It also had to be confirmed that an order can be placed on every domain.",
+          "solution": "The new theme lacked the country and language module from the old one. The standard Shoper language and currency module with flags was added to the header for desktop, tablet and phone, with no other changes and with rollback instructions. Switching between all countries tested on desktop and phone, and the full checkout tested on every domain up to the active final button, without placing fake orders.",
+          "results": ["Country switching works both ways on 5 domains", "Checkout verified on 5 domains, no fake orders", "One theme change, rollback in one step", "Issues found in tests scoped for the next stage"]
+        },
+        "tlumaczenie-storefront-4-jezyki": {
+          "title": "Stage 4 · The new theme in four languages",
+          "client": "Medical supplies store (Shoper, 5 domains)",
+          "problem": "One Shoper store, four foreign versions on separate domains. Theme modules had Polish texts only, the Romanian version showed English system phrases, and the cart displayed technical keys instead of text. Banners and links on foreign versions led to the Polish store.",
+          "solution": "Theme module texts translated separately for each language: header, mega menu, home page, product page, category, cart with a free gift app, the added-to-cart window and the footer. Banner and slide links pointed to each country's categories, country contact details added, Poland-only blocks hidden elsewhere. All Romanian system phrases completed. The Polish version checked after every change, visual changes kept in separate documented CSS blocks, and a final cart test on every foreign domain up to the active payment button.",
+          "results": ["4 language versions on the new theme", "1360 of 1360 Romanian system phrases", "Cart verified on 4 foreign domains", "Polish version unchanged, every change reversible", "9 out-of-scope issues documented for the store's decision"]
+        },
+        "baza-b2b-nl-be": {
+          "title": "B2B company database for entering the Netherlands and Belgium",
+          "client": "Distributor of finishing materials",
+          "problem": "The company planned to enter the Dutch and Belgian markets and needed a scored list of potential partners before the first contact.",
+          "solution": "A database built from company websites, with potential scoring and a shortlist of the best fits. Plus a competitor overview and draft messages in English (first contact and follow-up), respecting the client's limits on product claims. Everything in one Google Sheet with company, message and report tabs.",
+          "results": ["30 companies (19 NL, 11 BE) with potential scoring", "12 best fits selected for first contact", "Delivered on time and accepted on Useme"]
+        }
+      }
+    }
+  },
+  "ru": {
+    "platforma-isp": {
+      "title": "GitCloud: операционная платформа для оператора сети",
+      "lead": "Одна консоль для сетевой команды: мониторинг, автоматизация, доступ и копии, с алертами при поддержке AI.",
+      "status": "Работает, демо-версия на вымышленных данных",
+      "problem": "Команда работала в нескольких отдельных инструментах, и полную картину сети приходилось собирать вручную.",
+      "solution": "Платформа с нуля: панели в реальном времени, инвентарь устройств на многих площадках, алерты с группировкой через AI, собственный удостоверяющий центр SSH и проверяемые резервные копии. Демо работает на вымышленном операторе, без реальных данных.",
+      "role": "Архитектура, код, база данных и внедрение.",
+      "results": ["56 разделов консоли в одной панели", "Доступ по сертификатам на 12 часов вместо постоянных ключей", "Алерты с готовыми командами диагностики", "Демо в изолированной среде, только чтение"],
+      "gallery_alt": ["Dashboard: алерты и уведомления команды", "Сетевые устройства: порты, статус и копии конфигураций", "Трафик по операторам (ASN) и BGP-сессии", "AI Advisor: предложения по модернизации с обоснованием", "AI Router: вызовы и стоимость моделей", "Инфраструктура: виртуальные машины и контейнеры"],
+      "gallery_note": "Скриншоты демо-версии: вымышленный оператор, адреса из документационных диапазонов RFC 5737.",
+      "links_label": ["Раздел консоли ISP"]
+    },
+    "pilot-esp32": {
+      "title": "IoT-устройство на ESP32-S3 с симулятором экрана",
+      "lead": "Прошивка аппаратной панели: состояние систем, алерты и команды под поворотной ручкой, связь по Bluetooth LE.",
+      "status": "В ежедневном использовании",
+      "problem": "Нужна была физическая панель для просмотра алертов и быстрых действий, которая не хранит никаких паролей.",
+      "solution": "Прошивка на C++ с зашифрованным сервисом Bluetooth LE. Сервер выполняет только команды из белого списка, а важные действия требуют PIN-кода. Симулятор собирает тот же код на компьютере и сравнивает скриншоты экрана при каждой сборке.",
+      "role": "Проект устройства, прошивка, серверная часть и тесты.",
+      "results": ["Более 1800 коммитов", "9,2 ч работы от батареи с включённым экраном", "Каждое изменение интерфейса проверяется скриншотами", "Без Wi-Fi и паролей на устройстве"],
+      "gallery_alt": ["Меню плиток: сервер, копии, сеть, дом", "Сессия с ассистентом: говори, нажми и отправь", "Музыкальный плеер с полосой прогресса", "График CPU с порогом тревоги", "Виртуальные машины и контейнеры с ресурсами", "Важная команда (перезапуск файрвола) требует PIN-кода"],
+      "gallery_note": "Скриншоты из симулятора экрана: тот же код, что в прошивке, тестовые данные; экран 320×170 в масштабе 4:1. Интерфейс устройства на польском и русском."
+    },
+    "glowy-agentow": {
+      "title": "3D-аватары для голосовых ассистентов",
+      "lead": "Три 3D-персонажа, которые говорят голосами агентов, с движением губ под речь и эмоциями.",
+      "status": "Работает в браузере и на внешнем экране",
+      "problem": "Голосовой ассистент без лица хуже воспринимается в разговоре. Цель: живая мимика на своём оборудовании, без платных 3D-моделей.",
+      "solution": "Головы построены кодом на three.js, движение губ рассчитывается из текста и звука каждые 10 мс. Сервер рендерит на GPU и передаёт видеопоток лёгкому приёмнику.",
+      "role": "Дизайн персонажей, анимация, синхронизация губ и стриминг.",
+      "results": ["Синхронизация губ с точностью от 10 до 30 мс", "Задержка 720p60 около 83 мс", "Приёмник занимает 16 МБ вместо 382 МБ памяти"],
+      "gallery_alt": ["Sally: переписка и сроки", "Tony: инфраструктура и алерты", "Mark: модернизация и анализ", "Смена персонажа во время разговора"]
+    },
+    "agenci-ai": {
+      "title": "Команда AI-агентов для операционной работы",
+      "lead": "Три агента с ролями, как в компании: переписка и сроки, сопровождение инфраструктуры, модернизация.",
+      "status": "Работает ежедневно, в том числе ночью",
+      "problem": "Рутина (алерты, почта, сроки, обновления) отнимала время каждый день, а один общий ассистент путал зоны ответственности.",
+      "solution": "У каждого агента своя роль, навыки и память решений в PostgreSQL. Предложения изменений оценивает совет агентов, а решения, требующие человека, попадают в панель карточками с вариантами. Каждое действие записывается в журнал.",
+      "role": "Архитектура, код агентов, регламенты и тесты.",
+      "results": ["Алерты решаются ночью, утром только отчёт", "Дешёвые задачи на лёгкой модели, сложные на сильной", "Полный журнал действий агентов"]
+    },
+    "zlecenia": {
+      "title": "Заказы для компаний: магазин на пяти доменах, SEO и данные B2B",
+      "lead": "Последовательные этапы для магазина на Shoper, работающего на пяти доменах, и база B2B-компаний. Всё принято клиентами.",
+      "status": "Заказы Useme, все приняты",
+      "problem": "Магазин не принимал заказы из-за границы, новый шаблон терял функции и переводы, а перед выходом на новый рынок не было списка партнёров.",
+      "solution": "В каждом заказе один метод: диагностика и цена заранее, копия перед изменением, автоматический тест оформления заказа на каждом домене и краткое описание изменений.",
+      "role": "Диагностика, внедрение, тесты и общение с клиентом.",
+      "results": ["Корзина и оформление проверены на 5 доменах", "66 пунктов SEO-аудита разобраны и закрыты", "30 B2B-компаний (19 NL, 11 BE) с оценкой потенциала", "Каждое изменение с копией и возможностью отката"],
+      "gallery_alt": ["Этап 1 · Чешская корзина и автотест заказа на пяти доменах", "Этап 2 · Чек-лист SEO-аудита и структурированные данные JSON-LD", "Этап 3 · Выбор страны и валюты в шапке и тест оформления", "Этап 4 · Одна карточка товара на чешском, словацком, немецком и румынском"],
+      "gallery_note": "Иллюстрации на примерных данных (sklep.example, вымышленные товары). Магазин клиентки, её данные и адреса не показаны.",
+      "stages": {
+        "koszyk-sklep-5-domen": {
+          "title": "Этап 1 · Корзина, которая не принимала заказы из-за границы",
+          "client": "Магазин медицинских товаров (Shoper, 5 доменов)",
+          "problem": "Магазин на Shoper работает на пяти доменах (PL, CZ, SK, DE, RO). В зарубежных версиях корзина останавливалась на шаге заказа без сообщения об ошибке, а контакты по языковым версиям не подменялись.",
+          "solution": "Диагностика нашла ключ Google reCAPTCHA, зарегистрированный только для польского домена, и синтаксическую ошибку в собственном скрипте магазина. Клиентка добавила домены по инструкции, исправленный скрипт внедрён с копией прежней версии, всё проверено автотестом корзины на всех доменах.",
+          "results": ["Корзина работает на 5 доменах", "Первый зарубежный заказ сразу после исправления", "Каждое изменение с копией и откатом"]
+        },
+        "seo-storefront": {
+          "title": "Этап 2 · SEO-аудит при переходе на шаблон Storefront",
+          "client": "Магазин медицинских товаров (Shoper, 5 доменов)",
+          "problem": "У магазина, переезжающего на новый шаблон Storefront, был SEO-аудит агентства (66 пунктов). Рекомендации нужно было внедрить, не трогая файлы шаблона без согласия владелицы.",
+          "solution": "В новый шаблон добавлены Google Tag Manager и GA4, заголовок H1 блога и структурированные данные JSON-LD (Organization, WebSite). Шаблоны мета-тегов настроены по аудиту с копией прежних значений. Выполненные пункты переданы агентству, а пункты, требующие согласия, описаны вместо внедрения.",
+          "results": ["66 пунктов аудита разобраны и закрыты", "Структурированные данные и аналитика в новом шаблоне", "Работа принята клиенткой"]
+        },
+        "wybor-kraju-storefront": {
+          "title": "Этап 3 · Выбор страны и тест заказов на 5 доменах",
+          "client": "Магазин медицинских товаров (Shoper, 5 доменов)",
+          "problem": "Страны являются языковыми версиями одного магазина на пяти доменах. После перехода на новый шаблон адреса работали, но покупатель с польского магазина не мог перейти в другую страну. Также нужно было подтвердить, что заказ оформляется на каждом домене.",
+          "solution": "В новом шаблоне не было модуля выбора страны и языка из старого. В шапку добавлен стандартный модуль Shoper «Язык и валюты» с флагами для компьютера, планшета и телефона, без других изменений и с инструкцией отката. Переходы между всеми странами проверены на компьютере и телефоне, оформление заказа на каждом домене пройдено до активной итоговой кнопки без фиктивных заказов.",
+          "results": ["Выбор страны работает в обе стороны на 5 доменах", "Оформление проверено на 5 доменах без фиктивных заказов", "Одно изменение шаблона, откат в один шаг", "Найденные проблемы описаны как объём следующего этапа"]
+        },
+        "tlumaczenie-storefront-4-jezyki": {
+          "title": "Этап 4 · Новый шаблон на четырёх языках",
+          "client": "Магазин медицинских товаров (Shoper, 5 доменов)",
+          "problem": "Один магазин на Shoper, четыре зарубежные версии на отдельных доменах. Модули шаблона были только на польском, румынская версия показывала системные фразы на английском, а в корзине вместо текстов были технические ключи. Баннеры и ссылки вели в польский магазин.",
+          "solution": "Тексты модулей переведены отдельно для каждого языка: шапка, мега-меню, главная, карточка товара, категория, корзина с приложением подарка, окно добавления в корзину и подвал. Ссылки баннеров и слайдов ведут в категории своей страны, добавлены контакты страны, блоки только для Польши скрыты в других версиях. Дополнены все системные фразы румынской версии. Польская версия проверялась после каждого изменения, визуальные правки вынесены в отдельные описанные блоки CSS, в конце тест корзины на каждом зарубежном домене до активной кнопки оплаты.",
+          "results": ["4 языковые версии на новом шаблоне", "1360 из 1360 системных фраз румынской версии", "Корзина проверена на 4 зарубежных доменах", "Польская версия без изменений, каждое изменение откатывается", "9 вопросов вне объёма описаны для решения магазина"]
+        },
+        "baza-b2b-nl-be": {
+          "title": "База B2B-компаний для выхода на рынок Нидерландов и Бельгии",
+          "client": "Дистрибьютор отделочных материалов",
+          "problem": "Компания планировала выход на рынки Нидерландов и Бельгии и нуждалась в оценённом списке потенциальных партнёров до первого контакта.",
+          "solution": "База собрана по данным сайтов компаний, с оценкой потенциала и отбором лучших. Плюс обзор конкурентов и черновики писем на английском (первый контакт и follow-up) с учётом ограничений клиентки по заявлениям о продукте. Всё в одной Google-таблице с вкладками компаний, писем и отчёта.",
+          "results": ["30 компаний (19 NL, 11 BE) с оценкой потенциала", "12 лучших выбраны для первого контакта", "Сдано в срок и принято на Useme"]
+        }
+      }
+    }
+  }
+}

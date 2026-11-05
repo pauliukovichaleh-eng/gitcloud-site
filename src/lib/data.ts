@@ -1,4 +1,6 @@
 import raw from '../data/projects.json';
+import tr from '../data/projects.i18n.json';
+import type { Lang } from '../i18n';
 
 export type Img = { src: string; alt: string; video?: string; pixelated?: boolean; od?: string };
 export type Stage = { slug: string; title: string; client?: string; od?: string; problem: string; solution: string; results: string[]; stack: string[] };
@@ -41,4 +43,20 @@ export const fixHref = (href: string) => {
   if (m) { const r = resolve(m[1]); return r ? `#${anchor(r)}` : '#moduly'; }
   if (href === '/isp/') return '#konsola';
   return href;
+};
+
+// Wersja projektu w danym języku: pola z projects.i18n.json zastępują polskie, reszta zostaje.
+type Tr = Partial<Project> & { gallery_alt?: string[]; links_label?: string[]; stages?: Record<string, Partial<Stage>> };
+export const localize = (p: Project, lang: Lang): Project => {
+  if (lang === 'pl') return p;
+  const o = ((tr as unknown as Record<string, Record<string, Tr>>)[lang] || {})[p.slug];
+  if (!o) return p;
+  const { gallery_alt, links_label, stages, ...rest } = o;
+  return {
+    ...p,
+    ...rest,
+    gallery: (p.gallery || []).map((g, i) => (gallery_alt?.[i] ? { ...g, alt: gallery_alt[i] } : g)),
+    links: (p.links || []).map((l, i) => (links_label?.[i] ? { ...l, label: links_label[i] } : l)),
+    stages: p.stages?.map((s) => ({ ...s, ...(stages?.[s.slug] || {}) })),
+  } as Project;
 };

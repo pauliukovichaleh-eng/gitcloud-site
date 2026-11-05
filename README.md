@@ -15,3 +15,8 @@ npm run dev      # podgląd
 npm run build    # dist/ + kontrola
 GC_DRAFTS=1 npm run build   # razem z projektami przed datą "od"
 ```
+
+## Języki
+- `/` polski, `/en/` angielski, `/ru/` rosyjski: jeden szablon `src/components/Home.astro`, teksty w `src/i18n/{pl,en,ru}.ts`
+- projekty: polski w `src/data/projects.json`, tłumaczenia w `src/data/projects.i18n.json` (brakujące pole zostaje po polsku)
+- nowe teksty bez długich myślników i bez nazw pracodawców (sprawdza `tools/check.mjs`)

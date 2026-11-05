@@ -1,0 +1,379 @@
+---
+// Strona główna w jednym z trzech języków (pl /, en /en/, ru /ru/). Teksty: src/i18n/*.ts, projekty: lib/data localize().
+import Base from '../layouts/Base.astro';
+import EcoMap from './EcoMap.astro';
+import ProjectCard from './ProjectCard.astro';
+import ProjectDialog from './ProjectDialog.astro';
+import { ordered as orderedPl, projects, anchor, has, deliveries, localize } from '../lib/data';
+import { t, home, type Lang } from '../i18n';
+
+interface Props { lang: Lang }
+const { lang } = Astro.props;
+const T: any = t(lang);
+const SITE = 'https://gitcloud.pl';
+const URL0 = `${SITE}${home(lang)}`;
+const EMAIL = 'pauliukovichaleh@gmail.com';
+const ordered = orderedPl.map((p) => localize(p, lang));
+const categories = T.mod.categories as Record<string, string>;
+const count = (c: string) => projects.filter((p) => p.category === c).length;
+const layerLinks = [
+  ['#konsola', '#agenci', has('pilot-esp32') ? `#${anchor('pilot-esp32')}` : ''],
+  [has('agenci-ai') ? `#${anchor('agenci-ai')}` : '', '', ''],
+  ['', '', ''],
+];
+const esc = (x: string) => x.replace(/&/g, '&amp;').replace(/</g, '&lt;');
+const termHtml = '<span class="pr">$</span> whoami\n' + T.exp.term.map(([k, v]: string[]) => `<span class="k">${esc(k.padEnd(9))}</span> ${esc(v)}`).join('\n') + '\n<span class="pr">$</span> <span class="cur">_</span>';
+const shotKeys = ['dashboard', 'siec', 'ruch-asn', 'ai-advisor', 'ai-router', 'proxmox-all'];
+const agentMeta = [['Sally', 'sally', 'm'], ['Tony', 'tony', 'b'], ['Mark', 'mark', 'g']];
+const jsonld = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    { '@type': 'WebSite', '@id': `${SITE}/#website`, name: 'GitCloud', alternateName: T.ld.altNames, url: URL0, inLanguage: T.inLanguage, publisher: { '@id': `${SITE}/#org` } },
+    { '@type': ['Organization', 'ProfessionalService'], '@id': `${SITE}/#org`, name: 'GitCloud', url: `${SITE}/`, logo: `${SITE}/favicon-192.png`, email: `mailto:${EMAIL}`, areaServed: 'PL', priceRange: T.ld.price, description: T.ld.orgDesc, founder: { '@id': `${SITE}/#aleh` } },
+    { '@type': 'Person', '@id': `${SITE}/#aleh`, name: 'Aleh Pauliukovich', url: `${SITE}/`, image: `${SITE}/img/aleh.jpg`, jobTitle: T.ld.job, knowsAbout: T.ld.knows, knowsLanguage: ['pl', 'ru', 'be', 'en'], hasCredential: { '@type': 'EducationalOccupationalCredential', name: 'Oracle Cloud Infrastructure Certified AI Foundations Associate', credentialCategory: 'certification', recognizedBy: { '@type': 'Organization', name: 'Oracle' } }, worksFor: { '@id': `${SITE}/#org` } },
+    { '@type': 'ItemList', name: T.ld.list, itemListElement: ordered.map((p, i) => ({ '@type': 'ListItem', position: i + 1, url: `${URL0}#${anchor(p.slug)}`, name: p.title })) },
+    { '@type': 'FAQPage', mainEntity: T.faq.map(([q, a]) => ({ '@type': 'Question', name: q, acceptedAnswer: { '@type': 'Answer', text: a } })) },
+  ],
+};
+---
+<Base title={T.meta.title} description={T.meta.description} jsonld={jsonld} lang={lang} path={home(lang)} alternates>
+  <script is:inline slot="head">
+    // Stare kotwice (/#platforma, /#operator …) → nowe sekcje.
+    (function () { var h = location.hash.slice(1); if (/^(platforma|mozliwosci|zalozyciel|stat-grid|sw-[a-z]+)$/.test(h)) history.replaceState(null, '', '#konsola'); if (h === 'operator') history.replaceState(null, '', '#doswiadczenie'); })();
+  </script>
+
+  <!-- ═══ 00 · HERO ═══ -->
+  <section class="hero" id="ekosystem">
+    <div class="wrap hero-in">
+      <div class="hero-txt">
+        <div class="kicker mono"><span class="dot ok pulse"></span> {T.hero.kicker}<span class="k-name"> · Aleh Pauliukovich</span></div>
+        <h1>{T.hero.h1a}<span class="hl">{T.hero.h1b}</span>{T.hero.h1c}</h1>
+        <p class="lead">{T.hero.lead}</p>
+        <div class="actions">
+          <a class="btn btn-p" href="#moduly">{T.hero.cta1}</a>
+          <a class="btn btn-g" href="#kontakt">{T.hero.cta2}</a>
+        </div>
+      </div>
+      <EcoMap lang={lang} />
+    </div>
+    <div class="wrap">
+      <ul class="kpis">
+        {[String(deliveries), '3', '4+', '98%'].map((v, i) => (
+          <li class="tile"><span class="lbl">{T.kpis[i][0]}</span><b class="val mono">{v}</b><span class="sub">{T.kpis[i][1]}</span></li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <!-- ═══ 01 · ARCHITEKTURA ═══ -->
+  <section class="sec" id="architektura">
+    <div class="wrap">
+      <header class="sec-h">
+        <span class="idx mono">{T.arch.idx}</span>
+        <h2>{T.arch.h2}</h2>
+        <p>{T.arch.p}</p>
+      </header>
+      <div class="stack">
+        {T.arch.layers.map(([lt, ls, items], li) => (
+          <div class={`layer layer-L${3 - li}`}>
+            <div class="layer-h"><span class="mono layer-k">L{3 - li}</span><div><h3>{lt}</h3><span class="muted">{ls}</span></div></div>
+            <ul class="layer-items">
+              {items.map(([it, isub], ii) => (
+                <li>{layerLinks[li][ii] ? <a href={layerLinks[li][ii]}><b>{it}</b><span>{isub}</span></a> : <div><b>{it}</b><span>{isub}</span></div>}</li>
+              ))}
+            </ul>
+          </div>
+        ))}
+        <div class="flow mono" aria-hidden="true">
+          {T.arch.flow.map((f, i) => <>{i > 0 && <i></i>}<span>{f}</span></>)}
+        </div>
+      </div>
+      <ol class="rules">
+        {T.arch.rules.map(([rt, rs], i) => <li class="tile"><span class="mono rule-n">R{i + 1}</span><b>{rt}</b><span>{rs}</span></li>)}
+      </ol>
+    </div>
+  </section>
+
+  <!-- ═══ 02 · REALIZACJE ═══ -->
+  <section class="sec" id="moduly">
+    <div class="wrap">
+      <header class="sec-h">
+        <span class="idx mono">{T.mod.idx}</span>
+        <h2>{T.mod.h2}</h2>
+        <p>{T.mod.p}</p>
+      </header>
+      <div class="filters pills" role="toolbar" aria-label={T.mod.filterAria}>
+        <button type="button" class="is-on" data-f="all">{T.mod.all} <span class="mono">{projects.length}</span></button>
+        {Object.entries(categories).map(([k, v]) => count(k) > 0 && <button type="button" data-f={k}>{v} <span class="mono">{count(k)}</span></button>)}
+      </div>
+      <div class="bento">
+        {ordered.map((p, i) => <ProjectCard p={p} big={i < 3} lang={lang} />)}
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ 03 · KONSOLA ISP ═══ -->
+  <section class="sec" id="konsola">
+    <div class="wrap">
+      <header class="sec-h">
+        <span class="idx mono">{T.console.idx}</span>
+        <h2>{T.console.h2}</h2>
+        <p>{T.console.p}</p>
+      </header>
+      <div class="console" data-full={T.console.full}>
+        <div class="console-bar">
+          <span class="lights" aria-hidden="true"><i></i><i></i><i></i></span>
+          <span class="mono url">demo.gitcloud · <b id="shot-name">dashboard</b></span>
+          <span class="mono live"><span class="dot ok pulse"></span> {T.console.live}</span>
+        </div>
+        <div class="pills console-tabs" role="tablist" aria-label={T.console.tabsAria}>
+          {shotKeys.map((k, i) => (
+            <button type="button" role="tab" aria-selected={i === 0 ? 'true' : 'false'} class={i === 0 ? 'is-on' : ''} data-shot={k}>{T.console.shots[k][0]}</button>
+          ))}
+        </div>
+        <div class="console-view">
+          {shotKeys.map((k, i) => [k, i, ...T.console.shots[k]]).map(([k, i, sn, sc]) => (
+              <figure class={`shot${i === 0 ? ' is-on' : ''}`} data-shot={k} role="tabpanel">
+                <a class="shot-open" data-full={T.console.full} href={`/img/demo/${k}.webp`} target="_blank" rel="noopener" aria-label={`${T.console.open}: ${sn}`}><img src={`/img/demo/${k}.webp`} alt={`${T.console.alt} ${sn} (${T.console.altDemo})`} width="2000" height="1250" loading={i === 0 ? 'eager' : 'lazy'} decoding="async" /></a>
+                <figcaption>{sc}</figcaption>
+              </figure>
+          ))}
+        </div>
+      </div>
+      <div class="caps">
+        {T.console.caps.map(([ct, cs]) => <div class="cap"><b>{ct}</b><span>{cs}</span></div>)}
+      </div>
+      {has('platforma-isp') && <a class="link-more" href={`#${anchor('platforma-isp')}`}>{T.console.more} &rarr;</a>}
+    </div>
+  </section>
+
+  <!-- ═══ 04 · AGENCI ═══ -->
+  <section class="sec" id="agenci">
+    <div class="wrap">
+      <header class="sec-h">
+        <span class="idx mono">{T.agents.idx}</span>
+        <h2>{T.agents.h2}</h2>
+        <p>{T.agents.p}</p>
+      </header>
+      <div class="agents">
+        {agentMeta.map(([n, f, c], i) => (
+          <article class={`agent agent-${c}`}>
+            <div class="agent-media">
+              <img src={`/img/agenci/${f}.gif`} alt={`${n}: ${T.agents.alt}`} width="320" height="320" loading="lazy" decoding="async" />
+              <span class="agent-tag mono">● {f}.agent</span>
+            </div>
+            <div class="agent-body">
+              <h3>{n}</h3>
+              <span class="agent-role mono">{T.agents.list[i][0]}</span>
+              <p>{T.agents.list[i][1]}</p>
+            </div>
+          </article>
+        ))}
+      </div>
+      <div class="agent-links">
+        {has('agenci-ai') && <a class="link-more" href={`#${anchor('agenci-ai')}`}>{T.agents.more1} &rarr;</a>}
+        {has('glowy-agentow') && <a class="link-more" href={`#${anchor('glowy-agentow')}`}>{T.agents.more2} &rarr;</a>}
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ 05 · USŁUGI ═══ -->
+  <section class="sec" id="uslugi">
+    <div class="wrap">
+      <header class="sec-h">
+        <span class="idx mono">{T.svc.idx}</span>
+        <h2>{T.svc.h2}</h2>
+        <p>{T.svc.p}</p>
+      </header>
+      <div class="areas">
+        {T.svc.areas.map(([at, ad], i) => <div class="area"><span class="mono area-n">0{i + 1}</span><b>{at}</b><span>{ad}</span></div>)}
+      </div>
+      <div class="svc">
+        <div class="prices">
+          {T.svc.prices.map(([pt, pv, ps]) => <div class="tile price"><span class="lbl">{pt}</span><b class="val mono">{pv}</b><span class="sub">{ps}</span></div>)}
+        </div>
+        <ol class="steps">
+          {T.svc.steps.map(([st, ss], i) => <li><span class="mono step-n">{i + 1}</span><div><b>{st}</b><span>{ss}</span></div></li>)}
+        </ol>
+      </div>
+      <p class="note">{T.svc.note}</p>
+      {has('zlecenia') && <a class="link-more" href={`#${anchor('zlecenia')}`}>{T.svc.more} &rarr;</a>}
+    </div>
+  </section>
+
+  <!-- ═══ 06 · DOŚWIADCZENIE I KOMPETENCJE ═══ -->
+  <section class="sec" id="doswiadczenie">
+    <span id="operator" aria-hidden="true"></span>
+    <div class="wrap">
+      <div class="who">
+        <div class="who-photo"><img src="/img/aleh.jpg" alt="Aleh Pauliukovich" width="560" height="560" loading="lazy" decoding="async" /></div>
+        <div class="who-txt">
+          <span class="idx mono">{T.exp.idx}</span>
+          <h2>{T.exp.h2}</h2>
+          {T.exp.bio.map((b) => <p>{b}</p>)}
+        </div>
+        <div class="term" aria-hidden="true">
+          <div class="term-bar mono"><span class="lights"><i></i><i></i><i></i></span> aleh@gitcloud: ~</div>
+          <pre class="mono" set:html={termHtml}></pre>
+        </div>
+      </div>
+
+      <div class="exp">
+        <div class="exp-roles">
+          <h3 class="lbl">{T.exp.rolesTitle}</h3>
+          <ol class="timeline">
+            {T.exp.roles.map(([when, role, where, pts]) => (
+              <li>
+                <span class="tl-when mono">{when}</span>
+                <div class="tl-body">
+                  <b>{role}</b><span class="tl-where">{where}</span>
+                  <ul>{pts.map((x) => <li>{x}</li>)}</ul>
+                </div>
+              </li>
+            ))}
+          </ol>
+        </div>
+        <div class="exp-skills">
+          <h3 class="lbl">{T.exp.skillsTitle}</h3>
+          <div class="skills">
+            {T.exp.skills.map(([g, items]) => (
+              <div class="skill">
+                <b>{g}</b>
+                <div class="tags">{items.map((x) => <span>{x}</span>)}</div>
+              </div>
+            ))}
+          </div>
+          <div class="exp-side">
+            <div class="tile">
+              <span class="lbl">{T.exp.certTitle}</span>
+              <ul class="certs">{T.exp.certs.map(([cn, cd]) => <li><b>{cn}</b><span>{cd}</span></li>)}</ul>
+            </div>
+            <div class="tile">
+              <span class="lbl">{T.exp.langsTitle}</span>
+              <ul class="langs-list">{T.exp.langs.map(([ln, lv]) => <li><span>{ln}</span><b class="mono">{lv}</b></li>)}</ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ 07 · KONTAKT ═══ -->
+  <section class="sec" id="kontakt">
+    <div class="wrap"><div class="contact">
+      <div class="contact-main">
+        <span class="idx mono">{T.contact.idx}</span>
+        <h2>{T.contact.h2}</h2>
+        <p>{T.contact.p}</p>
+        <div class="mail">
+          <a class="btn btn-p btn-lg" href={`mailto:${EMAIL}`}>{T.contact.btn} &rarr;</a>
+          <button type="button" class="btn btn-g mono copy" data-copy={EMAIL} aria-label={T.contact.copyAria}>{EMAIL}</button>
+        </div>
+        <ul class="checks">{T.contact.checks.map((c) => <li>{c}</li>)}</ul>
+      </div>
+      <div class="faq">
+        {T.faq.map(([q, a]) => <details><summary>{q}</summary><p>{a}</p></details>)}
+      </div>
+    </div></div>
+  </section>
+
+  {ordered.map((p) => <ProjectDialog p={p} lang={lang} />)}
+  <div class="toast mono" id="toast" role="status" aria-live="polite"></div>
+</Base>
+
+<script>
+  const $ = <T extends Element = HTMLElement>(s: string, r: ParentNode = document) => r.querySelector<T>(s);
+  const $$ = <T extends Element = HTMLElement>(s: string, r: ParentNode = document) => Array.from(r.querySelectorAll<T>(s));
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  // ── Okna projektów: #p-<slug> otwiera okno (link z zewnątrz też), zamknięcie czyści adres.
+  const openFromHash = () => {
+    const h = decodeURIComponent(location.hash.slice(1));
+    $$<HTMLDialogElement>('dialog.pd[open]').forEach((d) => { if (d.id !== h) d.close(); });
+    if (!h.startsWith('p-')) return;
+    const d = document.getElementById(h) as HTMLDialogElement | null;
+    if (d && !d.open) {
+      d.showModal();
+      d.querySelector<HTMLElement>('.pd-body')?.scrollTo(0, 0);
+    }
+  };
+  $$<HTMLDialogElement>('dialog.pd').forEach((d) => {
+    d.addEventListener('close', () => {
+      if (location.hash === '#' + d.id) history.replaceState(null, '', location.pathname + location.search);
+      $$('video', d).forEach((v) => (v as HTMLVideoElement).pause());
+    });
+    d.addEventListener('click', (e) => { if (e.target === d) d.close(); });
+    $$('[data-close]', d).forEach((b) => b.addEventListener('click', () => d.close()));
+    // galeria w oknie
+    const big = $<HTMLImageElement>('.pd-big img', d), bigV = $<HTMLVideoElement>('.pd-big video', d), cap = $('.pd-big figcaption', d);
+    $$<HTMLButtonElement>('.pd-thumbs button', d).forEach((b) => b.addEventListener('click', () => {
+      $$('.pd-thumbs button', d).forEach((x) => x.classList.toggle('is-on', x === b));
+      const { src, video, alt, px } = b.dataset;
+      if (bigV) {
+        if (video) { bigV.hidden = false; bigV.poster = src!; bigV.src = video; bigV.play().catch(() => {}); if (big) big.hidden = true; }
+        else { bigV.pause(); bigV.hidden = true; if (big) big.hidden = false; }
+      }
+      if (big && !video) { big.src = src!; big.alt = alt || ''; big.classList.toggle('px', px === '1'); }
+      if (cap) cap.textContent = alt || '';
+    }));
+  });
+  addEventListener('hashchange', openFromHash);
+  openFromHash();
+
+  // ── Filtr modułów
+  $$<HTMLButtonElement>('.filters button').forEach((b) => b.addEventListener('click', () => {
+    const f = b.dataset.f;
+    $$('.filters button').forEach((x) => x.classList.toggle('is-on', x === b));
+    $$<HTMLElement>('.bento .card').forEach((c) => { c.hidden = !(f === 'all' || c.dataset.cat === f); });
+  }));
+
+  // ── Konsola: zakładki widoków
+  const tabs = $$<HTMLButtonElement>('.console-tabs button');
+  const show = (k: string) => {
+    tabs.forEach((t) => { const on = t.dataset.shot === k; t.classList.toggle('is-on', on); t.setAttribute('aria-selected', String(on)); });
+    $$<HTMLElement>('.console-view .shot').forEach((s) => s.classList.toggle('is-on', s.dataset.shot === k));
+    const n = $('#shot-name'); if (n) n.textContent = k;
+  };
+  tabs.forEach((t) => t.addEventListener('click', () => { show(t.dataset.shot!); stopAuto(); }));
+  let auto: number | undefined;
+  const stopAuto = () => { if (auto) clearInterval(auto); auto = undefined; };
+  const consoleEl = $('.console');
+  if (consoleEl && !reduce) {
+    new IntersectionObserver(([e]) => {
+      if (e.isIntersecting && auto === undefined && tabs.length) {
+        auto = window.setInterval(() => {
+          const i = tabs.findIndex((t) => t.classList.contains('is-on'));
+          show(tabs[(i + 1) % tabs.length].dataset.shot!);
+        }, 5200);
+      } else if (!e.isIntersecting) stopAuto();
+    }, { threshold: 0.4 }).observe(consoleEl);
+    consoleEl.addEventListener('pointerenter', stopAuto);
+  }
+
+  // ── Wideo gra tylko na ekranie
+  const vio = new IntersectionObserver((es) => es.forEach((e) => {
+    const v = e.target as HTMLVideoElement;
+    if (e.isIntersecting && !reduce) { v.preload = 'auto'; v.play().catch(() => {}); } else v.pause();
+  }), { threshold: 0.35 });
+  $$<HTMLVideoElement>('video[data-inview]').forEach((v) => vio.observe(v));
+
+  // ── Aktywna sekcja w menu
+  const spy = $$<HTMLAnchorElement>('a[data-spy]');
+  const sio = new IntersectionObserver((es) => es.forEach((e) => {
+    if (e.isIntersecting) spy.forEach((a) => a.classList.toggle('is-on', a.dataset.spy === e.target.id));
+  }), { rootMargin: '-45% 0px -50% 0px' });
+  new Set(spy.map((a) => a.dataset.spy!)).forEach((id) => { const s = document.getElementById(id); if (s) sio.observe(s); });
+
+  // ── Pojawianie się bloków
+  if (!reduce) {
+    const rio = new IntersectionObserver((es) => es.forEach((e) => { if (e.isIntersecting) { e.target.classList.add('in'); rio.unobserve(e.target); } }), { threshold: 0.12 });
+    $$('.sec-h, .layer, .rules, .bento .card, .console, .caps, .agent, .areas, .svc, .who > *, .contact > *').forEach((el) => { el.classList.add('rv'); rio.observe(el); });
+  }
+
+  // ── Kopiowanie adresu
+  const toast = $('#toast');
+  $$<HTMLButtonElement>('[data-copy]').forEach((b) => b.addEventListener('click', async () => {
+    try { await navigator.clipboard.writeText(b.dataset.copy!); if (toast) { toast.textContent = document.body.dataset.copied || ''; toast.classList.add('on'); setTimeout(() => toast.classList.remove('on'), 1800); } }
+    catch { location.href = 'mailto:' + b.dataset.copy; }
+  }));
+</script>

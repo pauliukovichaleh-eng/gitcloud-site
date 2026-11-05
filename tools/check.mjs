@@ -6,6 +6,7 @@ import { join } from 'node:path';
 const FORBIDDEN = [
   'staleks', 'laito', 'bestomed', 'bestovet', 'lukoszek', 'mikrosilika', 'wianecka', 'kuriata',
   'łomianki', 'lomianki', 'hornówek', 'hornowek', 'krawczyk',
+  'сталекс', 'лайто', 'kompsystem', 'komp system', 'baltic it',
 ];
 const DASHES = ['—', '–'];
 const PRIVATE_IP = /\b(?:10\.\d+\.\d+\.\d+|172\.(?:1[6-9]|2\d|3[01])\.\d+\.\d+|192\.168\.\d+\.\d+)\b/;
