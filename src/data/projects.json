@@ -86,7 +86,7 @@
       "gallery": [
         {
           "src": "/img/projekty/pilot-kafelki.png",
-          "alt": "Menu kafelków: serwer, kopie, sieć, dom"
+          "alt": "Menu kafelków: serwer, kopie, sieć, praca, kalendarz"
         },
         {
           "src": "/img/projekty/pilot-claude.png",
@@ -126,7 +126,7 @@
         "Bez Wi-Fi i haseł na urządzeniu"
       ],
       "links": [],
-      "gallery_note": "Zrzuty z symulatora ekranu: ten sam kod co w firmware, dane testowe; ekran 320×170 pokazany w skali 4:1. Interfejs pilota jest po polsku i rosyjsku."
+      "gallery_note": "Zrzuty z symulatora ekranu: ten sam kod co w firmware, napisy przetłumaczone na polski na potrzeby zrzutów, dane przykładowe (wymyślone usługi i utwór); ekran 320×170 pokazany w skali 4:1."
     },
     {
       "slug": "glowy-agentow",

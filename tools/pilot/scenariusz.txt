@@ -1,0 +1,31 @@
+# Sześć ekranów pilota na stronę (render.py: data.jsonl = dane wzorcowe + przykładowe, @PIN@ = polecenie z PIN-em).
+clock 2026-11-06 18:40:12
+msgs data.jsonl
+wait 1000
+side
+shot muzyka
+side
+side
+side
+shot claude
+side
+sidehold 900
+shot kafelki
+msg {"t":"pin?","m":"@PIN@","ti":"PIN"}
+wait 300
+shot pin
+side
+wait 300
+centrum 0
+click
+wait 500
+msg {"t":"cw","i":0,"n":1,"k":"cpu","r":1,"ti":"CPU","u":"%","lo":0,"hi":100,"lim":85,"t0":1790610000,"dt":60,"np":60,"s":[{"l":"CPU","c":0,"x":"18%","v":"8bAVAYC7CsBIBcFCDLDVGaEcFzEQEoCZD+EMCSCfBi8fAb9D7O5g8E686a6l5m6J485e4K6N6P3m4LONRqQRRsRK9e9vAUC4CiEWEBFZFeGPFKDRG2GIFpEA"},{"l":"iowait","c":2,"x":"3%","v":"1I1a1b1q1x1i1l2H1/212V2C2P2A2D1u26291t1v1m1J1b1O160s1E0w0/100t0y0d0s0f0z0z0a0f3f4B3z4B461S1V1a1p1v2B282L2M2T2J202Q2S2N27"}]}
+wait 900
+shot wykres
+click
+wait 300
+hold 700
+hold 700
+hold 700
+hold 700
+shot maszyny

@@ -21,8 +21,8 @@
       "solution": "C++ firmware with an encrypted Bluetooth LE service. The server runs only allow-listed commands, and critical actions require a PIN. The simulator compiles the same code on a computer and compares screenshots on every build.",
       "role": "Device design, firmware, server-side service and tests.",
       "results": ["Over 1,800 commits", "9.2 h on battery with the screen on", "Every UI change verified with screenshots", "No Wi-Fi and no passwords on the device"],
-      "gallery_alt": ["Tile menu: server, backups, network, home", "Assistant session: speak, click and send", "Music player with a progress bar", "CPU chart with an alarm threshold", "Virtual machines and containers with resources", "A critical command (firewall restart) requires a PIN"],
-      "gallery_note": "Screenshots from the screen simulator: the same code as the firmware, test data; the 320×170 screen shown at 4:1. The device UI is in Polish and Russian."
+      "gallery_alt": ["Tile menu: server, backups, network, work, calendar", "Assistant session: speak, click and send", "Music player with a progress bar", "CPU chart with an alarm threshold", "Virtual machines and containers with resources", "A critical command (firewall restart) requires a PIN"],
+      "gallery_note": "Screenshots from the screen simulator: the same code as the firmware, labels translated to Polish for the screenshots, sample data (made-up services and track); the 320×170 screen shown at 4:1."
     },
     "glowy-agentow": {
       "title": "3D avatars for voice assistants",
@@ -114,8 +114,8 @@
       "solution": "Прошивка на C++ с зашифрованным сервисом Bluetooth LE. Сервер выполняет только команды из белого списка, а важные действия требуют PIN-кода. Симулятор собирает тот же код на компьютере и сравнивает скриншоты экрана при каждой сборке.",
       "role": "Проект устройства, прошивка, серверная часть и тесты.",
       "results": ["Более 1800 коммитов", "9,2 ч работы от батареи с включённым экраном", "Каждое изменение интерфейса проверяется скриншотами", "Без Wi-Fi и паролей на устройстве"],
-      "gallery_alt": ["Меню плиток: сервер, копии, сеть, дом", "Сессия с ассистентом: говори, нажми и отправь", "Музыкальный плеер с полосой прогресса", "График CPU с порогом тревоги", "Виртуальные машины и контейнеры с ресурсами", "Важная команда (перезапуск файрвола) требует PIN-кода"],
-      "gallery_note": "Скриншоты из симулятора экрана: тот же код, что в прошивке, тестовые данные; экран 320×170 в масштабе 4:1. Интерфейс устройства на польском и русском."
+      "gallery_alt": ["Меню плиток: сервер, копии, сеть, работа, календарь", "Сессия с ассистентом: говори, нажми и отправь", "Музыкальный плеер с полосой прогресса", "График CPU с порогом тревоги", "Виртуальные машины и контейнеры с ресурсами", "Важная команда (перезапуск файрвола) требует PIN-кода"],
+      "gallery_note": "Снимки из симулятора экрана: тот же код, что в прошивке, надписи переведены на польский для снимков, примерные данные (выдуманные службы и трек); экран 320×170 в масштабе 4:1."
     },
     "glowy-agentow": {
       "title": "3D-аватары для голосовых ассистентов",
