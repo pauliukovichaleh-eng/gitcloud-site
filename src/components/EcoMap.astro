@@ -80,4 +80,7 @@ const ring = nodes.map((n, i) => {
       );
     })}
   </svg>
+  <ul class="eco-list" aria-label="Moduły ekosystemu">
+    {nodes.map((n) => <li><a href={n.href}><span class="mono">{n.code}</span><b>{n.t}</b><i>{n.s}</i></a></li>)}
+  </ul>
 </figure>

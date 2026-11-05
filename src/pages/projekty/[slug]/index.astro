@@ -1,10 +1,10 @@
 ---
 import Redirect from '../../../components/Redirect.astro';
-import raw from '../../../data/projects.json';
-import { has, anchor } from '../../../lib/data';
+import { allSlugs, resolve, anchor } from '../../../lib/data';
 export function getStaticPaths() {
-  return raw.projects.map((p) => ({ params: { slug: p.slug } }));
+  return allSlugs.map((slug) => ({ params: { slug } }));
 }
 const { slug } = Astro.params;
+const r = resolve(slug!);
 ---
-<Redirect to={has(slug!) ? `/#${anchor(slug!)}` : '/#moduly'} />
+<Redirect to={r ? `/#${anchor(r)}` : '/#moduly'} />

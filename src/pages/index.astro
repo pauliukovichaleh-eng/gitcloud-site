@@ -3,7 +3,7 @@ import Base from '../layouts/Base.astro';
 import EcoMap from '../components/EcoMap.astro';
 import ProjectCard from '../components/ProjectCard.astro';
 import ProjectDialog from '../components/ProjectDialog.astro';
-import { ordered, projects, categories, anchor, has } from '../lib/data';
+import { ordered, projects, categories, anchor, has, deliveries } from '../lib/data';
 
 const SITE = 'https://gitcloud.pl';
 const EMAIL = 'pauliukovichaleh@gmail.com';
@@ -121,7 +121,7 @@ const jsonld = {
   <section class="hero" id="ekosystem">
     <div class="wrap hero-in">
       <div class="hero-txt">
-        <div class="kicker mono"><span class="dot ok pulse"></span> gitcloud · pracownia AI · Aleh Pauliukovich</div>
+        <div class="kicker mono"><span class="dot ok pulse"></span> gitcloud · pracownia AI<span class="k-name"> · Aleh Pauliukovich</span></div>
         <h1>Jeden ekosystem: <span class="hl">agenci, platformy i&nbsp;sprzęt</span>, które pracują same.</h1>
         <p class="lead">GitCloud to moja infrastruktura i sposób pracy: wspólny rdzeń danych, agenci AI z podziałem ról i interfejsy od konsoli operatora sieci po pilot na ESP32. Z tego samego warsztatu robię zlecenia dla firm i sklepów.</p>
         <div class="actions">
@@ -133,7 +133,7 @@ const jsonld = {
     </div>
     <div class="wrap">
       <ul class="kpis">
-        <li class="tile"><span class="lbl">Projekty w katalogu</span><b class="val mono">{projects.length}</b><span class="sub">z wynikiem w liczbach</span></li>
+        <li class="tile"><span class="lbl">Realizacje</span><b class="val mono">{deliveries}</b><span class="sub">projekty i zlecenia z wynikiem w liczbach</span></li>
         <li class="tile"><span class="lbl">Agenci AI</span><b class="val mono">3</b><span class="sub">w codziennej pracy, także w nocy</span></li>
         <li class="tile"><span class="lbl">Lata w IT</span><b class="val mono">4+</b><span class="sub">serwery, sieci, Microsoft 365</span></li>
         <li class="tile"><span class="lbl">Oracle OCI AI</span><b class="val mono">98%</b><span class="sub">egzamin AI Foundations Associate</span></li>
@@ -208,7 +208,7 @@ const jsonld = {
         <div class="console-view">
           {shots.map(([k, t, s], i) => (
             <figure class={`shot${i === 0 ? ' is-on' : ''}`} data-shot={k} role="tabpanel">
-              <img src={`/img/demo/${k}.webp`} alt={`Konsola GitCloud, widok ${t} (dane demonstracyjne)`} width="1600" height="1000" loading={i === 0 ? 'eager' : 'lazy'} decoding="async" />
+              <a class="shot-open" href={`/img/demo/${k}.webp`} target="_blank" rel="noopener" aria-label={`Otwórz zrzut ${t} w pełnym rozmiarze`}><img src={`/img/demo/${k}.webp`} alt={`Konsola GitCloud, widok ${t} (dane demonstracyjne)`} width="1600" height="1000" loading={i === 0 ? 'eager' : 'lazy'} decoding="async" /></a>
               <figcaption>{s}</figcaption>
             </figure>
           ))}
@@ -271,6 +271,7 @@ const jsonld = {
         </ol>
       </div>
       <p class="note">Cena za całe zadanie, ustalona po diagnozie. Umowa i faktura na życzenie przez Useme, które trzyma płatność do odbioru pracy.</p>
+      {has('zlecenia') && <a class="link-more" href={`#${anchor('zlecenia')}`}>Zrealizowane zlecenia: etapy, wyniki, testy &rarr;</a>}
     </div>
   </section>
 
@@ -402,11 +403,11 @@ const jsonld = {
   $$<HTMLVideoElement>('video[data-inview]').forEach((v) => vio.observe(v));
 
   // ── Aktywna sekcja w menu
-  const spy = $$<HTMLAnchorElement>('.pills a[data-spy]');
+  const spy = $$<HTMLAnchorElement>('a[data-spy]');
   const sio = new IntersectionObserver((es) => es.forEach((e) => {
     if (e.isIntersecting) spy.forEach((a) => a.classList.toggle('is-on', a.dataset.spy === e.target.id));
   }), { rootMargin: '-45% 0px -50% 0px' });
-  spy.forEach((a) => { const s = document.getElementById(a.dataset.spy!); if (s) sio.observe(s); });
+  new Set(spy.map((a) => a.dataset.spy!)).forEach((id) => { const s = document.getElementById(id); if (s) sio.observe(s); });
 
   // ── Pojawianie się bloków
   if (!reduce) {

@@ -39,9 +39,26 @@ const links = (p.links || []).filter((l) => { const m = l.href.match(/^\/projekt
         </div>
       )}
 
+      {p.stages && p.stages.length > 0 && (
+        <div class="pd-stages">
+          <h3 class="lbl">Realizacje <span class="mono">{p.stages.length}</span></h3>
+          {p.stages.map((st, i) => (
+            <details open={i === 0} id={`s-${st.slug}`}>
+              <summary><span class="mono st-n">{String(i + 1).padStart(2, '0')}</span><span><b>{st.title}</b>{st.client && <i>{st.client}</i>}</span></summary>
+              <div class="st-body">
+                <p><span class="lbl">Zadanie</span>{st.problem}</p>
+                <p><span class="lbl">Rozwiązanie</span>{st.solution}</p>
+                <ul class="pd-res">{st.results.map((r) => <li>{r}</li>)}</ul>
+                <div class="tags">{st.stack.map((t) => <span>{t}</span>)}</div>
+              </div>
+            </details>
+          ))}
+        </div>
+      )}
+
       <div class="pd-grid">
-        <section><h3 class="lbl">Zadanie</h3><p>{p.problem}</p></section>
-        <section><h3 class="lbl">Rozwiązanie</h3><p>{p.solution}</p></section>
+        <section><h3 class="lbl">{p.stages ? 'Z czym przychodzą klienci' : 'Zadanie'}</h3><p>{p.problem}</p></section>
+        <section><h3 class="lbl">{p.stages ? 'Jak pracuję' : 'Rozwiązanie'}</h3><p>{p.solution}</p></section>
       </div>
       <div class="pd-grid">
         <section>

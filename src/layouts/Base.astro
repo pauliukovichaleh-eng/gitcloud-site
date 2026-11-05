@@ -75,6 +75,16 @@ const links = [
     </div>
   </div>
 </header>
+{nav && (
+  <nav class="tabbar" aria-label="Nawigacja">
+    <a href="#ekosystem" data-spy="ekosystem"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 7.2 12 2.5 3.5 7.2v9.6l8.5 4.7 8.5-4.7V12H13"/></svg><span>Start</span></a>
+    <a href="#moduly" data-spy="moduly"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3.5" y="3.5" width="7" height="7" rx="1.5"/><rect x="13.5" y="3.5" width="7" height="7" rx="1.5"/><rect x="3.5" y="13.5" width="7" height="7" rx="1.5"/><rect x="13.5" y="13.5" width="7" height="7" rx="1.5"/></svg><span>Moduły</span></a>
+    <a href="#konsola" data-spy="konsola"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="2.5" y="4" width="19" height="13" rx="2"/><path d="M8 21h8M12 17v4M6 9l3 2-3 2"/></svg><span>Konsola</span></a>
+    <a href="#agenci" data-spy="agenci"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="7" width="14" height="11" rx="3"/><path d="M12 3v4M9 12h.01M15 12h.01M2.5 12v3M21.5 12v3"/></svg><span>Agenci</span></a>
+    <a href="#uslugi" data-spy="uslugi"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14.7 6.3a4 4 0 0 0 5 5L21 13l-8 8-3-3 8-8M9.3 17.7l-6 -6 3-3 6 6"/></svg><span>Usługi</span></a>
+    <a href="#kontakt" data-spy="kontakt"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3.5 6.5 8.5 6.5 8.5-6.5"/></svg><span>Kontakt</span></a>
+  </nav>
+)}
 <main id="main">
   <slot />
 </main>
