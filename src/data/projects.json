@@ -255,8 +255,26 @@
       "lead": "Zlecenia przez Useme: kolejne etapy dla sklepu na Shoperze działającego na pięciu domenach oraz baza firm B2B dla dystrybutora. Każde przyjęte przez klienta.",
       "year": "2026",
       "status": "Zlecenia Useme, wszystkie przyjęte",
-      "image": "",
-      "gallery": [],
+      "image": "/img/projekty/zl-koszyk-karta.jpg",
+      "gallery": [
+        {
+          "src": "/img/projekty/zl-koszyk.jpg",
+          "alt": "Etap 1 · Koszyk wersji czeskiej i automatyczny test zamówienia na pięciu domenach"
+        },
+        {
+          "src": "/img/projekty/zl-seo.jpg",
+          "alt": "Etap 2 · Lista punktów audytu SEO i dane strukturalne JSON-LD"
+        },
+        {
+          "src": "/img/projekty/zl-wybor-kraju.jpg",
+          "alt": "Etap 3 · Moduł wyboru kraju i waluty w nagłówku oraz test ścieżki zakupu"
+        },
+        {
+          "src": "/img/projekty/zl-tlumaczenie.jpg",
+          "alt": "Etap 4 · Ta sama karta produktu w wersji czeskiej, słowackiej, niemieckiej i rumuńskiej",
+          "od": "2026-11-08"
+        }
+      ],
       "problem": "Małe i średnie firmy przychodzą z konkretnym problemem: sklep nie przyjmuje zamówień z zagranicy, nowy szablon gubi funkcje i tłumaczenia, przed wejściem na nowy rynek brakuje listy partnerów. Potrzebny jest wynik, który da się sprawdzić, bez ryzyka dla działającego sklepu.",
       "solution": "Ta sama metoda w każdym zleceniu: najpierw diagnoza i cena z góry, kopia stanu przed każdą zmianą, zmiany w opisanych blokach, które da się cofnąć jednym ruchem, automatyczny test ścieżki zakupu (Playwright) na każdej domenie i krótki opis zmian oraz spraw poza zakresem do decyzji klienta.",
       "stack": [
@@ -385,7 +403,9 @@
         "wybor-kraju-storefront",
         "tlumaczenie-storefront-4-jezyki",
         "baza-b2b-nl-be"
-      ]
+      ],
+      "image_alt": "Koszyk sklepu i automatyczny test zamówienia na pięciu domenach (dane przykładowe)",
+      "gallery_note": "Ilustracje na danych przykładowych (sklep.example, wymyślone produkty). Sklep klientki, jej dane i adresy nie są pokazywane."
     }
   ]
 }

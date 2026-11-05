@@ -1,0 +1,30 @@
+html,body{margin:0;width:1280px;height:720px;overflow:hidden;font-family:Roboto,'DejaVu Sans',sans-serif}
+.bg{position:relative;width:1280px;height:720px;background:radial-gradient(900px 520px at 20% 0%,#16263f 0,#070a10 70%);overflow:hidden}
+.win{position:absolute;background:#fff;border-radius:12px;overflow:hidden;box-shadow:0 30px 80px rgba(0,0,0,.55);border:1px solid #2a3550;color:#1d2433}
+.bar{height:38px;background:#e9edf3;display:flex;align-items:center;gap:8px;padding:0 14px;border-bottom:1px solid #d5dbe4}
+.dot{width:11px;height:11px;border-radius:50%;background:#c9d0da}
+.url{margin-left:14px;flex:1;height:24px;border-radius:12px;background:#fff;font:13px 'DejaVu Sans Mono',monospace;color:#5b6577;display:flex;align-items:center;padding:0 12px}
+.hdr{display:flex;align-items:center;gap:22px;padding:16px 24px;border-bottom:1px solid #e6e9ef}
+.logo{font-weight:700;font-size:20px;color:#0d6e6e;letter-spacing:-.01em}
+.logo i{font-style:normal;color:#1d2433}
+.nav{display:flex;gap:16px;font-size:14px;color:#465063}
+.cart{margin-left:auto;font-size:14px;color:#0d6e6e;font-weight:600}
+.term{position:absolute;background:#0b111c;border:1px solid #23314d;border-radius:12px;box-shadow:0 30px 80px rgba(0,0,0,.6);
+ font:15px/1.65 'DejaVu Sans Mono',monospace;color:#c5d0e6;padding:18px 22px;overflow:hidden}
+.term .h{color:#6c7a96;font-size:13px;margin-bottom:8px}
+.ok{color:#3ecf8e}.no{color:#e0b34d}.mut{color:#6c7a96}.b{color:#5aa4ff}
+.flag{display:inline-block;width:26px;height:18px;border-radius:3px;vertical-align:middle;box-shadow:0 0 0 1px rgba(0,0,0,.12)}
+.f-pl{background:linear-gradient(#fff 50%,#dc143c 50%)}
+.f-cz{background:linear-gradient(#fff 50%,#d7141a 50%);position:relative;overflow:hidden}
+.f-cz:after{content:"";position:absolute;left:0;top:0;border-top:9px solid transparent;border-bottom:9px solid transparent;border-left:13px solid #11457e}
+.f-sk{background:linear-gradient(#fff 33.3%,#0b4ea2 33.3% 66.6%,#ee1c25 66.6%)}
+.f-de{background:linear-gradient(#000 33.3%,#dd0000 33.3% 66.6%,#ffce00 66.6%)}
+.f-ro{background:linear-gradient(90deg,#002b7f 33.3%,#fcd116 33.3% 66.6%,#ce1126 66.6%)}
+.tag{position:absolute;right:26px;bottom:20px;font:13px 'DejaVu Sans Mono',monospace;color:#6c7a96}
+.btn{display:inline-block;background:#0d6e6e;color:#fff;border-radius:8px;padding:11px 20px;font-weight:600;font-size:15px}
+.prod{display:flex;gap:14px;align-items:center;padding:12px 0;border-bottom:1px solid #eef0f4;font-size:15px}
+.pimg{width:54px;height:54px;border-radius:8px;background:linear-gradient(135deg,#d9f0ee,#b9dcdc)}
+.term div{white-space:pre}
+.f-sk{position:relative}
+.f-sk:after{content:"";position:absolute;left:5px;top:3px;width:7px;height:10px;background:#ee1c25;border:1px solid #fff;border-radius:0 0 4px 4px;
+ background-image:linear-gradient(#fff,#fff),linear-gradient(#fff,#fff);background-size:1.5px 7px,6px 1.5px;background-position:center 1px,center 3px;background-repeat:no-repeat}

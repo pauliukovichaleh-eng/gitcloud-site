@@ -1,6 +1,6 @@
 import raw from '../data/projects.json';
 
-export type Img = { src: string; alt: string; video?: string; pixelated?: boolean };
+export type Img = { src: string; alt: string; video?: string; pixelated?: boolean; od?: string };
 export type Stage = { slug: string; title: string; client?: string; od?: string; problem: string; solution: string; results: string[]; stack: string[] };
 export type Project = {
   slug: string; category: 'wlasne' | 'platformy' | 'zlecenia'; title: string; lead: string; year?: string;
@@ -16,7 +16,11 @@ const drafts = process.env.GC_DRAFTS === '1';
 
 export const categories = raw.categories as Record<string, string>;
 const visible = (o: { od?: string }) => drafts || !o.od || o.od <= today;
-export const projects: Project[] = (raw.projects as Project[]).filter(visible).map((p) => (p.stages ? { ...p, stages: p.stages.filter(visible) } : p));
+export const projects: Project[] = (raw.projects as Project[]).filter(visible).map((p) => ({
+  ...p,
+  gallery: (p.gallery || []).filter(visible),
+  ...(p.stages ? { stages: p.stages.filter(visible) } : {}),
+}));
 const bySlug = new Map(projects.map((p) => [p.slug, p]));
 // stare slugi połączonych projektów (np. etapy zleceń) → projekt zbiorczy
 const alias = new Map(projects.flatMap((p) => (p.aliases || []).map((a) => [a, p.slug] as [string, string])));

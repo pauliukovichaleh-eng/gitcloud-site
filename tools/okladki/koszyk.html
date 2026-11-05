@@ -1,0 +1,25 @@
+<!doctype html><html lang="pl"><head><meta charset="utf-8"><link rel="stylesheet" href="base.css"></head><body><div class="bg">
+<div class="win" style="left:50px;top:70px;width:600px;height:560px">
+ <div class="bar"><span class="dot"></span><span class="dot"></span><span class="dot"></span><div class="url">https://sklep.example/cz/objednavka</div></div>
+ <div class="hdr"><div class="logo">Medi<i>Demo</i></div><div class="nav"><span>Rukavice</span><span>Obvazy</span><span>Hygiena</span></div><div class="cart">Košík (2)</div></div>
+ <div style="padding:20px 28px">
+  <div style="font-size:13px;color:#7a8496">1 Košík · 2 Doprava · <b style="color:#0d6e6e">3 Shrnutí</b></div>
+  <div style="font-size:24px;font-weight:700;margin:10px 0 6px">Shrnutí objednávky</div>
+  <div class="prod"><div class="pimg"></div><div style="flex:1">Nitrilové rukavice, vel. M<br><span style="color:#7a8496;font-size:13px">100 ks</span></div><b>189 Kč</b></div>
+  <div class="prod"><div class="pimg" style="background:linear-gradient(135deg,#e6ecf8,#c6d3ee)"></div><div style="flex:1">Sterilní obvaz 10 cm<br><span style="color:#7a8496;font-size:13px">5 ks</span></div><b>95 Kč</b></div>
+  <div style="display:flex;justify-content:space-between;margin:16px 0;font-size:17px"><span>Celkem</span><b>284 Kč</b></div>
+  <div style="display:flex;align-items:center;gap:10px;font-size:13px;color:#465063;margin-bottom:16px"><span style="width:18px;height:18px;border:2px solid #3ecf8e;border-radius:4px;display:inline-flex;align-items:center;justify-content:center;color:#3ecf8e;font-weight:700">✓</span> reCAPTCHA: ověřeno</div>
+  <span class="btn">Odeslat objednávku</span>
+ </div>
+</div>
+<div class="term" style="left:680px;top:190px;width:550px;height:400px">
+ <div class="h">$ playwright test koszyk.spec.ts</div>
+ <div><span class="mut">Running 5 tests using 5 workers</span></div><br>
+ <div><span class="ok">✓</span> <span class="flag f-pl"></span> pl  koszyk → zamówienie   <span class="mut">4.1s</span></div>
+ <div><span class="ok">✓</span> <span class="flag f-cz"></span> cz  košík → objednávka   <span class="mut">4.6s</span></div>
+ <div><span class="ok">✓</span> <span class="flag f-sk"></span> sk  košík → objednávka   <span class="mut">4.4s</span></div>
+ <div><span class="ok">✓</span> <span class="flag f-de"></span> de  Warenkorb → Kasse    <span class="mut">5.0s</span></div>
+ <div><span class="ok">✓</span> <span class="flag f-ro"></span> ro  coș → comandă        <span class="mut">4.8s</span></div><br>
+ <div><span class="ok">5 passed</span> <span class="mut">(9.7s)</span></div>
+ <div class="mut">kopia skryptu: shop-custom.js.bak</div>
+</div><div class="tag">dane przykładowe · sklep.example</div></div></body></html>
