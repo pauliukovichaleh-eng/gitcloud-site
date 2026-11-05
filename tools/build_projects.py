@@ -3,6 +3,9 @@
 
   python3 tools/build_projects.py          -> index.html (strona główna), projekty/index.html, projekty/<slug>/index.html, sitemap.xml
   python3 tools/build_projects.py --check  -> tylko sprawdzenie danych (kod 1 przy błędzie)
+  python3 tools/build_projects.py --drafts -> podgląd lokalny razem z projektami, których data "od" jeszcze nie nadeszła
+
+Pole "od" (RRRR-MM-DD): projekt trafia na stronę dopiero od tego dnia (np. zlecenie po odbiorze dzieła).
 
 Zasady (strona publiczna): bez nazw pracodawcy i klientów, bez długich myślników, bez prywatnych adresów IP.
 Lista FORBIDDEN poniżej; build się zatrzymuje, jeśli coś z niej trafi do danych albo do wygenerowanego HTML.
@@ -69,6 +72,8 @@ def validate(data: dict) -> list[str]:
         if tag in seen:
             errs.append(f"{tag}: powtórzony slug")
         seen.add(tag)
+        if p.get("od") and not re.fullmatch(r"\d{4}-\d{2}-\d{2}", p["od"]):
+            errs.append(f"{tag}: pole od w formacie RRRR-MM-DD")
         if p.get("category") not in cats:
             errs.append(f"{tag}: nieznana kategoria {p.get('category')}")
         for src in [p.get("image"), p.get("thumb")] + [g.get(k) for g in p.get("gallery", []) for k in ("src", "video")] + \
@@ -245,7 +250,7 @@ def build_page(data: dict, i: int) -> str:
     tags = "".join(f'<span class="tag">{escape(t)}</span>' for t in p["stack"])
     links = ""
     if p.get("links"):
-        links = '<div class="box links"><h3>Linki</h3>' + "<br>".join(
+        links = f'<div class="box links"><h3>{escape(p.get("links_title", "Linki"))}</h3>' + "<br>".join(
             f'<a href="{escape(l["href"])}">{escape(l["label"])}</a>' for l in p["links"]) + "</div>"
     prev_p, next_p = projects[i - 1], projects[(i + 1) % len(projects)]
     ld = jsonld({
@@ -465,9 +470,18 @@ def main() -> int:
     if errs:
         print("\n".join(errs), file=sys.stderr)
         return 1
+    today = date.today().isoformat()
+    later = [p["slug"] for p in data["projects"] if p.get("od", "") > today]
     if "--check" in sys.argv:
-        print(f"ok: {len(data['projects'])} projektów")
+        print(f"ok: {len(data['projects'])} projektów" + (f", czeka na datę od: {', '.join(later)}" if later else ""))
         return 0
+    if later and "--drafts" not in sys.argv:
+        data["projects"] = [p for p in data["projects"] if p["slug"] not in later]
+        data["featured"] = [f for f in data["featured"] if f not in later]
+        hidden = {f"/projekty/{s}/" for s in later}
+        for p in data["projects"]:
+            p["links"] = [l for l in p.get("links", []) if l["href"] not in hidden]
+        print(f"pominięte do daty od: {', '.join(later)}")
     pages = {OUT / "index.html": build_index(data), ROOT / "index.html": build_home(data)}
     for i, p in enumerate(data["projects"]):
         pages[OUT / p["slug"] / "index.html"] = build_page(data, i)
@@ -486,7 +500,6 @@ def main() -> int:
     for path, html in pages.items():
         path.parent.mkdir(parents=True, exist_ok=True)
         path.write_text(html, encoding="utf-8")
-    today = date.today().isoformat()
     (ROOT / "sitemap.xml").write_text(sitemap(data["projects"], today), encoding="utf-8")
     print(f"ok: {len(pages)} stron, sitemap {today}")
     return 0

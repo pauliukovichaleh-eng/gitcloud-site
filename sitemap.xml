@@ -73,6 +73,12 @@
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://gitcloud.pl/projekty/wybor-kraju-storefront/</loc>
+    <lastmod>2026-11-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://gitcloud.pl/projekty/baza-b2b-nl-be/</loc>
     <lastmod>2026-11-05</lastmod>
     <changefreq>monthly</changefreq>

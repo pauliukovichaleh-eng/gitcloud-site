@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="pl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Wybór kraju i test zamówień w sklepie na pięciu domenach (Shoper) | Projekty GitCloud</title>
+<meta name="description" content="Sklep z branży medycznej po przejściu na nowy szablon: ze sklepu polskiego nie dało się przejść do wersji z innych krajów.">
+<link rel="canonical" href="https://gitcloud.pl/projekty/wybor-kraju-storefront/">
+<meta name="robots" content="index, follow">
+<meta name="author" content="Aleh Pauliukovich">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://gitcloud.pl/projekty/wybor-kraju-storefront/">
+<meta property="og:title" content="Wybór kraju i test zamówień w sklepie na pięciu domenach (Shoper) | Projekty GitCloud">
+<meta property="og:description" content="Sklep z branży medycznej po przejściu na nowy szablon: ze sklepu polskiego nie dało się przejść do wersji z innych krajów.">
+<meta property="og:image" content="https://gitcloud.pl/img/og.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta property="og:locale" content="pl_PL">
+<meta property="og:site_name" content="GitCloud">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/favicon-192.png" sizes="192x192" type="image/png">
+<link rel="apple-touch-icon" href="/favicon-192.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/projekty.css">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "CreativeWork", "name": "Wybór kraju i test zamówień w sklepie na pięciu domenach (Shoper)", "description": "Sklep z branży medycznej po przejściu na nowy szablon: ze sklepu polskiego nie dało się przejść do wersji z innych krajów.", "url": "https://gitcloud.pl/projekty/wybor-kraju-storefront/", "inLanguage": "pl", "dateCreated": "2026", "keywords": "Shoper, Storefront, Playwright, testy ścieżki zakupu", "author": {"@type": "Person", "name": "Aleh Pauliukovich", "url": "https://gitcloud.pl/"}}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "GitCloud", "item": "https://gitcloud.pl/"}, {"@type": "ListItem", "position": 2, "name": "Projekty", "item": "https://gitcloud.pl/projekty/"}, {"@type": "ListItem", "position": 3, "name": "Wybór kraju i test zamówień w sklepie na pięciu domenach (Shoper)", "item": "https://gitcloud.pl/projekty/wybor-kraju-storefront/"}]}</script>
+</head>
+<body>
+<header class="topbar">
+  <div class="wrap topbar-inner">
+    <a class="brand" href="/"><span class="git">Git</span><span class="cloud">Cloud</span><span class="dim">.pl</span></a>
+    <nav class="tabs">
+      <a href="/">Pracownia</a>
+      <a href="/projekty/" class="active">Projekty</a>
+      <a href="/uslugi/">Usługi</a>
+      <a href="/isp/"><span class="lg">Platforma </span>ISP</a>
+    </nav>
+  </div>
+</header>
+<main>
+<section class="hero">
+  <div class="wrap">
+    <div class="crumbs"><a href="/projekty/">Projekty</a> / <span class="cat cat-zlecenia">Zlecenia dla klientów</span></div>
+    <h1>Wybór kraju i test zamówień w sklepie na pięciu domenach (Shoper)</h1>
+    <p class="lead">Sklep z branży medycznej po przejściu na nowy szablon: ze sklepu polskiego nie dało się przejść do wersji z innych krajów.</p>
+    <div class="meta-row"><span>Rok: <b>2026</b></span><span>Status: <b>Zlecenie Useme, przyjęte</b></span></div>
+    
+  </div>
+</section>
+<div class="wrap"><div class="layout">
+  <div>
+    <section><h2>Zadanie</h2><p>Sklep na platformie Shoper działa na pięciu domenach (PL, CZ, SK, DE, RO), a kraje są wersjami językowymi jednego sklepu. Po przejściu na nowy szablon Storefront adresy wersji działały, ale klient ze sklepu polskiego nie miał jak przejść do innego kraju. Do tego trzeba było potwierdzić, że zamówienie da się złożyć na każdej domenie.</p></section>
+    <section><h2>Rozwiązanie</h2><p>Diagnoza: w nowym szablonie zabrakło modułu wyboru kraju i języka, który był w starym szablonie RWD. Do nagłówka aktywnego szablonu dodany standardowy moduł Shoper „Język i waluty” z flagami, widoczny na komputerze, tablecie i telefonie, bez zmian w innych ustawieniach i treściach, z opisem, jak cofnąć zmianę. Przejścia PL do CZ, SK, DE, RO i z powrotem sprawdzone na komputerze i telefonie. Na każdej domenie przetestowana ścieżka zakupu: koszyk, formularz z danymi testowymi, dostawa i płatność aż do aktywnego przycisku końcowego, bez składania fikcyjnych zamówień.</p></section>
+    <section><h2>Wynik</h2><ul class="results"><li>Wybór kraju działa w obie strony na 5 domenach</li><li>Ścieżka zakupu sprawdzona na 5 domenach, bez fikcyjnych zamówień</li><li>Jedna zmiana w szablonie, cofnięcie w jednym kroku</li><li>Problemy z testów opisane jako zakres kolejnego etapu</li></ul></section>
+  </div>
+  <aside>
+    <div class="box"><h3>Rola</h3><p>Diagnoza, zmiana w szablonie, testy przejść i zamówień, opis zmian i uwag na kolejny etap.</p></div>
+    <div class="box"><h3>Stack</h3><div class="tags"><span class="tag">Shoper</span><span class="tag">Storefront</span><span class="tag">Playwright</span><span class="tag">testy ścieżki zakupu</span></div></div>
+    <div class="box links"><h3>Ten sam sklep, inne etapy</h3><a href="/projekty/koszyk-sklep-5-domen/">Etap: naprawa koszyka na 5 domenach</a><br><a href="/projekty/seo-storefront/">Etap: audyt SEO przy migracji na Storefront</a></div>
+  </aside>
+</div></div>
+
+<div class="wrap"><div class="pager">
+  <a href="/projekty/seo-storefront/"><small>Poprzedni</small>Wdrożenie audytu SEO przy migracji na szablon Storefront (Shoper)</a>
+  <a href="/projekty/baza-b2b-nl-be/" style="text-align:right"><small>Następny</small>Baza firm B2B do wejścia na rynek Holandii i Belgii</a>
+</div></div>
+</main>
+<footer><div class="wrap footer-row">
+  <div>© 2026 GitCloud. Aleh Pauliukovich.</div>
+  <a class="footer-link" href="/privacy.html">Polityka prywatności</a>
+</div></footer>
+</body>
+</html>

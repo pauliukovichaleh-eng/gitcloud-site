@@ -270,7 +270,21 @@
         "Pierwsze zamówienie z zagranicy po zmianie",
         "Każda zmiana z kopią i możliwością przywrócenia"
       ],
-      "links": []
+      "links": [
+        {
+          "href": "/projekty/seo-storefront/",
+          "label": "Etap: audyt SEO przy migracji na Storefront"
+        },
+        {
+          "href": "/projekty/wybor-kraju-storefront/",
+          "label": "Etap: wybór kraju i test zamówień"
+        },
+        {
+          "href": "/projekty/tlumaczenie-storefront-4-jezyki/",
+          "label": "Etap: szablon w 4 językach"
+        }
+      ],
+      "links_title": "Ten sam sklep, inne etapy"
     },
     {
       "slug": "seo-storefront",
@@ -298,7 +312,105 @@
         "Dane strukturalne i analityka w nowym szablonie",
         "Praca przyjęta przez klientkę"
       ],
-      "links": []
+      "links": [
+        {
+          "href": "/projekty/koszyk-sklep-5-domen/",
+          "label": "Etap: naprawa koszyka na 5 domenach"
+        },
+        {
+          "href": "/projekty/wybor-kraju-storefront/",
+          "label": "Etap: wybór kraju i test zamówień"
+        },
+        {
+          "href": "/projekty/tlumaczenie-storefront-4-jezyki/",
+          "label": "Etap: szablon w 4 językach"
+        }
+      ],
+      "links_title": "Ten sam sklep, inne etapy"
+    },
+    {
+      "slug": "wybor-kraju-storefront",
+      "category": "zlecenia",
+      "title": "Wybór kraju i test zamówień w sklepie na pięciu domenach (Shoper)",
+      "lead": "Sklep z branży medycznej po przejściu na nowy szablon: ze sklepu polskiego nie dało się przejść do wersji z innych krajów.",
+      "year": "2026",
+      "status": "Zlecenie Useme, przyjęte",
+      "image": "",
+      "gallery": [],
+      "problem": "Sklep na platformie Shoper działa na pięciu domenach (PL, CZ, SK, DE, RO), a kraje są wersjami językowymi jednego sklepu. Po przejściu na nowy szablon Storefront adresy wersji działały, ale klient ze sklepu polskiego nie miał jak przejść do innego kraju. Do tego trzeba było potwierdzić, że zamówienie da się złożyć na każdej domenie.",
+      "solution": "Diagnoza: w nowym szablonie zabrakło modułu wyboru kraju i języka, który był w starym szablonie RWD. Do nagłówka aktywnego szablonu dodany standardowy moduł Shoper „Język i waluty” z flagami, widoczny na komputerze, tablecie i telefonie, bez zmian w innych ustawieniach i treściach, z opisem, jak cofnąć zmianę. Przejścia PL do CZ, SK, DE, RO i z powrotem sprawdzone na komputerze i telefonie. Na każdej domenie przetestowana ścieżka zakupu: koszyk, formularz z danymi testowymi, dostawa i płatność aż do aktywnego przycisku końcowego, bez składania fikcyjnych zamówień.",
+      "stack": [
+        "Shoper",
+        "Storefront",
+        "Playwright",
+        "testy ścieżki zakupu"
+      ],
+      "role": "Diagnoza, zmiana w szablonie, testy przejść i zamówień, opis zmian i uwag na kolejny etap.",
+      "results": [
+        "Wybór kraju działa w obie strony na 5 domenach",
+        "Ścieżka zakupu sprawdzona na 5 domenach, bez fikcyjnych zamówień",
+        "Jedna zmiana w szablonie, cofnięcie w jednym kroku",
+        "Problemy z testów opisane jako zakres kolejnego etapu"
+      ],
+      "links": [
+        {
+          "href": "/projekty/koszyk-sklep-5-domen/",
+          "label": "Etap: naprawa koszyka na 5 domenach"
+        },
+        {
+          "href": "/projekty/seo-storefront/",
+          "label": "Etap: audyt SEO przy migracji na Storefront"
+        },
+        {
+          "href": "/projekty/tlumaczenie-storefront-4-jezyki/",
+          "label": "Etap: szablon w 4 językach"
+        }
+      ],
+      "links_title": "Ten sam sklep, inne etapy"
+    },
+    {
+      "slug": "tlumaczenie-storefront-4-jezyki",
+      "category": "zlecenia",
+      "od": "2026-11-08",
+      "title": "Nowy szablon sklepu w czterech językach: CZ, SK, DE, RO (Shoper)",
+      "lead": "Sklep z branży medycznej: nowy szablon Storefront działał na wszystkich domenach, ale wersje zagraniczne pokazywały polskie teksty, a koszyk klucze zamiast komunikatów.",
+      "year": "2026",
+      "status": "Zlecenie Useme, przyjęte",
+      "image": "",
+      "gallery": [],
+      "problem": "Jeden sklep na Shoperze, cztery wersje zagraniczne na osobnych domenach. Moduły nowego szablonu miały teksty tylko po polsku, wersja rumuńska pokazywała frazy systemowe po angielsku, a w koszyku zamiast tekstów pojawiały się techniczne klucze. Banery i linki w wersjach zagranicznych prowadziły do sklepu polskiego.",
+      "solution": "Teksty modułów szablonu przetłumaczone osobno dla każdego języka: nagłówek, mega menu, strona główna, karta produktu, kategoria, koszyk z aplikacją produktu gratisowego, okno „Dodano do koszyka” i stopka. Linki banerów i slajdów skierowane do kategorii danego kraju, dane kontaktowe kraju w nagłówku i stopce, bloki dotyczące tylko Polski ukryte poza wersją polską. Uzupełnione wszystkie frazy systemowe wersji rumuńskiej. Wersja polska sprawdzana po każdej zmianie, bo edytor szablonu potrafi nadpisać jeden język drugim. Zmiany wizualne w osobnych, opisanych blokach CSS, które można usunąć jednym ruchem. Na koniec test koszyka na każdej domenie zagranicznej aż do aktywnego przycisku płatności oraz lista spraw do decyzji sklepu, które wychodziły poza zakres.",
+      "stack": [
+        "Shoper",
+        "Storefront",
+        "CSS",
+        "Playwright",
+        "lokalizacja",
+        "testy ścieżki zakupu"
+      ],
+      "role": "Tłumaczenie i wdrożenie w szablonie, automatyczne zapisy i kontrola fraz, testy koszyka, opis zmian i spraw poza zakresem.",
+      "results": [
+        "4 wersje językowe na nowym szablonie",
+        "1360 z 1360 fraz systemowych wersji rumuńskiej",
+        "Koszyk sprawdzony na 4 domenach zagranicznych",
+        "Wersja polska bez zmian, każda zmiana do cofnięcia",
+        "9 spraw poza zakresem opisanych do decyzji sklepu"
+      ],
+      "links": [
+        {
+          "href": "/projekty/koszyk-sklep-5-domen/",
+          "label": "Etap: naprawa koszyka na 5 domenach"
+        },
+        {
+          "href": "/projekty/seo-storefront/",
+          "label": "Etap: audyt SEO przy migracji na Storefront"
+        },
+        {
+          "href": "/projekty/wybor-kraju-storefront/",
+          "label": "Etap: wybór kraju i test zamówień"
+        }
+      ],
+      "links_title": "Ten sam sklep, inne etapy"
     },
     {
       "slug": "baza-b2b-nl-be",
