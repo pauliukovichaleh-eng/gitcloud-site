@@ -77,7 +77,7 @@ const items: Item[] = [
       const h = o.dataset.href; if (!h) return;
       if (h.endsWith('.pdf')) { window.open(h, '_blank', 'noopener'); return; }
       const u = new URL(h, location.href);
-      if (u.pathname === location.pathname && u.hash) { if (location.hash === u.hash) dispatchEvent(new HashChangeEvent('hashchange')); else location.hash = u.hash; }
+      if (u.pathname === location.pathname && u.hash) { document.documentElement.classList.add('cv-off'); if (location.hash === u.hash) dispatchEvent(new HashChangeEvent('hashchange')); else location.hash = u.hash; }
       else location.href = h;
     };
     q.addEventListener('input', filter);

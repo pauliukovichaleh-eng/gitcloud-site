@@ -57,6 +57,8 @@ const jsonld = {
 <Base title={T.meta.title} description={T.meta.description} jsonld={jsonld} lang={lang} path={home(lang)} alternates>
   <script is:inline slot="head">
     // Stare kotwice (/#platforma, /#operator …) → nowe sekcje.
+    // Kotwica, odświeżenie, wstecz: przewijanie potrzebuje prawdziwych wysokości sekcji → bez content-visibility (site.css).
+    (function () { var n = performance.getEntriesByType && performance.getEntriesByType('navigation')[0]; if (location.hash || (n && n.type !== 'navigate')) document.documentElement.classList.add('cv-off'); if ('scrollRestoration' in history) history.scrollRestoration = 'manual'; })();
     (function () { var h = location.hash.slice(1); if (/^(platforma|mozliwosci|zalozyciel|stat-grid|sw-[a-z]+)$/.test(h)) history.replaceState(null, '', '#konsola'); if (h === 'operator') history.replaceState(null, '', '#doswiadczenie'); })();
   </script>
 
@@ -313,6 +315,21 @@ const jsonld = {
   const $$ = <T extends Element = HTMLElement>(s: string, r: ParentNode = document) => Array.from(r.querySelectorAll<T>(s));
   const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
 
+  // ── Pozycja przy odświeżeniu / wstecz: zapisana w history.state i przywracana przez stronę (head ustawia scrollRestoration
+  //    = manual). Chrome po odświeżeniu odtwarzał pozycję z układu z content-visibility i lądował kilka ekranów wyżej.
+  const saveY = () => { try { history.replaceState({ ...(history.state || {}), gcY: Math.round(scrollY) }, ''); } catch {} };
+  let saveT: number | undefined;
+  addEventListener('scroll', () => { clearTimeout(saveT); saveT = window.setTimeout(saveY, 200); }, { passive: true });
+  const nav = performance.getEntriesByType?.('navigation')[0] as PerformanceNavigationTiming | undefined;
+  const y0 = history.state?.gcY;
+  if (nav && nav.type !== 'navigate' && typeof y0 === 'number') scrollTo({ top: y0, behavior: 'instant' });
+
+  // ── Klik w kotwicę na tej stronie: najpierw ułożyć wszystkie sekcje (cv-off), potem przeglądarka liczy cel przewijania.
+  document.addEventListener('click', (e) => {
+    const a = (e.target as Element | null)?.closest?.('a[href*="#"]') as HTMLAnchorElement | null;
+    if (a && a.pathname === location.pathname && a.hash) document.documentElement.classList.add('cv-off');
+  }, true);
+
   // ── Okna projektów: #p-<slug> otwiera okno (link z zewnątrz też), zamknięcie czyści adres.
   const openFromHash = () => {
     const h = decodeURIComponent(location.hash.slice(1));
@@ -326,7 +343,7 @@ const jsonld = {
   };
   $$<HTMLDialogElement>('dialog.pd').forEach((d) => {
     d.addEventListener('close', () => {
-      if (location.hash === '#' + d.id) history.replaceState(null, '', location.pathname + location.search);
+      if (location.hash === '#' + d.id) history.replaceState(history.state, '', location.pathname + location.search);
       $$('video', d).forEach((v) => (v as HTMLVideoElement).pause());
     });
     d.addEventListener('click', (e) => { if (e.target === d) d.close(); });
