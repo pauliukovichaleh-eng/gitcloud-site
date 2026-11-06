@@ -1,0 +1,28 @@
+# Lighthouse CI: wydajność, dostępność, dobre praktyki i SEO zbudowanej strony.
+# Osobny workflow, więc nie blokuje wdrożenia (deploy.yml). Progi w lighthouserc.json: wydajność tylko ostrzega
+# poniżej 0,75; dostępność, dobre praktyki i SEO poniżej 0,9 dają czerwony wynik (06.11.2026 lokalnie: 0,76-0,99 / 0,96 / 1 / 1).
+# Raport: link w logu kroku "lhci autorun".
+name: lighthouse
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: lighthouse
+  cancel-in-progress: true
+jobs:
+  lhci:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: npm run build
+      - name: lhci autorun
+        run: npx --yes @lhci/cli@0.14.x autorun
