@@ -202,11 +202,19 @@
           "alt": "Karta asystentki: sprawy dnia, skuteczność i awatar 3D"
         },
         {
+          "src": "/img/projekty/panel-modele.webp",
+          "alt": "Modele językowe: saldo płatnych kont, wywołania wg dni, udział modeli i ich wynik jakości"
+        },
+        {
           "src": "/img/projekty/panel-agenci-tel.webp",
           "alt": "Ten sam panel na telefonie"
+        },
+        {
+          "src": "/img/projekty/panel-modele-tel.webp",
+          "alt": "Strona modeli na telefonie"
         }
       ],
-      "gallery_note": "Zrzuty panelu uruchomionego na danych przykładowych: wymyślony dziennik spraw, bez połączenia z bazą i siecią; brakujące polskie napisy interfejsu przetłumaczone na potrzeby zrzutów.",
+      "gallery_note": "Zrzuty panelu uruchomionego na danych przykładowych: wymyślony dziennik spraw i wymyślone wywołania modeli z kwotami, bez połączenia z bazą i siecią; brakujące polskie napisy interfejsu przetłumaczone na potrzeby zrzutów.",
       "problem": "Rutynowe zadania (alarmy, poczta, terminy, aktualizacje) zabierały czas każdego dnia, a jeden ogólny asystent mylił kompetencje.",
       "solution": "Każdy agent ma swoją rolę, umiejętności i pamięć decyzji w PostgreSQL. Propozycje zmian ocenia rada agentów, a decyzje wymagające człowieka trafiają do panelu jako karty z wariantami. Każda akcja jest zapisana w dzienniku.",
       "stack": [

@@ -1,9 +1,10 @@
 """Итоговые снимки демо-панели для сайта: перевод оставшихся русских надписей на польский, кадры, проверка кириллицы в кадре."""
 import sys, re
 from playwright.sync_api import sync_playwright
-base, out = sys.argv[1], sys.argv[2]
+base, out = sys.argv[1], sys.argv[2]   # [modele]
 PL = [[r"из (\d+) действий", "z $1 działań"], ["[hH][rR], бухгалтер и диктор", "kadry, księgowość i lektor"], ["Мастерская", "Warsztat"],
-      ["Решила", "Zdecydowała"], ["Отправила", "Wysłała"], ["Решил", "Zdecydował"], ["Отправил", "Wysłał"]]
+      ["меньше: ", "najmniej: "], ["ответов", "odpowiedzi"], ["сломано", "zepsute"], ["отказов", "odmów"], ["провал экзамена", "egzamin oblany"],
+      ["категория", "kategoria"], ["Открыть", "Otwórz"], ["Решила", "Zdecydowała"], ["Отправила", "Wysłała"], ["Решил", "Zdecydował"], ["Отправил", "Wysłał"]]
 JS = """(pl) => { const w = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT); let n;
   while ((n = w.nextNode())) { let t = n.nodeValue, o = t; for (const [a, b] of pl) t = t.replace(new RegExp(a, 'g'), b); if (t !== o) n.nodeValue = t; } }"""
 CYR = """(r) => { const bad = []; const w = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT); let n;
@@ -16,6 +17,9 @@ SHOTS = [  # (имя, путь, ширина, высота, высота кад�
     ("panel-sally", "/agenty/sally", 1440, 900, 640),
     ("panel-agenci-tel", "/agenty", 390, 844, 844),
 ]
+MODELE = [("panel-modele", "/ai-router", 1440, 1000, 985), ("panel-modele-tel", "/ai-router", 390, 844, 844)]
+if len(sys.argv) > 3 and sys.argv[3] == "modele":   # круг 17: страница «Модели» на fake_llm.py
+    SHOTS = MODELE
 errs, cyr = [], {}
 with sync_playwright() as p:
     b = p.chromium.launch(executable_path="/usr/bin/google-chrome", args=["--host-resolver-rules=MAP my.gitcloud.pl 127.0.0.1"])

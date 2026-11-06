@@ -41,8 +41,8 @@
       "problem": "Routine tasks (alerts, mail, deadlines, updates) took time every day, and a single general assistant mixed up responsibilities.",
       "solution": "Each agent has its own role, skills and decision memory in PostgreSQL. Change proposals are reviewed by an agent council, and decisions that need a person land in the panel as cards with options. Every action is written to a log.",
       "role": "Architecture, agent code, runbooks and tests.",
-      "results": ["Alerts resolved overnight, only a report in the morning", "Cheap tasks on a light model, hard ones on a strong model", "Full log of agent actions"], "image_alt": "Agent panel: actions from the last 24 hours and the task log, sample data", "gallery_alt": ["Agents in the last 24 hours: what they did on their own, what went to the owner, task log", "Technical agent card: day summary and 14-day success rate", "Assistant card: tasks of the day, success rate and 3D avatar", "The same panel on a phone"],
-      "gallery_note": "Screenshots of the panel running on sample data: a made-up task log, no connection to the database or network; missing Polish interface labels translated for the screenshots."
+      "results": ["Alerts resolved overnight, only a report in the morning", "Cheap tasks on a light model, hard ones on a strong model", "Full log of agent actions"], "image_alt": "Agent panel: actions from the last 24 hours and the task log, sample data", "gallery_alt": ["Agents in the last 24 hours: what they did on their own, what went to the owner, task log", "Technical agent card: day summary and 14-day success rate", "Assistant card: tasks of the day, success rate and 3D avatar", "Language models: paid account balances, calls per day, model share and quality score", "The same panel on a phone", "The models page on a phone"],
+      "gallery_note": "Screenshots of the panel running on sample data: a made-up task log and made-up model calls with amounts, no connection to the database or network; missing Polish interface labels translated for the screenshots."
     },
     "zlecenia": {
       "title": "Client work: a store on five domains, SEO and B2B data",
@@ -135,8 +135,8 @@
       "problem": "Рутина (алерты, почта, сроки, обновления) отнимала время каждый день, а один общий ассистент путал зоны ответственности.",
       "solution": "У каждого агента своя роль, навыки и память решений в PostgreSQL. Предложения изменений оценивает совет агентов, а решения, требующие человека, попадают в панель карточками с вариантами. Каждое действие записывается в журнал.",
       "role": "Архитектура, код агентов, регламенты и тесты.",
-      "results": ["Алерты решаются ночью, утром только отчёт", "Дешёвые задачи на лёгкой модели, сложные на сильной", "Полный журнал действий агентов"], "image_alt": "Панель агентов: действия за сутки и журнал дел, примерные данные", "gallery_alt": ["Агенты за сутки: что сделали сами, что передали владельцу, журнал дел", "Карточка технического агента: итог дня и успешность за 14 дней", "Карточка ассистентки: дела дня, успешность и 3D-аватар", "Та же панель на телефоне"],
-      "gallery_note": "Снимки панели, запущенной на примерных данных: выдуманный журнал дел, без связи с базой и сетью; недостающие польские надписи интерфейса переведены для снимков."
+      "results": ["Алерты решаются ночью, утром только отчёт", "Дешёвые задачи на лёгкой модели, сложные на сильной", "Полный журнал действий агентов"], "image_alt": "Панель агентов: действия за сутки и журнал дел, примерные данные", "gallery_alt": ["Агенты за сутки: что сделали сами, что передали владельцу, журнал дел", "Карточка технического агента: итог дня и успешность за 14 дней", "Карточка ассистентки: дела дня, успешность и 3D-аватар", "Языковые модели: баланс платных аккаунтов, вызовы по дням, доля моделей и оценка качества", "Та же панель на телефоне", "Страница моделей на телефоне"],
+      "gallery_note": "Снимки панели, запущенной на примерных данных: выдуманный журнал дел и выдуманные вызовы моделей с суммами, без связи с базой и сетью; недостающие польские надписи интерфейса переведены для снимков."
     },
     "zlecenia": {
       "title": "Заказы для компаний: магазин на пяти доменах, SEO и данные B2B",

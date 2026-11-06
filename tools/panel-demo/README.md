@@ -8,3 +8,7 @@ i podprocesy, zapytania SQL obsługuje `fake.py` (wymyślony dziennik spraw agen
 
 `final.py` tłumaczy kilka brakujących napisów na polski i sprawdza, czy w kadrze nie ma cyrylicy.
 Obrazy: PNG → WebP (jakość 82) do public/img/projekty/panel-*.webp.
+
+Strona modeli (`/ai-router`): `fake_llm.py` generuje wymyślone wywołania LLM z 30 dni (wymyślone aplikacje agentów,
+publiczne nazwy modeli, kwoty i salda przykładowe), wynik jakości modeli i limity; podmienia status bramki LLM,
+salda i nocny przegląd kodu. Zrzuty: `python final.py http://my.gitcloud.pl:18932 <katalog> modele`.

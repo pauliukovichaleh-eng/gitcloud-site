@@ -13,11 +13,12 @@ def _nosub(*a, **k): raise FileNotFoundError("demo: no subprocess")
 subprocess.run = subprocess.Popen = subprocess.check_output = subprocess.call = _nosub
 class Zero(dict):
     def __missing__(self, k): return 0
-import fake
+import fake, fake_llm
 from gitcloud_ai import db
 def rows(sql, params=None):
-    r = fake.rows(sql, params)
-    if r is not None: return r
+    for f in (fake, fake_llm):
+        r = f.rows(sql, params)
+        if r is not None: return r
     s = " ".join(sql.split()).upper()
     if re.match(r"SELECT (COUNT|SUM|MAX|MIN|AVG)\(", s) and "GROUP BY" not in s: return [Zero()]
     if os.environ.get("DEMO_LOG"): print("SQL∅", s[:160], file=sys.stderr)
@@ -27,6 +28,7 @@ db.one = lambda sql, params=None: (rows(sql, params) or [{}])[0]
 def _nc(*a, **k): raise RuntimeError("demo: no db")
 db.conn = _nc
 fake.patch()
+fake_llm.patch()
 import uvicorn
 from gitcloud_ai.app import app
 uvicorn.run(app, host="127.0.0.1", port=int(os.environ.get("PORT", "18932")), log_level="warning")
