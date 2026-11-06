@@ -20,3 +20,7 @@ z wariantami, dziennik decyzji z wynikami, dwie sesje Claude i limity. Zrzuty sa
 Okładka karty „Panel operacyjny” (16:9): `tools/okladki/panel.html` składa gotowe zrzuty `panel-decyzje.webp`
 (kadr trzech kart) i `panel-decyzje-tel.webp` w ramce okna i telefonu. Zrzut 1280×720 Chrome/Playwright → WebP
 (jakość 82) do `public/img/projekty/panel-okladka.webp`.
+
+Okładka karty „Agenci AI” (16:9): `DSF=2 python final.py … <katalog>` (zrzuty /agenty, /agenty/tony, /agenty/sally w 2x)
+→ WebP `tools/okladki/agenci-{agenci,tony,sally}-2x.webp`; `tools/okladki/agenci.html` składa pierścień działań,
+karty dwóch agentów i wskaźnik „Decydują sami”. Zrzut 1280×720 → WebP (jakość 82) do `public/img/projekty/agenci-okladka.webp`.

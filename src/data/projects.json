@@ -187,8 +187,8 @@
       "lead": "Trzech agentów z podziałem ról jak w firmie: korespondencja i terminy, utrzymanie infrastruktury, modernizacja.",
       "year": "2026",
       "status": "Działa codziennie, także w nocy",
-      "image": "/img/projekty/panel-agenci.webp",
-      "image_alt": "Panel agentów: działania z ostatniej doby i dziennik spraw, dane przykładowe",
+      "image": "/img/projekty/agenci-okladka.webp",
+      "image_alt": "Panel agentów: działania z ostatniej doby według agentów, karty agentów i odsetek spraw rozstrzygniętych samodzielnie, dane przykładowe",
       "gallery": [
         {
           "src": "/img/projekty/panel-agenci.webp",
