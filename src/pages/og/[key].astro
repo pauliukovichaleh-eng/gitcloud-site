@@ -1,8 +1,7 @@
 ---
 // Karty og:image 1200×630: strona główna w każdym języku (home-pl/en/ru) i strony projektów (p-<slug> po polsku, p-<slug>-en, p-<slug>-ru).
 // tools/render.mjs robi z nich zrzuty do dist/img/og/<key>.png i usuwa te pomocnicze strony z dist.
-import '@fontsource-variable/inter';
-import '@fontsource/ibm-plex-mono/500.css';
+import '../../styles/fonts.css'; // lekkie podzbiory, tools/fonty.py
 import { projects, localize, projectPath } from '../../lib/data';
 import { t, LANGS } from '../../i18n';
 

@@ -13,8 +13,8 @@
   --panel-bg:rgba(10,13,20,.72); --panel-bd:1px solid rgba(var(--neon2-rgb),.16);
   --glow:0 0 0 1px rgba(var(--neon2-rgb),.08), 0 12px 40px -18px rgba(var(--neon-rgb),.45);
   --r:16px; --r-m:12px; --r-s:8px;
-  --sans:'Inter Variable', Inter, system-ui, -apple-system, 'Segoe UI', Roboto, Arial, sans-serif;
-  --mono:'IBM Plex Mono', ui-monospace, 'SF Mono', Consolas, monospace;
+  --sans:'Inter Variable', 'Inter Fallback', Inter, system-ui, -apple-system, 'Segoe UI', Roboto, Arial, sans-serif;
+  --mono:'IBM Plex Mono', 'Plex Mono Fallback', ui-monospace, 'SF Mono', Consolas, monospace;
   --wrap:1220px; --pad:clamp(18px,4vw,40px);
   --top:64px;
 }
