@@ -41,8 +41,21 @@
       "problem": "Routine tasks (alerts, mail, deadlines, updates) took time every day, and a single general assistant mixed up responsibilities.",
       "solution": "Each agent has its own role, skills and decision memory in PostgreSQL. Change proposals are reviewed by an agent council, and decisions that need a person land in the panel as cards with options. Every action is written to a log.",
       "role": "Architecture, agent code, runbooks and tests.",
-      "results": ["Alerts resolved overnight, only a report in the morning", "Cheap tasks on a light model, hard ones on a strong model", "Full log of agent actions"], "image_alt": "Agent panel: actions from the last 24 hours and the task log, sample data", "gallery_alt": ["Agents in the last 24 hours: what they did on their own, what went to the owner, task log", "Technical agent card: day summary and 14-day success rate", "Assistant card: tasks of the day, success rate and 3D avatar", "Decision cards: agent questions with options, the recommended one starred, Claude limits and sessions alongside", "Card details and the decision log: chosen option and execution result", "Language models: paid account balances, calls per day, model share and quality score", "The same panel on a phone", "The models page on a phone", "Decision cards on a phone: answer with one tap"],
-      "gallery_note": "Screenshots of the panel running on sample data: a made-up task log, made-up agent questions to the owner and made-up model calls with amounts, no connection to the database or network; missing Polish interface labels translated for the screenshots."
+      "results": ["Alerts resolved overnight, only a report in the morning", "Cheap tasks on a light model, hard ones on a strong model", "Full log of agent actions"], "image_alt": "Agent panel: actions from the last 24 hours and the task log, sample data", "gallery_alt": ["Agents in the last 24 hours: what they did on their own, what went to the owner, task log", "Technical agent card: day summary and 14-day success rate", "Assistant card: tasks of the day, success rate and 3D avatar", "The same panel on a phone"], "links_label": ["Operations panel: decisions and model costs"],
+      "gallery_note": "Screenshots of the panel running on sample data: a made-up task log and made-up agent results, no connection to the database or network; missing Polish interface labels translated for the screenshots."
+    },
+    "panel-operacyjny": {
+      "title": "Operations panel: decisions, agents and AI costs",
+      "lead": "One place where the owner sees the agents' work, answers their questions with one tap and keeps the cost of language models in check.",
+      "status": "In daily use on desktop and phone",
+      "image_alt": "Decision cards in the panel: agent questions with options, sample data",
+      "problem": "Agent work, alerts and model costs were scattered across several tools, and questions that needed a human decision got lost among notifications.",
+      "solution": "A FastAPI web app with server-side templates and live updates over WebSocket. Agent questions arrive as cards with options, the recommended one starred; the choice goes to the decision log and the agent carries it out on its own. The models page combines recent calls, paid account balances and a quality score for each model. On a phone the panel works as a PWA with a bottom tab bar.",
+      "role": "Interface design, server and frontend code, automated visual tests.",
+      "results": ["A decision for an agent with one tap, also from a phone", "Model costs and account balances visible in real time", "Visual check on phone and desktop before every change"],
+      "gallery_note": "Screenshots of the panel running on sample data: made-up agent questions to the owner and made-up model calls with amounts, no connection to the database or network; missing Polish interface labels translated for the screenshots.",
+      "links_label": ["The AI agent team that asks these questions"],
+      "gallery_alt": ["Decision cards: agent questions with options, the recommended one starred, Claude limits and sessions alongside", "Card details and the decision log: chosen option and execution result", "Language models: paid account balances, calls per day, model share and quality score", "Decision cards on a phone: answer with one tap", "The models page on a phone"]
     },
     "zlecenia": {
       "title": "Client work: a store on five domains, SEO and B2B data",
@@ -135,8 +148,21 @@
       "problem": "Рутина (алерты, почта, сроки, обновления) отнимала время каждый день, а один общий ассистент путал зоны ответственности.",
       "solution": "У каждого агента своя роль, навыки и память решений в PostgreSQL. Предложения изменений оценивает совет агентов, а решения, требующие человека, попадают в панель карточками с вариантами. Каждое действие записывается в журнал.",
       "role": "Архитектура, код агентов, регламенты и тесты.",
-      "results": ["Алерты решаются ночью, утром только отчёт", "Дешёвые задачи на лёгкой модели, сложные на сильной", "Полный журнал действий агентов"], "image_alt": "Панель агентов: действия за сутки и журнал дел, примерные данные", "gallery_alt": ["Агенты за сутки: что сделали сами, что передали владельцу, журнал дел", "Карточка технического агента: итог дня и успешность за 14 дней", "Карточка ассистентки: дела дня, успешность и 3D-аватар", "Карточки решений: вопросы агентов с вариантами, рекомендуемый отмечен звёздочкой, рядом лимиты и сессии Claude", "Подробности карточки и журнал решений: выбранный вариант и итог исполнения", "Языковые модели: баланс платных аккаунтов, вызовы по дням, доля моделей и оценка качества", "Та же панель на телефоне", "Страница моделей на телефоне", "Карточки решений на телефоне: ответ одним касанием"],
-      "gallery_note": "Снимки панели, запущенной на примерных данных: выдуманный журнал дел, выдуманные вопросы агентов владельцу и выдуманные вызовы моделей с суммами, без связи с базой и сетью; недостающие польские надписи интерфейса переведены для снимков."
+      "results": ["Алерты решаются ночью, утром только отчёт", "Дешёвые задачи на лёгкой модели, сложные на сильной", "Полный журнал действий агентов"], "image_alt": "Панель агентов: действия за сутки и журнал дел, примерные данные", "gallery_alt": ["Агенты за сутки: что сделали сами, что передали владельцу, журнал дел", "Карточка технического агента: итог дня и успешность за 14 дней", "Карточка ассистентки: дела дня, успешность и 3D-аватар", "Та же панель на телефоне"], "links_label": ["Операционная панель: решения и стоимость моделей"],
+      "gallery_note": "Снимки панели, запущенной на примерных данных: выдуманный журнал дел и выдуманные итоги агентов, без связи с базой и сетью; недостающие польские надписи интерфейса переведены для снимков."
+    },
+    "panel-operacyjny": {
+      "title": "Операционная панель: решения, агенты и стоимость AI",
+      "lead": "Одно место, где владелец видит работу агентов, отвечает на их вопросы одним касанием и следит за стоимостью языковых моделей.",
+      "status": "Используется каждый день на компьютере и телефоне",
+      "image_alt": "Карточки решений в панели: вопросы агентов с вариантами, примерные данные",
+      "problem": "Работа агентов, алерты и стоимость моделей были разбросаны по нескольким инструментам, а вопросы, требующие решения человека, терялись среди уведомлений.",
+      "solution": "Веб-приложение на FastAPI с серверными шаблонами и обновлением в реальном времени через WebSocket. Вопросы агентов приходят карточками с вариантами, рекомендуемый отмечен звёздочкой; выбор попадает в журнал решений, и агент выполняет его сам. Страница моделей объединяет вызовы за последние дни, баланс платных аккаунтов и оценку качества каждой модели. На телефоне панель работает как PWA с нижней панелью вкладок.",
+      "role": "Проект интерфейса, код сервера и фронтенда, автоматические тесты внешнего вида.",
+      "results": ["Решение для агента одним касанием, в том числе с телефона", "Стоимость моделей и баланс аккаунтов видны в реальном времени", "Проверка вида на телефоне и компьютере перед каждым изменением"],
+      "gallery_note": "Снимки панели, запущенной на примерных данных: выдуманные вопросы агентов владельцу и выдуманные вызовы моделей с суммами, без связи с базой и сетью; недостающие польские надписи интерфейса переведены для снимков.",
+      "links_label": ["Команда AI-агентов, которая задаёт эти вопросы"],
+      "gallery_alt": ["Карточки решений: вопросы агентов с вариантами, рекомендуемый отмечен звёздочкой, рядом лимиты и сессии Claude", "Подробности карточки и журнал решений: выбранный вариант и итог исполнения", "Языковые модели: баланс платных аккаунтов, вызовы по дням, доля моделей и оценка качества", "Карточки решений на телефоне: ответ одним касанием", "Страница моделей на телефоне"]
     },
     "zlecenia": {
       "title": "Заказы для компаний: магазин на пяти доменах, SEO и данные B2B",

@@ -8,6 +8,7 @@
   "featured": [
     "glowy-agentow",
     "agenci-ai",
+    "panel-operacyjny",
     "platforma-isp",
     "pilot-esp32",
     "zlecenia"
@@ -202,31 +203,11 @@
           "alt": "Karta asystentki: sprawy dnia, skuteczność i awatar 3D"
         },
         {
-          "src": "/img/projekty/panel-decyzje.webp",
-          "alt": "Karty decyzji: pytania agentów z wariantami, polecany oznaczony gwiazdką, obok limity i sesje Claude"
-        },
-        {
-          "src": "/img/projekty/panel-decyzje-szczegoly.webp",
-          "alt": "Szczegóły karty i dziennik decyzji: wybrany wariant i wynik wykonania"
-        },
-        {
-          "src": "/img/projekty/panel-modele.webp",
-          "alt": "Modele językowe: saldo płatnych kont, wywołania wg dni, udział modeli i ich wynik jakości"
-        },
-        {
           "src": "/img/projekty/panel-agenci-tel.webp",
           "alt": "Ten sam panel na telefonie"
-        },
-        {
-          "src": "/img/projekty/panel-modele-tel.webp",
-          "alt": "Strona modeli na telefonie"
-        },
-        {
-          "src": "/img/projekty/panel-decyzje-tel.webp",
-          "alt": "Karty decyzji na telefonie: odpowiedź jednym dotknięciem"
         }
       ],
-      "gallery_note": "Zrzuty panelu uruchomionego na danych przykładowych: wymyślony dziennik spraw, wymyślone pytania agentów do właściciela i wymyślone wywołania modeli z kwotami, bez połączenia z bazą i siecią; brakujące polskie napisy interfejsu przetłumaczone na potrzeby zrzutów.",
+      "gallery_note": "Zrzuty panelu uruchomionego na danych przykładowych: wymyślony dziennik spraw i wymyślone wyniki agentów, bez połączenia z bazą i siecią; brakujące polskie napisy interfejsu przetłumaczone na potrzeby zrzutów.",
       "problem": "Rutynowe zadania (alarmy, poczta, terminy, aktualizacje) zabierały czas każdego dnia, a jeden ogólny asystent mylił kompetencje.",
       "solution": "Każdy agent ma swoją rolę, umiejętności i pamięć decyzji w PostgreSQL. Propozycje zmian ocenia rada agentów, a decyzje wymagające człowieka trafiają do panelu jako karty z wariantami. Każda akcja jest zapisana w dzienniku.",
       "stack": [
@@ -242,7 +223,67 @@
         "Tanie zadania na lekkim modelu, trudne na mocnym",
         "Pełny dziennik działań agentów"
       ],
-      "links": []
+      "links": [
+        {
+          "href": "/projekty/panel-operacyjny/",
+          "label": "Panel operacyjny: decyzje i koszty modeli"
+        }
+      ]
+    },
+    {
+      "slug": "panel-operacyjny",
+      "category": "wlasne",
+      "title": "Panel operacyjny: decyzje, agenci i koszty AI",
+      "lead": "Jedno miejsce, w którym właściciel widzi pracę agentów, odpowiada na ich pytania jednym dotknięciem i pilnuje kosztu modeli językowych.",
+      "year": "2026",
+      "status": "W codziennym użyciu na komputerze i telefonie",
+      "image": "/img/projekty/panel-decyzje.webp",
+      "image_alt": "Karty decyzji w panelu: pytania agentów z wariantami, dane przykładowe",
+      "gallery": [
+        {
+          "src": "/img/projekty/panel-decyzje.webp",
+          "alt": "Karty decyzji: pytania agentów z wariantami, polecany oznaczony gwiazdką, obok limity i sesje Claude"
+        },
+        {
+          "src": "/img/projekty/panel-decyzje-szczegoly.webp",
+          "alt": "Szczegóły karty i dziennik decyzji: wybrany wariant i wynik wykonania"
+        },
+        {
+          "src": "/img/projekty/panel-modele.webp",
+          "alt": "Modele językowe: saldo płatnych kont, wywołania wg dni, udział modeli i ich wynik jakości"
+        },
+        {
+          "src": "/img/projekty/panel-decyzje-tel.webp",
+          "alt": "Karty decyzji na telefonie: odpowiedź jednym dotknięciem"
+        },
+        {
+          "src": "/img/projekty/panel-modele-tel.webp",
+          "alt": "Strona modeli na telefonie"
+        }
+      ],
+      "gallery_note": "Zrzuty panelu uruchomionego na danych przykładowych: wymyślone pytania agentów do właściciela i wymyślone wywołania modeli z kwotami, bez połączenia z bazą i siecią; brakujące polskie napisy interfejsu przetłumaczone na potrzeby zrzutów.",
+      "problem": "Praca agentów, alarmy i koszty modeli były rozrzucone po kilku narzędziach, a pytania wymagające decyzji człowieka ginęły wśród powiadomień.",
+      "solution": "Aplikacja webowa na FastAPI z szablonami po stronie serwera i odświeżaniem na żywo przez WebSocket. Pytania agentów przychodzą jako karty z wariantami, polecany oznaczony gwiazdką; wybór trafia do dziennika decyzji, a agent wykonuje go sam. Strona modeli łączy wywołania z ostatnich dni, saldo płatnych kont i wynik jakości każdego modelu. Na telefonie panel działa jako aplikacja PWA z dolnym paskiem zakładek.",
+      "stack": [
+        "Python",
+        "FastAPI",
+        "Jinja2",
+        "PostgreSQL",
+        "WebSocket",
+        "Playwright"
+      ],
+      "role": "Projekt interfejsu, kod serwera i frontendu, automatyczne testy wyglądu.",
+      "results": [
+        "Decyzja dla agenta jednym dotknięciem, także z telefonu",
+        "Koszt modeli i saldo kont widoczne na bieżąco",
+        "Kontrola wyglądu na telefonie i komputerze przed każdą zmianą"
+      ],
+      "links": [
+        {
+          "href": "/projekty/agenci-ai/",
+          "label": "Zespół agentów AI, który zadaje te pytania"
+        }
+      ]
     },
     {
       "slug": "zlecenia",
