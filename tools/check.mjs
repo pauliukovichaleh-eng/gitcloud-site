@@ -1,6 +1,6 @@
 // Kontrola po buildzie: w opublikowanym HTML nie może być nazw klientów/pracodawcy, długich myślników ani prywatnych IP.
 // Uruchamiane przez `npm run build`; kod 1 zatrzymuje wdrożenie.
-import { readdirSync, readFileSync, statSync } from 'node:fs';
+import { existsSync, readdirSync, readFileSync, statSync } from 'node:fs';
 import { join } from 'node:path';
 
 const FORBIDDEN = [
@@ -20,6 +20,14 @@ for (const f of files) {
   for (const w of FORBIDDEN) if (low.includes(w)) errs.push(`${f}: zakazane słowo «${w}»`);
   for (const d of DASHES) if (text.includes(d)) errs.push(`${f}: długi myślnik U+${d.codePointAt(0).toString(16).toUpperCase()}`);
   const m = text.match(PRIVATE_IP); if (m) errs.push(`${f}: prywatny adres IP ${m[0]}`);
+}
+// Pliki robione przez tools/render.mjs: CV w PDF i karty og:image dla każdej strony, która je wskazuje.
+if (process.env.GC_NO_RENDER !== '1') {
+  for (const f of ['dist/cv/aleh-pauliukovich-cv-pl.pdf', 'dist/cv/aleh-pauliukovich-cv-en.pdf']) if (!existsSync(f)) errs.push(`brak ${f}`);
+  for (const f of files.filter((x) => x.endsWith('.html'))) {
+    const m = readFileSync(f, 'utf8').match(/property="og:image" content="https:\/\/gitcloud\.pl(\/img\/og\/[^"]+)"/);
+    if (m && !existsSync(join('dist', m[1]))) errs.push(`${f}: brak obrazu og ${m[1]}`);
+  }
 }
 if (errs.length) { console.error(errs.join('\n')); process.exit(1); }
 console.log(`check: ok, ${files.length} plików`);

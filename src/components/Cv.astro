@@ -1,0 +1,126 @@
+---
+// CV na jednej stronie A4 (PL /cv/, EN /en/cv/). Dane wyłącznie z sekcji "Doświadczenie i kompetencje" (src/i18n).
+// PDF robi tools/render.mjs (Chrome headless --print-to-pdf) po astro build: /cv/aleh-pauliukovich-cv-{pl,en}.pdf
+import '@fontsource-variable/inter';
+import { t, home, type Lang } from '../i18n';
+import { build } from '../lib/build';
+
+interface Props { lang: Lang }
+const { lang } = Astro.props;
+const T: any = t(lang);
+const C = T.cv, E = T.exp;
+const EMAIL = 'pauliukovichaleh@gmail.com';
+const self = lang === 'pl' ? '/cv/' : `/${lang}/cv/`;
+const other = lang === 'pl' ? '/en/cv/' : '/cv/';
+---
+<!doctype html>
+<html lang={T.htmlLang}>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{C.title}</title>
+<meta name="description" content={`${C.role}. ${E.bio[0]}`}>
+<link rel="canonical" href={new URL(self, Astro.site).href}>
+<link rel="alternate" hreflang={lang === 'pl' ? 'en' : 'pl'} href={new URL(other, Astro.site).href}>
+<meta name="robots" content="index, follow">
+<meta property="og:image" content={new URL(`/img/og/home-${lang}.png`, Astro.site).href}>
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<meta name="color-scheme" content="light dark">
+</head>
+<body>
+<nav class="bar">
+  <a href={home(lang)}>&larr; {C.back}</a>
+  <span><a href={other} hreflang={lang === 'pl' ? 'en' : 'pl'}>{lang === 'pl' ? 'EN' : 'PL'}</a> <a class="dl" href={C.file} download>{C.download}</a></span>
+</nav>
+<main class="page">
+  <header class="head">
+    <img src="/img/aleh.jpg" alt="Aleh Pauliukovich" width="92" height="92">
+    <div>
+      <h1>Aleh Pauliukovich</h1>
+      <p class="role">{C.role}</p>
+      <p class="contact"><a href={`mailto:${EMAIL}`}>{EMAIL}</a> · <a href={new URL(home(lang), Astro.site).href}>gitcloud.pl</a> · {C.place}</p>
+    </div>
+  </header>
+
+  <section>
+    <h2>{C.profile}</h2>
+    {E.bio.map((b: string) => <p>{b}</p>)}
+  </section>
+
+  <section>
+    <h2>{C.exp}</h2>
+    {E.roles.map(([when, role, where, pts]: [string, string, string, string[]]) => (
+      <div class="job">
+        <div class="job-h"><b>{role}</b><span class="when">{when}</span></div>
+        <div class="where">{where}</div>
+        <ul>{pts.map((x) => <li>{x}</li>)}</ul>
+      </div>
+    ))}
+  </section>
+
+  <section>
+    <h2>{C.skills}</h2>
+    <dl class="skills">
+      {E.skills.map(([g, items]: [string, string[]]) => <><dt>{g}</dt><dd>{items.join(' · ')}</dd></>)}
+    </dl>
+  </section>
+
+  <div class="two">
+    <section>
+      <h2>{C.certs}</h2>
+      <ul class="plain">{E.certs.map(([n, d]: string[]) => <li><b>{n}</b><span>{d}</span></li>)}</ul>
+    </section>
+    <section>
+      <h2>{C.langs}</h2>
+      <ul class="plain langs">{E.langs.map(([n, lv]: string[]) => <li><span>{n}</span><b>{lv}</b></li>)}</ul>
+    </section>
+  </div>
+  <footer class="foot">{C.foot} · {build.at.slice(0, 10)}</footer>
+</main>
+</body>
+</html>
+<style is:global>
+  :root{ --ink:#0f1726; --mut:#4a5875; --acc:#1c5fd6; --line:#d8e0ee; }
+  *{ box-sizing:border-box; }
+  html{ background:#05070c; }
+  body{ margin:0; font:400 10.1pt/1.42 'Inter Variable', Inter, system-ui, sans-serif; color:var(--ink); -webkit-font-smoothing:antialiased; }
+  a{ color:var(--acc); text-decoration:none; }
+  .bar{ max-width:210mm; margin:0 auto; display:flex; justify-content:space-between; gap:12px; padding:16px 4px; font-size:14px; }
+  .bar a{ color:#9fc2ff; } .bar span{ display:flex; gap:16px; }
+  .bar .dl{ color:#04121f; background:#5aa4ff; padding:6px 14px; border-radius:999px; font-weight:600; }
+  .page{ width:210mm; min-height:297mm; margin:0 auto 40px; padding:12mm 14mm 9mm; background:#fff; box-shadow:0 30px 90px -30px rgba(28,116,255,.6); }
+  .head{ display:flex; gap:18px; align-items:center; padding-bottom:12px; border-bottom:2px solid var(--acc); }
+  .head img{ width:24mm; height:24mm; border-radius:50%; object-fit:cover; }
+  h1{ margin:0; font-size:22pt; letter-spacing:-.02em; line-height:1.1; }
+  .role{ margin:3px 0 4px; font-weight:600; color:var(--acc); font-size:11.5pt; }
+  .contact{ margin:0; color:var(--mut); font-size:9.6pt; }
+  section{ margin-top:9px; }
+  h2{ margin:0 0 6px; font-size:9pt; letter-spacing:.14em; text-transform:uppercase; color:var(--acc); border-bottom:1px solid var(--line); padding-bottom:3px; }
+  p{ margin:0 0 4px; }
+  .job{ margin-bottom:7px; break-inside:avoid; }
+  .job-h{ display:flex; justify-content:space-between; gap:12px; }
+  .when{ color:var(--mut); font-size:9.4pt; white-space:nowrap; }
+  .where{ color:var(--mut); font-size:9.6pt; font-style:italic; }
+  ul{ margin:3px 0 0; padding-left:15px; } li{ margin:1px 0; }
+  .skills{ display:grid; grid-template-columns:48mm 1fr; gap:2px 10px; margin:0; }
+  .skills dt{ font-weight:600; } .skills dd{ margin:0; color:#25324a; }
+  .two{ display:grid; grid-template-columns:1.6fr 1fr; gap:0 18px; }
+  .plain{ list-style:none; padding:0; margin:0; }
+  .plain li{ display:flex; flex-direction:column; margin-bottom:4px; }
+  .plain li span{ color:var(--mut); font-size:9.4pt; }
+  .langs li{ flex-direction:row; justify-content:space-between; }
+  .langs li span{ color:var(--ink); font-size:inherit; }
+  .foot{ margin-top:14px; padding-top:6px; border-top:1px solid var(--line); color:var(--mut); font-size:8.4pt; }
+  @page{ size:A4; margin:0; }
+  @media print{
+    html{ background:#fff; }
+    .bar{ display:none; }
+    .page{ margin:0; box-shadow:none; min-height:auto; }
+  }
+  @media screen and (max-width:820px){
+    .page{ width:auto; min-height:0; margin:0 10px 30px; padding:22px 18px; }
+    .head{ flex-direction:column; align-items:flex-start; }
+    .skills, .two{ grid-template-columns:1fr; }
+    .bar{ padding:14px; }
+  }
+</style>

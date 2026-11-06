@@ -4,7 +4,7 @@
   "type": "module",
   "scripts": {
     "dev": "astro dev",
-    "build": "astro build && node tools/check.mjs",
+    "build": "astro build && node tools/render.mjs && node tools/check.mjs",
     "preview": "astro preview"
   },
   "dependencies": {

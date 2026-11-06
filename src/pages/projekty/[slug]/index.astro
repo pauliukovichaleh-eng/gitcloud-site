@@ -51,7 +51,7 @@ const jsonld = p && {
 };
 ---
 {!p ? <Redirect to={to} /> : (
-<Base title={p.title.startsWith('GitCloud') ? p.title : `${p.title} | GitCloud`} description={cut(p.lead, 158)} path={`/projekty/${p.slug}/`} jsonld={jsonld} nav={false}>
+<Base title={p.title.startsWith('GitCloud') ? p.title : `${p.title} | GitCloud`} description={cut(p.lead, 158)} path={`/projekty/${p.slug}/`} jsonld={jsonld} nav={false} og={`/img/og/p-${p.slug}.png`}>
   <section class={`sec pp cat-${p.category}`}>
     <div class="wrap pp-in">
       <nav class="pp-crumbs mono" aria-label="Ścieżka">

@@ -1,0 +1,61 @@
+---
+// Karty og:image 1200×630: strona główna w każdym języku (home-pl/en/ru) i strony projektów (p-<slug>, PL).
+// tools/render.mjs robi z nich zrzuty do dist/img/og/<key>.png i usuwa te pomocnicze strony z dist.
+import '@fontsource-variable/inter';
+import '@fontsource/ibm-plex-mono/500.css';
+import { projects, localize } from '../../lib/data';
+import { t, LANGS } from '../../i18n';
+
+export function getStaticPaths() {
+  return [
+    ...LANGS.map((l) => ({ params: { key: `home-${l}` }, props: { lang: l } })),
+    ...projects.map((p) => ({ params: { key: `p-${p.slug}` }, props: { lang: 'pl', slug: p.slug } })),
+  ];
+}
+const { lang, slug } = Astro.props as { lang: 'pl' | 'en' | 'ru'; slug?: string };
+const T: any = t(lang);
+const p = slug ? localize(projects.find((x) => x.slug === slug)!, lang) : undefined;
+const cut = (s: string, n: number) => (s.length <= n ? s : s.slice(0, s.lastIndexOf(' ', n - 1)) + '…');
+const esc = (s: string) => s.replace(/&/g, '&amp;').replace(/</g, '&lt;');
+const h1 = p ? esc(p.title) : `${esc(T.hero.h1a)}<b>${esc(T.hero.h1b)}</b>`;
+const lead = p ? cut(p.lead, 150) : T.hero.lead;
+const img = p ? p.image || p.video?.poster || p.gallery?.[0]?.src : '/img/demo/ai-router.webp';
+const tag = p ? (T.mod.categories as Record<string, string>)[p.category] : T.hero.kicker;
+const url = p ? `gitcloud.pl/projekty/${p.slug}/` : `gitcloud.pl${lang === 'pl' ? '' : `/${lang}/`}`;
+---
+<!doctype html>
+<html lang={T.htmlLang}>
+<head><meta charset="utf-8"><meta name="robots" content="noindex"><title>og {Astro.params.key}</title></head>
+<body>
+<div class={`w${p ? ' is-p' : ''}`}>
+  <div class="t">
+    <div class="b">
+      <svg width="46" height="46" viewBox="0 0 32 32" aria-hidden="true"><path d="M27.3 9.5 16 3 4.7 9.5v13L16 29l11.3-6.5V16H17" fill="none" stroke="#5aa4ff" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"/><circle cx="16.6" cy="16" r="2.4" fill="#22e5ff"/></svg>
+      <span><em>Git</em>Cloud</span>
+    </div>
+    <span class="tag">{tag}</span>
+    <h1 set:html={h1} />
+    <p>{lead}</p>
+  </div>
+  <div class="img" style={`background-image:url(${img})`}></div>
+  {!p && <div class="img2"></div>}
+  <div class="u">{url}</div>
+</div>
+</body>
+</html>
+<style is:global>
+html,body{margin:0;width:1200px;height:630px;overflow:hidden;background:#05070c;color:#d9e1ff;font-family:'Inter Variable',Inter,system-ui,sans-serif}
+.w{position:relative;width:1200px;height:630px;background:radial-gradient(700px 500px at 82% 40%,rgba(28,116,255,.28),transparent 70%),radial-gradient(500px 400px at 10% 0%,rgba(90,164,255,.14),transparent 70%),#05070c}
+.w::before{content:'';position:absolute;inset:0;background-image:linear-gradient(rgba(90,164,255,.05) 1px,transparent 1px),linear-gradient(90deg,rgba(90,164,255,.05) 1px,transparent 1px);background-size:48px 48px}
+.t{position:absolute;left:68px;top:64px;width:600px}
+.b{display:flex;align-items:center;gap:12px;font-weight:900;font-size:32px;color:#fff}.b em{font-style:normal;color:#5aa4ff}
+.tag{display:inline-block;margin-top:34px;padding:6px 14px;border-radius:999px;border:1px solid rgba(90,164,255,.45);font:500 16px 'IBM Plex Mono',monospace;color:#9fc2ff;background:rgba(28,116,255,.10)}
+h1{font-size:50px;line-height:1.08;margin:20px 0 20px;font-weight:800;letter-spacing:-.03em;color:#fff}
+.is-p h1{font-size:44px}
+h1 b{background:linear-gradient(92deg,#5aa4ff,#22e5ff);-webkit-background-clip:text;background-clip:text;color:transparent}
+p{font-size:21px;line-height:1.42;color:#9aa4c7;margin:0}
+.u{position:absolute;left:68px;bottom:50px;font:500 19px 'IBM Plex Mono',monospace;color:#7fa0c0}
+.img{position:absolute;right:52px;top:66px;width:440px;height:498px;border-radius:20px;overflow:hidden;border:1px solid rgba(90,164,255,.3);box-shadow:0 30px 80px -30px rgba(28,116,255,.8);background:left top/250% auto no-repeat #05070c}
+.is-p .img{width:480px;height:270px;top:180px;background-size:cover;background-position:center}
+.img2{position:absolute;right:250px;bottom:42px;width:300px;height:148px;border-radius:14px;overflow:hidden;border:1px solid rgba(90,164,255,.35);background:url(/img/projekty/glowa-sally.jpg) center/cover;box-shadow:0 20px 60px -20px #000}
+</style>

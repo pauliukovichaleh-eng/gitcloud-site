@@ -2,12 +2,16 @@
 
 Jednostronicowa wizytówka ekosystemu GitCloud. Astro (statyczny build), wdrożenie na GitHub Pages przez `.github/workflows/deploy.yml`.
 
-- `src/pages/index.astro` – cała strona: ekosystem, architektura, moduły, konsola ISP, agenci, usługi, operator, kontakt
+- `src/components/Home.astro` – cała strona: ekosystem, żywa architektura (powiązania warstw), realizacje, konsola ISP z punktami na zrzutach, agenci, usługi, doświadczenie, kontakt
 - `src/data/projects.json` – katalog projektów (okna `#p-<slug>`); pole `od` ukrywa projekt do daty
 - `src/styles/site.css` – paleta motywu „Kolor” konsoli GitCloud
 - `public/` – pliki 1:1 (CNAME, favicony, obrazy; zrzuty konsoli w `img/demo/` z wersji demo)
 - stare adresy `/projekty/…`, `/uslugi/`, `/isp/` przekierowują do sekcji strony
-- `tools/check.mjs` – po buildzie: zakazane nazwy, długie myślniki, prywatne IP
+- `tools/render.mjs` – po buildzie (Chrome headless): karty og:image `dist/img/og/<klucz>.png` ze stron `src/pages/og/[key].astro` i CV w PDF `dist/cv/aleh-pauliukovich-cv-{pl,en}.pdf` ze stron `/cv/`, `/en/cv/`; `GC_NO_RENDER=1` pomija
+- `tools/check.mjs` – po buildzie: zakazane nazwy, długie myślniki, prywatne IP, obecność PDF i obrazów og
+- `src/data/stats.json` – liczby w pasku KPI; commity odświeża `tools/stats.sh` (lokalnie, liczy repozytoria GitCloud w ~/src)
+- paleta poleceń Ctrl+K (`src/components/Palette.astro`), wersja w stopce (`src/lib/build.ts`, hash z `GITHUB_SHA` lub gita), `404.astro` w trzech językach
+- `.github/workflows/lighthouse.yml` + `lighthouserc.json` – Lighthouse CI po każdym pushu, nie blokuje wdrożenia
 
 ```
 npm ci

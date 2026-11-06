@@ -1,26 +1,4 @@
 ---
-import Base from '../layouts/Base.astro';
-const EMAIL = 'pauliukovichaleh@gmail.com';
+import Privacy from '../components/Privacy.astro';
 ---
-<Base title="Polityka prywatności | GitCloud" description="Polityka prywatności strony gitcloud.pl: bez formularzy, ciasteczek i analityki." path="/privacy.html" nav={false}>
-  <section class="sec legal">
-    <div class="wrap legal-in">
-      <a class="link-more" href="/">&larr; Strona główna</a>
-      <span class="idx mono">gitcloud / prywatność</span>
-      <h1>Polityka prywatności</h1>
-      <p class="muted mono">Ostatnia aktualizacja: 5 listopada 2026</p>
-      <h2>Kim jestem</h2>
-      <p>Strona gitcloud.pl jest prowadzona przez Aleha Pauliukovicha jako osobista wizytówka i prezentacja projektów GitCloud. To strona informacyjna, nie sklep ani panel logowania.</p>
-      <h2>Jakie dane są zbierane</h2>
-      <p>Ta strona nie zawiera formularzy kontaktowych, plików cookie ani skryptów analitycznych. Czcionki są serwowane z tej samej domeny, bez zapytań do zewnętrznych serwisów. Jedyny sposób kontaktu to adres e-mail podany na stronie: kliknięcie w niego otwiera Twój program pocztowy i nie przesyła żadnych danych przez tę stronę.</p>
-      <p>Strona jest hostowana w GitHub Pages. GitHub może zapisywać standardowe logi techniczne (adres IP, znacznik czasu, przeglądarka) w ramach działania serwera WWW, w celu diagnostyki i bezpieczeństwa.</p>
-      <h2>Wiadomości e-mail</h2>
-      <p>Jeśli napiszesz do mnie wiadomość, jej treść (w tym Twój adres e-mail) jest przetwarzana wyłącznie w celu udzielenia odpowiedzi. Nie przekazuję tych danych osobom trzecim ani nie wykorzystuję ich do innych celów.</p>
-      <h2>Twoje prawa</h2>
-      <p>Zgodnie z RODO masz prawo do dostępu do swoich danych, ich sprostowania, usunięcia lub ograniczenia przetwarzania. W praktyce: możesz zapytać, czy zachowałem Twoją korespondencję, i poprosić o jej usunięcie.</p>
-      <h2>Zmiany w tej polityce</h2>
-      <p>Jeśli strona zyska nowe funkcje (np. formularz kontaktowy czy analitykę), ta polityka zostanie zaktualizowana, a data u góry się zmieni.</p>
-      <div class="tile legal-box"><span class="lbl">Pytania dotyczące prywatności</span><a href={`mailto:${EMAIL}`} class="mono">{EMAIL}</a></div>
-    </div>
-  </section>
-</Base>
+<Privacy lang="pl" />

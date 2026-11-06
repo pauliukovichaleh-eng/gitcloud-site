@@ -1,0 +1,69 @@
+---
+// Polityka prywatności w trzech językach: /privacy.html, /en/privacy.html, /ru/privacy.html.
+import Base from '../layouts/Base.astro';
+import { home, type Lang } from '../i18n';
+
+interface Props { lang: Lang }
+const { lang } = Astro.props;
+const EMAIL = 'pauliukovichaleh@gmail.com';
+const paths: Record<Lang, string> = { pl: '/privacy.html', en: '/en/privacy.html', ru: '/ru/privacy.html' };
+const TX = {
+  pl: {
+    title: 'Polityka prywatności | GitCloud', desc: 'Polityka prywatności strony gitcloud.pl: bez formularzy, ciasteczek i analityki.',
+    back: 'Strona główna', idx: 'gitcloud / prywatność', h1: 'Polityka prywatności', upd: 'Ostatnia aktualizacja: 6 listopada 2026',
+    box: 'Pytania dotyczące prywatności',
+    s: [
+      ['Kim jestem', ['Strona gitcloud.pl jest prowadzona przez Aleha Pauliukovicha jako osobista wizytówka i prezentacja projektów GitCloud. To strona informacyjna, nie sklep ani panel logowania.']],
+      ['Jakie dane są zbierane', [
+        'Ta strona nie zawiera formularzy kontaktowych, plików cookie ani skryptów analitycznych. Czcionki są serwowane z tej samej domeny, bez zapytań do zewnętrznych serwisów. Wyszukiwarka (Ctrl+K) działa w całości w przeglądarce i niczego nie wysyła. Jedyny sposób kontaktu to adres e-mail podany na stronie: kliknięcie w niego otwiera Twój program pocztowy i nie przesyła żadnych danych przez tę stronę.',
+        'Strona jest hostowana w GitHub Pages. GitHub może zapisywać standardowe logi techniczne (adres IP, znacznik czasu, przeglądarka) w ramach działania serwera WWW, w celu diagnostyki i bezpieczeństwa.',
+      ]],
+      ['Wiadomości e-mail', ['Jeśli napiszesz do mnie wiadomość, jej treść (w tym Twój adres e-mail) jest przetwarzana wyłącznie w celu udzielenia odpowiedzi. Nie przekazuję tych danych osobom trzecim ani nie wykorzystuję ich do innych celów.']],
+      ['Twoje prawa', ['Zgodnie z RODO masz prawo do dostępu do swoich danych, ich sprostowania, usunięcia lub ograniczenia przetwarzania. W praktyce: możesz zapytać, czy zachowałem Twoją korespondencję, i poprosić o jej usunięcie.']],
+      ['Zmiany w tej polityce', ['Jeśli strona zyska nowe funkcje (np. formularz kontaktowy czy analitykę), ta polityka zostanie zaktualizowana, a data u góry się zmieni.']],
+    ],
+  },
+  en: {
+    title: 'Privacy policy | GitCloud', desc: 'Privacy policy of gitcloud.pl: no forms, no cookies, no analytics.',
+    back: 'Home page', idx: 'gitcloud / privacy', h1: 'Privacy policy', upd: 'Last updated: 6 November 2026',
+    box: 'Privacy questions',
+    s: [
+      ['Who I am', ['The gitcloud.pl website is run by Aleh Pauliukovich as a personal business card and a presentation of GitCloud projects. It is an informational site, not a shop or a login panel.']],
+      ['What data is collected', [
+        'This site has no contact forms, no cookies and no analytics scripts. Fonts are served from the same domain, without requests to external services. Search (Ctrl+K) runs entirely in your browser and sends nothing. The only way to get in touch is the e-mail address shown on the site: clicking it opens your mail program and sends no data through this site.',
+        'The site is hosted on GitHub Pages. GitHub may keep standard technical logs (IP address, timestamp, browser) as part of running the web server, for diagnostics and security.',
+      ]],
+      ['E-mail messages', ['If you write to me, the message (including your e-mail address) is processed only to reply to you. I do not share this data with third parties or use it for any other purpose.']],
+      ['Your rights', ['Under the GDPR you have the right to access your data, to have it corrected or erased, and to restrict its processing. In practice: you can ask whether I kept your correspondence and ask me to delete it.']],
+      ['Changes to this policy', ['If the site gains new features (for example a contact form or analytics), this policy will be updated and the date at the top will change.']],
+    ],
+  },
+  ru: {
+    title: 'Политика конфиденциальности | GitCloud', desc: 'Политика конфиденциальности сайта gitcloud.pl: без форм, cookie и аналитики.',
+    back: 'Главная', idx: 'gitcloud / конфиденциальность', h1: 'Политика конфиденциальности', upd: 'Последнее обновление: 6 ноября 2026',
+    box: 'Вопросы о конфиденциальности',
+    s: [
+      ['Кто я', ['Сайт gitcloud.pl ведёт Aleh Pauliukovich как личную визитку и презентацию проектов GitCloud. Это информационный сайт, а не магазин и не панель входа.']],
+      ['Какие данные собираются', [
+        'На сайте нет контактных форм, файлов cookie и скриптов аналитики. Шрифты отдаются с того же домена, без запросов к внешним сервисам. Поиск (Ctrl+K) работает целиком в браузере и ничего не отправляет. Единственный способ связи: адрес e-mail на сайте. Нажатие на него открывает вашу почтовую программу и не передаёт данных через этот сайт.',
+        'Сайт размещён на GitHub Pages. GitHub может вести стандартные технические журналы (IP-адрес, время, браузер) в рамках работы веб-сервера, для диагностики и безопасности.',
+      ]],
+      ['Письма', ['Если вы напишете мне, содержание письма (включая ваш адрес e-mail) обрабатывается только для ответа. Я не передаю эти данные третьим лицам и не использую их для других целей.']],
+      ['Ваши права', ['Согласно RODO (GDPR) вы вправе получить доступ к своим данным, исправить их, удалить или ограничить обработку. На практике: можно спросить, сохранилась ли у меня ваша переписка, и попросить её удалить.']],
+      ['Изменения политики', ['Если у сайта появятся новые функции (например, форма связи или аналитика), политика будет обновлена, а дата вверху изменится.']],
+    ],
+  },
+}[lang];
+---
+<Base title={TX.title} description={TX.desc} path={paths[lang]} nav={false} lang={lang} alternates altPaths={paths}>
+  <section class="sec legal">
+    <div class="wrap legal-in">
+      <a class="link-more" href={home(lang)}>&larr; {TX.back}</a>
+      <span class="idx mono">{TX.idx}</span>
+      <h1>{TX.h1}</h1>
+      <p class="muted mono">{TX.upd}</p>
+      {TX.s.map(([h, ps]) => <><h2>{h}</h2>{(ps as string[]).map((p) => <p>{p}</p>)}</>)}
+      <div class="tile legal-box"><span class="lbl">{TX.box}</span><a href={`mailto:${EMAIL}`} class="mono">{EMAIL}</a></div>
+    </div>
+  </section>
+</Base>
