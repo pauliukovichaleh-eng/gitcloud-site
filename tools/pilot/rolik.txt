@@ -1,0 +1,82 @@
+# Film pilota (rolik.py): menu kafelków → serwer i wykres CPU → maszyny → ważne polecenie z PIN-em.
+clock 2026-11-06 18:40:12
+msgs data.jsonl
+wait 1000
+side
+side
+side
+side
+rec 1
+wait 800
+sidehold 900
+wait 900
+turn 1
+wait 450
+turn 1
+wait 450
+turn 1
+wait 450
+turn 1
+wait 600
+turn -4
+wait 500
+centrum 0
+wait 1200
+click
+wait 400
+msg {"t":"cw","i":0,"n":1,"k":"cpu","r":1,"ti":"CPU","u":"%","lo":0,"hi":100,"lim":85,"t0":1790610000,"dt":60,"np":60,"s":[{"l":"CPU","c":0,"x":"18%","v":"8bAVAYC7CsBIBcFCDLDVGaEcFzEQEoCZD+EMCSCfBi8fAb9D7O5g8E686a6l5m6J485e4K6N6P3m4LONRqQRRsRK9e9vAUC4CiEWEBFZFeGPFKDRG2GIFpEA"},{"l":"iowait","c":2,"x":"3%","v":"1I1a1b1q1x1i1l2H1/212V2C2P2A2D1u26291t1v1m1J1b1O160s1E0w0/100t0y0d0s0f0z0z0a0f3f4B3z4B461S1V1a1p1v2B282L2M2T2J202Q2S2N27"}]}
+wait 3000
+rec 0
+click
+wait 300
+hold 700
+hold 700
+hold 700
+hold 700
+rec 1
+wait 1800
+msg {"t":"pin?","m":"@PIN@","ti":"PIN"}
+wait 1000
+turn 1
+wait 150
+turn 1
+wait 150
+turn 1
+wait 150
+turn 1
+wait 300
+click
+wait 200
+turn 1
+wait 150
+turn 1
+wait 300
+click
+wait 200
+turn 1
+wait 150
+turn 1
+wait 150
+turn 1
+wait 150
+turn 1
+wait 150
+turn 1
+wait 150
+turn 1
+wait 150
+turn 1
+wait 300
+click
+wait 200
+turn 1
+wait 150
+turn 1
+wait 150
+turn 1
+wait 300
+click
+wait 1000
+msg {"t":"pin","ok":1,"m":"Zapora uruchomiona ponownie"}
+wait 2500
+rec 0

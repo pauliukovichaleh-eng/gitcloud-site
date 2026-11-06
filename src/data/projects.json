@@ -86,6 +86,13 @@
       "image_alt": "Pilot z pokrętłem: menu kafelków na ekranie oraz wykres CPU, sesja z asystentem i PIN dla ważnego polecenia, zrzuty z symulatora, dane przykładowe",
       "gallery": [
         {
+          "video": "/img/projekty/pilot.mp4",
+          "src": "/img/projekty/pilot-wideo.jpg",
+          "w": 960,
+          "h": 510,
+          "alt": "Obsługa pokrętłem: menu kafelków, serwer i wykres CPU, maszyny wirtualne, restart zapory z PIN-em; nagranie z symulatora, dane przykładowe"
+        },
+        {
           "src": "/img/projekty/pilot-kafelki.png",
           "alt": "Menu kafelków: serwer, kopie, sieć, praca, kalendarz"
         },
@@ -127,7 +134,7 @@
         "Bez Wi-Fi i haseł na urządzeniu"
       ],
       "links": [],
-      "gallery_note": "Zrzuty z symulatora ekranu: ten sam kod co w firmware, napisy przetłumaczone na polski na potrzeby zrzutów, dane przykładowe (wymyślone usługi i utwór); ekran 320×170 pokazany w skali 4:1."
+      "gallery_note": "Nagranie i zrzuty z symulatora ekranu: ten sam kod co w firmware, napisy przetłumaczone na polski, dane przykładowe (wymyślone usługi i utwór); ekran 320×170 pokazany w skali 3:1 w nagraniu i 4:1 na zrzutach, w nagraniu pominięte przewijanie sekcji między wykresem a listą maszyn."
     },
     {
       "slug": "glowy-agentow",

@@ -55,39 +55,43 @@ DEMO = {
 PIN_CMD = "Restart zapory"
 
 
+def prepare(tmp, scen_text, extra_pl=()):
+    """Kopia firmware/ i sim/ w tmp, napisy PL, dane przykładowe, scenariusz → tmp/sim/pl.txt. Zwraca katalog sim."""
+    shutil.copytree(REMOTE / "firmware", tmp / "firmware", ignore=shutil.ignore_patterns(".pio"))
+    sim = tmp / "sim"
+    sim.mkdir()
+    for n in ("build.sh", "sim.cpp", "fw.cpp"):
+        shutil.copy2(REMOTE / "sim" / n, sim / n)
+    shutil.copytree(REMOTE / "sim/stubs", sim / "stubs")
+    if (REMOTE / "sim/build").exists():                       # skompilowane biblioteki: szybciej
+        shutil.copytree(REMOTE / "sim/build", sim / "build")
+    (sim / ".deps").symlink_to(REMOTE / "sim/.deps")
+
+    src = tmp / "firmware/src"
+    for f, a, b in list(PL) + list(extra_pl):
+        p = src / f
+        t = p.read_text()
+        if a not in t:
+            sys.exit(f"{f}: nie ma «{a}» : firmware się zmienił, popraw listę PL")
+        p.write_text(t.replace(a, b))
+
+    lines = []
+    for l in (REMOTE / "sim/fixtures/golden.jsonl").read_text().splitlines():
+        if l.strip() and json.loads(l).get("t") in DEMO:
+            continue
+        lines.append(l)
+    lines += [json.dumps(m, ensure_ascii=False) for m in DEMO.values()]
+    (sim / "data.jsonl").write_text("\n".join(lines) + "\n")
+    (sim / "pl.txt").write_text(scen_text.replace("@PIN@", PIN_CMD))
+    return sim
+
+
 def main():
     if not (REMOTE / "sim/fixtures/golden.jsonl").exists():
         sys.exit(f"brak {REMOTE}/sim/fixtures/golden.jsonl")
     tmp = Path(tempfile.mkdtemp(prefix="pilot-pl-"))
     try:
-        shutil.copytree(REMOTE / "firmware", tmp / "firmware", ignore=shutil.ignore_patterns(".pio"))
-        sim = tmp / "sim"
-        sim.mkdir()
-        for n in ("build.sh", "sim.cpp", "fw.cpp"):
-            shutil.copy2(REMOTE / "sim" / n, sim / n)
-        shutil.copytree(REMOTE / "sim/stubs", sim / "stubs")
-        if (REMOTE / "sim/build").exists():                       # skompilowane biblioteki: szybciej
-            shutil.copytree(REMOTE / "sim/build", sim / "build")
-        (sim / ".deps").symlink_to(REMOTE / "sim/.deps")
-
-        src = tmp / "firmware/src"
-        for f, a, b in PL:
-            p = src / f
-            t = p.read_text()
-            if a not in t:
-                sys.exit(f"{f}: nie ma «{a}» : firmware się zmienił, popraw listę PL")
-            p.write_text(t.replace(a, b))
-
-        lines = []
-        for l in (REMOTE / "sim/fixtures/golden.jsonl").read_text().splitlines():
-            if l.strip() and json.loads(l).get("t") in DEMO:
-                continue
-            lines.append(l)
-        lines += [json.dumps(m, ensure_ascii=False) for m in DEMO.values()]
-        (sim / "data.jsonl").write_text("\n".join(lines) + "\n")
-        scen = (HERE / "scenariusz.txt").read_text().replace("@PIN@", PIN_CMD)
-        (sim / "pl.txt").write_text(scen)
-
+        sim = prepare(tmp, (HERE / "scenariusz.txt").read_text())
         subprocess.run(["./build.sh"], cwd=sim, check=True, stdout=subprocess.DEVNULL)
         (sim / "out").mkdir()
         subprocess.run(["build/gc-sim", "pl.txt", "out"], cwd=sim, check=True, stdout=subprocess.DEVNULL)
