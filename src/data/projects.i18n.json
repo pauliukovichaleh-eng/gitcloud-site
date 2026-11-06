@@ -22,7 +22,8 @@
       "solution": "C++ firmware with an encrypted Bluetooth LE service. The server runs only allow-listed commands, and critical actions require a PIN. The simulator compiles the same code on a computer and compares screenshots on every build.",
       "role": "Device design, firmware, server-side service and tests.",
       "results": ["Over 1,800 commits", "9.2 h on battery with the screen on", "Every UI change verified with screenshots", "No Wi-Fi and no passwords on the device"],
-      "image_alt": "Remote with a rotary knob: tile menu on the screen plus a CPU chart, an assistant session and a PIN for a critical command, simulator screenshots, sample data", "gallery_alt": ["Knob control: tile menu, server and CPU chart, virtual machines, firewall restart with a PIN; simulator recording, sample data", "Tile menu: server, backups, network, work, calendar", "Assistant session: speak, click and send", "Music player with a progress bar", "CPU chart with an alarm threshold", "Virtual machines and containers with resources", "A critical command (firewall restart) requires a PIN"],
+      "image_alt": "Remote with a rotary knob: tile menu on the screen plus a CPU chart, an assistant session and a PIN for a critical command, simulator screenshots, sample data",
+      "gallery_alt": ["Knob control: tile menu, server and CPU chart, virtual machines, firewall restart with a PIN; simulator recording, sample data", "Tile menu: server, backups, network, work, calendar", "Assistant session: speak, click and send", "Music player with a progress bar", "CPU chart with an alarm threshold", "Virtual machines and containers with resources", "A critical command (firewall restart) requires a PIN"],
       "gallery_note": "A recording and screenshots from the screen simulator: the same code as the firmware, labels translated to Polish, sample data (made-up services and track); the 320×170 screen shown at 3:1 in the recording and 4:1 in the screenshots, section scrolling between the chart and the machine list cut from the recording."
     },
     "glowy-agentow": {
@@ -43,7 +44,10 @@
       "problem": "Routine tasks (alerts, mail, deadlines, updates) took time every day, and a single general assistant mixed up responsibilities.",
       "solution": "Each agent has its own role, skills and decision memory in PostgreSQL. Change proposals are reviewed by an agent council, and decisions that need a person land in the panel as cards with options. Every action is written to a log.",
       "role": "Architecture, agent code, runbooks and tests.",
-      "results": ["Alerts resolved overnight, only a report in the morning", "Cheap tasks on a light model, hard ones on a strong model", "Full log of agent actions"], "image_alt": "Agent panel: actions from the last 24 hours by agent, agent cards and the share of tasks resolved on their own, sample data", "gallery_alt": ["A walk through the agent panel: tasks from the last 24 hours, details of one task, the cards of Tony, Sally and Mark; screen recording, sample data", "Agents in the last 24 hours: what they did on their own, what went to the owner, task log", "Technical agent card: day summary and 14-day success rate", "Assistant card: tasks of the day, success rate and 3D avatar", "The same panel on a phone"], "links_label": ["Operations panel: decisions and model costs"],
+      "results": ["Alerts resolved overnight, only a report in the morning", "Cheap tasks on a light model, hard ones on a strong model", "Full log of agent actions"],
+      "image_alt": "Agent panel: actions from the last 24 hours by agent, agent cards and the share of tasks resolved on their own, sample data",
+      "gallery_alt": ["A walk through the agent panel: tasks from the last 24 hours, details of one task, the cards of Tony, Sally and Mark; screen recording, sample data", "Agents in the last 24 hours: what they did on their own, what went to the owner, task log", "Technical agent card: day summary and 14-day success rate", "Assistant card: tasks of the day, success rate and 3D avatar", "The same panel on a phone"],
+      "links_label": ["Operations panel: decisions and model costs"],
       "gallery_note": "A recording and screenshots of the panel running on sample data: a made-up task log and made-up agent results, no connection to the database or network; missing Polish interface labels translated, the schedule list hidden in the recording."
     },
     "panel-operacyjny": {
@@ -110,6 +114,19 @@
           "stack": ["Google Sheets", "market research", "lead generation", "B2B"]
         }
       }
+    },
+    "pulpit-gitcloud": {
+      "title": "GitCloud Desktop: a custom work environment with a console and files",
+      "lead": "A Linux session built around the panel and the AI assistant: no window frames, with its own console, file manager and bar in one style.",
+      "status": "Default session on two computers",
+      "image_alt": "GitCloud Desktop: file manager on the left, console on the right with commit history, build output, an image in the output and search; sample data",
+      "problem": "A standard desktop was distracting: dozens of windows, notifications and mixed styles. One consistent environment was needed, where the panel and the console for the AI assistant are always in place.",
+      "solution": "A session in the sway compositor: the panel on the left in a WebKit window, a custom console on the right (a tab server keeps the processes, the xterm.js window also shows images and searches the output), a web bar on top with a player, sound, notifications and search. A custom file manager with tiles, preview and trash instead of a third-party app. Configuration in one Ansible repository, both computers pull changes on their own; an interface watchdog checks it every 15 minutes and restores the window after a failure.",
+      "role": "Interface design, code of the console, file manager and bar, deployment automation.",
+      "results": ["One configuration for two computers, a change = a commit", "Console tabs survive a window restart, together with the running AI assistant", "Interface self-check every 15 minutes with automatic recovery"],
+      "gallery_note": "A recording and screenshots of the console and file manager running in a separate home directory with made-up folders, files and repository; Polish interface labels translated for the recording.",
+      "links_label": ["The operations panel that sits on the left"],
+      "gallery_alt": ["Working on the desktop: the file manager in tile view and an image preview with Space, opening a project, then in the console the commit history, a page build, an image in the output and search in the output; screen recording, sample data", "File manager: places on the left, tiles with thumbnails, status bar with selection and free space", "Console: commit history, a page build, an image shown in the terminal and the highlighted search term"]
     }
   },
   "ru": {
@@ -134,7 +151,8 @@
       "solution": "Прошивка на C++ с зашифрованным сервисом Bluetooth LE. Сервер выполняет только команды из белого списка, а важные действия требуют PIN-кода. Симулятор собирает тот же код на компьютере и сравнивает скриншоты экрана при каждой сборке.",
       "role": "Проект устройства, прошивка, серверная часть и тесты.",
       "results": ["Более 1800 коммитов", "9,2 ч работы от батареи с включённым экраном", "Каждое изменение интерфейса проверяется скриншотами", "Без Wi-Fi и паролей на устройстве"],
-      "image_alt": "Пульт с поворотной ручкой: меню плиток на экране, а также график CPU, сессия с ассистентом и PIN для важной команды, снимки симулятора, примерные данные", "gallery_alt": ["Управление ручкой: меню плиток, сервер и график CPU, виртуальные машины, перезапуск файрвола с PIN-кодом; запись симулятора, примерные данные", "Меню плиток: сервер, копии, сеть, работа, календарь", "Сессия с ассистентом: говори, нажми и отправь", "Музыкальный плеер с полосой прогресса", "График CPU с порогом тревоги", "Виртуальные машины и контейнеры с ресурсами", "Важная команда (перезапуск файрвола) требует PIN-кода"],
+      "image_alt": "Пульт с поворотной ручкой: меню плиток на экране, а также график CPU, сессия с ассистентом и PIN для важной команды, снимки симулятора, примерные данные",
+      "gallery_alt": ["Управление ручкой: меню плиток, сервер и график CPU, виртуальные машины, перезапуск файрвола с PIN-кодом; запись симулятора, примерные данные", "Меню плиток: сервер, копии, сеть, работа, календарь", "Сессия с ассистентом: говори, нажми и отправь", "Музыкальный плеер с полосой прогресса", "График CPU с порогом тревоги", "Виртуальные машины и контейнеры с ресурсами", "Важная команда (перезапуск файрвола) требует PIN-кода"],
       "gallery_note": "Запись и снимки из симулятора экрана: тот же код, что в прошивке, надписи переведены на польский, примерные данные (выдуманные службы и трек); экран 320×170 в масштабе 3:1 в записи и 4:1 на снимках, прокрутка разделов между графиком и списком машин из записи вырезана."
     },
     "glowy-agentow": {
@@ -155,7 +173,10 @@
       "problem": "Рутина (алерты, почта, сроки, обновления) отнимала время каждый день, а один общий ассистент путал зоны ответственности.",
       "solution": "У каждого агента своя роль, навыки и память решений в PostgreSQL. Предложения изменений оценивает совет агентов, а решения, требующие человека, попадают в панель карточками с вариантами. Каждое действие записывается в журнал.",
       "role": "Архитектура, код агентов, регламенты и тесты.",
-      "results": ["Алерты решаются ночью, утром только отчёт", "Дешёвые задачи на лёгкой модели, сложные на сильной", "Полный журнал действий агентов"], "image_alt": "Панель агентов: действия за сутки по агентам, карточки агентов и доля дел, решённых самостоятельно, примерные данные", "gallery_alt": ["Проход по панели агентов: дела за сутки, подробности одного дела, карточки Тони, Салли и Марка; запись экрана, примерные данные", "Агенты за сутки: что сделали сами, что передали владельцу, журнал дел", "Карточка технического агента: итог дня и успешность за 14 дней", "Карточка ассистентки: дела дня, успешность и 3D-аватар", "Та же панель на телефоне"], "links_label": ["Операционная панель: решения и стоимость моделей"],
+      "results": ["Алерты решаются ночью, утром только отчёт", "Дешёвые задачи на лёгкой модели, сложные на сильной", "Полный журнал действий агентов"],
+      "image_alt": "Панель агентов: действия за сутки по агентам, карточки агентов и доля дел, решённых самостоятельно, примерные данные",
+      "gallery_alt": ["Проход по панели агентов: дела за сутки, подробности одного дела, карточки Тони, Салли и Марка; запись экрана, примерные данные", "Агенты за сутки: что сделали сами, что передали владельцу, журнал дел", "Карточка технического агента: итог дня и успешность за 14 дней", "Карточка ассистентки: дела дня, успешность и 3D-аватар", "Та же панель на телефоне"],
+      "links_label": ["Операционная панель: решения и стоимость моделей"],
       "gallery_note": "Запись и снимки панели, запущенной на примерных данных: выдуманный журнал дел и выдуманные итоги агентов, без связи с базой и сетью; недостающие польские надписи интерфейса переведены, в записи скрыт список расписания."
     },
     "panel-operacyjny": {
@@ -222,6 +243,19 @@
           "stack": ["Google Sheets", "исследование рынка", "лидогенерация", "B2B"]
         }
       }
+    },
+    "pulpit-gitcloud": {
+      "title": "Рабочий стол GitCloud: своя среда работы с консолью и файлами",
+      "lead": "Сеанс Linux, построенный вокруг панели и ИИ-ассистента: без рамок окон, со своей консолью, файловым менеджером и панелью в одном стиле.",
+      "status": "Сеанс по умолчанию на двух компьютерах",
+      "image_alt": "Рабочий стол GitCloud: слева файловый менеджер, справа консоль с историей изменений, выводом сборки, картинкой в выводе и поиском; данные-примеры",
+      "problem": "Обычный рабочий стол отвлекал: десятки окон, уведомления, разные стили. Нужна была одна цельная среда, где панель и консоль для ИИ-ассистента всегда на месте.",
+      "solution": "Сеанс в композиторе sway: слева панель в окне на WebKit, справа своя консоль (сервер вкладок держит процессы, окно на xterm.js показывает и картинки, и ищет по выводу), сверху веб-панель с плеером, звуком, уведомлениями и поиском. Свой файловый менеджер с плитками, просмотром и корзиной вместо сторонней программы. Настройка в одном репозитории Ansible, оба компьютера забирают изменения сами; сторож интерфейса проверяет его каждые 15 минут и восстанавливает окно после сбоя.",
+      "role": "Проект интерфейса, код консоли, файлового менеджера и панели, автоматизация развёртывания.",
+      "results": ["Одна настройка для двух компьютеров, изменение = коммит", "Вкладки консоли переживают перезапуск окна вместе с запущенным ИИ-ассистентом", "Самопроверка интерфейса каждые 15 минут с автоматическим восстановлением"],
+      "gallery_note": "Запись и снимки консоли и файлового менеджера, запущенных в отдельной домашней папке с выдуманными папками, файлами и репозиторием; польские подписи интерфейса подставлены на время записи.",
+      "links_label": ["Панель управления, которая стоит слева"],
+      "gallery_alt": ["Работа на столе: файловый менеджер плитками и просмотр картинки пробелом, переход в проект, в консоли история изменений, сборка страниц, картинка в выводе и поиск по выводу; запись экрана, данные-примеры", "Файловый менеджер: места слева, плитки с миниатюрами, строка состояния с выделением и свободным местом", "Консоль: история изменений, сборка страниц, картинка прямо в терминале и подсвеченное найденное слово"]
     }
   }
 }

@@ -555,6 +555,14 @@ p{ margin:0; }
   .bento:has(> .card:nth-child(5):last-child) .card-big:first-child .card-media{ min-height:0; aspect-ratio:2/1; flex:none; }
 }
 
+/* 7 realizacji: ostatnia karta na całą szerokość, zdjęcie po lewej, opis po prawej (bez osieroconej karty w ostatnim rzędzie) */
+@media (min-width:981px){
+  .bento:has(> .card:nth-child(7):last-child) > .card:last-child{ grid-column:1 / -1; flex-direction:row; }
+  .bento:has(> .card:nth-child(7):last-child) > .card:last-child .card-media{ flex:0 0 calc((100% - 28px) * 2 / 3 + 14px); border-bottom:0; border-right:1px solid var(--edge); }
+  .bento:has(> .card:nth-child(7):last-child) > .card:last-child .card-body{ justify-content:center; }
+  .bento:has(> .card:nth-child(7):last-child) > .card:last-child .card-res{ margin-top:6px; }
+}
+
 /* ── przełącznik języka ── */
 .langs{ display:inline-flex; gap:2px; padding:3px; border-radius:999px; border:1px solid var(--edge2); background:rgba(13,16,22,.7); }
 .langs a{ font-size:11.5px; font-weight:600; letter-spacing:.04em; text-decoration:none; color:var(--dim); padding:5px 8px; border-radius:999px; }

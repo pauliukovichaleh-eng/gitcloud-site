@@ -11,7 +11,8 @@
     "panel-operacyjny",
     "platforma-isp",
     "pilot-esp32",
-    "zlecenia"
+    "zlecenia",
+    "pulpit-gitcloud"
   ],
   "projects": [
     {
@@ -312,6 +313,58 @@
       ]
     },
     {
+      "slug": "pulpit-gitcloud",
+      "category": "wlasne",
+      "title": "Pulpit GitCloud: własne środowisko pracy z konsolą i plikami",
+      "lead": "Sesja Linux zbudowana wokół panelu i asystenta AI: bez ramek okien, z własną konsolą, menedżerem plików i paskiem w jednym stylu.",
+      "year": "2026",
+      "status": "Domyślna sesja na dwóch komputerach",
+      "image": "/img/projekty/pulpit-okladka.webp",
+      "image_alt": "Pulpit GitCloud: po lewej menedżer plików, po prawej konsola z historią zmian, wynikiem budowania, obrazem w wyniku i wyszukiwaniem; dane przykładowe",
+      "gallery": [
+        {
+          "video": "/img/projekty/pulpit.mp4",
+          "src": "/img/projekty/pulpit-wideo.jpg",
+          "w": 1280,
+          "h": 720,
+          "alt": "Praca na pulpicie: menedżer plików w widoku kafelków i podgląd obrazu spacją, przejście do projektu, w konsoli historia zmian, budowanie stron, obraz w wyniku i wyszukiwanie w wyniku; nagranie z ekranu, dane przykładowe"
+        },
+        {
+          "src": "/img/projekty/pulpit-pliki.webp",
+          "alt": "Menedżer plików: miejsca po lewej, kafelki z miniaturami, pasek stanu z zaznaczeniem i wolnym miejscem"
+        },
+        {
+          "src": "/img/projekty/pulpit-okladka.webp",
+          "alt": "Konsola: historia zmian, budowanie stron, obraz wyświetlony w terminalu i podświetlone wyszukane słowo"
+        }
+      ],
+      "gallery_note": "Nagranie i zrzuty konsoli i menedżera plików uruchomionych w osobnym katalogu domowym z wymyślonymi folderami, plikami i repozytorium; polskie napisy interfejsu przetłumaczone na czas nagrania.",
+      "problem": "Standardowy pulpit rozpraszał: dziesiątki okien, powiadomienia i różne style. Potrzebne było jedno spójne środowisko, w którym panel i konsola dla asystenta AI są zawsze na miejscu.",
+      "solution": "Sesja w kompozytorze sway: po lewej panel w oknie na WebKit, po prawej własna konsola (serwer kart trzyma procesy, okno na xterm.js pokazuje też obrazy i szuka w wyniku), na górze pasek webowy z odtwarzaczem, dźwiękiem, powiadomieniami i wyszukiwarką. Własny menedżer plików z kafelkami, podglądem i koszem zamiast zewnętrznej aplikacji. Konfiguracja w jednym repozytorium Ansible, oba komputery pobierają zmiany same; strażnik interfejsu sprawdza go co 15 minut i przywraca okno po awarii.",
+      "stack": [
+        "sway",
+        "Wayland",
+        "GTK4",
+        "WebKit",
+        "xterm.js",
+        "Python",
+        "aiohttp",
+        "Ansible"
+      ],
+      "role": "Projekt interfejsu, kod konsoli, menedżera plików i paska, automatyzacja wdrożenia.",
+      "results": [
+        "Jedna konfiguracja dla dwóch komputerów, zmiana = commit",
+        "Karty konsoli przeżywają restart okna, razem z uruchomionym asystentem AI",
+        "Samokontrola interfejsu co 15 minut z automatycznym przywróceniem"
+      ],
+      "links": [
+        {
+          "href": "/projekty/panel-operacyjny/",
+          "label": "Panel operacyjny, który stoi po lewej stronie"
+        }
+      ]
+    },
+    {
       "slug": "zlecenia",
       "category": "zlecenia",
       "badge": "Useme",
@@ -472,8 +525,5 @@
       "image_alt": "Sklep z wyborem kraju i waluty na pięciu domenach oraz wyniki zleceń: test koszyka 5 z 5 domen, 66 punktów audytu SEO, baza 30 firm B2B, dane przykładowe",
       "gallery_note": "Ilustracje na danych przykładowych (sklep.example, wymyślone produkty i firmy). Sklepy i firmy klientów, ich dane i adresy nie są pokazywane."
     }
-  ],
-  "retired": [
-    "pulpit-gitcloud"
   ]
 }
