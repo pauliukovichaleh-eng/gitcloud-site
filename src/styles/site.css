@@ -327,7 +327,8 @@ p{ margin:0; }
 .pd-status{ display:inline-flex; align-items:center; gap:8px; margin-top:14px; font-size:12.5px; color:var(--fg); padding:6px 10px; border-radius:7px; border:1px solid var(--edge2); }
 .pd-gal{ margin-top:22px; }
 .pd-big{ margin:0; border-radius:12px; overflow:hidden; border:1px solid var(--edge); background:#05080d; }
-.pd-big img, .pd-big video{ width:100%; max-height:62vh; object-fit:contain; background:#05080d; }
+.pd-big img, .pd-big video{ width:100%; height:auto; max-height:62vh; object-fit:contain; background:#05080d; }
+.pd-big [hidden]{ display:none; }
 .pd-big figcaption{ padding:10px 14px; font-size:13px; color:var(--muted); border-top:1px solid var(--edge); }
 .pd-thumbs{ display:flex; gap:8px; margin-top:10px; overflow-x:auto; padding-bottom:4px; }
 .pd-thumbs button{ appearance:none; flex:none; width:118px; aspect-ratio:16/10; padding:0; border-radius:8px; overflow:hidden; border:1px solid var(--edge); background:#05080d; cursor:pointer; opacity:.6; transition:opacity .15s, border-color .15s; }

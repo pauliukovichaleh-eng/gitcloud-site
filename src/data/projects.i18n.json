@@ -34,7 +34,7 @@
       "solution": "Heads built in code with three.js, mouth movement computed from text and audio every 10 ms. The server renders on the GPU and streams video to a lightweight receiver.",
       "role": "Character design, animation, lip sync and streaming.",
       "results": ["Lip sync accurate to 10 to 30 ms", "720p60 latency of about 83 ms", "The receiver uses 16 MB instead of 382 MB of memory"],
-      "gallery_alt": ["Sally: correspondence and deadlines", "Tony: infrastructure and alerts", "Mark: modernization and analysis", "Switching characters mid-conversation"]
+      "gallery_alt": ["Sally, Mark and Tony speaking: lip movement and facial expressions, screen recording", "Sally: correspondence and deadlines", "Tony: infrastructure and alerts", "Mark: modernization and analysis", "Switching characters mid-conversation"]
     },
     "agenci-ai": {
       "title": "AI agent team for operational work",
@@ -146,7 +146,7 @@
       "solution": "Головы построены кодом на three.js, движение губ рассчитывается из текста и звука каждые 10 мс. Сервер рендерит на GPU и передаёт видеопоток лёгкому приёмнику.",
       "role": "Дизайн персонажей, анимация, синхронизация губ и стриминг.",
       "results": ["Синхронизация губ с точностью от 10 до 30 мс", "Задержка 720p60 около 83 мс", "Приёмник занимает 16 МБ вместо 382 МБ памяти"],
-      "gallery_alt": ["Sally: переписка и сроки", "Tony: инфраструктура и алерты", "Mark: модернизация и анализ", "Смена персонажа во время разговора"]
+      "gallery_alt": ["Салли, Марк и Тони говорят: движение губ и мимика, запись с экрана", "Sally: переписка и сроки", "Tony: инфраструктура и алерты", "Mark: модернизация и анализ", "Смена персонажа во время разговора"]
     },
     "agenci-ai": {
       "title": "Команда AI-агентов для операционной работы",

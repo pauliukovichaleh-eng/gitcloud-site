@@ -144,6 +144,11 @@
       },
       "gallery": [
         {
+          "video": "/img/projekty/glowy.mp4",
+          "src": "/img/projekty/glowy.jpg",
+          "alt": "Sally, Mark i Tony mówią: ruch ust i mimika, nagranie z ekranu"
+        },
+        {
           "video": "/img/projekty/glowa-sally.mp4",
           "src": "/img/projekty/glowa-sally.jpg",
           "alt": "Sally: korespondencja i terminy"
