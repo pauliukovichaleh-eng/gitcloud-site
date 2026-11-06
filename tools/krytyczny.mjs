@@ -23,7 +23,7 @@ if (!CHROME) {
 const VIEWPORTS = [[390, 844, true], [820, 1180, true], [1350, 940, false]];
 const FOLD = 1.3;
 // Gdy pierwszy ekran potrzebuje większej części arkusza, zysku nie ma (dłuższy HTML i drugie przeliczenie stylów po
-// dociągnięciu arkusza; główna strona: FCP 1,35 → 1,42 s, TBT wyżej) – strona zostaje ze zwykłym <link>.
+// dociągnięciu arkusza) – strona zostaje ze zwykłym <link>. Główna PL/EN/RU po pominięciu ukrytych okien: ~31%.
 const MAX_SHARE = 0.4;
 const LINK = /<link rel="stylesheet" href="(\/_astro\/[^"]+\.css)">/g;
 
@@ -84,14 +84,21 @@ const PROBE = (href, fold) => `(async () => {
   if (!sheet) return { error: 'brak arkusza' };
   const H = innerHeight * ${fold};
   const DYN = /::?(?:hover|focus-visible|focus-within|focus|active|visited|link|target|before|after|placeholder|selection|marker|first-letter|first-line|backdrop|-webkit-[a-z-]+|-moz-[a-z-]+)(?![\\w-])/g;
-  const above = (sel) => {
+  // Element niewyrenderowany (display:none, zamknięty <dialog>, [hidden]) ma prostokąt 0×0 w (0,0), czyli „nad linią”.
+  // Liczy się tylko korzeń ukrytego poddrzewa i tylko reguła z display (może go ukrywać); jego wnętrze nie.
+  const shown = (e) => e.getClientRects().length > 0 || getComputedStyle(e).display === 'contents';
+  const above = (sel, rule) => {
     const s = sel.replace(DYN, '').trim() || '*';
     let els; try { els = document.querySelectorAll(s); } catch { return true; }
-    for (const e of els) { const r = e.getBoundingClientRect(); if (r.top < H) return true; }
+    for (const e of els) {
+      if (e.getBoundingClientRect().top >= H) continue;
+      if (shown(e)) return true;
+      if (rule.style.display && (!e.parentElement || shown(e.parentElement))) return true;
+    }
     return false;
   };
   const tree = (rules) => [...rules].map((r) => {
-    if (r instanceof CSSStyleRule) return { s: r.selectorText, k: r.selectorText.split(/,(?![^(]*\\))/).some(above) };
+    if (r instanceof CSSStyleRule) return { s: r.selectorText, k: r.selectorText.split(/,(?![^(]*\\))/).some((x) => above(x, r)) };
     if (r.cssRules && !(r instanceof CSSKeyframesRule)) return { g: tree(r.cssRules) };
     return { o: 1 };
   });
