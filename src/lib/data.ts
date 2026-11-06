@@ -1,5 +1,7 @@
+import { existsSync } from 'node:fs';
 import raw from '../data/projects.json';
 import tr from '../data/projects.i18n.json';
+import widths from '../data/rozmiary.json';
 import type { Lang } from '../i18n';
 
 export type Img = { src: string; alt: string; video?: string; w?: number; h?: number; pixelated?: boolean; od?: string; i?: number };
@@ -64,3 +66,16 @@ export const localize = (p: Project, lang: Lang): Project => {
 
 // Adres strony projektu w danym języku: /projekty/<slug>/ (pl), /en/projekty/<slug>/, /ru/projekty/<slug>/.
 export const projectPath = (slug: string, lang: Lang = 'pl') => (lang === 'pl' ? `/projekty/${slug}/` : `/${lang}/projekty/${slug}/`);
+
+// lekkie kopie z tools/miniatury.mjs (public/img/mini, public/img/plakat); brak pliku → oryginał
+const light = (dir: string) => (src: string) => {
+  const f = `/img/${dir}/${src.replace(/^.*\//, '').replace(/\.[a-z0-9]+$/i, '')}.webp`;
+  return existsSync(`public${f}`) ? f : src;
+};
+export const mini = light('mini');
+export const plakat = light('plakat');
+// srcset dużego obrazu: wersja 960 px dla telefonów, oryginał dla szerokich ekranów
+export const srcset = (src: string) => {
+  const w = (widths as Record<string, number>)[src], s = plakat(src);
+  return w && w > 960 && s !== src ? `${s} 960w, ${src} ${w}w` : undefined;
+};

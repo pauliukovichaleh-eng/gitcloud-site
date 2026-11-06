@@ -4,7 +4,7 @@
 import Base from '../layouts/Base.astro';
 import ProjectBody from './ProjectBody.astro';
 import ProjectCard from './ProjectCard.astro';
-import { ordered, localize, projectPath, anchor, type Project } from '../lib/data';
+import { ordered, localize, projectPath, anchor, plakat, srcset, type Project } from '../lib/data';
 import { t, home, LANGS, type Lang } from '../i18n';
 interface Props { p0: Project; lang: Lang }
 const { p0, lang } = Astro.props;
@@ -20,6 +20,10 @@ const altPaths = Object.fromEntries(LANGS.map((l) => [l, projectPath(p.slug, l)]
 const inLang = lang === 'pl' ? 'pl-PL' : lang === 'ru' ? 'ru-RU' : 'en-GB';
 const cut = (s: string, n: number) => (s.length <= n ? s : s.slice(0, s.lastIndexOf(' ', n - 1)) + '…');
 const img = p.image || p.video?.poster || p.gallery?.[0]?.src;
+// pierwszy obraz galerii to LCP strony: plakat wideo (lekka kopia) albo zdjęcie, pobierany od razu z wysokim priorytetem
+const g0 = p.gallery?.[0];
+const lcp = g0 ? (g0.video ? plakat(g0.src) : g0.src) : undefined;
+const lcpSet = g0 && !g0.video ? srcset(g0.src) : undefined;
 const others = ordered.filter((x) => x.slug !== p.slug).map((x) => localize(x, lang));
 const jsonld = {
   '@context': 'https://schema.org',
@@ -47,6 +51,7 @@ const jsonld = {
 const og = lang === 'pl' ? `/img/og/p-${p.slug}.png` : `/img/og/p-${p.slug}-${lang}.png`;
 ---
 <Base title={p.title.startsWith('GitCloud') ? p.title : `${p.title} | GitCloud`} description={cut(p.lead, 158)} path={path} jsonld={jsonld} nav={false} og={og} lang={lang} alternates altPaths={altPaths}>
+  {lcp && <link slot="head" rel="preload" as="image" href={lcp} imagesrcset={lcpSet} imagesizes={lcpSet ? '(max-width: 980px) 100vw, 860px' : undefined} fetchpriority="high" />}
   <section class={`sec pp cat-${p.category}`}>
     <div class="wrap pp-in">
       <nav class="pp-crumbs mono" aria-label={D.crumbs}>
@@ -96,5 +101,8 @@ const og = lang === 'pl' ? `/img/og/p-${p.slug}.png` : `/img/og/p-${p.slug}-${la
     const v = e.target as HTMLVideoElement;
     if (e.isIntersecting && !reduce) { v.preload = 'auto'; v.play().catch(() => {}); } else v.pause();
   }), { threshold: 0.35 });
-  $$<HTMLVideoElement>('video[data-inview]').forEach((v) => vio.observe(v));
+  // ruszają dopiero po załadowaniu strony: najpierw tekst i plakat (LCP), potem pobieranie mp4
+  const start = () => $$<HTMLVideoElement>('video[data-inview]').forEach((v) => vio.observe(v));
+  const later = () => ('requestIdleCallback' in window ? requestIdleCallback(start, { timeout: 2000 }) : setTimeout(start, 300));
+  if (document.readyState === 'complete') later(); else addEventListener('load', later, { once: true });
 </script>

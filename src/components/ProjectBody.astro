@@ -1,6 +1,6 @@
 ---
 // Treść projektu: wspólna dla okna na stronie głównej i osobnej strony projektu (ProjectPage, pl/en/ru).
-import { fixHref, has, resolve, projectPath, type Project } from '../lib/data';
+import { fixHref, has, resolve, projectPath, mini, plakat, srcset, type Project } from '../lib/data';
 import { t, home, type Lang } from '../i18n';
 interface Props { p: Project; lang?: Lang; page?: boolean; hid: string }
 const { p, lang = 'pl', page = false, hid } = Astro.props;
@@ -29,15 +29,15 @@ const S = page ? 'h2' : 'h3'; // poziom nagłówków sekcji: na stronie po h1, w
 {first && (
   <div class="pd-gal">
     <figure class="pd-big">
-      {g.some((x) => x.video) && <video muted loop playsinline controls preload="none" poster={first.src} src={first.video} hidden={!first.video} width={first.w || 960} height={first.h || 474} data-inview={page && first.video ? '' : undefined}></video>}
-      <img src={first.src} alt={first.alt} loading={page ? 'eager' : 'lazy'} fetchpriority={page ? 'high' : undefined} decoding="async" class={first.pixelated ? 'px' : ''} hidden={!!first.video} />
+      {g.some((x) => x.video) && <video muted loop playsinline controls preload="none" poster={first.video ? plakat(first.src) : first.src} src={first.video} hidden={!first.video} width={first.w || 960} height={first.h || 474} data-inview={page && first.video ? '' : undefined}></video>}
+      <img src={first.src} srcset={first.video ? undefined : srcset(first.src)} sizes={first.video ? undefined : '(max-width: 980px) 100vw, 860px'} alt={first.alt} loading={page && !first.video ? 'eager' : 'lazy'} fetchpriority={page && !first.video ? 'high' : undefined} decoding="async" class={first.pixelated ? 'px' : ''} hidden={!!first.video} />
       <figcaption>{first.alt}</figcaption>
     </figure>
     {g.length > 1 && (
       <div class="pd-thumbs">
         {g.map((x, i) => (
           <button type="button" class={i === 0 ? 'is-on' : ''} data-src={x.src} data-video={x.video || ''} data-alt={x.alt} data-px={x.pixelated ? '1' : ''} aria-label={x.alt}>
-            <img src={x.src} alt="" loading="lazy" decoding="async" class={x.pixelated ? 'px' : ''} />
+            <img src={mini(x.src)} alt="" loading="lazy" decoding="async" class={x.pixelated ? 'px' : ''} />
           </button>
         ))}
       </div>
