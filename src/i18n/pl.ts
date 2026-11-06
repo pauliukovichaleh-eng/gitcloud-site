@@ -236,7 +236,7 @@ export default {
     task: 'Zadanie', solution: 'Rozwiązanie', result: 'Wynik', role: 'Moja rola', stack: 'Stack', more: 'Zobacz też',
     stages: 'Realizacje', stageTask: 'Zadanie', stageSolution: 'Rozwiązanie',
     clientsTask: 'Z czym przychodzą klienci', clientsHow: 'Jak pracuję',
-    page: 'Strona projektu', back: 'Wszystkie realizacje', others: 'Inne realizacje',
+    page: 'Strona projektu', back: 'Wszystkie realizacje', crumbs: 'Ścieżka', others: 'Inne realizacje',
   },
   ld: {
     altNames: ['gitcloud.pl', 'Git Cloud', 'Pracownia AI GitCloud'],

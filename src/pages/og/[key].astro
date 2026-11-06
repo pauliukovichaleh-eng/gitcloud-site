@@ -1,15 +1,15 @@
 ---
-// Karty og:image 1200×630: strona główna w każdym języku (home-pl/en/ru) i strony projektów (p-<slug>, PL).
+// Karty og:image 1200×630: strona główna w każdym języku (home-pl/en/ru) i strony projektów (p-<slug> po polsku, p-<slug>-en, p-<slug>-ru).
 // tools/render.mjs robi z nich zrzuty do dist/img/og/<key>.png i usuwa te pomocnicze strony z dist.
 import '@fontsource-variable/inter';
 import '@fontsource/ibm-plex-mono/500.css';
-import { projects, localize } from '../../lib/data';
+import { projects, localize, projectPath } from '../../lib/data';
 import { t, LANGS } from '../../i18n';
 
 export function getStaticPaths() {
   return [
     ...LANGS.map((l) => ({ params: { key: `home-${l}` }, props: { lang: l } })),
-    ...projects.map((p) => ({ params: { key: `p-${p.slug}` }, props: { lang: 'pl', slug: p.slug } })),
+    ...projects.flatMap((p) => LANGS.map((l) => ({ params: { key: l === 'pl' ? `p-${p.slug}` : `p-${p.slug}-${l}` }, props: { lang: l, slug: p.slug } }))),
   ];
 }
 const { lang, slug } = Astro.props as { lang: 'pl' | 'en' | 'ru'; slug?: string };
@@ -21,7 +21,7 @@ const h1 = p ? esc(p.title) : `${esc(T.hero.h1a)}<b>${esc(T.hero.h1b)}</b>`;
 const lead = p ? cut(p.lead, 150) : T.hero.lead;
 const img = p ? p.image || p.video?.poster || p.gallery?.[0]?.src : '/img/demo/ai-router.webp';
 const tag = p ? (T.mod.categories as Record<string, string>)[p.category] : T.hero.kicker;
-const url = p ? `gitcloud.pl/projekty/${p.slug}/` : `gitcloud.pl${lang === 'pl' ? '' : `/${lang}/`}`;
+const url = p ? `gitcloud.pl${projectPath(p.slug, lang)}` : `gitcloud.pl${lang === 'pl' ? '' : `/${lang}/`}`;
 ---
 <!doctype html>
 <html lang={T.htmlLang}>

@@ -236,7 +236,7 @@ const en: Dict = {
     task: 'Task', solution: 'Solution', result: 'Result', role: 'My role', stack: 'Stack', more: 'See also',
     stages: 'Deliveries', stageTask: 'Task', stageSolution: 'Solution',
     clientsTask: 'What clients come with', clientsHow: 'How I work',
-    page: 'Project page (PL)', back: 'All work', others: 'More work',
+    page: 'Project page', back: 'All work', crumbs: 'Breadcrumb', others: 'More work',
   },
   ld: {
     altNames: ['gitcloud.pl', 'Git Cloud', 'GitCloud AI studio'],

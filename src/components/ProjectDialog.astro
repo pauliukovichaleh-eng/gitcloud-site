@@ -1,6 +1,6 @@
 ---
 import ProjectBody from './ProjectBody.astro';
-import { anchor, type Project } from '../lib/data';
+import { anchor, projectPath, type Project } from '../lib/data';
 import { t, type Lang } from '../i18n';
 interface Props { p: Project; lang?: Lang }
 const { p, lang = 'pl' } = Astro.props;
@@ -11,7 +11,7 @@ const D = t(lang).dlg, U = t(lang).ui;
     <header class="pd-head">
       <span class="mono pd-path">gitcloud / {D.path} / {p.slug}</span>
       <span class="pd-acts">
-        <a class="pd-open mono" href={`/projekty/${p.slug}/`} hreflang={lang === 'pl' ? undefined : 'pl'}>{D.page} &#8599;</a>
+        <a class="pd-open mono" href={projectPath(p.slug, lang)}>{D.page} &#8599;</a>
         <button type="button" class="pd-x" data-close aria-label={U.close}>✕</button>
       </span>
     </header>

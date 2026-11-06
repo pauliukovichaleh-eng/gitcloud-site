@@ -1,0 +1,10 @@
+---
+// /en/projekty/<slug>/: strona projektu po angielsku (tylko widoczne projekty; stare aliasy są tylko po polsku).
+import ProjectPage from '../../../../components/ProjectPage.astro';
+import { projects } from '../../../../lib/data';
+
+export function getStaticPaths() {
+  return projects.map((p) => ({ params: { slug: p.slug }, props: { p0: p } }));
+}
+---
+<ProjectPage p0={Astro.props.p0} lang="en" />

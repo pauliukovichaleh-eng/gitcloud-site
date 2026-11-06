@@ -1,7 +1,7 @@
 ---
-// Treść projektu: wspólna dla okna na stronie głównej i osobnej strony /projekty/<slug>/.
-import { fixHref, has, resolve, type Project } from '../lib/data';
-import { t, type Lang } from '../i18n';
+// Treść projektu: wspólna dla okna na stronie głównej i osobnej strony projektu (ProjectPage, pl/en/ru).
+import { fixHref, has, resolve, projectPath, type Project } from '../lib/data';
+import { t, home, type Lang } from '../i18n';
 interface Props { p: Project; lang?: Lang; page?: boolean; hid: string }
 const { p, lang = 'pl', page = false, hid } = Astro.props;
 const D = t(lang).dlg;
@@ -14,8 +14,9 @@ const links = (p.links || []).filter((l) => { const m = l.href.match(/^\/projekt
 const href = (h: string) => {
   if (!page) return fixHref(h);
   const m = h.match(/^\/projekty\/([a-z0-9-]+)\/?$/);
-  if (m) { const r = resolve(m[1]); return r ? `/projekty/${r}/` : '/#moduly'; }
-  return h.startsWith('#') ? `/${h}` : h === '/isp/' ? '/#konsola' : h;
+  const base = home(lang);
+  if (m) { const r = resolve(m[1]); return r ? projectPath(r, lang) : `${base}#moduly`; }
+  return h.startsWith('#') ? `${base}${h}` : h === '/isp/' ? `${base}#konsola` : h;
 };
 const H = page ? 'h1' : 'h2';
 const S = page ? 'h2' : 'h3'; // poziom nagłówków sekcji: na stronie po h1, w oknie po h2

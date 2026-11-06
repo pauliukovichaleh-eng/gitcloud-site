@@ -61,3 +61,6 @@ export const localize = (p: Project, lang: Lang): Project => {
     stages: p.stages?.map((s) => ({ ...s, ...(stages?.[s.slug] || {}) })),
   } as Project;
 };
+
+// Adres strony projektu w danym języku: /projekty/<slug>/ (pl), /en/projekty/<slug>/, /ru/projekty/<slug>/.
+export const projectPath = (slug: string, lang: Lang = 'pl') => (lang === 'pl' ? `/projekty/${slug}/` : `/${lang}/projekty/${slug}/`);

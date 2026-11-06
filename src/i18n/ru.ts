@@ -236,7 +236,7 @@ const ru: Dict = {
     task: 'Задача', solution: 'Решение', result: 'Результат', role: 'Моя роль', stack: 'Стек', more: 'См. также',
     stages: 'Реализации', stageTask: 'Задача', stageSolution: 'Решение',
     clientsTask: 'С чем приходят клиенты', clientsHow: 'Как я работаю',
-    page: 'Страница проекта (PL)', back: 'Все кейсы', others: 'Другие кейсы',
+    page: 'Страница проекта', back: 'Все кейсы', crumbs: 'Навигация', others: 'Другие кейсы',
   },
   ld: {
     altNames: ['gitcloud.pl', 'Git Cloud', 'AI-студия GitCloud'],
