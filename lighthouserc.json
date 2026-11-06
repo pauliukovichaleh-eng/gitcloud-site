@@ -6,7 +6,8 @@
         "http://localhost/index.html",
         "http://localhost/en/index.html",
         "http://localhost/projekty/agenci-ai/index.html",
-        "http://localhost/cv/index.html"
+        "http://localhost/cv/index.html",
+        "http://localhost/isp/index.html"
       ],
       "numberOfRuns": 1,
       "settings": {
@@ -24,7 +25,7 @@
         "categories:accessibility": [
           "error",
           {
-            "minScore": 0.9
+            "minScore": 1
           }
         ],
         "categories:best-practices": [

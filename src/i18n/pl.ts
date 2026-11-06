@@ -11,7 +11,7 @@ export default {
   },
   ui: {
     skip: 'Przejdź do treści',
-    home: 'GitCloud, strona główna',
+    home: 'GitCloud.pl, strona główna',
     contact: 'Kontakt',
     navAria: 'Sekcje',
     tabAria: 'Nawigacja',

@@ -11,7 +11,7 @@ const en: Dict = {
   },
   ui: {
     skip: 'Skip to content',
-    home: 'GitCloud, home page',
+    home: 'GitCloud.pl, home page',
     contact: 'Contact',
     navAria: 'Sections',
     tabAria: 'Navigation',

@@ -11,7 +11,7 @@ const ru: Dict = {
   },
   ui: {
     skip: 'Перейти к содержанию',
-    home: 'GitCloud, главная страница',
+    home: 'GitCloud.pl, главная страница',
     contact: 'Контакт',
     navAria: 'Разделы',
     tabAria: 'Навигация',
