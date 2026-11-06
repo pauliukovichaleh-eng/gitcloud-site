@@ -1,0 +1,24 @@
+<!doctype html><html lang="pl"><head><meta charset="utf-8"><link rel="stylesheet" href="base.css">
+<style>
+.bg{background:radial-gradient(900px 560px at 30% 10%,#123447 0,#070a10 72%)}
+/* korpus urządzenia: ekran 320x170 w skali 2.5 (800x425), pokrętło z boku */
+.dev{position:absolute;left:40px;top:182px;width:860px;height:485px;border-radius:34px;
+ background:linear-gradient(160deg,#2a3243 0,#151b27 55%,#10141d 100%);border:1px solid #39445c;
+ box-shadow:0 40px 90px rgba(0,0,0,.7),inset 0 1px 0 rgba(255,255,255,.08)}
+.scr{position:absolute;left:30px;top:30px;width:800px;height:425px;border-radius:10px;overflow:hidden;
+ background:#000;box-shadow:0 0 0 6px #05070b,0 0 40px rgba(0,200,255,.08)}
+.scr img,.mini img{display:block;width:100%;height:100%;image-rendering:pixelated}
+.knob{position:absolute;left:884px;top:325px;width:46px;height:200px;border-radius:12px;
+ background:repeating-linear-gradient(180deg,#3a4458 0 4px,#232b3a 4px 8px);border:1px solid #4a566e;
+ box-shadow:0 20px 40px rgba(0,0,0,.6),inset 6px 0 10px rgba(255,255,255,.08),inset -8px 0 12px rgba(0,0,0,.45)}
+.mini{position:absolute;left:964px;width:286px;height:152px;border-radius:10px;overflow:hidden;background:#000;
+ border:1px solid #2a3550;box-shadow:0 0 0 5px #10141d,0 24px 60px rgba(0,0,0,.65)}
+</style></head><body><div class="bg">
+<!-- pilot-*.png: zrzuty z symulatora (ten sam kod co firmware), ekran 320x170 w skali 4:1, dane przykładowe.
+     Lewy górny róg pusty: tam na karcie jest etykieta kategorii. -->
+<div class="dev"><div class="scr"><img src="../../public/img/projekty/pilot-kafelki.png"></div></div>
+<div class="knob"></div>
+<div class="mini" style="top:190px"><img src="../../public/img/projekty/pilot-wykres.png"></div>
+<div class="mini" style="top:353px"><img src="../../public/img/projekty/pilot-claude.png"></div>
+<div class="mini" style="top:516px"><img src="../../public/img/projekty/pilot-pin.png"></div>
+<div class="tag" style="bottom:16px">symulator ekranu · dane przykładowe</div></div></body></html>

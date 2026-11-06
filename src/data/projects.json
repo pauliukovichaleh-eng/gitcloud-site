@@ -82,8 +82,8 @@
       "lead": "Firmware dla sprzętowego panelu: stan systemów, alerty i polecenia pod pokrętłem, łączność przez Bluetooth LE.",
       "year": "2026",
       "status": "W codziennym użyciu",
-      "image": "/img/projekty/pilot-kafelki.png",
-      "image_alt": "Menu kafelków pilota z symulatora",
+      "image": "/img/projekty/pilot-okladka.webp",
+      "image_alt": "Pilot z pokrętłem: menu kafelków na ekranie oraz wykres CPU, sesja z asystentem i PIN dla ważnego polecenia, zrzuty z symulatora, dane przykładowe",
       "gallery": [
         {
           "src": "/img/projekty/pilot-kafelki.png",
