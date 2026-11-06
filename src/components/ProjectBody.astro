@@ -1,0 +1,85 @@
+---
+// Treść projektu: wspólna dla okna na stronie głównej i osobnej strony /projekty/<slug>/.
+import { fixHref, has, resolve, type Project } from '../lib/data';
+import { t, type Lang } from '../i18n';
+interface Props { p: Project; lang?: Lang; page?: boolean; hid: string }
+const { p, lang = 'pl', page = false, hid } = Astro.props;
+const D = t(lang).dlg;
+const categories = t(lang).mod.categories as Record<string, string>;
+const g = p.gallery || [];
+const first = g[0];
+// linki do projektów jeszcze niewidocznych (pole od) pomijamy
+const links = (p.links || []).filter((l) => { const m = l.href.match(/^\/projekty\/([a-z0-9-]+)\/?$/); return !m || has(m[1]); });
+// na stronie projektu linki do innych projektów prowadzą do ich stron, w oknie do okien
+const href = (h: string) => {
+  if (!page) return fixHref(h);
+  const m = h.match(/^\/projekty\/([a-z0-9-]+)\/?$/);
+  if (m) { const r = resolve(m[1]); return r ? `/projekty/${r}/` : '/#moduly'; }
+  return h.startsWith('#') ? `/${h}` : h === '/isp/' ? '/#konsola' : h;
+};
+const H = page ? 'h1' : 'h2';
+const S = page ? 'h2' : 'h3'; // poziom nagłówków sekcji: na stronie po h1, w oknie po h2
+---
+<span class="card-cat mono">{categories[p.category]}{p.year ? ` · ${p.year}` : ''}</span>
+<H id={hid}>{p.title}</H>
+<p class="pd-lead">{p.lead}</p>
+{p.status && <div class="pd-status mono"><span class="dot ok pulse"></span>{p.status}</div>}
+
+{first && (
+  <div class="pd-gal">
+    <figure class="pd-big">
+      {g.some((x) => x.video) && <video muted loop playsinline controls preload="none" poster={first.src} src={first.video} hidden={!first.video}></video>}
+      <img src={first.src} alt={first.alt} loading={page ? 'eager' : 'lazy'} fetchpriority={page ? 'high' : undefined} decoding="async" class={first.pixelated ? 'px' : ''} hidden={!!first.video} />
+      <figcaption>{first.alt}</figcaption>
+    </figure>
+    {g.length > 1 && (
+      <div class="pd-thumbs">
+        {g.map((x, i) => (
+          <button type="button" class={i === 0 ? 'is-on' : ''} data-src={x.src} data-video={x.video || ''} data-alt={x.alt} data-px={x.pixelated ? '1' : ''} aria-label={x.alt}>
+            <img src={x.src} alt="" loading="lazy" decoding="async" class={x.pixelated ? 'px' : ''} />
+          </button>
+        ))}
+      </div>
+    )}
+    {p.gallery_note && <p class="pd-note">{p.gallery_note}</p>}
+  </div>
+)}
+
+{p.stages && p.stages.length > 0 && (
+  <div class="pd-stages">
+    <S class="lbl">{D.stages} <span class="mono">{p.stages.length}</span></S>
+    {p.stages.map((st, i) => (
+      <details open={i === 0} id={`s-${st.slug}`}>
+        <summary><span class="mono st-n">{String(i + 1).padStart(2, '0')}</span><span><b>{st.title}</b>{st.client && <i>{st.client}</i>}</span></summary>
+        <div class="st-body">
+          <p><span class="lbl">{D.stageTask}</span>{st.problem}</p>
+          <p><span class="lbl">{D.stageSolution}</span>{st.solution}</p>
+          <ul class="pd-res">{st.results.map((r) => <li>{r}</li>)}</ul>
+          <div class="tags">{st.stack.map((t) => <span>{t}</span>)}</div>
+        </div>
+      </details>
+    ))}
+  </div>
+)}
+
+<div class="pd-grid">
+  <section><S class="lbl">{p.stages ? D.clientsTask : D.task}</S><p>{p.problem}</p></section>
+  <section><S class="lbl">{p.stages ? D.clientsHow : D.solution}</S><p>{p.solution}</p></section>
+</div>
+<div class="pd-grid">
+  <section>
+    <S class="lbl">{D.result}</S>
+    <ul class="pd-res">{p.results.map((r) => <li>{r}</li>)}</ul>
+  </section>
+  <section>
+    <S class="lbl">{D.role}</S><p>{p.role}</p>
+    <S class="lbl">{D.stack}</S>
+    <div class="tags">{p.stack.map((s) => <span>{s}</span>)}</div>
+  </section>
+</div>
+{links.length > 0 && (
+  <nav class="pd-links">
+    <S class="lbl">{lang === 'pl' && p.links_title ? p.links_title : D.more}</S>
+    {links.map((l) => <a href={href(l.href)}>{l.label} &rarr;</a>)}
+  </nav>
+)}

@@ -603,3 +603,29 @@ p{ margin:0; }
 .deal b{ color:#fff; font-size:16px; }
 .deal b::before{ content:'✓ '; color:var(--ok); }
 @media (max-width:620px){ .prices{ grid-template-columns:1fr !important; } .deal b{ font-size:15px; } }
+
+/* ── strona projektu /projekty/<slug>/ ── */
+.pd-acts{ display:flex; align-items:center; gap:10px; flex:none; }
+.pd-open{ font-size:12px; color:var(--neon2); text-decoration:none; padding:7px 10px; border-radius:8px; border:1px solid var(--edge2); white-space:nowrap; }
+.pd-open:hover{ border-color:var(--cc); color:#fff; }
+.pp{ --cc:var(--neon2); }
+.pp.cat-platformy{ --cc:var(--c-platformy); } .pp.cat-zlecenia{ --cc:var(--c-zlecenia); }
+.pp-in{ max-width:1040px; }
+.pp-crumbs{ font-size:12.5px; color:var(--dim); margin-bottom:14px; overflow:hidden; white-space:nowrap; text-overflow:ellipsis; }
+.pp-crumbs a{ color:var(--muted); text-decoration:none; }
+.pp-crumbs a:hover{ color:var(--neon2); }
+.pp-body{ overflow:visible; border-radius:18px; background:#080b12; border:1px solid color-mix(in srgb, var(--cc) 35%, transparent); }
+.pp-body h1{ font-size:clamp(28px,4vw,40px); margin:14px 0 10px; line-height:1.15; }
+.pp img.px{ image-rendering:pixelated; object-fit:contain; background:#05080d; }
+.pp-cta{ display:flex; flex-wrap:wrap; align-items:center; gap:14px 24px; margin-top:24px; }
+.pp-cta .link-more{ margin-top:0; }
+.pp-more-h{ font-size:clamp(22px,3vw,28px); margin-bottom:18px; }
+@media (max-width:640px){
+  .pd-path{ display:none; }
+  .pd-open{ padding:8px 9px; font-size:11.5px; }
+  .pp-body{ padding:20px 16px 26px; border-radius:14px; }
+  .pp-body h1{ font-size:26px; }
+  .pp-grid{ grid-template-columns:1fr; }
+}
+.pp-body h2.lbl{ font:500 12.5px/1.3 var(--sans); margin:0 0 10px; letter-spacing:.12em; }
+.pp-body .pd-grid section h2.lbl:not(:first-child){ margin-top:20px; }

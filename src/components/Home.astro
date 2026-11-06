@@ -31,7 +31,7 @@ const jsonld = {
     { '@type': 'WebSite', '@id': `${SITE}/#website`, name: 'GitCloud', alternateName: T.ld.altNames, url: URL0, inLanguage: T.inLanguage, publisher: { '@id': `${SITE}/#org` } },
     { '@type': ['Organization', 'ProfessionalService'], '@id': `${SITE}/#org`, name: 'GitCloud', url: `${SITE}/`, logo: `${SITE}/favicon-192.png`, email: `mailto:${EMAIL}`, areaServed: 'PL', description: T.ld.orgDesc, founder: { '@id': `${SITE}/#aleh` } },
     { '@type': 'Person', '@id': `${SITE}/#aleh`, name: 'Aleh Pauliukovich', url: `${SITE}/`, image: `${SITE}/img/aleh.jpg`, jobTitle: T.ld.job, knowsAbout: T.ld.knows, knowsLanguage: ['pl', 'ru', 'be', 'en'], hasCredential: { '@type': 'EducationalOccupationalCredential', name: 'Oracle Cloud Infrastructure Certified AI Foundations Associate', credentialCategory: 'certification', recognizedBy: { '@type': 'Organization', name: 'Oracle' } }, worksFor: { '@id': `${SITE}/#org` } },
-    { '@type': 'ItemList', name: T.ld.list, itemListElement: ordered.map((p, i) => ({ '@type': 'ListItem', position: i + 1, url: `${URL0}#${anchor(p.slug)}`, name: p.title })) },
+    { '@type': 'ItemList', name: T.ld.list, itemListElement: ordered.map((p, i) => ({ '@type': 'ListItem', position: i + 1, url: `${SITE}/projekty/${p.slug}/`, name: p.title })) },
     { '@type': 'FAQPage', mainEntity: T.faq.map(([q, a]) => ({ '@type': 'Question', name: q, acceptedAnswer: { '@type': 'Answer', text: a } })) },
   ],
 };

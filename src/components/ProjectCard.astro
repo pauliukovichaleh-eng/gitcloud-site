@@ -1,13 +1,13 @@
 ---
 import { anchor, type Project } from '../lib/data';
 import { t, type Lang } from '../i18n';
-interface Props { p: Project; big?: boolean; lang?: Lang }
-const { p, big = false, lang = 'pl' } = Astro.props;
+interface Props { p: Project; big?: boolean; lang?: Lang; href?: string }
+const { p, big = false, lang = 'pl', href } = Astro.props;
 const M = t(lang).mod;
 const categories = M.categories as Record<string, string>;
 const media = p.video ? 'video' : p.image ? 'img' : 'gen';
 ---
-<a class={`card cat-${p.category}${big ? ' card-big' : ''}`} href={`#${anchor(p.slug)}`} data-cat={p.category}>
+<a class={`card cat-${p.category}${big ? ' card-big' : ''}`} href={href || `#${anchor(p.slug)}`} data-cat={p.category}>
   <div class={`card-media m-${media}`}>
     {media === 'video' && <video src={p.video!.src} poster={p.video!.poster} muted loop playsinline preload="none" width="960" height="474" aria-label={p.image_alt || p.title} data-inview></video>}
     {media === 'img' && <img src={p.image} alt={p.image_alt || p.title} class={p.pixelated ? 'px' : ''} loading="lazy" decoding="async" />}

@@ -1,10 +1,106 @@
 ---
+// /projekty/<slug>/: osobna strona projektu (PL, indeksowana, w sitemap.xml).
+// Stare slugi (etapy połączone w zbiorczy projekt, projekty wycofane lub czekające na datę) przekierowują dalej.
+import Base from '../../../layouts/Base.astro';
 import Redirect from '../../../components/Redirect.astro';
-import { allSlugs, resolve, anchor } from '../../../lib/data';
+import ProjectBody from '../../../components/ProjectBody.astro';
+import ProjectCard from '../../../components/ProjectCard.astro';
+import { allSlugs, ordered, projects, resolve, anchor, type Project } from '../../../lib/data';
+import { t } from '../../../i18n';
+
 export function getStaticPaths() {
-  return allSlugs.map((slug) => ({ params: { slug } }));
+  const live = new Set(projects.map((p) => p.slug));
+  return [...new Set(allSlugs)].map((slug) => ({ params: { slug }, props: { live: live.has(slug) } }));
 }
 const { slug } = Astro.params;
-const r = resolve(slug!);
+const { live } = Astro.props;
+const p = live ? (ordered.find((x) => x.slug === slug) as Project) : undefined;
+const r = live ? undefined : resolve(slug!);
+// alias etapu prowadzi do jego etapu na stronie projektu zbiorczego, reszta do listy realizacji
+const st = r ? projects.find((x) => x.slug === r)?.stages?.some((s) => s.slug === slug) : false;
+const to = r ? `/projekty/${r}/${st ? `#s-${slug}` : ''}` : '/#moduly';
+
+const SITE = 'https://gitcloud.pl';
+const T = t('pl');
+const D = T.dlg;
+const url = `${SITE}/projekty/${slug}/`;
+const cut = (s: string, n: number) => (s.length <= n ? s : s.slice(0, s.lastIndexOf(' ', n - 1)) + '…');
+const img = p ? p.image || p.video?.poster || p.gallery?.[0]?.src : undefined;
+const others = p ? ordered.filter((x) => x.slug !== p.slug) : [];
+const jsonld = p && {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'CreativeWork', '@id': `${url}#projekt`, name: p.title, description: p.lead, url, inLanguage: 'pl-PL',
+      ...(img ? { image: `${SITE}${img}` } : {}),
+      ...(p.year ? { dateCreated: p.year } : {}),
+      keywords: p.stack.join(', '),
+      genre: (T.mod.categories as Record<string, string>)[p.category],
+      author: { '@type': 'Person', '@id': `${SITE}/#aleh`, name: 'Aleh Pauliukovich' },
+      publisher: { '@type': 'Organization', '@id': `${SITE}/#org`, name: 'GitCloud' },
+    },
+    {
+      '@type': 'BreadcrumbList',
+      itemListElement: [
+        { '@type': 'ListItem', position: 1, name: 'GitCloud', item: `${SITE}/` },
+        { '@type': 'ListItem', position: 2, name: T.ld.list, item: `${SITE}/#moduly` },
+        { '@type': 'ListItem', position: 3, name: p.title, item: url },
+      ],
+    },
+  ],
+};
 ---
-<Redirect to={r ? `/#${anchor(r)}` : '/#moduly'} />
+{!p ? <Redirect to={to} /> : (
+<Base title={p.title.startsWith('GitCloud') ? p.title : `${p.title} | GitCloud`} description={cut(p.lead, 158)} path={`/projekty/${p.slug}/`} jsonld={jsonld} nav={false}>
+  <section class={`sec pp cat-${p.category}`}>
+    <div class="wrap pp-in">
+      <nav class="pp-crumbs mono" aria-label="Ścieżka">
+        <a href="/">gitcloud</a> / <a href={`/#${anchor(p.slug)}`}>{D.path}</a> / <span aria-current="page">{p.slug}</span>
+      </nav>
+      <article class="pd-body pp-body">
+        <ProjectBody p={p} page hid="pp-t" />
+      </article>
+      <div class="pp-cta">
+        <a class="btn btn-p" href="/#kontakt">{T.ui.contact}</a>
+        <a class="link-more" href="/#moduly">&larr; {D.back}</a>
+      </div>
+    </div>
+  </section>
+  {others.length > 0 && (
+    <section class="sec pp-more">
+      <div class="wrap">
+        <h2 class="pp-more-h">{D.others}</h2>
+        <div class="bento pp-grid">{others.map((o) => <ProjectCard p={o} href={`/projekty/${o.slug}/`} />)}</div>
+      </div>
+    </section>
+  )}
+</Base>
+)}
+
+<script>
+  // galeria na stronie projektu (jak w oknie na stronie głównej)
+  const $$ = <T extends Element = HTMLElement>(s: string) => Array.from(document.querySelectorAll<T>(s));
+  const big = document.querySelector<HTMLImageElement>('.pp .pd-big img');
+  const bigV = document.querySelector<HTMLVideoElement>('.pp .pd-big video');
+  const cap = document.querySelector('.pp .pd-big figcaption');
+  $$<HTMLButtonElement>('.pp .pd-thumbs button').forEach((b) => b.addEventListener('click', () => {
+    $$('.pp .pd-thumbs button').forEach((x) => x.classList.toggle('is-on', x === b));
+    const { src, video, alt, px } = b.dataset;
+    if (bigV) {
+      if (video) { bigV.hidden = false; bigV.poster = src!; bigV.src = video; bigV.play().catch(() => {}); if (big) big.hidden = true; }
+      else { bigV.pause(); bigV.hidden = true; if (big) big.hidden = false; }
+    }
+    if (big && !video) { big.src = src!; big.alt = alt || ''; big.classList.toggle('px', px === '1'); }
+    if (cap) cap.textContent = alt || '';
+  }));
+  // adres z #s-<etap> (stare linki etapów zleceń) rozwija ten etap
+  const open = () => { const d = location.hash.startsWith('#s-') && document.getElementById(location.hash.slice(1)); if (d instanceof HTMLDetailsElement) { d.open = true; d.scrollIntoView(); } };
+  addEventListener('hashchange', open); open();
+  // wideo na kartach innych realizacji gra tylko na ekranie
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const vio = new IntersectionObserver((es) => es.forEach((e) => {
+    const v = e.target as HTMLVideoElement;
+    if (e.isIntersecting && !reduce) { v.preload = 'auto'; v.play().catch(() => {}); } else v.pause();
+  }), { threshold: 0.35 });
+  $$<HTMLVideoElement>('video[data-inview]').forEach((v) => vio.observe(v));
+</script>
