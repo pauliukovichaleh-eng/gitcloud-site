@@ -16,3 +16,7 @@ salda i nocny przegląd kodu. Zrzuty: `python final.py http://my.gitcloud.pl:189
 Karty decyzji (pulpit Claude na stronie głównej panelu): `fake_dec.py` daje wymyślone pytania agentów do właściciela
 z wariantami, dziennik decyzji z wynikami, dwie sesje Claude i limity. Zrzuty samego widżetu:
 `python final.py http://my.gitcloud.pl:18932 <katalog> decyzje` (komputer, komputer z rozwiniętymi szczegółami i dziennikiem, telefon).
+
+Okładka karty „Panel operacyjny” (16:9): `tools/okladki/panel.html` składa gotowe zrzuty `panel-decyzje.webp`
+(kadr trzech kart) i `panel-decyzje-tel.webp` w ramce okna i telefonu. Zrzut 1280×720 Chrome/Playwright → WebP
+(jakość 82) do `public/img/projekty/panel-okladka.webp`.

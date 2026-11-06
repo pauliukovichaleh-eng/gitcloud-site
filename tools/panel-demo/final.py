@@ -29,7 +29,7 @@ errs, cyr = [], {}
 with sync_playwright() as p:
     b = p.chromium.launch(executable_path="/usr/bin/google-chrome", args=["--host-resolver-rules=MAP my.gitcloud.pl 127.0.0.1"])
     for name, path, w, h, ch in SHOTS:
-        ctx = b.new_context(viewport={"width": w, "height": h}, device_scale_factor=2 if w < 500 else 1)
+        ctx = b.new_context(viewport={"width": w, "height": h}, device_scale_factor=2 if w < 500 else int(__import__("os").environ.get("DSF", "1")))
         ctx.add_cookies([{"name": "gc_lang", "value": "pl", "url": base}])
         pg = ctx.new_page()
         pg.on("console", lambda m, n=name: m.type == "error" and errs.append(f"{n}: {m.text[:120]}"))
