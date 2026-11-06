@@ -5,6 +5,8 @@ import '@fontsource/ibm-plex-mono/500.css';
 import '@fontsource/ibm-plex-mono/600.css';
 import '../styles/site.css';
 import Mark from '../components/Mark.astro';
+import Palette from '../components/Palette.astro';
+import { build } from '../lib/build';
 import { t, LANGS, LABEL, home, type Lang } from '../i18n';
 
 interface Props {
@@ -16,11 +18,15 @@ interface Props {
   noindex?: boolean;
   lang?: Lang;
   alternates?: boolean; // strona istnieje w trzech językach (hreflang + przełącznik)
+  altPaths?: Partial<Record<Lang, string>>; // adresy wersji językowych, gdy to nie strona główna
+  og?: string; // obraz og:image (domyślnie karta strony głównej w danym języku, tools/render.mjs)
 }
-const { title, description, path = '/', jsonld, nav = true, noindex = false, lang = 'pl', alternates = false } = Astro.props;
+const { title, description, path = '/', jsonld, nav = true, noindex = false, lang = 'pl', alternates = false, altPaths, og: ogPath } = Astro.props;
+const alt = (l: Lang) => altPaths?.[l] || home(l);
+const privacyHref = lang === 'pl' ? '/privacy.html' : `/${lang}/privacy.html`;
 const T = t(lang);
 const url = new URL(path, Astro.site).href;
-const og = new URL('/img/og.jpg', Astro.site).href;
+const og = new URL(ogPath || `/img/og/home-${lang}.png`, Astro.site).href;
 const base = home(lang);
 const tabIcons: Record<string, string> = {
   ekosystem: '<path d="M20.5 7.2 12 2.5 3.5 7.2v9.6l8.5 4.7 8.5-4.7V12H13"/>',
@@ -41,8 +47,8 @@ const locale = lang === 'pl' ? 'pl-PL' : lang === 'ru' ? 'ru-RU' : 'en-GB';
 <title>{title}</title>
 <meta name="description" content={description}>
 <link rel="canonical" href={url}>
-{alternates && LANGS.map((l) => <link rel="alternate" hreflang={l} href={new URL(home(l), Astro.site).href} />)}
-{alternates && <link rel="alternate" hreflang="x-default" href={new URL('/', Astro.site).href} />}
+{alternates && LANGS.map((l) => <link rel="alternate" hreflang={l} href={new URL(alt(l), Astro.site).href} />)}
+{alternates && <link rel="alternate" hreflang="x-default" href={new URL(alt('pl'), Astro.site).href} />}
 <meta name="robots" content={noindex ? 'noindex, follow' : 'index, follow'}>
 <meta name="author" content="Aleh Pauliukovich">
 <meta name="theme-color" content="#05070c">
@@ -83,9 +89,13 @@ const locale = lang === 'pl' ? 'pl-PL' : lang === 'ru' ? 'ru-RU' : 'en-GB';
       <span class="clock mono" aria-hidden="true"><span id="gc-date">--.--.----</span> <b id="gc-time">--:--:--</b></span>
       {alternates && (
         <nav class="langs mono" aria-label={T.ui.langAria}>
-          {LANGS.map((l) => <a href={home(l)} hreflang={l} lang={l} class={l === lang ? 'is-on' : ''} aria-current={l === lang ? 'page' : undefined}>{LABEL[l]}</a>)}
+          {LANGS.map((l) => <a href={alt(l)} hreflang={l} lang={l} class={l === lang ? 'is-on' : ''} aria-current={l === lang ? 'page' : undefined}>{LABEL[l]}</a>)}
         </nav>
       )}
+      <button type="button" class="pal-btn" data-pal aria-label={T.ui.searchAria} title={T.ui.searchAria}>
+        <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="6.5"/><path d="m16 16 4.5 4.5"/></svg>
+        <span class="pal-btn-t">{T.ui.search}</span><kbd class="mono">Ctrl K</kbd>
+      </button>
       <a class="btn btn-sm btn-p top-cta" href={nav ? '#kontakt' : `${base}#kontakt`}>{T.ui.contact}</a>
     </div>
   </div>
@@ -102,9 +112,11 @@ const locale = lang === 'pl' ? 'pl-PL' : lang === 'ru' ? 'ru-RU' : 'en-GB';
   <div class="wrap foot-in">
     <div class="foot-brand"><Mark size={22} /> <span>© {new Date().getFullYear()} GitCloud · Aleh Pauliukovich</span></div>
     <div class="foot-sys mono"><span class="dot ok"></span> {T.ui.footSys}</div>
-    <a href="/privacy.html">{T.ui.privacy}</a>
+    <a href={privacyHref}>{T.ui.privacy}</a>
+    <span class="foot-build mono">{T.ui.build} {build.url ? <a href={build.url} rel="noopener">{build.short}</a> : build.short} · <time datetime={build.at.replace(' ', 'T')}>{build.at}</time></span>
   </div>
 </footer>
+<Palette lang={lang} altPaths={altPaths} />
 <script define:vars={{ locale }}>
   // Zegar w strefie Warszawy, jak w nagłówku konsoli GitCloud.
   const d = document.getElementById('gc-date'), tm = document.getElementById('gc-time');

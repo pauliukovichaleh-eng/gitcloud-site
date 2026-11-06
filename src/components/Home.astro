@@ -4,7 +4,8 @@ import Base from '../layouts/Base.astro';
 import EcoMap from './EcoMap.astro';
 import ProjectCard from './ProjectCard.astro';
 import ProjectDialog from './ProjectDialog.astro';
-import { ordered as orderedPl, projects, anchor, has, deliveries, localize } from '../lib/data';
+import { ordered as orderedPl, projects, anchor, has, localize } from '../lib/data';
+import stats from '../data/stats.json';
 import { t, home, type Lang } from '../i18n';
 
 interface Props { lang: Lang }
@@ -24,6 +25,23 @@ const layerLinks = [
 const esc = (x: string) => x.replace(/&/g, '&amp;').replace(/</g, '&lt;');
 const termHtml = '<span class="pr">$</span> whoami\n' + T.exp.term.map(([k, v]: string[]) => `<span class="k">${esc(k.padEnd(9))}</span> ${esc(v)}`).join('\n') + '\n<span class="pr">$</span> <span class="cur">_</span>';
 const shotKeys = ['dashboard', 'siec', 'ruch-asn', 'ai-advisor', 'ai-router', 'proxmox-all'];
+// Punkty na zrzutach konsoli: [x %, y %] w kolejności podpisów T.console.hot[widok].
+const hotXY: Record<string, [number, number][]> = {
+  dashboard: [[25, 18.2], [29, 30.4], [87, 42.9]],
+  siec: [[36, 26.4], [71.5, 34.7], [83.5, 34.7]],
+  'ruch-asn': [[33.5, 26.4], [52.5, 59.2], [83.5, 30.6]],
+  'ai-advisor': [[75.5, 25.6], [31.5, 30.6], [31.5, 61.3]],
+  'ai-router': [[35.5, 22.7], [50, 51.7], [69, 78.4]],
+  'proxmox-all': [[11.5, 18.2], [51.5, 42.9], [54.5, 59.2], [80, 51]],
+};
+// Żywa architektura: powiązania elementów warstw (L3 interfejs, L2 agenci, L1 dane), indeksy jak w T.arch.layers.
+const archLinks: [string, string][] = [
+  ['L3-0', 'L2-0'], ['L3-0', 'L2-2'], ['L3-0', 'L1-1'], ['L3-0', 'L1-2'],
+  ['L3-1', 'L2-0'], ['L3-1', 'L2-1'],
+  ['L3-2', 'L2-2'], ['L3-2', 'L1-1'],
+  ['L2-0', 'L1-0'], ['L2-1', 'L1-1'], ['L2-2', 'L1-0'],
+];
+const kpiVals = [String(stats.sections), `${stats.commits}+`, `${stats.exam}%`, `${stats.years}+`];
 const agentMeta = [['Sally', 'sally', 'm'], ['Tony', 'tony', 'b'], ['Mark', 'mark', 'g']];
 const jsonld = {
   '@context': 'https://schema.org',
@@ -58,7 +76,7 @@ const jsonld = {
     </div>
     <div class="wrap">
       <ul class="kpis">
-        {[String(deliveries), '3', '4+', '98%'].map((v, i) => (
+        {kpiVals.map((v, i) => (
           <li class="tile"><span class="lbl">{T.kpis[i][0]}</span><b class="val mono">{v}</b><span class="sub">{T.kpis[i][1]}</span></li>
         ))}
       </ul>
@@ -73,13 +91,15 @@ const jsonld = {
         <h2>{T.arch.h2}</h2>
         <p>{T.arch.p}</p>
       </header>
-      <div class="stack">
+      <p class="arch-hint mono" aria-hidden="true">{T.arch.hint}</p>
+      <div class="stack" data-links={JSON.stringify(archLinks)}>
+        <svg class="arch-wires" aria-hidden="true"></svg>
         {T.arch.layers.map(([lt, ls, items], li) => (
           <div class={`layer layer-L${3 - li}`}>
             <div class="layer-h"><span class="mono layer-k">L{3 - li}</span><div><h3>{lt}</h3><span class="muted">{ls}</span></div></div>
             <ul class="layer-items">
               {items.map(([it, isub], ii) => (
-                <li>{layerLinks[li][ii] ? <a href={layerLinks[li][ii]}><b>{it}</b><span>{isub}</span></a> : <div><b>{it}</b><span>{isub}</span></div>}</li>
+                <li data-k={`L${3 - li}-${ii}`}>{layerLinks[li][ii] ? <a href={layerLinks[li][ii]}><b>{it}</b><span>{isub}</span></a> : <div><b>{it}</b><span>{isub}</span></div>}</li>
               ))}
             </ul>
           </div>
@@ -134,7 +154,14 @@ const jsonld = {
         <div class="console-view">
           {shotKeys.map((k, i) => [k, i, ...T.console.shots[k]]).map(([k, i, sn, sc]) => (
               <figure class={`shot${i === 0 ? ' is-on' : ''}`} data-shot={k} role="tabpanel">
-                <a class="shot-open" data-full={T.console.full} href={`/img/demo/${k}.webp`} target="_blank" rel="noopener" aria-label={`${T.console.open}: ${sn}`}><img src={`/img/demo/${k}.webp`} alt={`${T.console.alt} ${sn} (${T.console.altDemo})`} width="2000" height="1250" loading={i === 0 ? 'eager' : 'lazy'} decoding="async" /></a>
+                <div class="shot-img">
+                  <a class="shot-open" data-full={T.console.full} href={`/img/demo/${k}.webp`} target="_blank" rel="noopener" aria-label={`${T.console.open}: ${sn}`}><img src={`/img/demo/${k}.webp`} alt={`${T.console.alt} ${sn} (${T.console.altDemo})`} width="2000" height="1250" loading={i === 0 ? 'eager' : 'lazy'} decoding="async" fetchpriority={i === 0 ? 'high' : undefined} /></a>
+                  {(hotXY[k] || []).map(([x, y], hi) => (
+                    <button type="button" class={`hot${x > 60 ? ' hot-l' : ''}`} style={`left:${x}%;top:${y}%`} aria-label={`${T.console.hotAria} ${hi + 1}: ${T.console.hot[k][hi]}`}>
+                      <span class="hot-n mono" aria-hidden="true">{hi + 1}</span><span class="hot-t" aria-hidden="true">{T.console.hot[k][hi]}</span>
+                    </button>
+                  ))}
+                </div>
                 <figcaption>{sc}</figcaption>
               </figure>
           ))}
@@ -210,6 +237,7 @@ const jsonld = {
           <span class="idx mono">{T.exp.idx}</span>
           <h2>{T.exp.h2}</h2>
           {T.exp.bio.map((b) => <p>{b}</p>)}
+          <a class="btn btn-g btn-sm cv-btn" href={T.cv.file} download><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v11m0 0-4.5-4.5M12 15l4.5-4.5M5 19.5h14"/></svg> {T.exp.cv}</a>
         </div>
         <div class="term" aria-hidden="true">
           <div class="term-bar mono"><span class="lights"><i></i><i></i><i></i></span> aleh@gitcloud: ~</div>
@@ -369,8 +397,65 @@ const jsonld = {
     $$('.sec-h, .layer, .rules, .bento .card, .console, .caps, .agent, .areas, .svc, .who > *, .contact > *').forEach((el) => { el.classList.add('rv'); rio.observe(el); });
   }
 
+  // ── Żywa architektura: najechanie (lub dotknięcie) elementu warstwy podświetla jego powiązania i rysuje przewody.
+  const stack = $<HTMLElement>('.stack[data-links]');
+  if (stack) {
+    const links: [string, string][] = JSON.parse(stack.dataset.links || '[]');
+    const wires = $<SVGSVGElement>('.arch-wires', stack)!;
+    const items = $$<HTMLElement>('li[data-k]', stack);
+    const byK = new Map(items.map((li) => [li.dataset.k!, li]));
+    const nb = (k: string) => links.filter((l) => l.includes(k)).map(([a, b]) => (a === k ? b : a));
+    const clear = () => { stack.classList.remove('is-hl'); items.forEach((li) => li.classList.remove('is-src', 'is-rel')); wires.innerHTML = ''; };
+    const light = (k: string) => {
+      clear();
+      const src = byK.get(k); if (!src) return;
+      stack.classList.add('is-hl'); src.classList.add('is-src');
+      const rel = nb(k);
+      rel.forEach((r) => byK.get(r)?.classList.add('is-rel'));
+      // przewody tylko w układzie siatki (na telefonie warstwy są karuzelami)
+      if (matchMedia('(min-width:861px)').matches) {
+        const box = stack.getBoundingClientRect();
+        wires.setAttribute('viewBox', `0 0 ${box.width} ${box.height}`);
+        const pt = (el: HTMLElement, up: boolean) => { const r = el.getBoundingClientRect(); return [r.left + r.width / 2 - box.left, (up ? r.top : r.bottom) - box.top]; };
+        wires.innerHTML = rel.map((r) => {
+          const el = byK.get(r)!; const down = r.slice(1, 2) < k.slice(1, 2);
+          const [x1, y1] = pt(src, !down), [x2, y2] = pt(el, down);
+          const my = (y1 + y2) / 2;
+          return `<path d="M${x1} ${y1} C${x1} ${my} ${x2} ${my} ${x2} ${y2}"/><circle cx="${x2}" cy="${y2}" r="3.5"/>`;
+        }).join('');
+      }
+    };
+    items.forEach((li) => {
+      li.addEventListener('pointerenter', (e) => { if ((e as PointerEvent).pointerType === 'mouse') light(li.dataset.k!); });
+      li.addEventListener('focusin', () => light(li.dataset.k!));
+      li.addEventListener('click', (e) => { if (!li.querySelector('a') && !li.classList.contains('is-src')) { e.preventDefault(); light(li.dataset.k!); } });
+    });
+    stack.addEventListener('pointerleave', (e) => { if ((e as PointerEvent).pointerType === 'mouse') clear(); });
+    stack.addEventListener('focusout', (e) => { if (!stack.contains((e as FocusEvent).relatedTarget as Node)) clear(); });
+    items.forEach((li) => { const d = li.firstElementChild as HTMLElement | null; if (d && d.tagName === 'DIV') d.tabIndex = 0; });
+    addEventListener('resize', clear);
+  }
+
+  // ── Mapa ekosystemu: najechany węzeł podświetla swoją ścieżkę do rdzenia
+  const eco = $<SVGSVGElement>('.eco svg');
+  if (eco) $$<SVGAElement>('.eco-node', eco).forEach((n, i) => {
+    const on = (v: boolean) => { eco.classList.toggle('is-hl', v); $(`#eco-p${i}`, eco)?.classList.toggle('on', v); n.classList.toggle('on', v); };
+    n.addEventListener('pointerenter', () => on(true)); n.addEventListener('pointerleave', () => on(false));
+    n.addEventListener('focus', () => on(true)); n.addEventListener('blur', () => on(false));
+  });
+
+  // ── Punkty na zrzutach: dotknięcie pokazuje podpis (na komputerze wystarczy najechać)
+  $$<HTMLButtonElement>('.hot').forEach((h) => h.addEventListener('click', (e) => {
+    e.stopPropagation();
+    const was = h.classList.contains('open');
+    $$('.hot.open').forEach((x) => x.classList.remove('open'));
+    h.classList.toggle('open', !was); stopAuto();
+  }));
+  document.addEventListener('click', () => $$('.hot.open').forEach((x) => x.classList.remove('open')));
+
   // ── Kopiowanie adresu
   const toast = $('#toast');
+  document.addEventListener('gc-toast', () => { if (toast) { toast.textContent = document.body.dataset.copied || ''; toast.classList.add('on'); setTimeout(() => toast.classList.remove('on'), 1800); } });
   $$<HTMLButtonElement>('[data-copy]').forEach((b) => b.addEventListener('click', async () => {
     try { await navigator.clipboard.writeText(b.dataset.copy!); if (toast) { toast.textContent = document.body.dataset.copied || ''; toast.classList.add('on'); setTimeout(() => toast.classList.remove('on'), 1800); } }
     catch { location.href = 'mailto:' + b.dataset.copy; }

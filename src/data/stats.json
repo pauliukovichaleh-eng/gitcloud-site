@@ -1,0 +1,8 @@
+{
+  "_opis": "Liczby w pasku KPI. Odświeżenie: tools/stats.sh (liczy commity w lokalnych repozytoriach GitCloud). sections = widoki konsoli ISP w wersji demo, każdy sprawdzony (HTTP 200).",
+  "measured": "2026-11-06",
+  "sections": 56,
+  "commits": 3700,
+  "exam": 98,
+  "years": 4
+}

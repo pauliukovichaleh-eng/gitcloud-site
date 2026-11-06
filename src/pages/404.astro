@@ -1,0 +1,41 @@
+---
+// 404.html dla GitHub Pages: jeden plik dla wszystkich języków. Język z adresu (/en/…, /ru/…) idzie na górę.
+import Base from '../layouts/Base.astro';
+import { ordered, localize } from '../lib/data';
+import { t, home, LANGS } from '../i18n';
+const T = t('pl');
+---
+<Base title={`404: ${T.nf.title} | GitCloud`} description={T.nf.p} path="/404.html" nav={false} noindex>
+  <section class="sec">
+    <div class="wrap nf-in">
+      <span class="idx mono">gitcloud / 404</span>
+      <div class="nf-code mono" aria-hidden="true">404</div>
+      <div class="nf-langs">
+        {LANGS.map((l, i) => {
+          const N: any = t(l).nf;
+          return (
+            <div class="tile nf-lang" data-l={l} lang={t(l).htmlLang}>
+              <span class="lbl">{l.toUpperCase()}</span>
+              {i === 0 ? <h1>{N.title}</h1> : <h2>{N.title}</h2>}
+              <p>{N.p}</p>
+              <div class="nf-acts">
+                <a class="btn btn-p btn-sm" href={home(l)}>{N.home}</a>
+                <button type="button" class="btn btn-g btn-sm" data-pal>{N.search}</button>
+              </div>
+            </div>
+          );
+        })}
+      </div>
+      <nav class="nf-proj pills" aria-label={T.nf.projects}>
+        {ordered.map((p) => <a href={`/projekty/${p.slug}/`}>{localize(p, 'pl').title}</a>)}
+      </nav>
+    </div>
+  </section>
+</Base>
+<script>
+  // /en/… i /ru/…: wersja w tym języku na górze
+  const l = location.pathname.split('/')[1];
+  const box = document.querySelector('.nf-langs');
+  const el = box?.querySelector(`[data-l="${l}"]`);
+  if (box && el && el !== box.firstElementChild) box.prepend(el);
+</script>
