@@ -15,10 +15,10 @@ permissions:
 concurrency: watch
 jobs:
   check:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-26.04
     timeout-minutes: 5
     steps:
-      - uses: actions/cache/restore@v4
+      - uses: actions/cache/restore@v6
         with:
           path: state
           key: watch-state-${{ github.run_id }}
@@ -43,7 +43,7 @@ jobs:
             echo "$now" > state
             echo "changed=1" >> "$GITHUB_OUTPUT"
           fi
-      - uses: actions/cache/save@v4
+      - uses: actions/cache/save@v6
         if: steps.check.outputs.changed == '1'
         with:
           path: state

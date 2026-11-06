@@ -1,5 +1,7 @@
 # Budowanie strony (Astro) i wdrożenie na GitHub Pages.
 # Codziennie o 05:10 UTC przebudowa: projekty z polem "od" pojawiają się same od swojej daty.
+# Akcje na Node 24 (07.11.2026). GitHub Pages potrafi zawisnąć w syncing_files / updating_pages: pierwsza próba
+# ma limit 6 min, po niepowodzeniu 3 min przerwy (Pages kończy anulowanie) i druga próba z limitem 10 min.
 name: deploy
 on:
   push:
@@ -16,25 +18,38 @@ concurrency:
   cancel-in-progress: false
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-26.04
     timeout-minutes: 10
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
         with:
           node-version: 22
           cache: npm
       - run: npm ci
       - run: npm run build
-      - uses: actions/upload-pages-artifact@v3
+      - uses: actions/upload-pages-artifact@v5
         with:
           path: dist
+          include-hidden-files: true # .nojekyll
   deploy:
     needs: build
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-26.04
+    timeout-minutes: 25
     environment:
       name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
+      url: ${{ steps.again.outputs.page_url || steps.first.outputs.page_url }}
     steps:
-      - id: deployment
-        uses: actions/deploy-pages@v4
+      - id: first
+        uses: actions/deploy-pages@v5
+        continue-on-error: true
+        with:
+          timeout: 360000
+      - name: przerwa przed drugą próbą
+        if: steps.first.outcome == 'failure'
+        run: |
+          echo "::warning::Pierwsza próba wdrożenia nie powiodła się, druga za 3 min"
+          sleep 180
+      - id: again
+        if: steps.first.outcome == 'failure'
+        uses: actions/deploy-pages@v5
