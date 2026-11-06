@@ -2,7 +2,7 @@ import raw from '../data/projects.json';
 import tr from '../data/projects.i18n.json';
 import type { Lang } from '../i18n';
 
-export type Img = { src: string; alt: string; video?: string; pixelated?: boolean; od?: string; i?: number };
+export type Img = { src: string; alt: string; video?: string; w?: number; h?: number; pixelated?: boolean; od?: string; i?: number };
 export type Stage = { slug: string; title: string; client?: string; od?: string; problem: string; solution: string; results: string[]; stack: string[] };
 export type Project = {
   slug: string; category: 'wlasne' | 'platformy' | 'zlecenia'; title: string; lead: string; year?: string;

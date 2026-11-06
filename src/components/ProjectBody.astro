@@ -28,7 +28,7 @@ const S = page ? 'h2' : 'h3'; // poziom nagłówków sekcji: na stronie po h1, w
 {first && (
   <div class="pd-gal">
     <figure class="pd-big">
-      {g.some((x) => x.video) && <video muted loop playsinline controls preload="none" poster={first.src} src={first.video} hidden={!first.video} width="960" height="474" data-inview={page && first.video ? '' : undefined}></video>}
+      {g.some((x) => x.video) && <video muted loop playsinline controls preload="none" poster={first.src} src={first.video} hidden={!first.video} width={first.w || 960} height={first.h || 474} data-inview={page && first.video ? '' : undefined}></video>}
       <img src={first.src} alt={first.alt} loading={page ? 'eager' : 'lazy'} fetchpriority={page ? 'high' : undefined} decoding="async" class={first.pixelated ? 'px' : ''} hidden={!!first.video} />
       <figcaption>{first.alt}</figcaption>
     </figure>

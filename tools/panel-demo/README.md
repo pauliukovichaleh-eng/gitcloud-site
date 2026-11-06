@@ -24,3 +24,9 @@ Okładka karty „Panel operacyjny” (16:9): `tools/okladki/panel.html` składa
 Okładka karty „Agenci AI” (16:9): `DSF=2 python final.py … <katalog>` (zrzuty /agenty, /agenty/tony, /agenty/sally w 2x)
 → WebP `tools/okladki/agenci-{agenci,tony,sally}-2x.webp`; `tools/okladki/agenci.html` składa pierścień działań,
 karty dwóch agentów i wskaźnik „Decydują sami”. Zrzut 1280×720 → WebP (jakość 82) do `public/img/projekty/agenci-okladka.webp`.
+
+Film „Agenci AI” (`/img/projekty/agenci.mp4`, 1280×720, ok. 25 s): `python rolik.py <katalog>` nagrywa przejście
+po panelu (przegląd /agenty, szczegóły sprawy, karty Tony, Sally, Mark) przez CDP screencast (JPEG 92) z narysowanym
+kursorem; tłumaczy opisy postaci na polski, ukrywa listę harmonogramu i sprawdza cyrylicę w kadrze w każdym punkcie.
+Klatki → ffconcat z czasami → `ffmpeg -c:v libx264 -preset veryslow -crf 28 -tune stillimage -movflags +faststart -an`;
+plakat `agenci-wideo.jpg` = klatka z 2. sekundy.
