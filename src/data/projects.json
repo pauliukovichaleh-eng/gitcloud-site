@@ -293,7 +293,7 @@
       "lead": "Kolejne etapy dla sklepu na Shoperze działającego na pięciu domenach oraz baza firm B2B. Wszystko przyjęte przez klientów.",
       "year": "2026",
       "status": "Zlecenia Useme, wszystkie przyjęte",
-      "image": "/img/projekty/zl-koszyk-karta.jpg",
+      "image": "/img/projekty/zlecenia-okladka.webp",
       "gallery": [
         {
           "src": "/img/projekty/zl-koszyk.jpg",
@@ -443,7 +443,7 @@
         "tlumaczenie-storefront-4-jezyki",
         "baza-b2b-nl-be"
       ],
-      "image_alt": "Koszyk sklepu i automatyczny test zamówienia na pięciu domenach (dane przykładowe)",
+      "image_alt": "Sklep z wyborem kraju i waluty na pięciu domenach oraz wyniki zleceń: test koszyka 5 z 5 domen, 66 punktów audytu SEO, baza 30 firm B2B, dane przykładowe",
       "gallery_note": "Ilustracje na danych przykładowych (sklep.example, wymyślone produkty i firmy). Sklepy i firmy klientów, ich dane i adresy nie są pokazywane."
     }
   ],
