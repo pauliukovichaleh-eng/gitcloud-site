@@ -23,3 +23,25 @@ for (const f of files) {
 }
 if (errs.length) { console.error(errs.join('\n')); process.exit(1); }
 console.log(`check: ok, ${files.length} plików`);
+
+// Kompletność tłumaczeń EN/RU: każdy podpis i tekst z projects.json musi mieć wersję w projects.i18n.json.
+const P = JSON.parse(readFileSync('src/data/projects.json', 'utf8'));
+const TR = JSON.parse(readFileSync('src/data/projects.i18n.json', 'utf8'));
+const FIELDS = ['title', 'lead', 'image_alt', 'status', 'problem', 'solution', 'role', 'results', 'gallery_note', 'links_title'];
+const STAGE = ['title', 'client', 'problem', 'solution', 'results'];
+const gaps = [];
+for (const lang of ['en', 'ru']) for (const p of P.projects) {
+  const o = TR[lang]?.[p.slug];
+  if (!o) { gaps.push(`${lang}/${p.slug}: brak tłumaczenia`); continue; }
+  for (const f of FIELDS) if (p[f] !== undefined && o[f] === undefined) gaps.push(`${lang}/${p.slug}: brak ${f}`);
+  const g = (p.gallery || []).length, ga = (o.gallery_alt || []).filter(Boolean).length;
+  if (g !== ga) gaps.push(`${lang}/${p.slug}: gallery ${g}, gallery_alt ${ga}`);
+  if ((p.links || []).length !== (o.links_label || []).length) gaps.push(`${lang}/${p.slug}: links ≠ links_label`);
+  for (const s of p.stages || []) {
+    const so = o.stages?.[s.slug];
+    if (!so) { gaps.push(`${lang}/${p.slug}/${s.slug}: brak etapu`); continue; }
+    for (const f of STAGE) if (s[f] !== undefined && so[f] === undefined) gaps.push(`${lang}/${p.slug}/${s.slug}: brak ${f}`);
+  }
+}
+if (gaps.length) { console.error('Brakujące tłumaczenia:\n' + gaps.join('\n')); process.exit(1); }
+console.log('check: tłumaczenia EN/RU kompletne');

@@ -9,7 +9,7 @@ const media = p.video ? 'video' : p.image ? 'img' : 'gen';
 ---
 <a class={`card cat-${p.category}${big ? ' card-big' : ''}`} href={`#${anchor(p.slug)}`} data-cat={p.category}>
   <div class={`card-media m-${media}`}>
-    {media === 'video' && <video src={p.video!.src} poster={p.video!.poster} muted loop playsinline preload="none" width="960" height="474" data-inview></video>}
+    {media === 'video' && <video src={p.video!.src} poster={p.video!.poster} muted loop playsinline preload="none" width="960" height="474" aria-label={p.image_alt || p.title} data-inview></video>}
     {media === 'img' && <img src={p.image} alt={p.image_alt || p.title} class={p.pixelated ? 'px' : ''} loading="lazy" decoding="async" />}
     {media === 'gen' && (
       <div class="gen" aria-hidden="true">

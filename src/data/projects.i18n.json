@@ -1,9 +1,10 @@
 {
-  "_info": "Tłumaczenia projects.json: język → slug → pola do podmiany (title, lead, status, problem, solution, role, results, gallery_alt[] w kolejności galerii, gallery_note, links_label[], stages{slug: {title, client, problem, solution, results}}). Czego brak, zostaje po polsku.",
+  "_info": "Tłumaczenia projects.json: język → slug → pola do podmiany (title, lead, image_alt, status, problem, solution, role, results, stack, gallery_alt[] w kolejności galerii, gallery_note, links_label[], stages{slug: {title, client, problem, solution, results, stack}}). Czego brak, zostaje po polsku.",
   "en": {
     "platforma-isp": {
       "title": "GitCloud: operations platform for a network operator",
       "lead": "One console for the network team: monitoring, automation, access and backups, with AI-assisted alerts.",
+      "image_alt": "GitCloud console: alert dashboard in the demo version",
       "status": "Live, demo version on fictional data",
       "problem": "The team worked across several separate tools, and the full picture of the network had to be assembled by hand.",
       "solution": "A platform built from scratch: live panels, a device inventory across many sites, alerts grouped by AI, an in-house SSH certificate authority and verified backups. The demo runs on a fictional operator, with no real data.",
@@ -27,6 +28,7 @@
     "glowy-agentow": {
       "title": "3D avatars for voice assistants",
       "lead": "Three 3D characters that speak with the agents' voices, with lip movement matched to speech and emotions.",
+      "image_alt": "Virtual head of an agent against a night city",
       "status": "Runs in the browser and on an external display",
       "problem": "A voice assistant without a face is harder to follow in a conversation. The goal was lifelike facial expressions on own hardware, without paid 3D models.",
       "solution": "Heads built in code with three.js, mouth movement computed from text and audio every 10 ms. The server renders on the GPU and streams video to a lightweight receiver.",
@@ -88,21 +90,24 @@
           "client": "Medical supplies store (Shoper, 5 domains)",
           "problem": "Countries are language versions of one store on five domains. After moving to the new theme the version URLs worked, but a customer on the Polish store had no way to switch country. It also had to be confirmed that an order can be placed on every domain.",
           "solution": "The new theme lacked the country and language module from the old one. The standard Shoper language and currency module with flags was added to the header for desktop, tablet and phone, with no other changes and with rollback instructions. Switching between all countries tested on desktop and phone, and the full checkout tested on every domain up to the active final button, without placing fake orders.",
-          "results": ["Country switching works both ways on 5 domains", "Checkout verified on 5 domains, no fake orders", "One theme change, rollback in one step", "Issues found in tests scoped for the next stage"]
+          "results": ["Country switching works both ways on 5 domains", "Checkout verified on 5 domains, no fake orders", "One theme change, rollback in one step", "Issues found in tests scoped for the next stage"],
+          "stack": ["Shoper", "Storefront", "Playwright", "checkout path tests"]
         },
         "tlumaczenie-storefront-4-jezyki": {
           "title": "Stage 4 · The new theme in four languages",
           "client": "Medical supplies store (Shoper, 5 domains)",
           "problem": "One Shoper store, four foreign versions on separate domains. Theme modules had Polish texts only, the Romanian version showed English system phrases, and the cart displayed technical keys instead of text. Banners and links on foreign versions led to the Polish store.",
           "solution": "Theme module texts translated separately for each language: header, mega menu, home page, product page, category, cart with a free gift app, the added-to-cart window and the footer. Banner and slide links pointed to each country's categories, country contact details added, Poland-only blocks hidden elsewhere. All Romanian system phrases completed. The Polish version checked after every change, visual changes kept in separate documented CSS blocks, and a final cart test on every foreign domain up to the active payment button.",
-          "results": ["4 language versions on the new theme", "1360 of 1360 Romanian system phrases", "Cart verified on 4 foreign domains", "Polish version unchanged, every change reversible", "9 out-of-scope issues documented for the store's decision"]
+          "results": ["4 language versions on the new theme", "1360 of 1360 Romanian system phrases", "Cart verified on 4 foreign domains", "Polish version unchanged, every change reversible", "9 out-of-scope issues documented for the store's decision"],
+          "stack": ["Shoper", "Storefront", "CSS", "Playwright", "localization", "checkout path tests"]
         },
         "baza-b2b-nl-be": {
           "title": "B2B company database for entering the Netherlands and Belgium",
           "client": "Distributor of finishing materials",
           "problem": "The company planned to enter the Dutch and Belgian markets and needed a scored list of potential partners before the first contact.",
           "solution": "A database built from company websites, with potential scoring and a shortlist of the best fits. Plus a competitor overview and draft messages in English (first contact and follow-up), respecting the client's limits on product claims. Everything in one Google Sheet with company, message and report tabs.",
-          "results": ["30 companies (19 NL, 11 BE) with potential scoring", "12 best fits selected for first contact", "Delivered on time and accepted on Useme"]
+          "results": ["30 companies (19 NL, 11 BE) with potential scoring", "12 best fits selected for first contact", "Delivered on time and accepted on Useme"],
+          "stack": ["Google Sheets", "market research", "lead generation", "B2B"]
         }
       }
     }
@@ -111,6 +116,7 @@
     "platforma-isp": {
       "title": "GitCloud: операционная платформа для оператора сети",
       "lead": "Одна консоль для сетевой команды: мониторинг, автоматизация, доступ и копии, с алертами при поддержке AI.",
+      "image_alt": "Консоль GitCloud: панель тревог в демо-версии",
       "status": "Работает, демо-версия на вымышленных данных",
       "problem": "Команда работала в нескольких отдельных инструментах, и полную картину сети приходилось собирать вручную.",
       "solution": "Платформа с нуля: панели в реальном времени, инвентарь устройств на многих площадках, алерты с группировкой через AI, собственный удостоверяющий центр SSH и проверяемые резервные копии. Демо работает на вымышленном операторе, без реальных данных.",
@@ -134,6 +140,7 @@
     "glowy-agentow": {
       "title": "3D-аватары для голосовых ассистентов",
       "lead": "Три 3D-персонажа, которые говорят голосами агентов, с движением губ под речь и эмоциями.",
+      "image_alt": "Виртуальная голова агента на фоне ночного города",
       "status": "Работает в браузере и на внешнем экране",
       "problem": "Голосовой ассистент без лица хуже воспринимается в разговоре. Цель: живая мимика на своём оборудовании, без платных 3D-моделей.",
       "solution": "Головы построены кодом на three.js, движение губ рассчитывается из текста и звука каждые 10 мс. Сервер рендерит на GPU и передаёт видеопоток лёгкому приёмнику.",
@@ -195,21 +202,24 @@
           "client": "Магазин медицинских товаров (Shoper, 5 доменов)",
           "problem": "Страны являются языковыми версиями одного магазина на пяти доменах. После перехода на новый шаблон адреса работали, но покупатель с польского магазина не мог перейти в другую страну. Также нужно было подтвердить, что заказ оформляется на каждом домене.",
           "solution": "В новом шаблоне не было модуля выбора страны и языка из старого. В шапку добавлен стандартный модуль Shoper «Язык и валюты» с флагами для компьютера, планшета и телефона, без других изменений и с инструкцией отката. Переходы между всеми странами проверены на компьютере и телефоне, оформление заказа на каждом домене пройдено до активной итоговой кнопки без фиктивных заказов.",
-          "results": ["Выбор страны работает в обе стороны на 5 доменах", "Оформление проверено на 5 доменах без фиктивных заказов", "Одно изменение шаблона, откат в один шаг", "Найденные проблемы описаны как объём следующего этапа"]
+          "results": ["Выбор страны работает в обе стороны на 5 доменах", "Оформление проверено на 5 доменах без фиктивных заказов", "Одно изменение шаблона, откат в один шаг", "Найденные проблемы описаны как объём следующего этапа"],
+          "stack": ["Shoper", "Storefront", "Playwright", "тесты пути покупки"]
         },
         "tlumaczenie-storefront-4-jezyki": {
           "title": "Этап 4 · Новый шаблон на четырёх языках",
           "client": "Магазин медицинских товаров (Shoper, 5 доменов)",
           "problem": "Один магазин на Shoper, четыре зарубежные версии на отдельных доменах. Модули шаблона были только на польском, румынская версия показывала системные фразы на английском, а в корзине вместо текстов были технические ключи. Баннеры и ссылки вели в польский магазин.",
           "solution": "Тексты модулей переведены отдельно для каждого языка: шапка, мега-меню, главная, карточка товара, категория, корзина с приложением подарка, окно добавления в корзину и подвал. Ссылки баннеров и слайдов ведут в категории своей страны, добавлены контакты страны, блоки только для Польши скрыты в других версиях. Дополнены все системные фразы румынской версии. Польская версия проверялась после каждого изменения, визуальные правки вынесены в отдельные описанные блоки CSS, в конце тест корзины на каждом зарубежном домене до активной кнопки оплаты.",
-          "results": ["4 языковые версии на новом шаблоне", "1360 из 1360 системных фраз румынской версии", "Корзина проверена на 4 зарубежных доменах", "Польская версия без изменений, каждое изменение откатывается", "9 вопросов вне объёма описаны для решения магазина"]
+          "results": ["4 языковые версии на новом шаблоне", "1360 из 1360 системных фраз румынской версии", "Корзина проверена на 4 зарубежных доменах", "Польская версия без изменений, каждое изменение откатывается", "9 вопросов вне объёма описаны для решения магазина"],
+          "stack": ["Shoper", "Storefront", "CSS", "Playwright", "локализация", "тесты пути покупки"]
         },
         "baza-b2b-nl-be": {
           "title": "База B2B-компаний для выхода на рынок Нидерландов и Бельгии",
           "client": "Дистрибьютор отделочных материалов",
           "problem": "Компания планировала выход на рынки Нидерландов и Бельгии и нуждалась в оценённом списке потенциальных партнёров до первого контакта.",
           "solution": "База собрана по данным сайтов компаний, с оценкой потенциала и отбором лучших. Плюс обзор конкурентов и черновики писем на английском (первый контакт и follow-up) с учётом ограничений клиентки по заявлениям о продукте. Всё в одной Google-таблице с вкладками компаний, писем и отчёта.",
-          "results": ["30 компаний (19 NL, 11 BE) с оценкой потенциала", "12 лучших выбраны для первого контакта", "Сдано в срок и принято на Useme"]
+          "results": ["30 компаний (19 NL, 11 BE) с оценкой потенциала", "12 лучших выбраны для первого контакта", "Сдано в срок и принято на Useme"],
+          "stack": ["Google Sheets", "исследование рынка", "лидогенерация", "B2B"]
         }
       }
     }
