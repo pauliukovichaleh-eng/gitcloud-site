@@ -253,6 +253,13 @@
       "image_alt": "Karty decyzji w panelu na komputerze i telefonie: pytania agentów z wariantami, dane przykładowe",
       "gallery": [
         {
+          "video": "/img/projekty/panel.mp4",
+          "src": "/img/projekty/panel-wideo.jpg",
+          "w": 1280,
+          "h": 720,
+          "alt": "Odpowiedź na pytanie agenta jednym kliknięciem: szczegóły karty, 5 sekund na cofnięcie, wynik w dzienniku decyzji, potem strona modeli; nagranie z ekranu, dane przykładowe"
+        },
+        {
           "src": "/img/projekty/panel-decyzje.webp",
           "alt": "Karty decyzji: pytania agentów z wariantami, polecany oznaczony gwiazdką, obok limity i sesje Claude"
         },
@@ -273,7 +280,7 @@
           "alt": "Strona modeli na telefonie"
         }
       ],
-      "gallery_note": "Zrzuty panelu uruchomionego na danych przykładowych: wymyślone pytania agentów do właściciela i wymyślone wywołania modeli z kwotami, bez połączenia z bazą i siecią; brakujące polskie napisy interfejsu przetłumaczone na potrzeby zrzutów.",
+      "gallery_note": "Nagranie i zrzuty panelu uruchomionego na danych przykładowych: wymyślone pytania agentów do właściciela i wymyślone wywołania modeli z kwotami, bez połączenia z bazą i siecią; brakujące polskie napisy interfejsu przetłumaczone, w nagraniu ukryty pasek finansów.",
       "problem": "Praca agentów, alarmy i koszty modeli były rozrzucone po kilku narzędziach, a pytania wymagające decyzji człowieka ginęły wśród powiadomień.",
       "solution": "Aplikacja webowa na FastAPI z szablonami po stronie serwera i odświeżaniem na żywo przez WebSocket. Pytania agentów przychodzą jako karty z wariantami, polecany oznaczony gwiazdką; wybór trafia do dziennika decyzji, a agent wykonuje go sam. Strona modeli łączy wywołania z ostatnich dni, saldo płatnych kont i wynik jakości każdego modelu. Na telefonie panel działa jako aplikacja PWA z dolnym paskiem zakładek.",
       "stack": [

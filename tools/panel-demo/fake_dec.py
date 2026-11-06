@@ -62,7 +62,25 @@ SESS = [
 ]
 
 
+RESULT = {900: "Zaplanowane: niedziela 03:00, kopia przed i test odtworzenia po"}
+
+
+def answer(qid, k, edge=False):
+    """Ответ из ролика (#552): вопрос уходит в журнал, итог выдуман, приходит через 2 с, как от исполнителя."""
+    for x in Q:
+        if x["id"] == int(qid) and x["answer"] is None:
+            if k not in {o["k"] for o in x["options"]}:
+                raise ValueError("nie ma takiego wariantu")
+            now = datetime.now(timezone.utc)
+            x.update(answer=k, answered_at=now, applied_at=now + timedelta(seconds=2),
+                     result=RESULT.get(x["id"], "Przyjęte"))
+            return
+    raise ValueError("już rozstrzygnięte")
+
+
 def patch():
+    from gitcloud_ai import decisions
+    decisions.answer = answer
     from gitcloud_ai import claudecc
     claudecc.sessions = lambda *a, **k: [dict(s) for s in SESS]
     claudecc.usage = lambda: {"l5": 22, "r5": T + 2.6 * 3600, "lw": 34, "rw": T + 3.2 * 86400, "at": T - 120}

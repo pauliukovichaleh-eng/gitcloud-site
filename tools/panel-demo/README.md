@@ -30,3 +30,10 @@ po panelu (przegląd /agenty, szczegóły sprawy, karty Tony, Sally, Mark) przez
 kursorem; tłumaczy opisy postaci na polski, ukrywa listę harmonogramu i sprawdza cyrylicę w kadrze w każdym punkcie.
 Klatki → ffconcat z czasami → `ffmpeg -c:v libx264 -preset veryslow -crf 28 -tune stillimage -movflags +faststart -an`;
 plakat `agenci-wideo.jpg` = klatka z 2. sekundy.
+
+Film „Panel operacyjny” (`/img/projekty/panel.mp4`, 1280×720, ok. 33 s): przed nagraniem uruchomić panel od nowa
+(odpowiedź zmienia dane `fake_dec.py` do restartu), potem `python rolik_panel.py <katalog>`. Scenariusz: pulpit Claude
+na stronie głównej → szczegóły pytania → odpowiedź jednym kliknięciem (5 s na cofnięcie, potem „w trakcie”, karta
+przechodzi do dziennika z wymyślonym wynikiem) → dziennik decyzji → zakładka „Modele”, rozwinięty wynik modelu.
+Pasek finansów u góry i nazwa użytkownika w nagłówku ukryte. Wspólne dla obu filmów (napisy po polsku, kursor,
+kontrola cyrylicy w kadrze) jest w `rolik_common.py`. Kodowanie i plakat `panel-wideo.jpg` jak przy „Agenci AI”.
