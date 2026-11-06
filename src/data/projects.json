@@ -202,6 +202,14 @@
           "alt": "Karta asystentki: sprawy dnia, skuteczność i awatar 3D"
         },
         {
+          "src": "/img/projekty/panel-decyzje.webp",
+          "alt": "Karty decyzji: pytania agentów z wariantami, polecany oznaczony gwiazdką, obok limity i sesje Claude"
+        },
+        {
+          "src": "/img/projekty/panel-decyzje-szczegoly.webp",
+          "alt": "Szczegóły karty i dziennik decyzji: wybrany wariant i wynik wykonania"
+        },
+        {
           "src": "/img/projekty/panel-modele.webp",
           "alt": "Modele językowe: saldo płatnych kont, wywołania wg dni, udział modeli i ich wynik jakości"
         },
@@ -212,9 +220,13 @@
         {
           "src": "/img/projekty/panel-modele-tel.webp",
           "alt": "Strona modeli na telefonie"
+        },
+        {
+          "src": "/img/projekty/panel-decyzje-tel.webp",
+          "alt": "Karty decyzji na telefonie: odpowiedź jednym dotknięciem"
         }
       ],
-      "gallery_note": "Zrzuty panelu uruchomionego na danych przykładowych: wymyślony dziennik spraw i wymyślone wywołania modeli z kwotami, bez połączenia z bazą i siecią; brakujące polskie napisy interfejsu przetłumaczone na potrzeby zrzutów.",
+      "gallery_note": "Zrzuty panelu uruchomionego na danych przykładowych: wymyślony dziennik spraw, wymyślone pytania agentów do właściciela i wymyślone wywołania modeli z kwotami, bez połączenia z bazą i siecią; brakujące polskie napisy interfejsu przetłumaczone na potrzeby zrzutów.",
       "problem": "Rutynowe zadania (alarmy, poczta, terminy, aktualizacje) zabierały czas każdego dnia, a jeden ogólny asystent mylił kompetencje.",
       "solution": "Każdy agent ma swoją rolę, umiejętności i pamięć decyzji w PostgreSQL. Propozycje zmian ocenia rada agentów, a decyzje wymagające człowieka trafiają do panelu jako karty z wariantami. Każda akcja jest zapisana w dzienniku.",
       "stack": [
