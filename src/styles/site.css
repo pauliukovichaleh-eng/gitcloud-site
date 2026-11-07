@@ -766,3 +766,4 @@ html:not(.cv-off) #kontakt{ content-visibility:auto; contain-intrinsic-size:auto
 @media (max-width:620px){ .zm-img.n2{ grid-template-columns:1fr; } .zm-item{ padding:14px; } }
 .zm-home .zm-item h3{ margin:8px 0 6px; font-size:16px; } .zm-home .zm-list{ margin-top:14px; } .zm-home .link-more{ display:inline-block; margin-top:14px; }
 .zm-item p{ margin-bottom:8px; }
+.pp-zm{ margin-top:34px; } .pp-zm .zm-list{ margin-top:12px; } .pp-zm h3{ font-size:16px; margin:6px 0; } .pp-zm h3 a{ color:inherit; }

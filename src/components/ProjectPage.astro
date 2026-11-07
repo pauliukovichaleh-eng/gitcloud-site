@@ -6,6 +6,7 @@ import ProjectBody from './ProjectBody.astro';
 import ProjectCard from './ProjectCard.astro';
 import { ordered, localize, projectPath, anchor, plakat, srcset, type Project } from '../lib/data';
 import { t, home, LANGS, type Lang } from '../i18n';
+import { zmiany, zmianyPath } from '../lib/zmiany';
 interface Props { p0: Project; lang: Lang }
 const { p0, lang } = Astro.props;
 const p = localize(p0, lang);
@@ -48,6 +49,8 @@ const jsonld = {
     },
   ],
 };
+// decyzja #751: ostatnie wpisy dziennika /zmiany/ tego projektu (pole project w zmiany.json)
+const recent = zmiany.filter((z) => z.project === p.slug).slice(0, 3);
 const og = lang === 'pl' ? `/img/og/p-${p.slug}.png` : `/img/og/p-${p.slug}-${lang}.png`;
 ---
 <Base title={p.title.startsWith('GitCloud') ? p.title : `${p.title} | GitCloud`} description={cut(p.lead, 158)} path={path} jsonld={jsonld} nav={false} og={og} lang={lang} alternates altPaths={altPaths}>
@@ -60,6 +63,16 @@ const og = lang === 'pl' ? `/img/og/p-${p.slug}.png` : `/img/og/p-${p.slug}-${la
       <article class="pd-body pp-body">
         <ProjectBody p={p} lang={lang} page hid="pp-t" />
       </article>
+      {recent.length > 0 && (
+        <aside class="pp-zm">
+          <h2 class="idx mono">{T.ui.changesH}</h2>
+          <ol class="zm-list">
+            {recent.map((z) => { const tx = (z as any)[lang] ?? z.pl; return (
+              <li class="zm-item tile"><div class="zm-meta mono"><time datetime={z.date}>{z.date}</time></div>
+                <h3><a href={`${zmianyPath(lang)}#${z.id}`}>{tx.t}</a></h3><p class="muted">{tx.x}</p></li>); })}
+          </ol>
+        </aside>
+      )}
       <div class="pp-cta">
         <a class="btn btn-p" href={`${base}#kontakt`}>{T.ui.contact}</a>
         <a class="link-more" href={`${base}#moduly`}>&larr; {D.back}</a>

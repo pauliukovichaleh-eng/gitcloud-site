@@ -15,3 +15,12 @@ public/img/zmiany/) i aktualizuje plan `PLAN.md`. Bez zmian w żadnym repo: nic 
 Zasady: plik podmieniany tylko, gdy kadr widocznie się zmienił (bez zmian = stary plik zostaje, repo nie puchnie);
 tylko dane przykładowe; `npm run build` (check.mjs) musi przejść. Wynik idzie od razu na main (GitHub Pages),
 rano jedna linia w podsumowaniu. Miniatury i plakaty (img/mini, img/plakat) odtwarza `node tools/miniatury.mjs`.
+
+## Ochrona i zasięg (decyzje #749–#752)
+- **OCR** (`tools/odswiez/ocr.py`, tesseract pol+eng+rus): każdy nowy obraz i film nocy jest czytany; słowo z FORBIDDEN
+  (check.mjs) albo `ocr-zakazane.txt` lub prywatny IP (poza wymyśloną siecią konsoli ISP) = noc nie wychodzi.
+- **Cofnięcie nocy**: noc z podmienionymi obrazami zostawia kartę „Zostawić / Cofnąć” (`site-refresh --rollback <data>`:
+  git revert commitów nocy + stare filmy z kopii), bez odpowiedzi przez dobę zostaje.
+- **Filmy** w wydaniu GitHub `media`, nie w git (`tools/media.sh`); lokalny build: `tools/media.sh fetch`.
+- **IndexNow** po wdrożeniu (Bing, Yandex), **piątek**: szkic posta LinkedIn z tygodnia (karta, publikuje właściciel).
+- Wpis z polem `project` pokazuje się też na stronie projektu (blok „Ostatnie zmiany”).

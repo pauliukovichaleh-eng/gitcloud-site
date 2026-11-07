@@ -4,7 +4,7 @@ import type { Lang } from '../i18n';
 
 type Tx = { t: string; x: string };
 export type Zmiana = {
-  id: string; date: string; area: string; kind: 'wizualna' | 'techniczna'; link?: string;
+  id: string; date: string; area: string; project?: string; kind: 'wizualna' | 'techniczna'; link?: string;
   img?: { src: string; alt?: Partial<Record<Lang, string>>; label?: 'przed' | 'po' | 'kadr' }[];
   pl: Tx; en?: Tx; ru?: Tx;
 };

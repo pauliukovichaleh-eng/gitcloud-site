@@ -27,6 +27,10 @@ jobs:
           node-version: 22
           cache: npm
       - run: npm ci
+      - name: Filmy z wydania „media” (decyzja #752; w git ich nie ma, adresy na stronie bez zmian)
+        run: gh release download media -R "$GITHUB_REPOSITORY" -p '*.mp4' -D public/img/projekty --clobber
+        env:
+          GH_TOKEN: ${{ github.token }}
       - run: npm run build
       - uses: actions/upload-pages-artifact@v5
         with:
@@ -53,3 +57,14 @@ jobs:
       - id: again
         if: steps.first.outcome == 'failure'
         uses: actions/deploy-pages@v5
+  indexnow:
+    # Decyzja #750: po wdrożeniu z pushu (nocne prowadzenie strony) Bing i Yandex dostają listę stron przez IndexNow.
+    needs: deploy
+    if: github.event_name == 'push'
+    runs-on: ubuntu-26.04
+    timeout-minutes: 3
+    steps:
+      - run: |
+          body='{"host":"gitcloud.pl","key":"ac56c9c7db3ad44de971eb310b37469b","keyLocation":"https://gitcloud.pl/ac56c9c7db3ad44de971eb310b37469b.txt","urlList":["https://gitcloud.pl/","https://gitcloud.pl/zmiany/","https://gitcloud.pl/en/","https://gitcloud.pl/en/zmiany/","https://gitcloud.pl/ru/","https://gitcloud.pl/ru/zmiany/"]}'
+          code=$(curl -s -o /dev/null -w '%{http_code}' -H 'Content-Type: application/json; charset=utf-8' -d "$body" https://api.indexnow.org/indexnow)
+          echo "IndexNow: $code"; [ "$code" = 200 ] || [ "$code" = 202 ]

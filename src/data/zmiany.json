@@ -1,5 +1,5 @@
 {
-  "_opis": "Dziennik zmian /zmiany/ (decyzja #748). Prowadzi go nocne odświeżanie (host/site-refresh): nowe wpisy NA POCZĄTKU. Pola: id (data-slug), date, area (strona|panel|agenci|glowy|pilot|isp|infra), kind (wizualna = z obrazami przed/po, techniczna = krótko, bez obrazów), img [{src, alt{pl,en,ru}, label: przed|po|kadr}], link (kotwica albo strona projektu), pl/en/ru {t, x}. Tylko to, co publiczne: bez klientów, pracodawców, domu, finansów, adresów IP.",
+  "_opis": "Dziennik zmian /zmiany/ (decyzja #748). Prowadzi go nocne odświeżanie (host/site-refresh): nowe wpisy NA POCZĄTKU. Pola: id (data-slug), date, area, project (slug z projects.json: wpis pokazuje się też na stronie projektu, decyzja #751) (strona|panel|agenci|glowy|pilot|isp|infra), kind (wizualna = z obrazami przed/po, techniczna = krótko, bez obrazów), img [{src, alt{pl,en,ru}, label: przed|po|kadr}], link (kotwica albo strona projektu), pl/en/ru {t, x}. Tylko to, co publiczne: bez klientów, pracodawców, domu, finansów, adresów IP.",
   "wpisy": [
     {
       "id": "2026-11-07-wyglad",
@@ -17,6 +17,7 @@
       "area": "strona",
       "kind": "techniczna",
       "link": "/#moduly",
+      "project": "panel-operacyjny",
       "pl": { "t": "Filmy z prawdziwych interfejsów", "x": "Na początku galerii projektów są nagrania: panel operacyjny (33 s), agenci AI (25 s), pilot ESP32 z symulatora (24 s) i głowy agentów (16 s). Wszystko na danych przykładowych, nagrywane skryptami z repozytorium, więc można je powtórzyć po każdej zmianie." },
       "en": { "t": "Videos from the real interfaces", "x": "Project galleries now open with recordings: the operations panel (33 s), AI agents (25 s), the ESP32 remote from its simulator (24 s) and the agents' heads (16 s). All on sample data, recorded by scripts in the repository, so they can be redone after every change." },
       "ru": { "t": "Видео из настоящих интерфейсов", "x": "Галереи проектов начинаются с записей: панель (33 с), агенты AI (25 с), пульт ESP32 из симулятора (24 с) и головы агентов (16 с). Всё на выдуманных данных, записано скриптами из репозитория, поэтому их можно переснять после любого изменения." }

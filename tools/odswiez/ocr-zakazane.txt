@@ -1,0 +1,11 @@
+# Słowa, których nie może być na obrazach strony (OCR, decyzja #749), małymi literami; plus FORBIDDEN z check.mjs.
+natalia
+agata
+revolut
+ipko
+kraken
+pesel
+iban
+useme
+pruszków
+pruszkow

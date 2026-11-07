@@ -3,3 +3,5 @@ dist/
 .astro/
 __pycache__/
 .lighthouseci/
+# filmy w wydaniu GitHub „media” (tools/media.sh, decyzja #752)
+public/img/projekty/*.mp4

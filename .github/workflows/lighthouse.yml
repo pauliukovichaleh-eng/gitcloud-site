@@ -23,6 +23,10 @@ jobs:
           node-version: 22
           cache: npm
       - run: npm ci
+      - name: Filmy z wydania „media” (decyzja #752; w git ich nie ma, adresy na stronie bez zmian)
+        run: gh release download media -R "$GITHUB_REPOSITORY" -p '*.mp4' -D public/img/projekty --clobber
+        env:
+          GH_TOKEN: ${{ github.token }}
       - run: npm run build
       - name: lhci autorun
         run: npx --yes @lhci/cli@0.14.x autorun
