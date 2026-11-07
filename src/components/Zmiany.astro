@@ -1,0 +1,58 @@
+---
+// Dziennik zmian w trzech językach: /zmiany/, /en/zmiany/, /ru/zmiany/ (decyzja #748, 07.11.2026).
+// Dane: src/data/zmiany.json; nowe wpisy co noc dopisuje nocne odświeżanie (tools/odswiez/README.md).
+// Wpis „wizualna” pokazuje obrazy przed/po, „techniczna” to krótki tekst.
+import Base from '../layouts/Base.astro';
+import { home, type Lang } from '../i18n';
+import { zmiany, zmianyPath, AREA } from '../lib/zmiany';
+
+interface Props { lang: Lang }
+const { lang } = Astro.props;
+const TX = {
+  pl: { title: 'Zmiany | GitCloud', desc: 'Dziennik zmian GitCloud: co wdrożyłem, co wygląda inaczej, z obrazami przed i po.', back: 'Strona główna', idx: 'gitcloud / zmiany', h1: 'Zmiany', lead: 'Co noc sprawdzam, co zmieniło się w systemie, przenagrywam zrzuty i dopisuję tu, co weszło. Zmiany widoczne mają obrazy przed i po, techniczne są krótko.', vis: 'widoczna zmiana', tech: 'technicznie', more: 'zobacz', rss: 'RSS', before: 'przed', after: 'po' },
+  en: { title: 'Changes | GitCloud', desc: 'GitCloud changelog: what I shipped and what looks different, with before and after images.', back: 'Home page', idx: 'gitcloud / changes', h1: 'Changes', lead: 'Every night I check what changed in the system, re-record the screenshots and write down here what went in. Visible changes get before and after images, technical ones are short.', vis: 'visible change', tech: 'technical', more: 'see', rss: 'RSS', before: 'before', after: 'after' },
+  ru: { title: 'Изменения | GitCloud', desc: 'Журнал изменений GitCloud: что внедрено и что выглядит иначе, с картинками до и после.', back: 'Главная', idx: 'gitcloud / изменения', h1: 'Изменения', lead: 'Каждую ночь я смотрю, что поменялось в системе, переснимаю кадры и записываю сюда, что вошло. У видимых изменений есть картинки до и после, технические коротко.', vis: 'видимое изменение', tech: 'технически', more: 'смотреть', rss: 'RSS', before: 'до', after: 'после' },
+}[lang];
+const fmt = new Intl.DateTimeFormat(lang === 'pl' ? 'pl-PL' : lang === 'en' ? 'en-GB' : 'ru-RU', { day: 'numeric', month: 'long', year: 'numeric', timeZone: 'UTC' });
+const paths = { pl: zmianyPath('pl'), en: zmianyPath('en'), ru: zmianyPath('ru') };
+const lab = (l?: string) => (l === 'przed' ? TX.before : l === 'po' ? TX.after : '');
+const href = (link?: string) => (!link ? '' : link.startsWith('/') && lang !== 'pl' ? `/${lang}${link === '/' ? '/' : link}`.replace('//', '/') : link);
+---
+<Base title={TX.title} description={TX.desc} path={paths[lang]} nav={false} lang={lang} alternates altPaths={paths}>
+  <link rel="alternate" type="application/rss+xml" title="GitCloud: zmiany" href="/zmiany/rss.xml" slot="head" />
+  <section class="sec legal zm">
+    <div class="wrap legal-in zm-in">
+      <a class="link-more" href={home(lang)}>&larr; {TX.back}</a>
+      <span class="idx mono">{TX.idx}</span>
+      <h1>{TX.h1}</h1>
+      <p class="muted">{TX.lead} <a class="mono" href="/zmiany/rss.xml">{TX.rss}</a></p>
+      <ol class="zm-list">
+        {zmiany.map((z) => {
+          const tx = z[lang] ?? z.pl;
+          return (
+            <li class="zm-item tile" id={z.id}>
+              <div class="zm-meta mono">
+                <time datetime={z.date}>{fmt.format(new Date(z.date))}</time>
+                <span class="zm-area">{AREA[z.area]?.[lang] ?? z.area}</span>
+                <span class={`zm-kind ${z.kind === 'wizualna' ? 'vis' : ''}`}>{z.kind === 'wizualna' ? TX.vis : TX.tech}</span>
+              </div>
+              <h2>{tx.t}</h2>
+              <p>{tx.x}</p>
+              {z.img?.length ? (
+                <div class={`zm-img n${Math.min(z.img.length, 2)}`}>
+                  {z.img.map((im) => (
+                    <figure>
+                      <img src={im.src} alt={im.alt?.[lang] ?? im.alt?.pl ?? ''} loading="lazy" decoding="async" />
+                      {lab(im.label) && <figcaption class="mono">{lab(im.label)}</figcaption>}
+                    </figure>
+                  ))}
+                </div>
+              ) : null}
+              {z.link && <a class="link-more" href={href(z.link)}>{TX.more} &rarr;</a>}
+            </li>
+          );
+        })}
+      </ol>
+    </div>
+  </section>
+</Base>

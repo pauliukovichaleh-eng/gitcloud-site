@@ -750,3 +750,19 @@ html:not(.cv-off) #kontakt{ content-visibility:auto; contain-intrinsic-size:auto
 .nf-acts{ display:flex; flex-wrap:wrap; gap:10px; margin-top:14px; }
 .nf-proj{ display:flex; flex-wrap:wrap; gap:8px; margin-top:22px; }
 @media (prefers-reduced-motion: reduce){ .hot::before, .arch-wires path{ animation:none; } }
+/* Dziennik zmian /zmiany/ (decyzja #748) */
+.zm-in{ max-width:880px; }
+.zm-list{ list-style:none; padding:0; margin:28px 0 0; display:flex; flex-direction:column; gap:16px; }
+.zm-item{ padding:18px 20px; }
+.zm-item h2{ margin:8px 0 6px; font-size:18px; }
+.zm-meta{ display:flex; flex-wrap:wrap; gap:10px; font-size:12px; color:var(--muted); }
+.zm-area{ color:var(--neon2); }
+.zm-kind.vis{ color:var(--c-platformy); }
+.zm-img{ display:grid; gap:10px; margin:12px 0 4px; }
+.zm-img.n2{ grid-template-columns:1fr 1fr; }
+.zm-img figure{ margin:0; position:relative; }
+.zm-img img{ width:100%; height:auto; display:block; border-radius:var(--r-s); }
+.zm-img figcaption{ position:absolute; left:8px; top:8px; font-size:11px; padding:2px 8px; border-radius:6px; background:rgba(3,4,8,.7); }
+@media (max-width:620px){ .zm-img.n2{ grid-template-columns:1fr; } .zm-item{ padding:14px; } }
+.zm-home .zm-item h3{ margin:8px 0 6px; font-size:16px; } .zm-home .zm-list{ margin-top:14px; } .zm-home .link-more{ display:inline-block; margin-top:14px; }
+.zm-item p{ margin-bottom:8px; }

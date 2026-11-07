@@ -6,6 +6,7 @@ import ProjectCard from './ProjectCard.astro';
 import ProjectDialog from './ProjectDialog.astro';
 import { ordered as orderedPl, projects, anchor, has, localize, projectPath } from '../lib/data';
 import stats from '../data/stats.json';
+import { zmiany, zmianyPath } from '../lib/zmiany';
 import { t, home, type Lang } from '../i18n';
 
 interface Props { lang: Lang }
@@ -283,6 +284,19 @@ const jsonld = {
           </div>
         </div>
       </div>
+    </div>
+  </section>
+
+  <!-- ═══ ZMIANY (decyzja #748): trzy ostatnie wpisy dziennika, prowadzi go nocne odświeżanie ═══ -->
+  <section class="sec zm-home" id="zmiany">
+    <div class="wrap">
+      <span class="idx mono">{T.ui.changesH}</span>
+      <ol class="zm-list">
+        {zmiany.slice(0, 3).map((z) => { const tx = (z as any)[lang] ?? z.pl; return (
+          <li class="zm-item tile"><div class="zm-meta mono"><time datetime={z.date}>{z.date}</time></div>
+            <h3>{tx.t}</h3><p class="muted">{tx.x}</p></li>); })}
+      </ol>
+      <a class="link-more" href={zmianyPath(lang)}>{T.ui.changesAll} &rarr;</a>
     </div>
   </section>
 

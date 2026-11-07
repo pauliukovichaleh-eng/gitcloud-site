@@ -1,0 +1,45 @@
+{
+  "_opis": "Dziennik zmian /zmiany/ (decyzja #748). Prowadzi go nocne odświeżanie (host/site-refresh): nowe wpisy NA POCZĄTKU. Pola: id (data-slug), date, area (strona|panel|agenci|glowy|pilot|isp|infra), kind (wizualna = z obrazami przed/po, techniczna = krótko, bez obrazów), img [{src, alt{pl,en,ru}, label: przed|po|kadr}], link (kotwica albo strona projektu), pl/en/ru {t, x}. Tylko to, co publiczne: bez klientów, pracodawców, domu, finansów, adresów IP.",
+  "wpisy": [
+    {
+      "id": "2026-11-07-wyglad",
+      "date": "2026-11-07",
+      "area": "strona",
+      "kind": "techniczna",
+      "link": "/",
+      "pl": { "t": "Strona wygląda jak panel GitCloud", "x": "Spokojna paleta, jedno światło z góry, bez obwódek i poświat; fonty Onest i JetBrains Mono. Kolory nie są już wpisane w stronę: biorę je z rdzenia GitCloud (tokens.css), tak jak panel i pilot. Teksty skrócone do faktów, w pierwszej osobie." },
+      "en": { "t": "The site looks like the GitCloud panel", "x": "Calm palette, one light from above, no outlines or glows; Onest and JetBrains Mono fonts. Colours are no longer written into the site: they come from the GitCloud core (tokens.css), like the panel and the remote. Texts cut down to facts, in the first person." },
+      "ru": { "t": "Сайт выглядит как панель GitCloud", "x": "Спокойная палитра, один свет сверху, без обводок и свечений; шрифты Onest и JetBrains Mono. Цвета больше не вписаны в сайт: они берутся из ядра GitCloud (tokens.css), как у панели и пульта. Тексты сокращены до фактов, от первого лица." }
+    },
+    {
+      "id": "2026-11-06-wideo",
+      "date": "2026-11-06",
+      "area": "strona",
+      "kind": "techniczna",
+      "link": "/#moduly",
+      "pl": { "t": "Filmy z prawdziwych interfejsów", "x": "Na początku galerii projektów są nagrania: panel operacyjny (33 s), agenci AI (25 s), pilot ESP32 z symulatora (24 s) i głowy agentów (16 s). Wszystko na danych przykładowych, nagrywane skryptami z repozytorium, więc można je powtórzyć po każdej zmianie." },
+      "en": { "t": "Videos from the real interfaces", "x": "Project galleries now open with recordings: the operations panel (33 s), AI agents (25 s), the ESP32 remote from its simulator (24 s) and the agents' heads (16 s). All on sample data, recorded by scripts in the repository, so they can be redone after every change." },
+      "ru": { "t": "Видео из настоящих интерфейсов", "x": "Галереи проектов начинаются с записей: панель (33 с), агенты AI (25 с), пульт ESP32 из симулятора (24 с) и головы агентов (16 с). Всё на выдуманных данных, записано скриптами из репозитория, поэтому их можно переснять после любого изменения." }
+    },
+    {
+      "id": "2026-11-06-szybkosc",
+      "date": "2026-11-06",
+      "area": "strona",
+      "kind": "techniczna",
+      "link": "/",
+      "pl": { "t": "Szybkość i dostępność", "x": "Krytyczny CSS pierwszego ekranu w stronie, własne podzbiory fontów, lekkie miniatury i plakaty wideo. Lighthouse CI po każdym pushu; dostępność 100. Astro 7, npm audit bez podatności." },
+      "en": { "t": "Speed and accessibility", "x": "Critical first-screen CSS inlined, own font subsets, light thumbnails and video posters. Lighthouse CI after every push; accessibility 100. Astro 7, npm audit with no vulnerabilities." },
+      "ru": { "t": "Скорость и доступность", "x": "Критический CSS первого экрана внутри страницы, свои подмножества шрифтов, лёгкие миниатюры и обложки видео. Lighthouse CI после каждого push; доступность 100. Astro 7, npm audit без уязвимостей." }
+    },
+    {
+      "id": "2026-11-05-wizytowka",
+      "date": "2026-11-05",
+      "area": "strona",
+      "kind": "techniczna",
+      "link": "/",
+      "pl": { "t": "Nowa wizytówka na Astro", "x": "Jedna strona zamiast kilku: ekosystem, architektura, realizacje, konsola ISP, agenci i kontakt. Trzy języki (PL, EN, RU), wdrożenie przez GitHub Actions na GitHub Pages." },
+      "en": { "t": "New one-page site on Astro", "x": "One page instead of several: ecosystem, architecture, projects, ISP console, agents and contact. Three languages (PL, EN, RU), deployed by GitHub Actions to GitHub Pages." },
+      "ru": { "t": "Новая визитка на Astro", "x": "Одна страница вместо нескольких: экосистема, архитектура, проекты, консоль ISP, агенты и контакт. Три языка (PL, EN, RU), выкладка GitHub Actions на GitHub Pages." }
+    }
+  ]
+}

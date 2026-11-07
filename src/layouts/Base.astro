@@ -22,6 +22,7 @@ interface Props {
 const { title, description, path = '/', jsonld, nav = true, noindex = false, lang = 'pl', alternates = false, altPaths, og: ogPath } = Astro.props;
 const alt = (l: Lang) => altPaths?.[l] || home(l);
 const privacyHref = lang === 'pl' ? '/privacy.html' : `/${lang}/privacy.html`;
+const changesHref = lang === 'pl' ? '/zmiany/' : `/${lang}/zmiany/`;
 const T = t(lang);
 const url = new URL(path, Astro.site).href;
 const og = new URL(ogPath || `/img/og/home-${lang}.png`, Astro.site).href;
@@ -110,6 +111,7 @@ const locale = lang === 'pl' ? 'pl-PL' : lang === 'ru' ? 'ru-RU' : 'en-GB';
   <div class="wrap foot-in">
     <div class="foot-brand"><Mark size={22} /> <span>© {new Date().getFullYear()} GitCloud · Aleh Pauliukovich</span></div>
     <div class="foot-sys mono"><span class="dot ok"></span> {T.ui.footSys}</div>
+    <a href={changesHref}>{T.ui.changes}</a>
     <a href={privacyHref}>{T.ui.privacy}</a>
     <span class="foot-build mono">{T.ui.build} {build.url ? <a href={build.url} rel="noopener">{build.short}</a> : build.short} · <time datetime={build.at.replace(' ', 'T')}>{build.at}</time></span>
   </div>

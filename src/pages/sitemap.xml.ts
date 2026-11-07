@@ -14,6 +14,7 @@ const urls: Url[] = [
   ...group(byLang(home), 'weekly', (l) => (l === 'pl' ? '1.0' : '0.9')),
   ...projects.flatMap((p) => group(byLang((l) => projectPath(p.slug, l)), 'monthly', (l) => (l === 'pl' ? '0.7' : '0.6'))),
   { loc: '/cv/', freq: 'monthly', prio: '0.5' }, { loc: '/en/cv/', freq: 'monthly', prio: '0.5' },
+  ...group(byLang((l) => (l === 'pl' ? '/zmiany/' : `/${l}/zmiany/`)), 'daily', (l) => (l === 'pl' ? '0.6' : '0.5')),
   ...group(byLang((l) => (l === 'pl' ? '/privacy.html' : `/${l}/privacy.html`)), 'yearly', () => '0.3'),
 ];
 const link = (alt: Record<Lang, string>) =>
