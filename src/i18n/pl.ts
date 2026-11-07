@@ -28,7 +28,6 @@ export default {
   nav: [['ekosystem', 'Ekosystem'], ['moduly', 'Realizacje'], ['konsola', 'Konsola ISP'], ['agenci', 'Agenci'], ['uslugi', 'Usługi'], ['doswiadczenie', 'Doświadczenie']],
   tabs: ['Start', 'Realizacje', 'Agenci', 'Usługi', 'Profil', 'Kontakt'],
   hero: {
-    kicker: 'gitcloud.pl',
     h1a: 'Administruję systemami i sieciami, ',
     h1b: 'automatyzuję je z AI',
     h1c: '.',

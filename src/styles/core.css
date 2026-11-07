@@ -1,0 +1,23 @@
+/* Wygenerowane: tools/tokeny.py z gitcloud-core (palette.json + tokens.css), decyzja #692. Nie edytować ręcznie. */
+:root{
+  --gc-bg-deep:#030408; --gc-bg-deep-rgb:3,4,8;
+  --gc-fg:#e6f1ff; --gc-fg-rgb:230,241,255;
+  --gc-muted:#8392a8; --gc-muted-rgb:131,146,168;
+  --gc-card:#0b0f16; --gc-card-rgb:11,15,22;
+  --gc-edge:#121823; --gc-edge-rgb:18,24,35;
+  --gc-neon:#5fb8c2; --gc-neon-rgb:95,184,194;
+  --gc-magenta:#b88bd0; --gc-magenta-rgb:184,139,208;
+  --gc-c-ok:#6cc49a; --gc-c-ok-rgb:108,196,154;
+  --gc-c-ok-t:#93d9b6; --gc-c-ok-t-rgb:147,217,182;
+  --gc-c-warn:#f0b552; --gc-c-warn-rgb:240,181,82;
+  --gc-c-crit:#ee5a70; --gc-c-crit-rgb:238,90,112;
+  --gc-rim-top:linear-gradient(180deg, rgba(255,255,255,.07) 0 1px, transparent 1px);
+  --gc-well:linear-gradient(180deg, rgba(0,0,0,.38), rgba(0,0,0,.16));
+  --gc-well-top:inset 0 3px 8px -2px rgba(0,0,0,.7);
+  --gc-well-bot:inset 0 -1px 0 rgba(255,255,255,.05);
+  --gc-bevel-face:linear-gradient(180deg, rgba(255,255,255,.07), rgba(255,255,255,.02));
+  --gc-sink:inset 0 1px 2px rgba(0,0,0,.45), inset 0 -1px 0 rgba(255,255,255,.04);
+  --gc-hi-1:inset 0 1px 0 rgba(255,255,255,.06);
+  --gc-lift-btn:0 4px 10px -8px rgba(0,0,0,.9);
+  --gc-lift-sel:0 6px 12px -8px rgba(0,0,0,.9);
+}

@@ -28,7 +28,6 @@ const en: Dict = {
   nav: [['ekosystem', 'Ecosystem'], ['moduly', 'Work'], ['konsola', 'ISP console'], ['agenci', 'Agents'], ['uslugi', 'Services'], ['doswiadczenie', 'Experience']],
   tabs: ['Start', 'Work', 'Agents', 'Services', 'Profile', 'Contact'],
   hero: {
-    kicker: 'gitcloud.pl',
     h1a: 'I run systems and networks ',
     h1b: 'and automate them with AI',
     h1c: '.',

@@ -4,21 +4,22 @@
    krawędzią u góry; bez obwódek, bez poświat neonu, bez narożników HUD i światła z boku (gradienty 180°).
    Jedna warstwa tokenów, bez innych zakodowanych kolorów poza statusami. (Do 06.11: niebieski motyw „Kolor”.) */
 :root{
-  --bg:#030408; --bg-rgb:3,4,8;
-  --card:#0b0f16; --card2:#080b11; --edge:#121823; --edge2:#1b2531;
-  --fg:#e6f1ff; --muted:#93a1b6; --dim:#8392a8;
-  --neon:#3f97a2; --neon-rgb:63,151,162;            /* ciemniejszy morski: wypełnienie głównego przycisku */
-  --neon2:#5fb8c2; --neon2-rgb:95,184,194;          /* akcent (--neon panelu) */
-  --accent:#93d9b6; --cyan:#b88bd0; --cyan-rgb:184,139,208;   /* drugi akcent: liliowy (--magenta panelu); nazwa zostaje */
-  --ok:#6cc49a; --warn:#f0b552; --crit:#ee5a70;
+  /* kolory i materiały z rdzenia GitCloud: src/styles/core.css (tools/tokeny.py, decyzja #692) — tu tylko nazwy strony */
+  --bg:var(--gc-bg-deep); --bg-rgb:var(--gc-bg-deep-rgb);
+  --card:var(--gc-card); --card2:#080b11; --edge:var(--gc-edge); --edge2:#1b2531;   /* card2/edge2: odcienie tylko strony */
+  --fg:var(--gc-fg); --muted:#93a1b6; --dim:var(--gc-muted);   /* muted strony jaśniejszy od panelu: długi tekst */
+  --neon:#3f97a2; --neon-rgb:63,151,162;            /* ciemniejszy morski: tylko wypełnienie głównego przycisku */
+  --neon2:var(--gc-neon); --neon2-rgb:var(--gc-neon-rgb);          /* akcent (--neon panelu) */
+  --accent:var(--gc-c-ok-t); --cyan:var(--gc-magenta); --cyan-rgb:var(--gc-magenta-rgb);   /* drugi akcent: liliowy (--magenta panelu); nazwa zostaje */
+  --ok:var(--gc-c-ok); --warn:var(--gc-c-warn); --crit:var(--gc-c-crit);
   --c-wlasne:var(--neon2); --c-platformy:var(--cyan); --c-zlecenia:var(--warn);
   /* materiał: szkło (karty), nisza (liczniki, podglądy), wypukłość (przyciski) — światło zawsze z góry */
-  --rim-top:linear-gradient(180deg, rgba(255,255,255,.07) 0 1px, transparent 1px);
+  --rim-top:var(--gc-rim-top);
   --glass:var(--rim-top), linear-gradient(180deg, rgba(255,255,255,.045), rgba(255,255,255,.012) 55%, rgba(var(--neon2-rgb),.025));
-  --well:linear-gradient(180deg, rgba(0,0,0,.38), rgba(0,0,0,.16));
-  --well-sh:inset 0 3px 8px -2px rgba(0,0,0,.7), inset 0 -1px 0 rgba(255,255,255,.05);
-  --bevel-face:linear-gradient(180deg, rgba(255,255,255,.07), rgba(255,255,255,.02));
-  --bevel:inset 0 1px 0 rgba(255,255,255,.06), inset 0 -1px 0 rgba(255,255,255,.10), 0 4px 10px -8px rgba(0,0,0,.9);
+  --well:var(--gc-well);
+  --well-sh:var(--gc-well-top), var(--gc-well-bot);
+  --bevel-face:var(--gc-bevel-face);
+  --bevel:var(--gc-hi-1), inset 0 -1px 0 rgba(255,255,255,.10), var(--gc-lift-btn);
   --lift:0 18px 40px -24px rgba(0,0,0,.95);
   --panel-bg:var(--glass); --panel-bd:1px solid transparent;
   --glow:var(--lift);
