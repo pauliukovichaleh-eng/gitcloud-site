@@ -29,7 +29,7 @@ const url = p ? `gitcloud.pl${projectPath(p.slug, lang)}` : `gitcloud.pl${lang =
 <div class={`w${p ? ' is-p' : ''}`}>
   <div class="t">
     <div class="b">
-      <svg width="46" height="46" viewBox="0 0 32 32" aria-hidden="true"><path d="M27.3 9.5 16 3 4.7 9.5v13L16 29l11.3-6.5V16H17" fill="none" stroke="#5aa4ff" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"/><circle cx="16.6" cy="16" r="2.4" fill="#22e5ff"/></svg>
+      <svg width="46" height="46" viewBox="0 0 32 32" aria-hidden="true"><path d="M27.3 9.5 16 3 4.7 9.5v13L16 29l11.3-6.5V16H17" fill="none" stroke="#5fb8c2" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"/><circle cx="16.6" cy="16" r="2.4" fill="#b88bd0"/></svg>
       <span><em>Git</em>Cloud</span>
     </div>
     <span class="tag">{tag}</span>
@@ -43,18 +43,18 @@ const url = p ? `gitcloud.pl${projectPath(p.slug, lang)}` : `gitcloud.pl${lang =
 </body>
 </html>
 <style is:global>
-html,body{margin:0;width:1200px;height:630px;overflow:hidden;background:#05070c;color:#d9e1ff;font-family:'Inter Variable',Inter,system-ui,sans-serif}
-.w{position:relative;width:1200px;height:630px;background:radial-gradient(700px 500px at 82% 40%,rgba(28,116,255,.28),transparent 70%),radial-gradient(500px 400px at 10% 0%,rgba(90,164,255,.14),transparent 70%),#05070c}
-.w::before{content:'';position:absolute;inset:0;background-image:linear-gradient(rgba(90,164,255,.05) 1px,transparent 1px),linear-gradient(90deg,rgba(90,164,255,.05) 1px,transparent 1px);background-size:48px 48px}
+html,body{margin:0;width:1200px;height:630px;overflow:hidden;background:#030408;color:#e6f1ff;font-family:'Onest Variable',Onest,system-ui,sans-serif}
+.w{position:relative;width:1200px;height:630px;background:radial-gradient(700px 500px at 82% 40%,rgba(63,151,162,.28),transparent 70%),radial-gradient(500px 400px at 10% 0%,rgba(95,184,194,.14),transparent 70%),#030408}
+.w::before{content:'';position:absolute;inset:0;background-image:linear-gradient(rgba(95,184,194,.05) 1px,transparent 1px),linear-gradient(90deg,rgba(95,184,194,.05) 1px,transparent 1px);background-size:48px 48px}
 .t{position:absolute;left:68px;top:64px;width:600px}
-.b{display:flex;align-items:center;gap:12px;font-weight:900;font-size:32px;color:#fff}.b em{font-style:normal;color:#5aa4ff}
-.tag{display:inline-block;margin-top:34px;padding:6px 14px;border-radius:999px;border:1px solid rgba(90,164,255,.45);font:500 16px 'IBM Plex Mono',monospace;color:#9fc2ff;background:rgba(28,116,255,.10)}
+.b{display:flex;align-items:center;gap:12px;font-weight:900;font-size:32px;color:#fff}.b em{font-style:normal;color:#5fb8c2}
+.tag{display:inline-block;margin-top:34px;padding:6px 14px;border-radius:999px;border:1px solid rgba(95,184,194,.45);font:500 16px 'JetBrains Mono Variable',monospace;color:#9fc2ff;background:rgba(63,151,162,.10)}
 h1{font-size:50px;line-height:1.08;margin:20px 0 20px;font-weight:800;letter-spacing:-.03em;color:#fff}
 .is-p h1{font-size:44px}
-h1 b{background:linear-gradient(92deg,#5aa4ff,#22e5ff);-webkit-background-clip:text;background-clip:text;color:transparent}
-p{font-size:21px;line-height:1.42;color:#9aa4c7;margin:0}
-.u{position:absolute;left:68px;bottom:50px;font:500 19px 'IBM Plex Mono',monospace;color:#7fa0c0}
-.img{position:absolute;right:52px;top:66px;width:440px;height:498px;border-radius:20px;overflow:hidden;border:1px solid rgba(90,164,255,.3);box-shadow:0 30px 80px -30px rgba(28,116,255,.8);background:left top/250% auto no-repeat #05070c}
+h1 b{background:linear-gradient(92deg,#5fb8c2,#b88bd0);-webkit-background-clip:text;background-clip:text;color:transparent}
+p{font-size:21px;line-height:1.42;color:#93a1b6;margin:0}
+.u{position:absolute;left:68px;bottom:50px;font:500 19px 'JetBrains Mono Variable',monospace;color:#8392a8}
+.img{position:absolute;right:52px;top:66px;width:440px;height:498px;border-radius:20px;overflow:hidden;border:1px solid rgba(95,184,194,.3);box-shadow:0 30px 80px -30px rgba(63,151,162,.8);background:left top/250% auto no-repeat #030408}
 .is-p .img{width:480px;height:270px;top:180px;background-size:cover;background-position:center}
-.img2{position:absolute;right:250px;bottom:42px;width:300px;height:148px;border-radius:14px;overflow:hidden;border:1px solid rgba(90,164,255,.35);background:url(/img/projekty/glowa-sally.jpg) center/cover;box-shadow:0 20px 60px -20px #000}
+.img2{position:absolute;right:250px;bottom:42px;width:300px;height:148px;border-radius:14px;overflow:hidden;border:1px solid rgba(95,184,194,.35);background:url(/img/projekty/glowa-sally.jpg) center/cover;box-shadow:0 20px 60px -20px #000}
 </style>

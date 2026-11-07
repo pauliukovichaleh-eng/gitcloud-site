@@ -4,7 +4,7 @@
 Uruchamiać ręcznie po zmianie pakietów fontów (wymaga fontTools + brotli):
     python3 tools/fonty.py
 Co robi:
-- Inter Variable (oś wght): podstawowa łacina, polskie litery (osobny mały plik), cyrylica dla /ru/;
+- (do 07.11.2026 Inter i IBM Plex Mono; teraz Onest i JetBrains Mono jak panel) Inter Variable (oś wght): podstawowa łacina, polskie litery (osobny mały plik), cyrylica dla /ru/;
   tylko domyślne funkcje OpenType (kern, liga, calt...), bez wariantów ss/cv, które ciągną setki glifów.
 - IBM Plex Mono: tylko 400 i 500; plik 500 obsługuje też 600-700 (font-weight: 500 700),
   więc przeglądarka nie dobiera trzeciego pliku i nie pogrubia sztucznie.
@@ -39,11 +39,11 @@ CYR = rng((0x400, 0x45F), 0x490, 0x491, 0x2116)
 # z tekstów strony, Inter (regular i wght 700-800) do Arial / Liberation Sans (zgodne metrycznie), Plex Mono do Courier New.
 # size-adjust = szerokość Inter / szerokość Arial; ascent/descent = metryki Inter / size-adjust.
 FALLBACK = [
-    "@font-face{font-family:'Inter Fallback';font-weight:100 500;src:local('Arial'),local('Liberation Sans'),local('Helvetica');"
+    "@font-face{font-family:'Onest Fallback';font-weight:100 500;src:local('Arial'),local('Liberation Sans'),local('Helvetica');"
     "size-adjust:106.31%;ascent-override:91.13%;descent-override:22.69%;line-gap-override:0%;}",
-    "@font-face{font-family:'Inter Fallback';font-weight:600 900;src:local('Arial Bold'),local('Arial-BoldMT'),local('Liberation Sans Bold'),local('Helvetica Bold');"
+    "@font-face{font-family:'Onest Fallback';font-weight:600 900;src:local('Arial Bold'),local('Arial-BoldMT'),local('Liberation Sans Bold'),local('Helvetica Bold');"
     "size-adjust:101.6%;ascent-override:95.3%;descent-override:23.7%;line-gap-override:0%;}",
-    "@font-face{font-family:'Plex Mono Fallback';src:local('Courier New'),local('CourierNewPSMT'),local('Liberation Mono');"
+    "@font-face{font-family:'Mono Fallback';src:local('Courier New'),local('CourierNewPSMT'),local('Liberation Mono');"
     "size-adjust:100%;ascent-override:102.5%;descent-override:27.5%;line-gap-override:0%;}",
 ]
 
@@ -76,21 +76,20 @@ def cut(src, cps, name):
 
 def main():
     for f in OUT.glob('*.woff2'): f.unlink()
-    inter = NM / '@fontsource-variable/inter/files'
-    mono = NM / '@fontsource/ibm-plex-mono/files'
+    # 07.11.2026 (decyzja #679 «jedna ekosystema»): kroje jak panel my.gitcloud.pl — Onest (tekst) i JetBrains Mono (cyfry),
+    # oba zmienne (oś wght), więc jeden plik na zakres znaków
+    onest = NM / '@fontsource-variable/onest/files'
+    mono = NM / '@fontsource-variable/jetbrains-mono/files'
     faces = []
     # (rodzina, plik źródłowy, znaki, nazwa, waga css)
     plan = [
-        ("'Inter Variable'", inter / 'inter-latin-wght-normal.woff2', LAT, 'inter-lat', '100 900'),
-        ("'Inter Variable'", inter / 'inter-latin-ext-wght-normal.woff2', PL, 'inter-pl', '100 900'),
-        ("'Inter Variable'", inter / 'inter-cyrillic-wght-normal.woff2', CYR, 'inter-cyr', '100 900'),
+        ("'Onest Variable'", onest / 'onest-latin-wght-normal.woff2', LAT, 'onest-lat', '100 900'),
+        ("'Onest Variable'", onest / 'onest-latin-ext-wght-normal.woff2', PL, 'onest-pl', '100 900'),
+        ("'Onest Variable'", onest / 'onest-cyrillic-wght-normal.woff2', CYR, 'onest-cyr', '100 900'),
+        ("'JetBrains Mono Variable'", mono / 'jetbrains-mono-latin-wght-normal.woff2', LAT, 'jbmono-lat', '100 800'),
+        ("'JetBrains Mono Variable'", mono / 'jetbrains-mono-latin-ext-wght-normal.woff2', PL, 'jbmono-pl', '100 800'),
+        ("'JetBrains Mono Variable'", mono / 'jetbrains-mono-cyrillic-wght-normal.woff2', CYR, 'jbmono-cyr', '100 800'),
     ]
-    for w, css_w in (('400', '400'), ('500', '500 700')):
-        plan += [
-            ("'IBM Plex Mono'", mono / f'ibm-plex-mono-latin-{w}-normal.woff2', LAT, f'plexmono-{w}-lat', css_w),
-            ("'IBM Plex Mono'", mono / f'ibm-plex-mono-latin-ext-{w}-normal.woff2', PL, f'plexmono-{w}-pl', css_w),
-            ("'IBM Plex Mono'", mono / f'ibm-plex-mono-cyrillic-{w}-normal.woff2', CYR, f'plexmono-{w}-cyr', css_w),
-        ]
     css = ['/* Wygenerowane przez tools/fonty.py, nie edytować ręcznie. */']
     for fam, src, cps, name, css_w in plan:
         fn, keep = cut(src, cps, name)
