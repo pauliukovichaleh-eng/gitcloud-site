@@ -1,4 +1,5 @@
 ---
+import { DYZ, dyzPath } from '../i18n/dyzurny';
 // Strona główna w jednym z trzech języków (pl /, en /en/, ru /ru/). Teksty: src/i18n/*.ts, projekty: lib/data localize().
 import Base from '../layouts/Base.astro';
 import EcoMap from './EcoMap.astro';
@@ -225,6 +226,7 @@ const jsonld = {
           {T.svc.steps.map(([st, ss], i) => <li><span class="mono step-n">{i + 1}</span><div><b>{st}</b><span>{ss}</span></div></li>)}
         </ol>
       </div>
+      <a class="link-more" href={dyzPath(lang)}>{DYZ[lang].more}: {DYZ[lang].prices[0][0]} + {DYZ[lang].prices[1][0]} &rarr;</a>
       {has('zlecenia') && <a class="link-more" href={`#${anchor('zlecenia')}`}>{T.svc.more} &rarr;</a>}
     </div>
   </section>

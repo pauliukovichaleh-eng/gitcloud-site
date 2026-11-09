@@ -5,29 +5,32 @@ import '../../styles/fonts.css'; // lekkie podzbiory, tools/fonty.py
 import '../../styles/core.css'; // kolory z rdzenia (decyzja 692)
 import { projects, localize, projectPath } from '../../lib/data';
 import { t, LANGS } from '../../i18n';
+import { DYZ, dyzPath } from '../../i18n/dyzurny';
 
 export function getStaticPaths() {
   return [
     ...LANGS.map((l) => ({ params: { key: `home-${l}` }, props: { lang: l } })),
+    ...LANGS.map((l) => ({ params: { key: l === 'pl' ? 's-dyzurny' : `s-dyzurny-${l}` }, props: { lang: l, svc: 'dyzurny' } })),
     ...projects.flatMap((p) => LANGS.map((l) => ({ params: { key: l === 'pl' ? `p-${p.slug}` : `p-${p.slug}-${l}` }, props: { lang: l, slug: p.slug } }))),
   ];
 }
-const { lang, slug } = Astro.props as { lang: 'pl' | 'en' | 'ru'; slug?: string };
+const { lang, slug, svc } = Astro.props as { lang: 'pl' | 'en' | 'ru'; slug?: string; svc?: string };
+const S = svc ? DYZ[lang] : undefined;
 const T: any = t(lang);
 const p = slug ? localize(projects.find((x) => x.slug === slug)!, lang) : undefined;
 const cut = (s: string, n: number) => (s.length <= n ? s : s.slice(0, s.lastIndexOf(' ', n - 1)) + '…');
 const esc = (s: string) => s.replace(/&/g, '&amp;').replace(/</g, '&lt;');
-const h1 = p ? esc(p.title) : `${esc(T.hero.h1a)}<b>${esc(T.hero.h1b)}</b>`;
-const lead = p ? cut(p.lead, 150) : T.hero.lead;
-const img = p ? p.image || p.video?.poster || p.gallery?.[0]?.src : '/img/demo/ai-router.webp';
-const tag = p ? (T.mod.categories as Record<string, string>)[p.category] : 'Aleh Pauliukovich';
-const url = p ? `gitcloud.pl${projectPath(p.slug, lang)}` : `gitcloud.pl${lang === 'pl' ? '' : `/${lang}/`}`;
+const h1 = S ? esc(S.h1) : p ? esc(p.title) : `${esc(T.hero.h1a)}<b>${esc(T.hero.h1b)}</b>`;
+const lead = S ? cut(S.lead, 150) : p ? cut(p.lead, 150) : T.hero.lead;
+const img = S ? '' : p ? p.image || p.video?.poster || p.gallery?.[0]?.src : '/img/demo/ai-router.webp';
+const tag = S ? S.tag : p ? (T.mod.categories as Record<string, string>)[p.category] : 'Aleh Pauliukovich';
+const url = S ? `gitcloud.pl${dyzPath(lang)}` : p ? `gitcloud.pl${projectPath(p.slug, lang)}` : `gitcloud.pl${lang === 'pl' ? '' : `/${lang}/`}`;
 ---
 <!doctype html>
 <html lang={T.htmlLang}>
 <head><meta charset="utf-8"><meta name="robots" content="noindex"><title>og {Astro.params.key}</title></head>
 <body>
-<div class={`w${p ? ' is-p' : ''}`}>
+<div class={`w${p ? ' is-p' : ''}${S ? ' is-s' : ''}`}>
   <div class="t">
     <div class="b">
       <svg width="46" height="46" viewBox="0 0 32 32" aria-hidden="true"><path d="M27.3 9.5 16 3 4.7 9.5v13L16 29l11.3-6.5V16H17" fill="none" style="stroke:var(--gc-neon)" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"/><circle cx="16.6" cy="16" r="2.4" fill="var(--gc-magenta)"/></svg>
@@ -37,8 +40,10 @@ const url = p ? `gitcloud.pl${projectPath(p.slug, lang)}` : `gitcloud.pl${lang =
     <h1 set:html={h1} />
     <p>{lead}</p>
   </div>
-  <div class="img" style={`background-image:url(${img})`}></div>
-  {!p && <div class="img2"></div>}
+  {S ? (
+    <ol class="flow">{S.flow.map(([ft], i) => <li><span>0{i + 1}</span>{ft}</li>)}</ol>
+  ) : <div class="img" style={`background-image:url(${img})`}></div>}
+  {!p && !S && <div class="img2"></div>}
   <div class="u">{url}</div>
 </div>
 </body>
@@ -58,4 +63,9 @@ p{font-size:21px;line-height:1.42;color:#93a1b6;margin:0}
 .img{position:absolute;right:52px;top:66px;width:440px;height:498px;border-radius:20px;overflow:hidden;border:1px solid rgba(var(--gc-neon-rgb),.3);box-shadow:0 30px 80px -30px rgba(63,151,162,.8);background:left top/250% auto no-repeat var(--gc-bg-deep)}
 .is-p .img{width:480px;height:270px;top:180px;background-size:cover;background-position:center}
 .img2{position:absolute;right:250px;bottom:42px;width:300px;height:148px;border-radius:14px;overflow:hidden;border:1px solid rgba(var(--gc-neon-rgb),.35);background:url(/img/projekty/glowa-sally.jpg) center/cover;box-shadow:0 20px 60px -20px #000}
+.is-s h1{font-size:64px}
+.flow{position:absolute;right:60px;top:110px;width:380px;margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:18px}
+.flow li{display:flex;align-items:center;gap:16px;padding:20px 22px;border-radius:14px;font-size:26px;font-weight:700;color:#fff;background:var(--gc-well);box-shadow:var(--gc-well-top),var(--gc-well-bot)}
+.flow li:last-child{box-shadow:var(--gc-well-top),inset 0 -2px 0 rgba(var(--gc-neon-rgb),.7)}
+.flow span{font:500 17px 'JetBrains Mono Variable',monospace;color:var(--gc-neon)}
 </style>

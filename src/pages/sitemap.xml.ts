@@ -2,6 +2,7 @@
 // Strony projektów biorą się z projects.json (tylko widoczne, bez aliasów i wycofanych), więc nowy projekt trafia tu sam.
 import { projects, projectPath } from '../lib/data';
 import { LANGS, home, type Lang } from '../i18n';
+import { dyzPath } from '../i18n/dyzurny';
 
 const SITE = 'https://gitcloud.pl';
 const today = new Intl.DateTimeFormat('sv-SE', { timeZone: 'Europe/Warsaw' }).format(new Date());
@@ -13,6 +14,7 @@ const byLang = (f: (l: Lang) => string) => Object.fromEntries(LANGS.map((l) => [
 const urls: Url[] = [
   ...group(byLang(home), 'weekly', (l) => (l === 'pl' ? '1.0' : '0.9')),
   ...projects.flatMap((p) => group(byLang((l) => projectPath(p.slug, l)), 'monthly', (l) => (l === 'pl' ? '0.7' : '0.6'))),
+  ...group(byLang(dyzPath), 'monthly', (l) => (l === 'pl' ? '0.8' : '0.7')),
   { loc: '/cv/', freq: 'monthly', prio: '0.5' }, { loc: '/en/cv/', freq: 'monthly', prio: '0.5' },
   ...group(byLang((l) => (l === 'pl' ? '/zmiany/' : `/${l}/zmiany/`)), 'daily', (l) => (l === 'pl' ? '0.6' : '0.5')),
   ...group(byLang((l) => (l === 'pl' ? '/privacy.html' : `/${l}/privacy.html`)), 'yearly', () => '0.3'),

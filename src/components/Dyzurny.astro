@@ -1,0 +1,155 @@
+---
+// Strona usługi „Dyżurny admin” (/dyzurny/, /en/dyzurny/, /ru/dyzurny/), decyzje #902-#904.
+// Wygląd jak strona projektu (ProjectPage): ta sama karta szkła, nisze dla liczb, schemat jako HTML (tłumaczy się i nie rozmywa).
+import Base from '../layouts/Base.astro';
+import { home, LANGS, type Lang } from '../i18n';
+import { DYZ, dyzPath } from '../i18n/dyzurny';
+interface Props { lang: Lang }
+const { lang } = Astro.props;
+const S = DYZ[lang];
+const SITE = 'https://gitcloud.pl';
+const EMAIL = 'pauliukovichaleh@gmail.com';
+const base = home(lang);
+const path = dyzPath(lang);
+const altPaths = Object.fromEntries(LANGS.map((l) => [l, dyzPath(l)])) as Record<Lang, string>;
+const og = lang === 'pl' ? '/img/og/s-dyzurny.png' : `/img/og/s-dyzurny-${lang}.png`;
+const num = (s: string) => s.replace(/[^\d]/g, '');
+const jsonld = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'Service', '@id': `${SITE}${path}#usluga`, name: S.h1, description: S.lead, url: `${SITE}${path}`,
+      serviceType: 'IT system administration', areaServed: 'PL',
+      provider: { '@type': 'Organization', '@id': `${SITE}/#org`, name: 'GitCloud' },
+      offers: [
+        { '@type': 'Offer', name: S.prices[0][1], price: num(S.prices[0][0]), priceCurrency: 'PLN' },
+        { '@type': 'Offer', name: S.prices[1][1], price: num(S.prices[1][0]), priceCurrency: 'PLN',
+          priceSpecification: { '@type': 'UnitPriceSpecification', price: num(S.prices[1][0]), priceCurrency: 'PLN', unitCode: 'MON' } },
+      ],
+    },
+    {
+      '@type': 'BreadcrumbList',
+      itemListElement: [
+        { '@type': 'ListItem', position: 1, name: 'GitCloud', item: `${SITE}${base}` },
+        { '@type': 'ListItem', position: 2, name: S.h1, item: `${SITE}${path}` },
+      ],
+    },
+  ],
+};
+const icons = [
+  '<path d="M12 3a6 6 0 0 1 6 6v4l2 3H4l2-3V9a6 6 0 0 1 6-6zM10 19a2 2 0 0 0 4 0"/>',
+  '<circle cx="12" cy="8" r="4"/><path d="M4 21c0-4.4 3.6-7 8-7s8 2.6 8 7"/>',
+  '<path d="M4 12a8 8 0 1 0 2.3-5.6M4 4v4h4"/><path d="m9 12 2 2 4-4"/>',
+  '<rect x="7" y="2.5" width="10" height="19" rx="2.5"/><path d="M10.5 18.5h3"/>',
+];
+---
+<Base title={`${S.title} | GitCloud`} description={S.lead.slice(0, S.lead.lastIndexOf(' ', 157)) + '…'} path={path} jsonld={jsonld} nav={false} og={og} lang={lang} alternates altPaths={altPaths}>
+  <section class="sec pp dz">
+    <div class="wrap pp-in">
+      <nav class="pp-crumbs mono" aria-label="breadcrumbs">
+        <a href={base}>gitcloud</a> / <a href={`${base}#uslugi`}>{S.crumb}</a> / <span aria-current="page">dyzurny</span>
+      </nav>
+      <article class="pd-body pp-body">
+        <span class="card-cat mono">{S.tag}</span>
+        <h1 id="dz-t">{S.h1}</h1>
+        <p class="pd-lead">{S.lead}</p>
+        <div class="pd-status mono"><span class="dot ok pulse"></span>{S.status}</div>
+
+        <h2 class="lbl dz-h">{S.howH}</h2>
+        <div class="dz-flow" role="img" aria-label={S.flowAria}>
+          {S.flow.map(([t, d], i) => (
+            <div class="dz-node"><span class="dz-ic" aria-hidden="true"><svg viewBox="0 0 24 24" set:html={icons[i]} /></span><span class="mono dz-n">0{i + 1}</span><b>{t}</b><span>{d}</span></div>
+          ))}
+        </div>
+        <p class="dz-alt mono"><span aria-hidden="true">↳</span> {S.flowAlt}</p>
+
+        <h2 class="lbl dz-h">{S.doH}</h2>
+        <div class="dz-does">
+          {S.does.map(([t, d]) => <div class="dz-do"><b>{t}</b><span>{d}</span></div>)}
+        </div>
+        <p class="dz-next muted">{S.next}</p>
+
+        <div class="pd-grid dz-grid">
+          <section>
+            <h2 class="lbl">{S.stayH}</h2>
+            <ul class="pd-res">{S.stay.map((x) => <li>{x}</li>)}</ul>
+          </section>
+          <section>
+            <h2 class="lbl">{S.exH}</h2>
+            <p class="dz-ex">{S.exP}</p>
+            <div class="dz-stats">{S.exStats.map(([v, l]) => <div class="tile"><b class="mono">{v}</b><span class="sub">{l}</span></div>)}</div>
+            <ul class="pd-res">{S.exCases.map((x) => <li>{x}</li>)}</ul>
+          </section>
+        </div>
+
+        <h2 class="lbl dz-h">{S.priceH}</h2>
+        <div class="dz-prices">
+          {S.prices.map(([v, n, d]) => <div class="tile dz-price"><span class="lbl">{n}</span><b>{v}</b><span class="sub">{d}</span></div>)}
+        </div>
+        <p class="dz-next muted">{S.priceNote}</p>
+
+        <h2 class="lbl dz-h" id="start">{S.startH}</h2>
+        <ol class="steps dz-steps">
+          {S.steps.map(([st, ss], i) => <li><span class="mono step-n">{i + 1}</span><div><b>{st}</b><span>{ss}</span></div></li>)}
+        </ol>
+        <div class="mail dz-mail">
+          <a class="btn btn-p btn-lg" href={`mailto:${EMAIL}?subject=${encodeURIComponent(S.h1)}`}>{S.btn} &rarr;</a>
+          <button type="button" class="btn btn-g mono copy" data-copy={EMAIL} aria-label={S.copyAria}>{EMAIL}</button>
+        </div>
+
+        <h2 class="lbl dz-h">{S.faqH}</h2>
+        <div class="faq dz-faq">
+          {S.faq.map(([q, a]) => <details><summary>{q}</summary><p>{a}</p></details>)}
+        </div>
+      </article>
+      <div class="pp-cta">
+        <a class="link-more" href={base}>&larr; {S.back}</a>
+      </div>
+    </div>
+  </section>
+</Base>
+
+<script>
+  document.querySelectorAll<HTMLButtonElement>('.dz .copy').forEach((b) => b.addEventListener('click', async () => {
+    try { await navigator.clipboard.writeText(b.dataset.copy || ''); const t = b.textContent; b.textContent = '✓'; setTimeout(() => (b.textContent = t), 1200); } catch {}
+  }));
+</script>
+
+<style>
+  .pp-body .dz-h{ margin:40px 0 14px; color:var(--neon2); }
+  .pp-body .pd-grid .lbl{ margin-top:0; }
+  .dz-flow{ display:grid; grid-template-columns:repeat(4,1fr); gap:22px; }
+  .dz-node{ position:relative; display:flex; flex-direction:column; gap:7px; padding:18px; border-radius:var(--r-m); background:var(--well); box-shadow:var(--well-sh); }
+  .dz-node b{ color:#fff; font-size:15.5px; }
+  .dz-node > span:last-child{ font-size:13.5px; color:var(--muted); }
+  .dz-node:not(:last-child)::after{ content:'›'; position:absolute; right:-17px; top:50%; transform:translateY(-50%); font:600 22px/1 var(--mono); color:var(--neon2); }
+  .dz-node:last-child{ box-shadow:var(--well-sh), inset 0 -2px 0 rgba(var(--neon2-rgb),.6); }
+  .dz-ic{ width:34px; height:34px; display:grid; place-items:center; border-radius:9px; background:var(--bevel-face); box-shadow:var(--bevel); }
+  .dz-ic svg{ width:19px; height:19px; fill:none; stroke:var(--neon2); stroke-width:1.7; stroke-linecap:round; stroke-linejoin:round; }
+  .dz-n{ position:absolute; right:14px; top:16px; font-size:12px; color:var(--dim); }
+  .dz-alt{ margin-top:12px; font-size:12.5px; color:var(--warn); }
+  .dz-does{ display:grid; grid-template-columns:1fr 1fr; gap:12px; }
+  .dz-do{ display:flex; flex-direction:column; gap:7px; padding:18px 20px; border-radius:var(--r-m); background:var(--panel-bg); border:var(--panel-bd); }
+  .dz-do b{ color:#fff; font-size:15.5px; }
+  .dz-do span{ font-size:14px; color:var(--muted); }
+  .dz-grid{ margin-top:40px; }
+  .dz-mail{ margin-bottom:8px; }
+  .dz-next{ margin-top:12px; font-size:13.5px; }
+  .dz-ex{ font-size:14.5px; }
+  .dz-stats{ display:grid; grid-template-columns:repeat(3,1fr); gap:10px; margin:14px 0; }
+  .dz-stats .tile{ padding:12px 14px; display:flex; flex-direction:column; gap:4px; }
+  .dz-stats b{ color:var(--neon2); font-size:20px; white-space:nowrap; }
+  .dz-stats .tile:last-child b{ font-size:15px; line-height:27px; }
+  .dz-stats .sub{ font-size:12.5px; color:var(--muted); }
+  .dz-prices{ display:grid; grid-template-columns:repeat(3,1fr); gap:12px; }
+  .dz-price{ display:flex; flex-direction:column; gap:8px; }
+  .dz-price b{ font-size:clamp(24px,3vw,30px); color:#fff; font-weight:800; }
+  .dz-price .sub{ font-size:13.5px; color:var(--muted); }
+  .dz-mail{ display:flex; flex-wrap:wrap; gap:12px; margin-top:16px; }
+  .dz-faq{ display:grid; gap:10px; }
+  @media (max-width: 860px){
+    .dz-flow{ grid-template-columns:1fr; gap:20px; }
+    .dz-node:not(:last-child)::after{ content:'⌄'; right:auto; left:50%; top:auto; bottom:-20px; transform:translateX(-50%); }
+    .dz-does, .dz-prices, .dz-stats{ grid-template-columns:1fr; }
+  }
+</style>
