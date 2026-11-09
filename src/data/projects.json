@@ -12,7 +12,8 @@
     "platforma-isp",
     "pilot-esp32",
     "zlecenia",
-    "pulpit-gitcloud"
+    "pulpit-gitcloud",
+    "ekran-android"
   ],
   "projects": [
     {
@@ -363,6 +364,49 @@
           "label": "Panel operacyjny, który stoi po lewej stronie"
         }
       ]
+    },
+    {
+      "slug": "ekran-android",
+      "category": "wlasne",
+      "title": "GitCloud Ekran: aplikacja Android na rzutnik",
+      "lead": "Własna aplikacja na rzutnik z Androidem 11: zapętlona scena w kolorach systemu i zegar. Grafikę liczy serwer na karcie graficznej, rzutnik tylko odtwarza wideo.",
+      "year": "2026",
+      "status": "Działa na rzutniku od listopada 2026",
+      "image": "/img/projekty/ekran-okladka.webp",
+      "image_alt": "Ekran rzutnika: scena z monolitem serwera, zorza i zegar w prawym dolnym rogu",
+      "gallery": [
+        {
+          "src": "/img/projekty/ekran-okladka.webp",
+          "alt": "Kadr sceny z karty graficznej serwera i zegar w układzie aplikacji (data po rosyjsku, jak na rzutniku)"
+        },
+        {
+          "src": "/img/projekty/ekran-scena-1.webp",
+          "alt": "Ta sama scena w innej fazie pętli: zorza w kolorach postaci agentów"
+        },
+        {
+          "src": "/img/projekty/ekran-scena-2.webp",
+          "alt": "Pętla bez szwu: koniec przechodzi w początek bez skoku obrazu"
+        }
+      ],
+      "problem": "Rzutnik w pokoju pokazywał launcher producenta. Miał pokazywać coś spokojnego i spójnego z resztą systemu, a urządzenie ma 1 GB pamięci, słaby procesor i Androida 11 bez roota, więc ciężka grafika na nim odpada.",
+      "solution": "Scena napisana w GLSL renderuje się na serwerze w 2160p, jest zmniejszana do 1080p i kodowana jako pętla wideo. Aplikacja odtwarza plik i rysuje zegar, a kolory bierze z palety rdzenia GitCloud przy budowaniu. Każda wersja sceny przechodzi automatyczne sprawdzenia obrazu; nieudana nie trafia na ekran. Mechanizm nocnych rozdziałów, w którym model językowy rozwija scenę na podstawie zmian w repozytoriach, jest gotowy i czeka na pierwszy przebieg. Wcześniejsza aplikacja na ten sam rzutnik odbierała strumień H.264 z awatarami agentów.",
+      "stack": [
+        "Java",
+        "Android SDK",
+        "GLSL",
+        "Python",
+        "moderngl",
+        "ffmpeg",
+        "ADB"
+      ],
+      "role": "Pomysł, aplikacja, renderer sceny, sprawdzenia obrazu i wdrożenie przez ADB.",
+      "results": [
+        "Aplikacja 74 KB, 176 linii Javy, budowana bez Gradle",
+        "Bez uprawnienia do sieci: tylko plik wideo i zegar",
+        "7 automatycznych sprawdzeń sceny: kompilacja, jasność, prześwietlenie, ruch, szew pętli, migotanie, czas klatki",
+        "Sterowanie głosem i pilotem, uśpienie razem z zamknięciem laptopa"
+      ],
+      "links": []
     },
     {
       "slug": "zlecenia",
