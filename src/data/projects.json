@@ -268,14 +268,17 @@
         },
         {
           "src": "/img/projekty/dane-noc.webp",
+          "tel": "/img/projekty/dane-noc-tel.webp",
           "alt": "Plan nocy według harmonogramu: od zrzutu bazy o 00:05 do jednego podsumowania o 7:00"
         },
         {
           "src": "/img/projekty/dane-kopie.webp",
+          "tel": "/img/projekty/dane-kopie-tel.webp",
           "alt": "Kopie w trzech miejscach: archiwum bazy w chmurze, kopia zewnętrzna, dysk zewnętrzny, plus sprawdzenie odtworzenia"
         },
         {
           "src": "/img/projekty/dane-raport.webp",
+          "tel": "/img/projekty/dane-raport-tel.webp",
           "alt": "Raport sprawdzenia odtworzenia z nocy 9 listopada 2026: wszystkie punkty zaliczone w 17 minut"
         }
       ],

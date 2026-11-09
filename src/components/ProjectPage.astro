@@ -97,12 +97,13 @@ const og = lang === 'pl' ? `/img/og/p-${p.slug}.png` : `/img/og/p-${p.slug}-${la
   const cap = document.querySelector('.pp .pd-big figcaption');
   $$<HTMLButtonElement>('.pp .pd-thumbs button').forEach((b) => b.addEventListener('click', () => {
     $$('.pp .pd-thumbs button').forEach((x) => x.classList.toggle('is-on', x === b));
-    const { src, video, alt, px } = b.dataset;
+    const { src, tel, video, alt, px } = b.dataset;
     if (bigV) {
       if (video) { bigV.hidden = false; bigV.poster = src!; bigV.src = video; bigV.play().catch(() => {}); if (big) big.hidden = true; }
       else { bigV.pause(); bigV.hidden = true; if (big) big.hidden = false; }
     }
-    if (big && !video) { big.src = src!; big.alt = alt || ''; big.classList.toggle('px', px === '1'); }
+    // srcset pierwszego obrazu (wersja 960 px) ma pierwszeństwo przed src, więc przy zmianie obrazu go zdejmujemy
+    if (big && !video) { big.removeAttribute('srcset'); big.src = src!; big.alt = alt || ''; big.classList.toggle('px', px === '1'); let so = big.parentElement?.querySelector('source'); if (tel) { if (!so) { so = document.createElement('source'); so.media = '(max-width: 600px)'; big.before(so); } so.srcset = tel; } else so?.remove(); }
     if (cap) cap.textContent = alt || '';
   }));
   // adres z #s-<etap> (stare linki etapów zleceń) rozwija ten etap

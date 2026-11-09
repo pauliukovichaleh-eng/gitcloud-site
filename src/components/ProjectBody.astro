@@ -30,13 +30,17 @@ const S = page ? 'h2' : 'h3'; // poziom nagłówków sekcji: na stronie po h1, w
   <div class="pd-gal">
     <figure class="pd-big">
       {g.some((x) => x.video) && <video muted loop playsinline controls preload="none" poster={first.video ? plakat(first.src) : first.src} src={first.video} hidden={!first.video} width={first.w || 960} height={first.h || 474} data-inview={page && first.video ? '' : undefined}></video>}
-      <img src={first.src} srcset={first.video ? undefined : srcset(first.src)} sizes={first.video ? undefined : '(max-width: 980px) 100vw, 860px'} alt={first.alt} loading={page && !first.video ? 'eager' : 'lazy'} fetchpriority={page && !first.video ? 'high' : undefined} decoding="async" class={first.pixelated ? 'px' : ''} hidden={!!first.video} />
+      {/* tel: pionowa wersja obrazu dla telefonów (schematy z drobnym tekstem); source zmienia się razem z miniaturami */}
+      <picture>
+        {first.tel && <source media="(max-width: 600px)" srcset={first.tel} />}
+        <img src={first.src} srcset={first.video ? undefined : srcset(first.src)} sizes={first.video ? undefined : '(max-width: 980px) 100vw, 860px'} alt={first.alt} loading={page && !first.video ? 'eager' : 'lazy'} fetchpriority={page && !first.video ? 'high' : undefined} decoding="async" class={first.pixelated ? 'px' : ''} hidden={!!first.video} />
+      </picture>
       <figcaption>{first.alt}</figcaption>
     </figure>
     {g.length > 1 && (
       <div class="pd-thumbs">
         {g.map((x, i) => (
-          <button type="button" class={i === 0 ? 'is-on' : ''} data-src={x.src} data-video={x.video || ''} data-alt={x.alt} data-px={x.pixelated ? '1' : ''} aria-label={x.alt}>
+          <button type="button" class={i === 0 ? 'is-on' : ''} data-src={x.src} data-tel={x.tel || ''} data-video={x.video || ''} data-alt={x.alt} data-px={x.pixelated ? '1' : ''} aria-label={x.alt}>
             <img src={mini(x.src)} alt="" loading="lazy" decoding="async" class={x.pixelated ? 'px' : ''} />
           </button>
         ))}
