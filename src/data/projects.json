@@ -13,7 +13,8 @@
     "pilot-esp32",
     "zlecenia",
     "pulpit-gitcloud",
-    "ekran-android"
+    "ekran-android",
+    "platforma-danych"
   ],
   "projects": [
     {
@@ -250,6 +251,52 @@
           "label": "Panel operacyjny: decyzje i koszty modeli"
         }
       ]
+    },
+    {
+      "slug": "platforma-danych",
+      "category": "wlasne",
+      "title": "Platforma danych i nocny potok automatyzacji",
+      "lead": "Jedna baza PostgreSQL dla całego domowego systemu, harmonogram zadań opisany w kodzie i noc, po której o 7:00 wszystko jest zaktualizowane, skopiowane i sprawdzone.",
+      "year": "2026",
+      "status": "Działa codziennie od września 2026",
+      "image": "/img/projekty/dane-noc.webp",
+      "image_alt": "Plan nocy: kopie, sprawdzenie odtworzenia, okno aktualizacji, raporty i podsumowanie o 7:00",
+      "gallery": [
+        {
+          "src": "/img/projekty/dane-noc.webp",
+          "alt": "Plan nocy według harmonogramu: od zrzutu bazy o 00:05 do jednego podsumowania o 7:00"
+        },
+        {
+          "src": "/img/projekty/dane-kopie.webp",
+          "alt": "Kopie w trzech miejscach: archiwum bazy w chmurze, kopia poza domem, dysk zewnętrzny, plus sprawdzenie odtworzenia"
+        },
+        {
+          "src": "/img/projekty/dane-raport.webp",
+          "alt": "Raport sprawdzenia odtworzenia z nocy 9 listopada 2026: wszystkie punkty zaliczone w 17 minut"
+        }
+      ],
+      "gallery_note": "Schematy narysowane na podstawie harmonogramu i raportu, bez adresów i nazw wewnętrznych.",
+      "problem": "Kilkadziesiąt skryptów zapisywało dane w plikach i osobnych bazach, zadania uruchamiały się rozproszone przez cały dzień, a raporty spływały do południa. Kopie zapasowe istniały, ale nikt nie sprawdzał, czy dają się odtworzyć.",
+      "solution": "Wspólna baza PostgreSQL z osobną rolą dla każdej usługi, migracjami w repozytorium i sekretami szyfrowanymi w bazie. Harmonogram w jednym pliku TOML, wdrażany skryptem i porównywany z serwerem, żeby wykryć ręczne zmiany. Noc ma stały porządek: kopie, sprawdzenie odtworzenia, okno aktualizacji i restartów z kontrolą po każdym kroku, potem raporty i poranny przegląd. Kopie trafiają w trzy miejsca, a odtwarzanie jest osobnym zadaniem, które co noc odzyskuje losowe pliki i bazę.",
+      "stack": [
+        "PostgreSQL",
+        "pgBackRest",
+        "restic",
+        "Cronicle",
+        "systemd",
+        "Python",
+        "Proxmox",
+        "Netdata"
+      ],
+      "role": "Architektura, schemat bazy i migracje, harmonogram, kopie i ich weryfikacja.",
+      "results": [
+        "Co noc 72 losowe pliki z 6 źródeł odtwarzane i porównywane SHA-256, cała kopia sprawdzona w ciągu tygodnia",
+        "W niedzielę pełne ćwiczenie: odtworzenie bazy i start kontenera z kopii w izolacji",
+        "Archiwum bazy co 10 minut, szyfrowane AES-256, w darmowym limicie chmury",
+        "30 zadań harmonogramu i 151 migracji bazy w repozytorium, zmiana = commit",
+        "Aktualizacje i restarty w nocy bez ręcznego potwierdzania, pierwszy błąd zatrzymuje resztę"
+      ],
+      "links": []
     },
     {
       "slug": "panel-operacyjny",
