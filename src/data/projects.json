@@ -145,7 +145,7 @@
       "title": "Awatary 3D dla asystentów głosowych",
       "lead": "Trzy postacie 3D, które mówią głosem agentów, z ruchem ust dopasowanym do mowy i emocjami.",
       "year": "2026",
-      "status": "Działa w przeglądarce i na ekranie zewnętrznym",
+      "status": "Działa w przeglądarce i w widżecie pulpitu",
       "image": "/img/projekty/glowy.jpg",
       "image_alt": "Wirtualna głowa agentki na tle miasta nocą",
       "video": {
@@ -179,7 +179,7 @@
         }
       ],
       "problem": "Asystent głosowy bez twarzy jest mniej czytelny w rozmowie. Celem była żywa mimika na własnym sprzęcie, bez płatnych modeli 3D.",
-      "solution": "Głowy zbudowane kodem w three.js, ruch ust liczony z tekstu i dźwięku co 10 ms. Obraz renderuje serwer na GPU i przesyła strumień wideo do lekkiego odbiornika.",
+      "solution": "Głowy zbudowane kodem w three.js, ruch ust liczony z tekstu i dźwięku co 10 ms. Działają w przeglądarce i w widżecie pulpitu. W pierwszej wersji serwer renderował obraz na GPU i przesyłał strumień wideo do lekkiego odbiornika na rzutniku; z tego etapu pochodzą pomiary opóźnienia i pamięci.",
       "stack": [
         "three.js",
         "WebGL",
@@ -259,9 +259,13 @@
       "lead": "Jedna baza PostgreSQL dla całego systemu, harmonogram zadań opisany w kodzie i noc, po której o 7:00 wszystko jest zaktualizowane, skopiowane i sprawdzone.",
       "year": "2026",
       "status": "Działa codziennie od września 2026",
-      "image": "/img/projekty/dane-noc.webp",
-      "image_alt": "Plan nocy: kopie, sprawdzenie odtworzenia, okno aktualizacji, raporty i podsumowanie o 7:00",
+      "image": "/img/projekty/platforma-okladka.webp",
+      "image_alt": "Nocny potok zadań od 00:05 do 07:00, wynik sprawdzenia odtworzenia kopii, liczba zadań i zużycie darmowego limitu chmury",
       "gallery": [
+        {
+          "src": "/img/projekty/platforma-okladka.webp",
+          "alt": "Godziny nocnych zadań i wynik sprawdzenia kopii z nocy 09.11.2026, bez adresów i nazw maszyn"
+        },
         {
           "src": "/img/projekty/dane-noc.webp",
           "alt": "Plan nocy według harmonogramu: od zrzutu bazy o 00:05 do jednego podsumowania o 7:00"
@@ -292,11 +296,17 @@
       "results": [
         "Co noc 72 losowe pliki z 6 źródeł odtwarzane i porównywane SHA-256, cała kopia sprawdzona w ciągu tygodnia",
         "W niedzielę pełne ćwiczenie: odtworzenie bazy i start kontenera z kopii w izolacji",
-        "Archiwum bazy co 10 minut, szyfrowane AES-256, w darmowym limicie chmury",
+        "Archiwum bazy co 10 minut, szyfrowane AES-256, punkt w czasie z ostatnich 7 dni",
+        "Około 40% darmowego limitu zapytań chmury w miesiącu",
         "30 zadań harmonogramu i 151 migracji bazy w repozytorium, zmiana = commit",
         "Aktualizacje i restarty w nocy bez ręcznego potwierdzania, pierwszy błąd zatrzymuje resztę"
       ],
-      "links": []
+      "links": [
+        {
+          "href": "/projekty/agenci-ai/",
+          "label": "Agenci AI: nocne alarmy i przeglądy"
+        }
+      ]
     },
     {
       "slug": "panel-operacyjny",
