@@ -256,7 +256,7 @@
       "slug": "platforma-danych",
       "category": "wlasne",
       "title": "Platforma danych i nocny potok automatyzacji",
-      "lead": "Jedna baza PostgreSQL dla całego domowego systemu, harmonogram zadań opisany w kodzie i noc, po której o 7:00 wszystko jest zaktualizowane, skopiowane i sprawdzone.",
+      "lead": "Jedna baza PostgreSQL dla całego systemu, harmonogram zadań opisany w kodzie i noc, po której o 7:00 wszystko jest zaktualizowane, skopiowane i sprawdzone.",
       "year": "2026",
       "status": "Działa codziennie od września 2026",
       "image": "/img/projekty/dane-noc.webp",
@@ -268,7 +268,7 @@
         },
         {
           "src": "/img/projekty/dane-kopie.webp",
-          "alt": "Kopie w trzech miejscach: archiwum bazy w chmurze, kopia poza domem, dysk zewnętrzny, plus sprawdzenie odtworzenia"
+          "alt": "Kopie w trzech miejscach: archiwum bazy w chmurze, kopia zewnętrzna, dysk zewnętrzny, plus sprawdzenie odtworzenia"
         },
         {
           "src": "/img/projekty/dane-raport.webp",
