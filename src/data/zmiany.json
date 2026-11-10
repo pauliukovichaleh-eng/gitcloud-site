@@ -2,6 +2,16 @@
   "_opis": "Dziennik zmian /zmiany/ (decyzja #748). Prowadzi go nocne odświeżanie (host/site-refresh): nowe wpisy NA POCZĄTKU. Pola: id (data-slug), date, area, project (slug z projects.json: wpis pokazuje się też na stronie projektu, decyzja #751) (strona|panel|agenci|glowy|pilot|isp|infra), kind (wizualna = z obrazami przed/po, techniczna = krótko, bez obrazów), img [{src, alt{pl,en,ru}, label: przed|po|kadr}], link (kotwica albo strona projektu), pl/en/ru {t, x}. Tylko to, co publiczne: bez klientów, pracodawców, domu, finansów, adresów IP.",
   "wpisy": [
     {
+      "id": "2026-11-10-interfejsy",
+      "date": "2026-11-10",
+      "area": "strona",
+      "kind": "techniczna",
+      "link": "/#konsola",
+      "pl": { "t": "Nowe kadry: głowy agentów i interfejsy", "x": "Głowy Sally, Tony'ego i Marka nagrane na nowo na karcie graficznej, w obecnym wyglądzie. Sekcja Interfejsy pokazuje prawdziwe ekrany: panel agentów, koszty modeli, pulpit, pilot ESP32 i konsolę ISP. Okładki projektów to powiększone fragmenty ekranów, czytelne także na telefonie. Usunięte powtórzenia: reguły pod architekturą, terminal w profilu i lista w kontakcie." },
+      "en": { "t": "New frames: agent heads and interfaces", "x": "Sally, Tony and Mark re-recorded on the GPU in their current look. The Interfaces section shows real screens: agent panel, model costs, desktop, ESP32 remote and ISP console. Project covers are enlarged parts of real screens, readable on a phone too. Removed repetitions: rules under the architecture, the terminal in the profile and the list in contact." },
+      "ru": { "t": "Новые кадры: головы агентов и интерфейсы", "x": "Головы Салли, Тони и Марка записаны заново на видеокарте, в нынешнем виде. Раздел «Интерфейсы» показывает настоящие экраны: панель агентов, расходы на модели, рабочий стол, пульт ESP32 и консоль ISP. Обложки проектов: увеличенные части экранов, читаются и на телефоне. Убраны повторы: правила под архитектурой, терминал в профиле и список в контакте." }
+    },
+    {
       "id": "2026-11-07-wyglad",
       "date": "2026-11-07",
       "area": "strona",

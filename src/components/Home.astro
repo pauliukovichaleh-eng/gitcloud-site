@@ -24,18 +24,14 @@ const layerLinks = [
   [has('agenci-ai') ? `#${anchor('agenci-ai')}` : '', '', ''],
   ['', '', ''],
 ];
-const esc = (x: string) => x.replace(/&/g, '&amp;').replace(/</g, '&lt;');
-const termHtml = '<span class="pr">$</span> whoami\n' + T.exp.term.map(([k, v]: string[]) => `<span class="k">${esc(k.padEnd(9))}</span> ${esc(v)}`).join('\n') + '\n<span class="pr">$</span> <span class="cur">_</span>';
-const shotKeys = ['dashboard', 'siec', 'ruch-asn', 'ai-advisor', 'ai-router', 'proxmox-all'];
-// Punkty na zrzutach konsoli: [x %, y %] w kolejności podpisów T.console.hot[widok].
-const hotXY: Record<string, [number, number][]> = {
-  dashboard: [[25, 18.2], [29, 30.4], [87, 42.9]],
-  siec: [[36, 26.4], [71.5, 34.7], [83.5, 34.7]],
-  'ruch-asn': [[33.5, 26.4], [52.5, 59.2], [83.5, 30.6]],
-  'ai-advisor': [[75.5, 25.6], [31.5, 30.6], [31.5, 61.3]],
-  'ai-router': [[35.5, 22.7], [50, 51.7], [69, 78.4]],
-  'proxmox-all': [[11.5, 18.2], [51.5, 42.9], [54.5, 59.2], [80, 51]],
-};
+// Interfejsy: prawdziwe ekrany na danych przykładowych (klucz, plik, szerokość, wysokość, projekt, adres w pasku, pikselowy).
+const uiShots: [string, string, number, number, string, string, boolean][] = [
+  ['agenci', '/img/projekty/panel-agenci.webp', 1440, 790, 'agenci-ai', 'my.gitcloud · agenci', false],
+  ['modele', '/img/projekty/panel-modele.webp', 1440, 985, 'panel-operacyjny', 'my.gitcloud · modele', false],
+  ['pulpit', '/img/projekty/pulpit-okladka.webp', 1280, 720, 'pulpit-gitcloud', 'pulpit gitcloud', false],
+  ['pilot', '/img/projekty/pilot-kafelki.png', 1280, 680, 'pilot-esp32', 'pilot esp32 · 320×170', true],
+  ['isp', '/img/demo/dashboard.webp', 2000, 1250, 'platforma-isp', 'demo.gitcloud · dashboard', false],
+];
 // Żywa architektura: powiązania elementów warstw (L3 interfejs, L2 agenci, L1 dane), indeksy jak w T.arch.layers.
 const archLinks: [string, string][] = [
   ['L3-0', 'L2-0'], ['L3-0', 'L2-2'], ['L3-0', 'L1-1'], ['L3-0', 'L1-2'],
@@ -94,7 +90,6 @@ const jsonld = {
         <h2>{T.arch.h2}</h2>
         <p>{T.arch.p}</p>
       </header>
-      <p class="arch-hint mono" aria-hidden="true">{T.arch.hint}</p>
       <div class="stack" data-links={JSON.stringify(archLinks)}>
         <svg class="arch-wires" aria-hidden="true"></svg>
         {T.arch.layers.map(([lt, ls, items], li) => (
@@ -111,9 +106,6 @@ const jsonld = {
           {T.arch.flow.map((f, i) => <>{i > 0 && <i></i>}<span>{f}</span></>)}
         </div>
       </div>
-      <ol class="rules">
-        {T.arch.rules.map(([rt, rs], i) => <li class="tile"><span class="mono rule-n">R{i + 1}</span><b>{rt}</b><span>{rs}</span></li>)}
-      </ol>
     </div>
   </section>
 
@@ -135,7 +127,7 @@ const jsonld = {
     </div>
   </section>
 
-  <!-- ═══ 03 · KONSOLA ISP ═══ -->
+  <!-- ═══ 03 · INTERFEJSY (kotwica #konsola zostaje dla starych linków) ═══ -->
   <section class="sec" id="konsola">
     <div class="wrap">
       <header class="sec-h">
@@ -143,37 +135,29 @@ const jsonld = {
         <h2>{T.console.h2}</h2>
         <p>{T.console.p}</p>
       </header>
-      <div class="console" data-full={T.console.full}>
+      <div class="console">
         <div class="console-bar">
           <span class="lights" aria-hidden="true"><i></i><i></i><i></i></span>
-          <span class="mono url">demo.gitcloud · <b id="shot-name">dashboard</b></span>
-          <span class="mono live"><span class="dot ok pulse"></span> {T.console.live}</span>
+          <span class="mono url" id="shot-name">{uiShots[0][5]}</span>
         </div>
         <div class="pills console-tabs" role="tablist" aria-label={T.console.tabsAria}>
-          {shotKeys.map((k, i) => (
-            <button type="button" role="tab" aria-selected={i === 0 ? 'true' : 'false'} class={i === 0 ? 'is-on' : ''} data-shot={k}>{T.console.shots[k][0]}</button>
+          {uiShots.map(([k, , , , , u], i) => (
+            <button type="button" role="tab" aria-selected={i === 0 ? 'true' : 'false'} class={i === 0 ? 'is-on' : ''} data-shot={k} data-url={u}>{T.console.shots[k][0]}</button>
           ))}
         </div>
         <div class="console-view">
-          {shotKeys.map((k, i) => [k, i, ...T.console.shots[k]]).map(([k, i, sn, sc]) => (
-              <figure class={`shot${i === 0 ? ' is-on' : ''}`} data-shot={k} role="tabpanel">
-                <div class="shot-img">
-                  <a class="shot-open" data-full={T.console.full} href={`/img/demo/${k}.webp`} target="_blank" rel="noopener" aria-label={`${T.console.open}: ${sn}`}><img src={`/img/demo/${k}.webp`} alt={`${T.console.alt} ${sn} (${T.console.altDemo})`} width="2000" height="1250" loading={i === 0 ? 'eager' : 'lazy'} decoding="async" fetchpriority={i === 0 ? 'high' : undefined} /></a>
-                  {(hotXY[k] || []).map(([x, y], hi) => (
-                    <button type="button" class={`hot${x > 60 ? ' hot-l' : ''}`} style={`left:${x}%;top:${y}%`} aria-label={`${T.console.hotAria} ${hi + 1}: ${T.console.hot[k][hi]}`}>
-                      <span class="hot-n mono" aria-hidden="true">{hi + 1}</span><span class="hot-t" aria-hidden="true">{T.console.hot[k][hi]}</span>
-                    </button>
-                  ))}
-                </div>
-                <figcaption>{sc}</figcaption>
-              </figure>
+          {uiShots.map(([k, src, w, h, , , px], i) => (
+            <figure class={`shot${i === 0 ? ' is-on' : ''}`} data-shot={k} role="tabpanel">
+              <a class="shot-img" href={src} target="_blank" rel="noopener" aria-label={`${T.console.open}: ${T.console.shots[k][0]}`}><img class={px ? 'px' : undefined} src={src} alt={`${T.console.alt}: ${T.console.shots[k][0]} (${T.console.altDemo})`} width={w} height={h} loading={i === 0 ? 'eager' : 'lazy'} decoding="async" /></a>
+            </figure>
+          ))}
+        </div>
+        <div class="console-cap">
+          {uiShots.map(([k, , , , p], i) => (
+            <p class={`shot-cap${i === 0 ? ' is-on' : ''}`} data-shot={k}>{T.console.shots[k][1]} {has(p) && <a href={`#${anchor(p)}`}>{T.console.more} &rarr;</a>}</p>
           ))}
         </div>
       </div>
-      <div class="caps">
-        {T.console.caps.map(([ct, cs]) => <div class="cap"><b>{ct}</b><span>{cs}</span></div>)}
-      </div>
-      {has('platforma-isp') && <a class="link-more" href={`#${anchor('platforma-isp')}`}>{T.console.more} &rarr;</a>}
     </div>
   </section>
 
@@ -243,10 +227,6 @@ const jsonld = {
           {T.exp.bio.map((b) => <p>{b}</p>)}
           <a class="btn btn-g btn-sm cv-btn" href={T.cv.file} download><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v11m0 0-4.5-4.5M12 15l4.5-4.5M5 19.5h14"/></svg> {T.exp.cv}</a>
         </div>
-        <div class="term" aria-hidden="true">
-          <div class="term-bar mono"><span class="lights"><i></i><i></i><i></i></span> aleh@gitcloud: ~</div>
-          <pre class="mono" set:html={termHtml}></pre>
-        </div>
       </div>
 
       <div class="exp">
@@ -296,7 +276,7 @@ const jsonld = {
       <ol class="zm-list">
         {zmiany.slice(0, 3).map((z) => { const tx = (z as any)[lang] ?? z.pl; return (
           <li class="zm-item tile"><div class="zm-meta mono"><time datetime={z.date}>{z.date}</time></div>
-            <h3>{tx.t}</h3><p class="muted">{tx.x}</p></li>); })}
+            <h3>{tx.t}</h3></li>); })}
       </ol>
       <a class="link-more" href={zmianyPath(lang)}>{T.ui.changesAll} &rarr;</a>
     </div>
@@ -313,7 +293,6 @@ const jsonld = {
           <a class="btn btn-p btn-lg" href={`mailto:${EMAIL}`}>{T.contact.btn} &rarr;</a>
           <button type="button" class="btn btn-g mono copy" data-copy={EMAIL} aria-label={T.contact.copyAria}>{EMAIL}</button>
         </div>
-        <ul class="checks">{T.contact.checks.map((c) => <li>{c}</li>)}</ul>
       </div>
       <div class="faq">
         {T.faq.map(([q, a]) => <details><summary>{q}</summary><p>{a}</p></details>)}
@@ -391,8 +370,8 @@ const jsonld = {
   const tabs = $$<HTMLButtonElement>('.console-tabs button');
   const show = (k: string) => {
     tabs.forEach((t) => { const on = t.dataset.shot === k; t.classList.toggle('is-on', on); t.setAttribute('aria-selected', String(on)); });
-    $$<HTMLElement>('.console-view .shot').forEach((s) => s.classList.toggle('is-on', s.dataset.shot === k));
-    const n = $('#shot-name'); if (n) n.textContent = k;
+    $$<HTMLElement>('.console .shot, .console .shot-cap').forEach((s) => s.classList.toggle('is-on', s.dataset.shot === k));
+    const n = $('#shot-name'), t = tabs.find((x) => x.dataset.shot === k); if (n && t) n.textContent = t.dataset.url || k;
   };
   tabs.forEach((t) => t.addEventListener('click', () => { show(t.dataset.shot!); stopAuto(); }));
   let auto: number | undefined;
@@ -427,7 +406,7 @@ const jsonld = {
   // ── Pojawianie się bloków
   if (!reduce) {
     const rio = new IntersectionObserver((es) => es.forEach((e) => { if (e.isIntersecting) { e.target.classList.add('in'); rio.unobserve(e.target); } }), { threshold: 0.12 });
-    $$('.sec-h, .layer, .rules, .bento .card, .console, .caps, .agent, .areas, .svc, .who > *, .contact > *').forEach((el) => { el.classList.add('rv'); rio.observe(el); });
+    $$('.sec-h, .layer, .bento .card, .console, .agent, .areas, .svc, .who > *, .contact > *').forEach((el) => { el.classList.add('rv'); rio.observe(el); });
   }
 
   // ── Żywa architektura: najechanie (lub dotknięcie) elementu warstwy podświetla jego powiązania i rysuje przewody.
@@ -476,15 +455,6 @@ const jsonld = {
     n.addEventListener('pointerenter', () => on(true)); n.addEventListener('pointerleave', () => on(false));
     n.addEventListener('focus', () => on(true)); n.addEventListener('blur', () => on(false));
   });
-
-  // ── Punkty na zrzutach: dotknięcie pokazuje podpis (na komputerze wystarczy najechać)
-  $$<HTMLButtonElement>('.hot').forEach((h) => h.addEventListener('click', (e) => {
-    e.stopPropagation();
-    const was = h.classList.contains('open');
-    $$('.hot.open').forEach((x) => x.classList.remove('open'));
-    h.classList.toggle('open', !was); stopAuto();
-  }));
-  document.addEventListener('click', () => $$('.hot.open').forEach((x) => x.classList.remove('open')));
 
   // ── Kopiowanie adresu
   const toast = $('#toast');

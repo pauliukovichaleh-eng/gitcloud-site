@@ -28,7 +28,7 @@ VCLOCK = """(() => {
 who, out = sys.argv[1], sys.argv[2]
 secs = float(sys.argv[3]) if len(sys.argv) > 3 else 6.6
 with sync_playwright() as p:
-    b = p.chromium.launch(executable_path="/usr/bin/google-chrome", args=["--headless=new", "--use-angle=vulkan", "--enable-features=Vulkan", "--ignore-gpu-blocklist", "--enable-gpu"])
+    b = p.chromium.launch(executable_path="/usr/bin/google-chrome", args=["--headless=new", "--use-angle=gl-egl", "--ignore-gpu-blocklist", "--enable-gpu"])
     pg = b.new_page(device_scale_factor=3, viewport={"width": int(__import__("os").environ.get("SZ","480")), "height": int(__import__("os").environ.get("SZ","480"))})
     pg.set_default_timeout(180000)
     pg.add_init_script(VCLOCK)

@@ -2,11 +2,14 @@
 import sys, re
 from playwright.sync_api import sync_playwright
 base, out = sys.argv[1], sys.argv[2]   # [modele]
-PL = [[r"из (\d+) действий", "z $1 działań"], ["[hH][rR], бухгалтер и диктор", "kadry, księgowość i lektor"], ["Мастерская", "Warsztat"],
+PL = [[r"из (\d+) действий", "z $1 działań"], ["[hH][rR], бухгалтер и диктор", "korespondencja i terminy"], ["kadry, księgowość i lektor", "korespondencja i terminy"], ["Вживую", "Na żywo"], ["Мастерская", "Warsztat"],
       ["меньше: ", "najmniej: "], ["ответов", "odpowiedzi"], ["сломано", "zepsute"], ["отказов", "odmów"], ["провал экзамена", "egzamin oblany"],
       ["категория", "kategoria"], ["Открыть", "Otwórz"], ["дольше всех", "najdłużej"], [" мин", " min"], ["само: ", "automatycznie: "], ["Claude готовит", "Claude przygotowuje"], ["вопросы", "pytania"], ["Решила", "Zdecydowała"], ["Отправила", "Wysłała"], ["Решил", "Zdecydował"], ["Отправил", "Wysłał"]]
 JS = """(pl) => { const w = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT); let n;
   while ((n = w.nextNode())) { let t = n.nodeValue, o = t; for (const [a, b] of pl) t = t.replace(new RegExp(a, 'g'), b); if (t !== o) n.nodeValue = t; } }"""
+# 10.11.2026: na stronie bez „Dom (tylko odczyt)” w nagłówku i bez przycisku mostu „Dom ↔ Praca” (prywatne)
+HIDE = """() => { for (const e of document.querySelectorAll('body *')) { const t = (e.textContent || '').replace(/\\s+/g, ' ').trim();
+  if (/^Dom \\(tylko odczyt\\)$/.test(t) || /^Дом ↔ Работа$/.test(t)) e.style.visibility = 'hidden'; } }"""
 CYR = """(r) => { const bad = []; const w = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT); let n;
   while ((n = w.nextNode())) { if (!/[\\u0400-\\u04FF]/.test(n.nodeValue)) continue; const e = n.parentElement; if (!e || !e.offsetParent) continue;
     const b = e.getBoundingClientRect(); if (b.bottom > r.y && b.top < r.y + r.h && b.right > 0 && b.left < r.w) bad.push(n.nodeValue.trim().slice(0, 60)); }
@@ -35,7 +38,7 @@ with sync_playwright() as p:
         pg.on("console", lambda m, n=name: m.type == "error" and errs.append(f"{n}: {m.text[:120]}"))
         pg.on("response", lambda r, n=name: r.status >= 400 and errs.append(f"{n}: {r.status} {r.url}"))
         pg.goto(base + path, wait_until="domcontentloaded"); pg.wait_for_timeout(3000)
-        pg.evaluate(JS, PL); pg.wait_for_timeout(300); pg.evaluate(JS, PL)
+        pg.evaluate(JS, PL); pg.wait_for_timeout(300); pg.evaluate(JS, PL); pg.evaluate(HIDE)
         hs = pg.evaluate("document.documentElement.scrollWidth > innerWidth")
         if mode == "decyzje":
             pg.add_style_tag(content="#gc-tabbar{display:none!important}")

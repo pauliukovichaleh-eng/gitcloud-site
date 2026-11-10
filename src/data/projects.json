@@ -24,7 +24,7 @@
       "lead": "Jedna konsola dla zespołu sieciowego: monitoring, automatyzacja, dostęp i kopie, z alertami wspieranymi przez AI.",
       "year": "2026",
       "status": "Działa, wersja demonstracyjna na wymyślonych danych",
-      "image": "/img/demo/dashboard.webp",
+      "image": "/img/projekty/isp-okladka.webp",
       "image_alt": "Konsola GitCloud: pulpit alertów w wersji demonstracyjnej",
       "gallery": [
         {
@@ -147,7 +147,7 @@
       "year": "2026",
       "status": "Działa w przeglądarce i w widżecie pulpitu",
       "image": "/img/projekty/glowy.jpg",
-      "image_alt": "Wirtualna głowa agentki na tle miasta nocą",
+      "image_alt": "Trzy głowy agentów 3D: Sally, Tony i Mark",
       "video": {
         "src": "/img/projekty/glowy.mp4",
         "poster": "/img/projekty/glowy.jpg"
@@ -156,7 +156,7 @@
         {
           "video": "/img/projekty/glowy.mp4",
           "src": "/img/projekty/glowy.jpg",
-          "alt": "Sally, Mark i Tony mówią: ruch ust i mimika, nagranie z ekranu"
+          "alt": "Sally, Tony i Mark: mimika i emocje, nagranie na karcie graficznej"
         },
         {
           "video": "/img/projekty/glowa-sally.mp4",
@@ -172,10 +172,6 @@
           "video": "/img/projekty/glowa-mark.mp4",
           "src": "/img/projekty/glowa-mark.jpg",
           "alt": "Mark: modernizacja i analiza"
-        },
-        {
-          "src": "/img/projekty/glowy-zmiana.jpg",
-          "alt": "Zmiana postaci w trakcie rozmowy"
         }
       ],
       "problem": "Asystent głosowy bez twarzy jest mniej czytelny w rozmowie. Celem była żywa mimika na własnym sprzęcie, bez płatnych modeli 3D.",
