@@ -49,11 +49,25 @@ const work = mkdtempSync(join(tmpdir(), 'gc-critical-'));
 const chrome = spawn(CHROME, ['--headless=new', '--no-sandbox', '--disable-gpu', '--hide-scrollbars', '--no-first-run', '--no-default-browser-check',
   '--mute-audio', '--remote-debugging-port=0', `--user-data-dir=${work}`, 'about:blank'], { env: { ...process.env, TMPDIR: work }, stdio: 'ignore', detached: true });
 const exited = new Promise((r) => chrome.on('exit', r));
+const killChrome = () => { try { process.kill(-chrome.pid, 'SIGKILL'); } catch {} }; // google-chrome to skrypt: cała grupa procesów
+let finishing = false;
 const finish = async (code) => {
-  try { process.kill(-chrome.pid, 'SIGKILL'); } catch {} // google-chrome to skrypt: cała grupa procesów
+  if (finishing) return;
+  finishing = true;
+  killChrome();
   await Promise.race([exited, new Promise((r) => setTimeout(r, 3000))]);
   server.close(); rmSync(work, { recursive: true, force: true, maxRetries: 5 }); process.exit(code);
 };
+// Chrome jest detached: przerwany build (Ctrl+C, timeout, usunięty worktree) albo wyjątek zostawiały go żywego na
+// zawsze (10.11.2026: 4 sieroty, ~30% rdzenia przez dobę). Każde wyjście z procesu gasi grupę Chrome.
+process.on('exit', killChrome);
+for (const s of ['SIGINT', 'SIGTERM', 'SIGHUP']) process.on(s, () => { console.error(`krytyczny: ${s}, sprzątam Chrome`); finish(1); });
+// Strony zapisuje się dopiero po pomiarze wszystkich, więc przerwanie zostawia dist bez zmian (zwykły <link>).
+// Jak przy braku Chrome: lokalnie ostrzeżenie i build idzie dalej, w CI błąd.
+const giveUp = (why) => { console[process.env.CI ? 'error' : 'warn'](`krytyczny: ${why}; strony bez zmian`); finish(process.env.CI ? 1 : 0); };
+process.on('uncaughtException', (e) => giveUp(e.message || e));
+process.on('unhandledRejection', (e) => giveUp(e?.message || e));
+setTimeout(() => giveUp('limit 15 min'), 15 * 60_000).unref();
 
 let port;
 for (let i = 0; i < 100 && !port; i++) {
@@ -73,7 +87,15 @@ ws.onmessage = (m) => {
   if (d.id && waiting.has(d.id)) { const [r, j] = waiting.get(d.id); waiting.delete(d.id); d.error ? j(new Error(d.error.message)) : r(d.result); }
   else if (d.method) listeners.forEach((l) => l(d));
 };
-const send = (method, params = {}) => new Promise((r, j) => { const id = ++seq; waiting.set(id, [r, j]); ws.send(JSON.stringify({ id, method, params })); });
+// 10.11.2026: na hoście renderer potrafi zawisnąć na pierwszej stronie i nie odpowiada nawet na document.readyState;
+// bez limitu skrypt czekał wiecznie, a przerwany build zostawiał Chrome. Brak odpowiedzi = jak brak Chrome.
+const SEND_MS = 30_000;
+const send = (method, params = {}) => new Promise((r, j) => {
+  const id = ++seq;
+  const t = setTimeout(() => { waiting.delete(id); j(new Error(`Chrome nie odpowiada na ${method} od ${SEND_MS / 1000} s`)); }, SEND_MS);
+  waiting.set(id, [(v) => { clearTimeout(t); r(v); }, (e) => { clearTimeout(t); j(e); }]);
+  ws.send(JSON.stringify({ id, method, params }));
+});
 const once = (method) => new Promise((r) => { const l = (d) => { if (d.method === method) { listeners.splice(listeners.indexOf(l), 1); r(d); } }; listeners.push(l); });
 await send('Page.enable');
 
