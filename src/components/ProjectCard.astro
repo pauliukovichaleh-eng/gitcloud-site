@@ -1,5 +1,5 @@
 ---
-import { anchor, plakat, type Project } from '../lib/data';
+import { anchor, kartaSrcset, plakat, type Project } from '../lib/data';
 import { t, type Lang } from '../i18n';
 interface Props { p: Project; big?: boolean; lang?: Lang; href?: string }
 const { p, big = false, lang = 'pl', href } = Astro.props;
@@ -11,7 +11,7 @@ const media = p.video ? 'video' : p.image ? 'img' : 'gen';
   <div class={`card-media m-${media}`}>
     {media === 'video' && <img class="card-poster" src={plakat(p.video!.poster)} alt="" loading="lazy" decoding="async" />}
     {media === 'video' && <video src={p.video!.src} muted loop playsinline preload="none" width="960" height="474" aria-label={p.image_alt || p.title} data-inview></video>}
-    {media === 'img' && <img src={p.image} alt={p.image_alt || p.title} class={p.pixelated ? 'px' : ''} loading="lazy" decoding="async" />}
+    {media === 'img' && <img src={p.image} srcset={p.pixelated ? undefined : kartaSrcset(p.image!)} sizes={big ? '(max-width: 620px) 100vw, 760px' : '(max-width: 620px) 100vw, 370px'} alt={p.image_alt || p.title} class={p.pixelated ? 'px' : ''} loading="lazy" decoding="async" />}
     {media === 'gen' && (
       <div class="gen" aria-hidden="true">
         <span class="gen-big mono">{p.badge || p.stack[0]}</span>

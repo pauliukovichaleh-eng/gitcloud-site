@@ -1,7 +1,7 @@
 # Lighthouse CI: wydajność, dostępność, dobre praktyki i SEO zbudowanej strony.
 # Osobny workflow, więc nie blokuje wdrożenia (deploy.yml). Progi w lighthouserc.json: wydajność tylko ostrzega
 # poniżej 0,75; dostępność, dobre praktyki i SEO poniżej 0,9 dają czerwony wynik (06.11.2026 lokalnie: 0,76-0,99 / 0,96 / 1 / 1).
-# Raport: link w logu kroku "lhci autorun".
+# Raport: link w logu kroku "lhci autorun". Tylko strony z treścią: przekierowanie (np. /isp/) nie daje wyniku wydajności (NaN, 11.11.2026).
 name: lighthouse
 on:
   push:

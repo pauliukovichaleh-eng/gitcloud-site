@@ -74,8 +74,11 @@ const light = (dir: string) => (src: string) => {
 };
 export const mini = light('mini');
 export const plakat = light('plakat');
-// srcset dużego obrazu: wersja 960 px dla telefonów, oryginał dla szerokich ekranów
-export const srcset = (src: string) => {
-  const w = (widths as Record<string, number>)[src], s = plakat(src);
-  return w && w > 960 && s !== src ? `${s} 960w, ${src} ${w}w` : undefined;
+const karta = light('karta');
+// srcset: lekka kopia (plakat 960 px dla dużego obrazu galerii, karta 760 px dla okładki karty) i oryginał dla szerokich ekranów
+const set = (copy: (src: string) => string, cw: number) => (src: string) => {
+  const w = (widths as Record<string, number>)[src], s = copy(src);
+  return w && w > cw && s !== src ? `${s} ${cw}w, ${src} ${w}w` : undefined;
 };
+export const srcset = set(plakat, 960);
+export const kartaSrcset = set(karta, 760);
