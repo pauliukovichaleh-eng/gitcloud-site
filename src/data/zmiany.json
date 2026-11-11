@@ -2,6 +2,38 @@
   "_opis": "Dziennik zmian /zmiany/ (decyzja #748). Prowadzi go nocne odświeżanie (host/site-refresh): nowe wpisy NA POCZĄTKU. Pola: id (data-slug), date, area, project (slug z projects.json: wpis pokazuje się też na stronie projektu, decyzja #751) (strona|panel|agenci|glowy|pilot|isp|infra), kind (wizualna = z obrazami przed/po, techniczna = krótko, bez obrazów), img [{src, alt{pl,en,ru}, label: przed|po|kadr}], link (kotwica albo strona projektu), pl/en/ru {t, x}. Tylko to, co publiczne: bez klientów, pracodawców, domu, finansów, adresów IP.",
   "wpisy": [
     {
+      "id": "2026-11-10-nic-sprawy",
+      "date": "2026-11-10",
+      "area": "panel",
+      "project": "panel-operacyjny",
+      "kind": "techniczna",
+      "link": "/projekty/panel-operacyjny/",
+      "pl": { "t": "Nić sprawy przy sesjach Claude", "x": "Każda sesja Claude ma pasek kroków: decyzja, sesja, commity, wynik. Bieżący krok świeci, zablokowany pulsuje bursztynem, gotowy jest zielony. Jedno dotknięcie wiersza pokazuje sedno i cały łańcuch. Ten sam pasek jest w panelu, na pulpicie i w czacie agentów, animacje idą we wspólnym takcie." },
+      "en": { "t": "Task thread next to Claude sessions", "x": "Every Claude session has a strip of steps: decision, session, commits, result. The current step glows, a stuck one pulses amber, a finished one turns green. One tap on the row shows the gist and the whole chain. The same strip is in the panel, on the desktop and in the agent chat, with animations on a shared beat." },
+      "ru": { "t": "Нить дела у сессий Claude", "x": "У каждой сессии Claude полоса шагов: решение, сессия, коммиты, итог. Текущий шаг светится, застрявший дышит янтарём, готовый зелёный. Одно касание строки показывает суть и всю цепочку. Та же полоса в панели, на рабочем столе и в чате агентов, анимации идут в общем такте." }
+    },
+    {
+      "id": "2026-11-10-czat-glow",
+      "date": "2026-11-10",
+      "area": "glowy",
+      "project": "glowy-agentow",
+      "kind": "techniczna",
+      "link": "/projekty/glowy-agentow/",
+      "pl": { "t": "Głowy agentów: wspólny czat i stan „myśli”", "x": "Mark, Tony i Sally mają na pulpicie wspólny czat; adresata wybiera początek wiadomości albo głowa na ekranie. Głowa przyjmuje stan z zewnątrz: Mark „myśli”, dopóki Claude pracuje nad podjętą decyzją, a nad głową widać, czym się zajmuje." },
+      "en": { "t": "Agent heads: shared chat and a \"thinking\" state", "x": "Mark, Tony and Sally share one chat on the desktop; the addressee is picked by the start of the message or by the head on screen. The head now takes its state from outside: Mark \"thinks\" while Claude works on an accepted decision, and a caption above the head says what it is doing." },
+      "ru": { "t": "Головы агентов: общий чат и состояние «думает»", "x": "У Марка, Тони и Салли на рабочем столе общий чат; адресата выбирает начало сообщения или голова на экране. Голова принимает состояние снаружи: Марк «думает», пока Claude работает по принятому решению, а над головой видно, чем он занят." }
+    },
+    {
+      "id": "2026-11-10-ci-dzien-noc",
+      "date": "2026-11-10",
+      "area": "infra",
+      "kind": "techniczna",
+      "link": "/dyzurny/",
+      "pl": { "t": "Kontrola dzienna i nocna, dyżurny czyta logi grupami", "x": "W dzień CI sprawdza tylko zmienione pliki i dotknięte strony, w nocy wszystko, więc commit nie czeka na pełny przebieg. Dyżurny grupuje błędy w logach (ślady, okna startu, serie), a wygasłe logowanie zgłasza mi zamiast restartować usługę." },
+      "en": { "t": "Day and night checks, the on-call agent reads logs in groups", "x": "During the day CI checks only changed files and affected pages, at night everything, so a commit does not wait for a full run. The on-call agent groups log errors (traces, boot windows, bursts) and reports an expired sign-in to me instead of restarting the service." },
+      "ru": { "t": "Дневная и ночная проверка, дежурный читает логи группами", "x": "Днём CI проверяет только изменённые файлы и затронутые страницы, ночью всё, поэтому коммит не ждёт полного прогона. Дежурный группирует ошибки в логах (трассы, окна загрузки, пачки) и об истёкшем входе сообщает мне, а не перезапускает службу." }
+    },
+    {
       "id": "2026-11-10-interfejsy",
       "date": "2026-11-10",
       "area": "strona",
