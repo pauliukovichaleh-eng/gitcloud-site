@@ -196,6 +196,7 @@ html:not(.cv-off) #kontakt{ content-visibility:auto; contain-intrinsic-size:auto
 .flow i{ width:36px; height:1px; background:linear-gradient(90deg, var(--neon2), var(--cyan)); position:relative; opacity:.7; }
 .flow i::after{ content:''; position:absolute; right:-1px; top:-3px; border:3.5px solid transparent; border-left:5px solid var(--cyan); }
 .flow span:last-child{ color:var(--ok); }
+.flow-br{ display:none; }
 .rule-n{ font-size:12px; color:var(--cyan); }
 @media (max-width:1100px){ .layer{ grid-template-columns:1fr; } }
 @media (max-width:620px){ .layer-items{ grid-template-columns:1fr 1fr; } }
@@ -451,6 +452,7 @@ html:not(.cv-off) #kontakt{ content-visibility:auto; contain-intrinsic-size:auto
   .layer-items > * > *{ padding:11px 12px; }
   .flow{ font-size:10.5px; gap:6px; }
   .flow i{ width:16px; }
+  .flow-br{ display:block; flex-basis:100%; height:0; } /* dwa równe rzędy zamiast osieroconego „dziennik” */
 
   /* moduły: zwarte karty */
   .filters{ flex-wrap:nowrap; margin-inline:calc(-1 * var(--pad)); padding-inline:var(--pad); }

@@ -103,7 +103,7 @@ const jsonld = {
           </div>
         ))}
         <div class="flow mono" aria-hidden="true">
-          {T.arch.flow.map((f, i) => <>{i > 0 && <i></i>}<span>{f}</span></>)}
+          {T.arch.flow.map((f, i) => <>{i === 3 && <b class="flow-br"></b>}{i > 0 && <i></i>}<span>{f}</span></>)}
         </div>
       </div>
     </div>
