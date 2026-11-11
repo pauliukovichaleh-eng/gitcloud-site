@@ -370,6 +370,12 @@ const jsonld = {
     $$<HTMLButtonElement>('.filters button').find((b) => b.dataset.f === a.dataset.filtr)?.click();
   }));
 
+  // ── Karuzele na telefonie: klasa is-end, gdy nie ma już nic dalej (zdejmuje wygaszenie prawego brzegu)
+  $$<HTMLElement>('.layer-items, .agents, .areas').forEach((c) => {
+    const end = () => c.classList.toggle('is-end', c.scrollLeft + c.clientWidth >= c.scrollWidth - 4);
+    c.addEventListener('scroll', end, { passive: true }); addEventListener('resize', end); end();
+  });
+
   // ── Konsola: zakładki widoków
   const tabs = $$<HTMLButtonElement>('.console-tabs button');
   const show = (k: string) => {

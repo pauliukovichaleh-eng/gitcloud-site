@@ -407,6 +407,8 @@ html:not(.cv-off) #kontakt{ content-visibility:auto; contain-intrinsic-size:auto
   .layer:has(.layer-items){ padding-right:0; }
   .layer-items > li{ flex-basis:min(62%, 230px); }
   .agents .agent{ display:block; }
+  /* prawy brzeg karuzeli gaśnie, żeby ucięta karta czytała się jako „dalej”; na końcu przewijania znika */
+  :is(.layer-items, .agents, .areas):not(.is-end){ -webkit-mask-image:linear-gradient(to right, #000 calc(100% - 64px), transparent); mask-image:linear-gradient(to right, #000 calc(100% - 64px), transparent); }
 }
 @media (max-width:620px){
   :root{ --pad:16px; }

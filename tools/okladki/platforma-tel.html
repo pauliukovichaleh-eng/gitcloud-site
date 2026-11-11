@@ -1,0 +1,81 @@
+<!doctype html><html lang="pl"><head><meta charset="utf-8"><link rel="stylesheet" href="base.css">
+<!-- Wersja pionowa dla telefonów (450x562 css px, zrzut 2x → platforma-okladka-tel.webp 900x1124). Okładka projektu „Platforma danych i nocny potok”: makieta z faktów (godziny z harmonogramu, wynik sprawdzenia
+     odtworzenia z nocy 09.11.2026), bez adresów i nazw maszyn. Lewy górny róg pusty: tam na karcie jest etykieta kategorii.
+     Render: zrzut 1280x720 (Playwright + google-chrome) → public/img/projekty/platforma-okladka.webp (q86) -->
+<style>
+@font-face{font-family:Onest;src:url(../../node_modules/@fontsource-variable/onest/files/onest-latin-ext-wght-normal.woff2) format('woff2');font-weight:100 900}
+@font-face{font-family:Onest;src:url(../../node_modules/@fontsource-variable/onest/files/onest-latin-wght-normal.woff2) format('woff2');font-weight:100 900}
+@font-face{font-family:JBM;src:url(../../node_modules/@fontsource-variable/jetbrains-mono/files/jetbrains-mono-latin-wght-normal.woff2) format('woff2');font-weight:100 800}
+html,body{font-family:Onest,sans-serif}
+.bg{background:radial-gradient(900px 560px at 18% 0%,#10303a 0,#030408 72%)}
+.p{position:absolute;border-radius:14px;background:#070b12;border:1px solid #1d2a3c;box-shadow:0 30px 80px rgba(0,0,0,.65);color:#d6deea;overflow:hidden}
+.ph{font:600 13px JBM,monospace;letter-spacing:.14em;text-transform:uppercase;color:#7d8ba3;padding:16px 22px 6px}
+.tl{position:relative;padding:6px 22px 0 22px}
+.row{display:grid;grid-template-columns:62px 18px 1fr auto;align-items:center;height:40.5px;font-size:16.5px}
+.t{font:500 14px JBM,monospace;color:#7d8ba3}
+.dt{width:10px;height:10px;border-radius:50%;background:#5fb8c2;box-shadow:0 0 0 3px rgba(95,184,194,.15)}
+.dt.v{background:#b88bd0;box-shadow:0 0 0 3px rgba(184,139,208,.15)}
+.dt.m{background:#e3e9f2;box-shadow:0 0 0 3px rgba(227,233,242,.12)}
+.line{position:absolute;left:88px;top:24px;bottom:16px;width:2px;background:linear-gradient(#5fb8c2,#b88bd0 60%,#e3e9f2)}
+.r{font:500 13px JBM,monospace;color:#5fb8c2}
+.r.v{color:#b88bd0}.r.m{color:#9aa6b8}
+.ck{font:15px/1.8 JBM,monospace;padding:4px 22px 0;color:#c6d0de}
+.ck b{color:#5fb8c2;font-weight:600}
+.big{font:600 56px Onest;color:#e8eef6;letter-spacing:-.02em}
+.sm{font-size:13.5px;color:#8995a8}
+.bar2{height:8px;border-radius:4px;background:#121a26;margin:8px 0 4px;overflow:hidden}
+.bar2 i{display:block;height:100%;background:linear-gradient(90deg,#5fb8c2,#b88bd0)}
+.tag{color:#5d6a80;font-family:JBM,monospace}
+
+html,body{width:450px;height:562px}
+.bg{position:relative;width:450px;height:562px;overflow:hidden}
+.p{position:absolute;left:14px;right:14px;border-radius:12px;box-shadow:0 16px 40px rgba(0,0,0,.6)}
+.ph{font-size:11px;padding:10px 14px 4px}
+.tl{padding:2px 14px 0}
+.row{grid-template-columns:44px 14px 1fr auto;height:21px;font-size:13px}
+.t{font-size:11.5px}.r{font-size:11px}
+.dt{width:8px;height:8px}
+.line{left:61px;top:8px;bottom:6px}
+.ck{font-size:12px;line-height:1.6;padding:2px 14px 8px}
+.big{font-size:34px;line-height:1.05}
+.sm{font-size:11px;line-height:1.35}
+.tag{position:absolute;right:16px;bottom:8px;font-size:10px}
+</style></head><body><div class="bg">
+<div class="p" style="top:14px;height:262px">
+ <div class="ph">noc · potok zadań</div>
+ <div class="tl"><div class="line"></div>
+  <div class="row"><span class="t">00:05</span><span class="dt"></span><span>Zrzut bazy PostgreSQL</span><span class="r">ok</span></div>
+  <div class="row"><span class="t">00:20</span><span class="dt"></span><span>Kopia przyrostowa bazy, szyfrowana</span><span class="r">ok</span></div>
+  <div class="row"><span class="t">00:30</span><span class="dt"></span><span>Kopia danych poza serwer</span><span class="r">ok</span></div>
+  <div class="row"><span class="t">01:00</span><span class="dt"></span><span>Próba odtworzenia kopii</span><span class="r">ok · 17 min</span></div>
+  <div class="row"><span class="t">02:05</span><span class="dt v"></span><span>Okno konserwacji</span><span class="r v">ok</span></div>
+  <div class="row"><span class="t">02:40</span><span class="dt v"></span><span>Przegląd kodu z poprzedniego dnia</span><span class="r v">ok</span></div>
+  <div class="row"><span class="t">03:40</span><span class="dt v"></span><span>Dokumentacja zgodna ze stanem</span><span class="r v">ok</span></div>
+  <div class="row"><span class="t">03:55</span><span class="dt v"></span><span>Repozytoria na GitHub</span><span class="r v">ok</span></div>
+  <div class="row"><span class="t">05:10</span><span class="dt m"></span><span>Raporty i analiza dnia</span><span class="r m">ok</span></div>
+  <div class="row"><span class="t">06:10</span><span class="dt m"></span><span>Przegląd nocy przez model</span><span class="r m">ok</span></div>
+  <div class="row"><span class="t">07:00</span><span class="dt m"></span><span><b>Jedno podsumowanie rano</b></span><span class="r m">gotowe</span></div>
+ </div>
+</div>
+<div class="p" style="top:288px;height:138px">
+ <div class="ph">sprawdzenie odtworzenia · ta noc</div>
+ <div class="ck">
+<div><b>✓</b> kopia bazy sprzed 1 h, limit 36 h</div>
+<div><b>✓</b> zrzut czytelny: 170 tabel</div>
+<div><b>✓</b> 72/72 losowe pliki, sumy sha256 zgodne</div>
+<div><b>✓</b> 1/7 repozytorium co noc, całość w tydzień</div>
+<div><b>✓</b> 11 gałęzi na GitHub zgodnych</div>
+ </div>
+</div>
+<div class="p" style="top:438px;height:96px;right:auto;width:204px;padding:10px 14px;box-sizing:border-box">
+ <div class="ph" style="padding:0 0 4px">zadania</div>
+ <div class="big">30</div>
+ <div class="sm">w harmonogramie jako kod,<br>rozjazd z plikiem = alarm</div>
+</div>
+<div class="p" style="top:438px;height:96px;left:232px;padding:10px 14px;box-sizing:border-box">
+ <div class="ph" style="padding:0 0 4px">darmowa chmura</div>
+ <div class="big">≈40<span style="font-size:16px;color:#8995a8"> %</span></div>
+ <div class="bar2" style="margin:4px 0 2px"><i style="width:40%"></i></div>
+ <div class="sm">zapytań w miesiącu</div>
+</div>
+<div class="tag">godziny i wynik z nocy 09.11.2026</div></div></body></html>
