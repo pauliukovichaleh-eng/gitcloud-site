@@ -20,6 +20,9 @@ CORE = Path(os.environ.get("GC_CORE", Path.home() / "src/gitcloud-core"))
 OUT = ROOT / "src/styles/core.css"
 
 COLORS = ["bg-deep", "fg", "muted", "card", "edge", "neon", "magenta", "c-ok", "c-ok-t", "c-warn", "c-crit"]
+# 11.11.2026 (właściciel: «скроллер — один стиль во всей экосистеме»): pasek przewijania z rdzenia — tokeny --sb-*
+# (rozwinięte do liczb palety) i reguły scroll.css (var(--sb-*) → var(--gc-sb-*)); strona własnego paska nie pisze
+SCROLL = ["sb-size", "sb-inset", "sb-thumb-w", "sb-thumb", "sb-thumb-hover", "sb-color"]
 MATERIALS = ["rim-top", "well", "well-top", "well-bot", "bevel-face", "sink", "hi-1", "lift-btn", "lift-sel"]
 
 
@@ -44,7 +47,21 @@ def render() -> str:
         if "var(" in v:
             raise SystemExit(f"tokeny: --{k} zależy od innej zmiennej ({v}) — dopisz rozwinięcie")
         lines.append(f"  --gc-{k}:{v};")
+    rgb = {f"{k}-rgb": f"{int(pal[k][1:3], 16)},{int(pal[k][3:5], 16)},{int(pal[k][5:7], 16)}" for k in ("neon", "magenta")}
+    for k in SCROLL:
+        v = re.sub(r"var\(--(neon-rgb|magenta-rgb)\)", lambda m: rgb[m.group(1)], tok[k])
+        v = re.sub(r"var\(--(sb-[a-z-]+)\)", r"var(--gc-\1)", v)
+        if re.search(r"var\(--(?!gc-sb-)", v):
+            raise SystemExit(f"tokeny: --{k} zależy od innej zmiennej ({v}) — dopisz rozwinięcie")
+        lines.append(f"  --gc-{k}:{v};")
     lines.append("}")
+    sc = re.sub(r"/\*.*?\*/\s*", "", (CORE / "gitcloud_core/static/scroll.css").read_text(encoding="utf-8"), flags=re.DOTALL)
+    sc = sc[:sc.index(".gc-scroll{")] if ".gc-scroll{" in sc else sc      # pasek dokumentu my.gitcloud.pl (app.js) — nie na stronie
+    sc = re.sub(r"var\(--(sb-[a-z-]+)\)", r"var(--gc-\1)", sc).replace("var(--r-pill)", "999px")
+    if re.search(r"var\(--(?!gc-)", sc):
+        raise SystemExit("tokeny: scroll.css rdzenia używa zmiennej spoza --sb-* — dopisz rozwinięcie")
+    lines.append("/* pasek przewijania — scroll.css rdzenia */")
+    lines.append(sc.strip())
     return "\n".join(lines) + "\n"
 
 
@@ -55,7 +72,7 @@ def main() -> int:
         print("tokeny: core.css zgodny z rdzeniem" if ok else "tokeny: core.css rozszedł się z rdzeniem — uruchom tools/tokeny.py i wypuść stronę")
         return 0 if ok else 1
     OUT.write_text(text, encoding="utf-8")
-    print(f"tokeny: {OUT.relative_to(ROOT)} ({len(COLORS)} kolorów, {len(MATERIALS)} materiałów)")
+    print(f"tokeny: {OUT.relative_to(ROOT)} ({len(COLORS)} kolorów, {len(MATERIALS)} materiałów, pasek przewijania)")
     return 0
 
 
