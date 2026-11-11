@@ -32,7 +32,7 @@ const work = mkdtempSync(join(tmpdir(), 'gc-render-'));
 let n = 0;
 const chrome = (args, url) => new Promise((resolve, reject) => {
   const dir = join(work, `p${n++}`); mkdirSync(dir);
-  execFile(CHROME, ['--headless=new', '--no-sandbox', '--disable-gpu', '--hide-scrollbars', '--no-first-run', '--no-default-browser-check',
+  execFile(CHROME, ['--headless=new', '--password-store=basic', '--no-sandbox', '--disable-gpu', '--hide-scrollbars', '--no-first-run', '--no-default-browser-check',
     `--user-data-dir=${dir}`, '--virtual-time-budget=4000', ...args, url], { env: { ...process.env, TMPDIR: work }, timeout: 60000 },
   (err, _o, stderr) => (err ? reject(new Error(`${url}: ${err.message}\n${stderr}`)) : resolve()));
 });

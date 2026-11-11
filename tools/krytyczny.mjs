@@ -46,7 +46,7 @@ await new Promise((r) => server.listen(0, '127.0.0.1', r));
 const base = `http://127.0.0.1:${server.address().port}`;
 
 const work = mkdtempSync(join(tmpdir(), 'gc-critical-'));
-const chrome = spawn(CHROME, ['--headless=new', '--no-sandbox', '--disable-gpu', '--hide-scrollbars', '--no-first-run', '--no-default-browser-check',
+const chrome = spawn(CHROME, ['--headless=new', '--password-store=basic', '--no-sandbox', '--disable-gpu', '--hide-scrollbars', '--no-first-run', '--no-default-browser-check',
   '--mute-audio', '--remote-debugging-port=0', `--user-data-dir=${work}`, 'about:blank'], { env: { ...process.env, TMPDIR: work }, stdio: 'ignore', detached: true });
 const exited = new Promise((r) => chrome.on('exit', r));
 const killChrome = () => { try { process.kill(-chrome.pid, 'SIGKILL'); } catch {} }; // google-chrome to skrypt: cała grupa procesów
