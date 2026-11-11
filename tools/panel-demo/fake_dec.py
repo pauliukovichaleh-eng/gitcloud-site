@@ -30,20 +30,22 @@ DONE = [  # (źródło, min temu zadane, min do odpowiedzi, pytanie, wybrany, wy
 Q = []
 for i, (src, m, q, ctx, opts) in enumerate(OPEN):
     Q.append({"id": 900 + i, "at": NOW - timedelta(minutes=m), "source": src, "question": q, "context": ctx, "options": opts,
-              "answer": None, "answered_at": None, "applied_at": None, "result": None, "task_result": None, "note": None, "auto": False})
+              "answer": None, "answered_at": None, "applied_at": None, "result": None, "task_result": None, "note": None, "auto": False, "ref": None, "task_at": None})
 for i, (src, m, dm, q, pick, res, auto) in enumerate(DONE):
     at = NOW - timedelta(minutes=m)
     opts = _o((pick, ""), ("Później", ""))
     Q.append({"id": 880 + i, "at": at, "source": src, "question": q, "context": "", "options": opts, "answer": "1",
               "answered_at": at + timedelta(minutes=dm), "applied_at": at + timedelta(minutes=dm + 2), "result": res,
-              "task_result": None, "note": None, "auto": auto})
+              "task_result": None, "note": None, "auto": auto, "ref": None, "task_at": None})
 
 
 def rows(sql, params=None):
     s = " ".join(sql.split()).lower()
     if "from owner_questions" not in s:
         return None
-    if s.startswith("select id, at, source, question"):
+    if "source = 'most'" in s:   # karty mostu (nić czatu) — w demo ich nie ma
+        return []
+    if s.startswith(("select id, at, source, question", "select id, at, source, ref, question")):   # od 10.11 z ref
         return [dict(x, options=[dict(o) for o in x["options"]]) for x in Q]
     if "status = 'draft'" in s:
         return [{"n": 1}]
@@ -60,6 +62,25 @@ SESS = [
      "label": "готово " + time.strftime("%H:%M", time.localtime(T - 6 * 60)), "lvl": "ok", "bg": False, "dur": "",
      "what": "Strona statusu 4,7 s → 0,3 s, testy zielone"},
 ]
+
+
+# 11.11.2026: nić sprawy (gc-plan) pod wierszami sesji — wymyślone kroki po polsku (rdzeń podpisuje „N из M”, tu „N z M”)
+PLANS = [
+    {"sid": "s1", "q": "Zrzuty kart decyzji", "st": "now",
+     "steps": [("kadry", "ok"), ("przegląd", "ok"), ("WebP", "now"), ("commit", "wait"), ("wdrożenie", "wait")]},
+    {"sid": "s2", "q": "Szybsza strona statusu", "st": "ok",
+     "steps": [("pomiar", "ok"), ("indeks", "ok"), ("cache", "ok"), ("testy", "ok")]},
+]
+
+
+def _plans(*a, **k):
+    out = []
+    for p in PLANS:
+        n = len(p["steps"])
+        nit = [{"t": t, "st": st, "s": f"{i + 1} z {n}" if st in ("now", "warn") else "gotowe" if p["st"] == "ok" and i == n - 1 else "",
+                "h": ""} for i, (t, st) in enumerate(p["steps"])]
+        out.append({"id": None, "sid": p["sid"], "q": p["q"], "derzhit": "", "st": p["st"], "nit": nit})
+    return out
 
 
 RESULT = {900: "Zaplanowane: niedziela 03:00, kopia przed i test odtworzenia po"}
@@ -84,6 +105,13 @@ def patch():
     from gitcloud_ai import claudecc
     claudecc.sessions = lambda *a, **k: [dict(s) for s in SESS]
     claudecc.usage = lambda: {"l5": 22, "r5": T + 2.6 * 3600, "lw": 34, "rw": T + 3.2 * 86400, "at": T - 120}
+    try:   # nić sprawy: tylko wymyślone plany, bez git log i czatu mostu
+        from gitcloud_ai import nit
+        nit.plans = _plans
+        nit.fill = lambda *a, **k: {}
+        nit.stol = lambda *a, **k: []
+    except ImportError:
+        pass
     try:
         from gitcloud_ai import workshop
         workshop.claude_rows = lambda *a, **k: []

@@ -2,6 +2,42 @@
   "_opis": "Dziennik zmian /zmiany/ (decyzja #748). Prowadzi go nocne odświeżanie (host/site-refresh): nowe wpisy NA POCZĄTKU. Pola: id (data-slug), date, area, project (slug z projects.json: wpis pokazuje się też na stronie projektu, decyzja #751) (strona|panel|agenci|glowy|pilot|isp|infra), kind (wizualna = z obrazami przed/po, techniczna = krótko, bez obrazów), img [{src, alt{pl,en,ru}, label: przed|po|kadr}], link (kotwica albo strona projektu), pl/en/ru {t, x}. Tylko to, co publiczne: bez klientów, pracodawców, domu, finansów, adresów IP.",
   "wpisy": [
     {
+      "id": "2026-11-11-nic-w-panelu",
+      "date": "2026-11-11",
+      "area": "panel",
+      "project": "panel-operacyjny",
+      "kind": "wizualna",
+      "img": [
+        {"src": "/img/zmiany/2026-11-11-nic-w-panelu-przed.webp", "label": "przed", "alt": {"pl": "Pulpit Claude w panelu przed zmianą: same wiersze sesji, neonowe kolory", "en": "The Claude desk in the panel before: bare session rows, neon colours", "ru": "Пульт Claude в панели до: только строки сессий, неоновые цвета"}},
+        {"src": "/img/zmiany/2026-11-11-nic-w-panelu-po.webp", "label": "po", "alt": {"pl": "Pulpit Claude po zmianie: rozwinięta sesja z paskiem kroków, bieżący krok WebP 3 z 5, spokojna paleta", "en": "The Claude desk after: an expanded session with a strip of steps, current step WebP 3 of 5, calm palette", "ru": "Пульт Claude после: раскрытая сессия с полосой шагов, текущий шаг WebP 3 из 5, спокойная палитра"}}
+      ],
+      "link": "/projekty/panel-operacyjny/",
+      "pl": {"t": "Nić sprawy na zrzutach panelu", "x": "Rozwinięta sesja Claude pokazuje teraz sedno i pasek kroków z podpisanym bieżącym krokiem. Panel ma spokojniejszą paletę, jak strona: przyciski wariantów bez poświaty. Zrzuty zrobione na nowo na danych przykładowych."},
+      "en": {"t": "Task thread on the panel screenshots", "x": "An expanded Claude session now shows its gist and a strip of steps with the current step labelled. The panel has a calmer palette, like this site: option buttons without glow. Screenshots retaken on sample data."},
+      "ru": {"t": "Нить дела на снимках панели", "x": "Раскрытая сессия Claude теперь показывает суть и полосу шагов с подписанным текущим шагом. У панели спокойнее палитра, как у сайта: кнопки вариантов без свечения. Снимки сделаны заново на примерных данных."}
+    },
+    {
+      "id": "2026-11-11-rdzen-noca",
+      "date": "2026-11-11",
+      "area": "infra",
+      "kind": "techniczna",
+      "link": "/dyzurny/",
+      "pl": {"t": "Rdzeń zbiera wspólny kod i lekcje", "x": "Co noc zadanie przenosi do rdzenia GitCloud kod, który agenci i panel mają wspólny; nić sprawy już tam jest. Lekcje Tony'ego i Marka (co poszło źle i jak to naprawić) też idą do rdzenia, więc działają w każdej instalacji."},
+      "en": {"t": "The core collects shared code and lessons", "x": "Every night a job moves code that the agents and the panel share into the GitCloud core; the task thread already lives there. Tony's and Mark's lessons (what went wrong and how to fix it) go to the core too, so they work in every installation."},
+      "ru": {"t": "Ядро собирает общий код и уроки", "x": "Каждую ночь задача переносит в ядро GitCloud код, общий у агентов и панели; нить дела уже там. Уроки Тони и Марка (что пошло не так и как это чинить) тоже идут в ядро и работают в каждой установке."}
+    },
+    {
+      "id": "2026-11-11-polysk-wlosow",
+      "date": "2026-11-11",
+      "area": "glowy",
+      "project": "glowy-agentow",
+      "kind": "techniczna",
+      "link": "/projekty/glowy-agentow/",
+      "pl": {"t": "Głowy: połysk włosów przy ruchu", "x": "Gdy głowa się kołysze, odblask na włosach i przewodach przesuwa się razem z nią, zamiast stać w miejscu. Głowę można też nagrać z ramionami, do nowych ujęć na stronę."},
+      "en": {"t": "Heads: hair sheen follows the motion", "x": "When a head sways, the highlight on its hair and wires moves with it instead of standing still. A head can also be recorded with shoulders, for new shots on this site."},
+      "ru": {"t": "Головы: блик волос в движении", "x": "Когда голова качается, блик на волосах и проводах сдвигается вместе с ней, а не стоит на месте. Голову теперь можно снять и с плечами, для новых кадров сайта."}
+    },
+    {
       "id": "2026-11-10-nic-sprawy",
       "date": "2026-11-10",
       "area": "panel",

@@ -4,7 +4,8 @@ from playwright.sync_api import sync_playwright
 base, out = sys.argv[1], sys.argv[2]   # [modele]
 PL = [[r"из (\d+) действий", "z $1 działań"], ["[hH][rR], бухгалтер и диктор", "korespondencja i terminy"], ["kadry, księgowość i lektor", "korespondencja i terminy"], ["Вживую", "Na żywo"], ["Мастерская", "Warsztat"],
       ["меньше: ", "najmniej: "], ["ответов", "odpowiedzi"], ["сломано", "zepsute"], ["отказов", "odmów"], ["провал экзамена", "egzamin oblany"],
-      ["категория", "kategoria"], ["Открыть", "Otwórz"], ["дольше всех", "najdłużej"], [" мин", " min"], ["само: ", "automatycznie: "], ["Claude готовит", "Claude przygotowuje"], ["вопросы", "pytania"], ["Решила", "Zdecydowała"], ["Отправила", "Wysłała"], ["Решил", "Zdecydował"], ["Отправил", "Wysłał"]]
+      ["категория", "kategoria"], ["Открыть", "Otwórz"], ["дольше всех", "najdłużej"], [" мин", " min"], ["само: ", "automatycznie: "], ["Claude готовит", "Claude przygotowuje"], ["вопросы", "pytania"], ["Решила", "Zdecydowała"], ["Отправила", "Wysłała"], ["Решил", "Zdecydował"], ["Отправил", "Wysłał"],
+      ["пн (\\d)", "pn $1"], ["вт (\\d)", "wt $1"], ["ср (\\d)", "śr $1"], ["чт (\\d)", "czw $1"], ["пт (\\d)", "pt $1"], ["сб (\\d)", "sob $1"], ["вс (\\d)", "nd $1"]]
 JS = """(pl) => { const w = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT); let n;
   while ((n = w.nextNode())) { let t = n.nodeValue, o = t; for (const [a, b] of pl) t = t.replace(new RegExp(a, 'g'), b); if (t !== o) n.nodeValue = t; } }"""
 # 10.11.2026: na stronie bez „Dom (tylko odczyt)” w nagłówku i bez przycisku mostu „Dom ↔ Praca” (prywatne)
@@ -46,6 +47,9 @@ with sync_playwright() as p:
             if name.endswith("szczegoly"):   # подробности первой карточки и журнал решений раскрыты
                 pg.evaluate("""() => { document.querySelector('[data-key=decide] .gc-dq-more').open = true;
                                        document.querySelector('[data-key=clx-journal]').open = true; }""")
+                s1 = pg.locator('[data-key="cc:s1"]')   # 11.11.2026: rozwinięta sesja w toku — nić sprawy (fake_dec.PLANS)
+                if s1.count():
+                    s1.first.click(); pg.wait_for_timeout(1200)
                 pg.evaluate(JS, PL); pg.wait_for_timeout(400)
             el.scroll_into_view_if_needed(); bb = el.bounding_box()
             sy = pg.evaluate("scrollY"); top = bb["y"] + sy

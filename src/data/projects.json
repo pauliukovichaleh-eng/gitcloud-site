@@ -331,7 +331,7 @@
         },
         {
           "src": "/img/projekty/panel-decyzje-szczegoly.webp",
-          "alt": "Szczegóły karty i dziennik decyzji: wybrany wariant i wynik wykonania"
+          "alt": "Szczegóły karty, sesja Claude z nicią sprawy (pasek kroków, bieżący krok podświetlony) i dziennik decyzji z wynikami"
         },
         {
           "src": "/img/projekty/panel-modele.webp",
@@ -348,7 +348,7 @@
       ],
       "gallery_note": "Nagranie i zrzuty panelu uruchomionego na danych przykładowych: wymyślone pytania agentów do właściciela i wymyślone wywołania modeli z kwotami, bez połączenia z bazą i siecią; brakujące polskie napisy interfejsu przetłumaczone, w nagraniu ukryty pasek finansów.",
       "problem": "Praca agentów, alarmy i koszty modeli były rozrzucone po kilku narzędziach, a pytania wymagające decyzji człowieka ginęły wśród powiadomień.",
-      "solution": "Aplikacja webowa na FastAPI z szablonami po stronie serwera i odświeżaniem na żywo przez WebSocket. Pytania agentów przychodzą jako karty z wariantami, polecany oznaczony gwiazdką; wybór trafia do dziennika decyzji, a agent wykonuje go sam. Strona modeli łączy wywołania z ostatnich dni, saldo płatnych kont i wynik jakości każdego modelu. Na telefonie panel działa jako aplikacja PWA z dolnym paskiem zakładek.",
+      "solution": "Aplikacja webowa na FastAPI z szablonami po stronie serwera i odświeżaniem na żywo przez WebSocket. Pytania agentów przychodzą jako karty z wariantami, polecany oznaczony gwiazdką; wybór trafia do dziennika decyzji, a agent wykonuje go sam. Każda sesja Claude ma nić sprawy: pasek kroków od decyzji do wyniku, jedno dotknięcie pokazuje cały łańcuch. Strona modeli łączy wywołania z ostatnich dni, saldo płatnych kont i wynik jakości każdego modelu. Na telefonie panel działa jako aplikacja PWA z dolnym paskiem zakładek.",
       "stack": [
         "Python",
         "FastAPI",
