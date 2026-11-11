@@ -211,7 +211,7 @@ const jsonld = {
         </ol>
       </div>
       <a class="link-more" href={dyzPath(lang)}>{DYZ[lang].more}: {DYZ[lang].prices[0][0]} + {DYZ[lang].prices[1][0]} &rarr;</a>
-      {has('zlecenia') && <a class="link-more" href={`#${anchor('zlecenia')}`}>{T.svc.more} &rarr;</a>}
+      {count('zlecenia') > 0 && <a class="link-more" href="#moduly" data-filtr="zlecenia">{T.svc.more} &rarr;</a>}
     </div>
   </section>
 
@@ -364,6 +364,10 @@ const jsonld = {
     const f = b.dataset.f;
     $$('.filters button').forEach((x) => x.classList.toggle('is-on', x === b));
     $$<HTMLElement>('.bento .card').forEach((c) => { c.hidden = !(f === 'all' || c.dataset.cat === f); });
+  }));
+  // „Zrealizowane zlecenia” w Usługach: przewija do modułów z włączonym filtrem zleceń
+  $$<HTMLAnchorElement>('a[data-filtr]').forEach((a) => a.addEventListener('click', () => {
+    $$<HTMLButtonElement>('.filters button').find((b) => b.dataset.f === a.dataset.filtr)?.click();
   }));
 
   // ── Konsola: zakładki widoków

@@ -465,165 +465,237 @@
       "links": []
     },
     {
-      "slug": "zlecenia",
+      "slug": "koszyk-sklep-5-domen",
       "category": "zlecenia",
       "badge": "Useme",
-      "title": "Zlecenia dla firm: sklep na pięciu domenach, SEO i dane B2B",
-      "lead": "Kolejne etapy dla sklepu na Shoperze działającego na pięciu domenach oraz baza firm B2B. Wszystko przyjęte przez klientów.",
+      "title": "Koszyk, który nie przyjmował zamówień z zagranicy",
+      "lead": "Etap 1 z 4 dla sklepu z branży medycznej na Shoperze, który działa na pięciu domenach.",
       "year": "2026",
-      "status": "Zlecenia Useme, wszystkie przyjęte",
-      "image": "/img/projekty/zlecenia-okladka.webp",
+      "status": "Zlecenie Useme, przyjęte",
+      "image": "/img/projekty/zl-koszyk.jpg",
+      "image_alt": "Etap 1 · Koszyk wersji czeskiej i automatyczny test zamówienia na pięciu domenach",
       "gallery": [
         {
           "src": "/img/projekty/zl-koszyk.jpg",
           "alt": "Etap 1 · Koszyk wersji czeskiej i automatyczny test zamówienia na pięciu domenach"
+        }
+      ],
+      "gallery_note": "Ilustracje na danych przykładowych (sklep.example, wymyślone produkty i firmy). Sklepy i firmy klientów, ich dane i adresy nie są pokazywane.",
+      "problem": "Sklep na platformie Shoper działa na pięciu domenach (PL, CZ, SK, DE, RO). W wersjach zagranicznych koszyk zatrzymywał się na kroku zamówienia bez komunikatu błędu, a podmiana danych kontaktowych w wersjach językowych nie działała.",
+      "solution": "Diagnoza wykazała klucz Google reCAPTCHA zarejestrowany tylko dla domeny polskiej oraz błąd składni we własnym skrypcie sklepu. Klientka dodała domeny według instrukcji, poprawiony skrypt został wdrożony z kopią poprzedniej wersji, a całość sprawdzona automatycznym testem koszyka na wszystkich domenach.",
+      "stack": [
+        "Shoper",
+        "JavaScript",
+        "reCAPTCHA",
+        "Playwright"
+      ],
+      "role": "Diagnoza, wdrożenie, testy i komunikacja z klientem.",
+      "results": [
+        "Koszyk działa na 5 domenach",
+        "Pierwsze zamówienie z zagranicy po zmianie",
+        "Każda zmiana z kopią i możliwością przywrócenia"
+      ],
+      "links": [
+        {
+          "href": "/projekty/seo-storefront/",
+          "label": "Etap 2 · Audyt SEO przy migracji na szablon Storefront"
         },
+        {
+          "href": "/projekty/wybor-kraju-storefront/",
+          "label": "Etap 3 · Wybór kraju i test zamówień na 5 domenach"
+        },
+        {
+          "href": "/projekty/tlumaczenie-storefront-4-jezyki/",
+          "label": "Etap 4 · Nowy szablon w czterech językach"
+        }
+      ],
+      "links_title": "Pozostałe etapy tego sklepu"
+    },
+    {
+      "slug": "seo-storefront",
+      "category": "zlecenia",
+      "badge": "Useme",
+      "title": "Audyt SEO przy migracji na szablon Storefront",
+      "lead": "Etap 2 z 4 dla sklepu z branży medycznej na Shoperze, który działa na pięciu domenach.",
+      "year": "2026",
+      "status": "Zlecenie Useme, przyjęte",
+      "image": "/img/projekty/zl-seo.jpg",
+      "image_alt": "Etap 2 · Lista punktów audytu SEO i dane strukturalne JSON-LD",
+      "gallery": [
         {
           "src": "/img/projekty/zl-seo.jpg",
           "alt": "Etap 2 · Lista punktów audytu SEO i dane strukturalne JSON-LD"
+        }
+      ],
+      "gallery_note": "Ilustracje na danych przykładowych (sklep.example, wymyślone produkty i firmy). Sklepy i firmy klientów, ich dane i adresy nie są pokazywane.",
+      "problem": "Sklep przenoszony na nowy szablon Storefront miał audyt SEO od agencji (66 punktów). Trzeba było wdrożyć zalecenia bez naruszania plików szablonu bez zgody właścicielki.",
+      "solution": "W nowym szablonie dodane Google Tag Manager i GA4, nagłówek H1 bloga oraz dane strukturalne JSON-LD (Organization, WebSite). Schematy meta tagów ustawione według audytu, z kopią poprzednich wartości. Wykonane punkty zgłoszone do weryfikacji w formularzu agencji, a punkty wymagające zgody opisane zamiast wprowadzone.",
+      "stack": [
+        "Shoper",
+        "Storefront",
+        "SEO",
+        "GA4",
+        "Google Tag Manager",
+        "JSON-LD",
+        "Playwright"
+      ],
+      "role": "Diagnoza, wdrożenie, testy i komunikacja z klientem.",
+      "results": [
+        "66 punktów audytu przejrzanych i rozliczonych",
+        "Dane strukturalne i analityka w nowym szablonie",
+        "Praca przyjęta przez klientkę"
+      ],
+      "links": [
+        {
+          "href": "/projekty/koszyk-sklep-5-domen/",
+          "label": "Etap 1 · Koszyk, który nie przyjmował zamówień z zagranicy"
         },
+        {
+          "href": "/projekty/wybor-kraju-storefront/",
+          "label": "Etap 3 · Wybór kraju i test zamówień na 5 domenach"
+        },
+        {
+          "href": "/projekty/tlumaczenie-storefront-4-jezyki/",
+          "label": "Etap 4 · Nowy szablon w czterech językach"
+        }
+      ],
+      "links_title": "Pozostałe etapy tego sklepu"
+    },
+    {
+      "slug": "wybor-kraju-storefront",
+      "category": "zlecenia",
+      "badge": "Useme",
+      "title": "Wybór kraju i test zamówień na 5 domenach",
+      "lead": "Etap 3 z 4 dla sklepu z branży medycznej na Shoperze, który działa na pięciu domenach.",
+      "year": "2026",
+      "status": "Zlecenie Useme, przyjęte",
+      "image": "/img/projekty/zl-wybor-kraju.jpg",
+      "image_alt": "Etap 3 · Moduł wyboru kraju i waluty w nagłówku oraz test ścieżki zakupu",
+      "gallery": [
         {
           "src": "/img/projekty/zl-wybor-kraju.jpg",
           "alt": "Etap 3 · Moduł wyboru kraju i waluty w nagłówku oraz test ścieżki zakupu"
+        }
+      ],
+      "gallery_note": "Ilustracje na danych przykładowych (sklep.example, wymyślone produkty i firmy). Sklepy i firmy klientów, ich dane i adresy nie są pokazywane.",
+      "problem": "Sklep na platformie Shoper działa na pięciu domenach (PL, CZ, SK, DE, RO), a kraje są wersjami językowymi jednego sklepu. Po przejściu na nowy szablon Storefront adresy wersji działały, ale klient ze sklepu polskiego nie miał jak przejść do innego kraju. Do tego trzeba było potwierdzić, że zamówienie da się złożyć na każdej domenie.",
+      "solution": "Diagnoza: w nowym szablonie zabrakło modułu wyboru kraju i języka, który był w starym szablonie RWD. Do nagłówka aktywnego szablonu dodany standardowy moduł Shoper „Język i waluty” z flagami, widoczny na komputerze, tablecie i telefonie, bez zmian w innych ustawieniach i treściach, z opisem, jak cofnąć zmianę. Przejścia PL do CZ, SK, DE, RO i z powrotem sprawdzone na komputerze i telefonie. Na każdej domenie przetestowana ścieżka zakupu: koszyk, formularz z danymi testowymi, dostawa i płatność aż do aktywnego przycisku końcowego, bez składania fikcyjnych zamówień.",
+      "stack": [
+        "Shoper",
+        "Storefront",
+        "Playwright",
+        "testy ścieżki zakupu"
+      ],
+      "role": "Diagnoza, wdrożenie, testy i komunikacja z klientem.",
+      "results": [
+        "Wybór kraju działa w obie strony na 5 domenach",
+        "Ścieżka zakupu sprawdzona na 5 domenach, bez fikcyjnych zamówień",
+        "Jedna zmiana w szablonie, cofnięcie w jednym kroku",
+        "Problemy z testów opisane jako zakres kolejnego etapu"
+      ],
+      "links": [
+        {
+          "href": "/projekty/koszyk-sklep-5-domen/",
+          "label": "Etap 1 · Koszyk, który nie przyjmował zamówień z zagranicy"
         },
         {
-          "src": "/img/projekty/zl-tlumaczenie.jpg",
-          "alt": "Etap 4 · Ta sama karta produktu w wersji czeskiej, słowackiej, niemieckiej i rumuńskiej",
-          "od": "2026-11-08"
+          "href": "/projekty/seo-storefront/",
+          "label": "Etap 2 · Audyt SEO przy migracji na szablon Storefront"
         },
+        {
+          "href": "/projekty/tlumaczenie-storefront-4-jezyki/",
+          "label": "Etap 4 · Nowy szablon w czterech językach"
+        }
+      ],
+      "links_title": "Pozostałe etapy tego sklepu"
+    },
+    {
+      "slug": "tlumaczenie-storefront-4-jezyki",
+      "category": "zlecenia",
+      "badge": "Useme",
+      "title": "Nowy szablon w czterech językach",
+      "lead": "Etap 4 z 4 dla sklepu z branży medycznej na Shoperze, który działa na pięciu domenach.",
+      "year": "2026",
+      "status": "Zlecenie Useme, przyjęte",
+      "image": "/img/projekty/zl-tlumaczenie.jpg",
+      "image_alt": "Etap 4 · Ta sama karta produktu w wersji czeskiej, słowackiej, niemieckiej i rumuńskiej",
+      "gallery": [
+        {
+          "src": "/img/projekty/zl-tlumaczenie.jpg",
+          "alt": "Etap 4 · Ta sama karta produktu w wersji czeskiej, słowackiej, niemieckiej i rumuńskiej"
+        }
+      ],
+      "gallery_note": "Ilustracje na danych przykładowych (sklep.example, wymyślone produkty i firmy). Sklepy i firmy klientów, ich dane i adresy nie są pokazywane.",
+      "problem": "Jeden sklep na Shoperze, cztery wersje zagraniczne na osobnych domenach. Moduły nowego szablonu miały teksty tylko po polsku, wersja rumuńska pokazywała frazy systemowe po angielsku, a w koszyku zamiast tekstów pojawiały się techniczne klucze. Banery i linki w wersjach zagranicznych prowadziły do sklepu polskiego.",
+      "solution": "Teksty modułów szablonu przetłumaczone osobno dla każdego języka: nagłówek, mega menu, strona główna, karta produktu, kategoria, koszyk z aplikacją produktu gratisowego, okno „Dodano do koszyka” i stopka. Linki banerów i slajdów skierowane do kategorii danego kraju, dane kontaktowe kraju w nagłówku i stopce, bloki dotyczące tylko Polski ukryte poza wersją polską. Uzupełnione wszystkie frazy systemowe wersji rumuńskiej. Wersja polska sprawdzana po każdej zmianie, bo edytor szablonu potrafi nadpisać jeden język drugim. Zmiany wizualne w osobnych, opisanych blokach CSS, które można usunąć jednym ruchem. Na koniec test koszyka na każdej domenie zagranicznej aż do aktywnego przycisku płatności oraz lista spraw do decyzji sklepu, które wychodziły poza zakres.",
+      "stack": [
+        "Shoper",
+        "Storefront",
+        "CSS",
+        "Playwright",
+        "lokalizacja",
+        "testy ścieżki zakupu"
+      ],
+      "role": "Diagnoza, wdrożenie, testy i komunikacja z klientem.",
+      "results": [
+        "4 wersje językowe na nowym szablonie",
+        "1360 z 1360 fraz systemowych wersji rumuńskiej",
+        "Koszyk sprawdzony na 4 domenach zagranicznych",
+        "Wersja polska bez zmian, każda zmiana do cofnięcia",
+        "9 spraw poza zakresem opisanych do decyzji sklepu"
+      ],
+      "links": [
+        {
+          "href": "/projekty/koszyk-sklep-5-domen/",
+          "label": "Etap 1 · Koszyk, który nie przyjmował zamówień z zagranicy"
+        },
+        {
+          "href": "/projekty/seo-storefront/",
+          "label": "Etap 2 · Audyt SEO przy migracji na szablon Storefront"
+        },
+        {
+          "href": "/projekty/wybor-kraju-storefront/",
+          "label": "Etap 3 · Wybór kraju i test zamówień na 5 domenach"
+        }
+      ],
+      "links_title": "Pozostałe etapy tego sklepu",
+      "od": "2026-11-08"
+    },
+    {
+      "slug": "baza-b2b-nl-be",
+      "category": "zlecenia",
+      "badge": "Useme",
+      "title": "Baza firm B2B do wejścia na rynek Holandii i Belgii",
+      "lead": "Baza partnerów przed wejściem na rynek Holandii i Belgii, dla dystrybutora materiałów wykończeniowych.",
+      "year": "2026",
+      "status": "Zlecenie Useme, przyjęte",
+      "image": "/img/projekty/zl-baza-b2b.jpg",
+      "image_alt": "Baza firm B2B Holandia i Belgia · arkusz z oceną potencjału i szkic pierwszej wiadomości",
+      "gallery": [
         {
           "src": "/img/projekty/zl-baza-b2b.jpg",
           "alt": "Baza firm B2B Holandia i Belgia · arkusz z oceną potencjału i szkic pierwszej wiadomości"
         }
       ],
-      "problem": "Sklep nie przyjmował zamówień z zagranicy, nowy szablon gubił funkcje i tłumaczenia, a przed wejściem na nowy rynek brakowało listy partnerów.",
-      "solution": "W każdym zleceniu ta sama metoda: diagnoza i cena z góry, kopia przed zmianą, automatyczny test ścieżki zakupu na każdej domenie i krótki opis zmian.",
+      "gallery_note": "Ilustracje na danych przykładowych (sklep.example, wymyślone produkty i firmy). Sklepy i firmy klientów, ich dane i adresy nie są pokazywane.",
+      "problem": "Firma planowała wejście na rynek Holandii i Belgii i potrzebowała listy potencjalnych partnerów z oceną, zanim zacznie pierwszy kontakt.",
+      "solution": "Baza zbudowana z danych z witryn firm, z oceną potencjału i wyborem najlepiej dopasowanych. Do tego przegląd konkurencji i szkice wiadomości po angielsku (pierwszy kontakt i follow-up), z uwzględnieniem zastrzeżeń klientki co do deklaracji produktowych. Wszystko w jednym arkuszu Google z zakładkami firm, wiadomości i raportu.",
       "stack": [
-        "Shoper",
-        "Storefront",
-        "JavaScript",
-        "Playwright",
-        "SEO",
-        "Google Sheets"
+        "Google Sheets",
+        "research rynku",
+        "lead generation",
+        "B2B"
       ],
       "role": "Diagnoza, wdrożenie, testy i komunikacja z klientem.",
       "results": [
-        "Koszyk i ścieżka zakupu sprawdzone na 5 domenach",
-        "66 punktów audytu SEO przejrzanych i rozliczonych",
-        "30 firm B2B (19 NL, 11 BE) z oceną potencjału",
-        "Każda zmiana z kopią i możliwością cofnięcia"
+        "30 firm (19 NL, 11 BE) z oceną potencjału",
+        "12 najlepiej dopasowanych wybranych do pierwszego kontaktu",
+        "Oddane w terminie i przyjęte na Useme"
       ],
-      "links": [],
-      "stages": [
-        {
-          "slug": "koszyk-sklep-5-domen",
-          "title": "Etap 1 · Koszyk, który nie przyjmował zamówień z zagranicy",
-          "client": "Sklep z branży medycznej (Shoper, 5 domen)",
-          "problem": "Sklep na platformie Shoper działa na pięciu domenach (PL, CZ, SK, DE, RO). W wersjach zagranicznych koszyk zatrzymywał się na kroku zamówienia bez komunikatu błędu, a podmiana danych kontaktowych w wersjach językowych nie działała.",
-          "solution": "Diagnoza wykazała klucz Google reCAPTCHA zarejestrowany tylko dla domeny polskiej oraz błąd składni we własnym skrypcie sklepu. Klientka dodała domeny według instrukcji, poprawiony skrypt został wdrożony z kopią poprzedniej wersji, a całość sprawdzona automatycznym testem koszyka na wszystkich domenach.",
-          "results": [
-            "Koszyk działa na 5 domenach",
-            "Pierwsze zamówienie z zagranicy po zmianie",
-            "Każda zmiana z kopią i możliwością przywrócenia"
-          ],
-          "stack": [
-            "Shoper",
-            "JavaScript",
-            "reCAPTCHA",
-            "Playwright"
-          ]
-        },
-        {
-          "slug": "seo-storefront",
-          "title": "Etap 2 · Audyt SEO przy migracji na szablon Storefront",
-          "client": "Sklep z branży medycznej (Shoper, 5 domen)",
-          "problem": "Sklep przenoszony na nowy szablon Storefront miał audyt SEO od agencji (66 punktów). Trzeba było wdrożyć zalecenia bez naruszania plików szablonu bez zgody właścicielki.",
-          "solution": "W nowym szablonie dodane Google Tag Manager i GA4, nagłówek H1 bloga oraz dane strukturalne JSON-LD (Organization, WebSite). Schematy meta tagów ustawione według audytu, z kopią poprzednich wartości. Wykonane punkty zgłoszone do weryfikacji w formularzu agencji, a punkty wymagające zgody opisane zamiast wprowadzone.",
-          "results": [
-            "66 punktów audytu przejrzanych i rozliczonych",
-            "Dane strukturalne i analityka w nowym szablonie",
-            "Praca przyjęta przez klientkę"
-          ],
-          "stack": [
-            "Shoper",
-            "Storefront",
-            "SEO",
-            "GA4",
-            "Google Tag Manager",
-            "JSON-LD",
-            "Playwright"
-          ]
-        },
-        {
-          "slug": "wybor-kraju-storefront",
-          "title": "Etap 3 · Wybór kraju i test zamówień na 5 domenach",
-          "client": "Sklep z branży medycznej (Shoper, 5 domen)",
-          "problem": "Sklep na platformie Shoper działa na pięciu domenach (PL, CZ, SK, DE, RO), a kraje są wersjami językowymi jednego sklepu. Po przejściu na nowy szablon Storefront adresy wersji działały, ale klient ze sklepu polskiego nie miał jak przejść do innego kraju. Do tego trzeba było potwierdzić, że zamówienie da się złożyć na każdej domenie.",
-          "solution": "Diagnoza: w nowym szablonie zabrakło modułu wyboru kraju i języka, który był w starym szablonie RWD. Do nagłówka aktywnego szablonu dodany standardowy moduł Shoper „Język i waluty” z flagami, widoczny na komputerze, tablecie i telefonie, bez zmian w innych ustawieniach i treściach, z opisem, jak cofnąć zmianę. Przejścia PL do CZ, SK, DE, RO i z powrotem sprawdzone na komputerze i telefonie. Na każdej domenie przetestowana ścieżka zakupu: koszyk, formularz z danymi testowymi, dostawa i płatność aż do aktywnego przycisku końcowego, bez składania fikcyjnych zamówień.",
-          "results": [
-            "Wybór kraju działa w obie strony na 5 domenach",
-            "Ścieżka zakupu sprawdzona na 5 domenach, bez fikcyjnych zamówień",
-            "Jedna zmiana w szablonie, cofnięcie w jednym kroku",
-            "Problemy z testów opisane jako zakres kolejnego etapu"
-          ],
-          "stack": [
-            "Shoper",
-            "Storefront",
-            "Playwright",
-            "testy ścieżki zakupu"
-          ]
-        },
-        {
-          "slug": "tlumaczenie-storefront-4-jezyki",
-          "title": "Etap 4 · Nowy szablon w czterech językach",
-          "client": "Sklep z branży medycznej (Shoper, 5 domen)",
-          "problem": "Jeden sklep na Shoperze, cztery wersje zagraniczne na osobnych domenach. Moduły nowego szablonu miały teksty tylko po polsku, wersja rumuńska pokazywała frazy systemowe po angielsku, a w koszyku zamiast tekstów pojawiały się techniczne klucze. Banery i linki w wersjach zagranicznych prowadziły do sklepu polskiego.",
-          "solution": "Teksty modułów szablonu przetłumaczone osobno dla każdego języka: nagłówek, mega menu, strona główna, karta produktu, kategoria, koszyk z aplikacją produktu gratisowego, okno „Dodano do koszyka” i stopka. Linki banerów i slajdów skierowane do kategorii danego kraju, dane kontaktowe kraju w nagłówku i stopce, bloki dotyczące tylko Polski ukryte poza wersją polską. Uzupełnione wszystkie frazy systemowe wersji rumuńskiej. Wersja polska sprawdzana po każdej zmianie, bo edytor szablonu potrafi nadpisać jeden język drugim. Zmiany wizualne w osobnych, opisanych blokach CSS, które można usunąć jednym ruchem. Na koniec test koszyka na każdej domenie zagranicznej aż do aktywnego przycisku płatności oraz lista spraw do decyzji sklepu, które wychodziły poza zakres.",
-          "results": [
-            "4 wersje językowe na nowym szablonie",
-            "1360 z 1360 fraz systemowych wersji rumuńskiej",
-            "Koszyk sprawdzony na 4 domenach zagranicznych",
-            "Wersja polska bez zmian, każda zmiana do cofnięcia",
-            "9 spraw poza zakresem opisanych do decyzji sklepu"
-          ],
-          "stack": [
-            "Shoper",
-            "Storefront",
-            "CSS",
-            "Playwright",
-            "lokalizacja",
-            "testy ścieżki zakupu"
-          ],
-          "od": "2026-11-08"
-        },
-        {
-          "slug": "baza-b2b-nl-be",
-          "title": "Baza firm B2B do wejścia na rynek Holandii i Belgii",
-          "client": "Dystrybutor materiałów wykończeniowych",
-          "problem": "Firma planowała wejście na rynek Holandii i Belgii i potrzebowała listy potencjalnych partnerów z oceną, zanim zacznie pierwszy kontakt.",
-          "solution": "Baza zbudowana z danych z witryn firm, z oceną potencjału i wyborem najlepiej dopasowanych. Do tego przegląd konkurencji i szkice wiadomości po angielsku (pierwszy kontakt i follow-up), z uwzględnieniem zastrzeżeń klientki co do deklaracji produktowych. Wszystko w jednym arkuszu Google z zakładkami firm, wiadomości i raportu.",
-          "results": [
-            "30 firm (19 NL, 11 BE) z oceną potencjału",
-            "12 najlepiej dopasowanych wybranych do pierwszego kontaktu",
-            "Oddane w terminie i przyjęte na Useme"
-          ],
-          "stack": [
-            "Google Sheets",
-            "research rynku",
-            "lead generation",
-            "B2B"
-          ]
-        }
-      ],
-      "aliases": [
-        "koszyk-sklep-5-domen",
-        "seo-storefront",
-        "wybor-kraju-storefront",
-        "tlumaczenie-storefront-4-jezyki",
-        "baza-b2b-nl-be"
-      ],
-      "image_alt": "Sklep z wyborem kraju i waluty na pięciu domenach oraz wyniki zleceń: test koszyka 5 z 5 domen, 66 punktów audytu SEO, baza 30 firm B2B, dane przykładowe",
-      "gallery_note": "Ilustracje na danych przykładowych (sklep.example, wymyślone produkty i firmy). Sklepy i firmy klientów, ich dane i adresy nie są pokazywane."
+      "links": []
     }
+  ],
+  "retired": [
+    "zlecenia"
   ]
 }

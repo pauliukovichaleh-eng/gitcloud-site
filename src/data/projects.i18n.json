@@ -63,58 +63,6 @@
       "links_label": ["The AI agent team that asks these questions"],
       "gallery_alt": ["Answering an agent question with one click: card details, 5 seconds to undo, the result in the decision log, then the models page; screen recording, sample data", "Decision cards: agent questions with options, the recommended one starred, Claude limits and sessions alongside", "Card details and the decision log: chosen option and execution result", "Language models: paid account balances, calls per day, model share and quality score", "Decision cards on a phone: answer with one tap", "The models page on a phone"]
     },
-    "zlecenia": {
-      "title": "Client work: a store on five domains, SEO and B2B data",
-      "lead": "Consecutive stages for a Shoper store running on five domains, and a B2B company database. All accepted by the clients.",
-      "status": "Useme orders, all accepted",
-      "problem": "The store did not accept orders from abroad, the new theme lost features and translations, and before entering a new market there was no list of partners.",
-      "solution": "The same method in every order: diagnosis and a fixed price, a backup before each change, an automated checkout test on every domain and a short change summary.",
-      "role": "Diagnosis, implementation, tests and client communication.",
-      "results": ["Cart and checkout verified on 5 domains", "66 SEO audit items reviewed and settled", "30 B2B companies (19 NL, 11 BE) with potential scoring", "Every change backed up and reversible"],
-      "gallery_alt": ["Stage 1 · Czech cart and an automated order test on five domains", "Stage 2 · SEO audit checklist and JSON-LD structured data", "Stage 3 · Country and currency switcher in the header and a checkout test", "Stage 4 · The same product page in Czech, Slovak, German and Romanian", "B2B company database, the Netherlands and Belgium · a sheet with potential scoring and a draft first message"],
-      "image_alt": "Store with country and currency selection on five domains and the results of the orders: cart test on 5 of 5 domains, 66 SEO audit items, a database of 30 B2B companies, sample data",
-      "gallery_note": "Illustrations on sample data (sklep.example, fictional products and companies). Clients' stores and companies, their data and addresses are not shown.",
-      "stages": {
-        "koszyk-sklep-5-domen": {
-          "title": "Stage 1 · A cart that rejected orders from abroad",
-          "client": "Medical supplies store (Shoper, 5 domains)",
-          "problem": "The Shoper store runs on five domains (PL, CZ, SK, DE, RO). On the foreign versions the cart stopped at the order step with no error message, and contact details were not switched per language.",
-          "solution": "Diagnosis found a Google reCAPTCHA key registered only for the Polish domain and a syntax error in the store's custom script. The client added the domains following my instructions, the fixed script was deployed with a backup of the previous version, and everything was verified with an automated cart test on all domains.",
-          "results": ["Cart works on 5 domains", "First foreign order right after the fix", "Every change backed up and reversible"]
-        },
-        "seo-storefront": {
-          "title": "Stage 2 · SEO audit during the migration to the Storefront theme",
-          "client": "Medical supplies store (Shoper, 5 domains)",
-          "problem": "The store moving to the new Storefront theme had an agency SEO audit (66 items). The recommendations had to be implemented without touching theme files without the owner's consent.",
-          "solution": "Google Tag Manager and GA4, the blog H1 and JSON-LD structured data (Organization, WebSite) added to the new theme. Meta tag patterns set according to the audit, with a backup of previous values. Completed items reported to the agency, and items needing consent described instead of applied.",
-          "results": ["66 audit items reviewed and settled", "Structured data and analytics in the new theme", "Work accepted by the client"]
-        },
-        "wybor-kraju-storefront": {
-          "title": "Stage 3 · Country switcher and order tests on 5 domains",
-          "client": "Medical supplies store (Shoper, 5 domains)",
-          "problem": "Countries are language versions of one store on five domains. After moving to the new theme the version URLs worked, but a customer on the Polish store had no way to switch country. It also had to be confirmed that an order can be placed on every domain.",
-          "solution": "The new theme lacked the country and language module from the old one. The standard Shoper language and currency module with flags was added to the header for desktop, tablet and phone, with no other changes and with rollback instructions. Switching between all countries tested on desktop and phone, and the full checkout tested on every domain up to the active final button, without placing fake orders.",
-          "results": ["Country switching works both ways on 5 domains", "Checkout verified on 5 domains, no fake orders", "One theme change, rollback in one step", "Issues found in tests scoped for the next stage"],
-          "stack": ["Shoper", "Storefront", "Playwright", "checkout path tests"]
-        },
-        "tlumaczenie-storefront-4-jezyki": {
-          "title": "Stage 4 · The new theme in four languages",
-          "client": "Medical supplies store (Shoper, 5 domains)",
-          "problem": "One Shoper store, four foreign versions on separate domains. Theme modules had Polish texts only, the Romanian version showed English system phrases, and the cart displayed technical keys instead of text. Banners and links on foreign versions led to the Polish store.",
-          "solution": "Theme module texts translated separately for each language: header, mega menu, home page, product page, category, cart with a free gift app, the added-to-cart window and the footer. Banner and slide links pointed to each country's categories, country contact details added, Poland-only blocks hidden elsewhere. All Romanian system phrases completed. The Polish version checked after every change, visual changes kept in separate documented CSS blocks, and a final cart test on every foreign domain up to the active payment button.",
-          "results": ["4 language versions on the new theme", "1360 of 1360 Romanian system phrases", "Cart verified on 4 foreign domains", "Polish version unchanged, every change reversible", "9 out-of-scope issues documented for the store's decision"],
-          "stack": ["Shoper", "Storefront", "CSS", "Playwright", "localization", "checkout path tests"]
-        },
-        "baza-b2b-nl-be": {
-          "title": "B2B company database for entering the Netherlands and Belgium",
-          "client": "Distributor of finishing materials",
-          "problem": "The company planned to enter the Dutch and Belgian markets and needed a scored list of potential partners before the first contact.",
-          "solution": "A database built from company websites, with potential scoring and a shortlist of the best fits. Plus a competitor overview and draft messages in English (first contact and follow-up), respecting the client's limits on product claims. Everything in one Google Sheet with company, message and report tabs.",
-          "results": ["30 companies (19 NL, 11 BE) with potential scoring", "12 best fits selected for first contact", "Delivered on time and accepted on Useme"],
-          "stack": ["Google Sheets", "market research", "lead generation", "B2B"]
-        }
-      }
-    },
     "pulpit-gitcloud": {
       "title": "GitCloud Desktop: a custom work environment with a console and files",
       "lead": "A Linux session built around the panel and the AI assistant: no window frames, with its own console, file manager and bar in one style.",
@@ -151,6 +99,75 @@
       "results": ["Every night 72 random files from 6 sources restored and compared by SHA-256; the whole backup verified within a week", "A full drill on Sundays: database restore and a container started from backup in isolation", "Database archive every 10 minutes, AES-256 encrypted, point-in-time recovery from the last 7 days", "About 40% of the free cloud request quota per month", "30 scheduled jobs and 151 database migrations in the repository, a change = a commit", "Updates and reboots at night without manual approval; the first error stops the rest"],
       "gallery_alt": ["Night job times and the backup check result from the night of 09.11.2026, without addresses or machine names", "The night plan from the schedule: from the database dump at 00:05 to a single summary at 7:00", "Backups in three places: database archive in the cloud, off-site copy, external disk, plus a restore check", "Restore check report from the night of 9 November 2026: all items passed in 17 minutes"],
       "links_label": ["AI agents: night alarms and reviews"]
+    },
+    "koszyk-sklep-5-domen": {
+      "title": "A cart that rejected orders from abroad",
+      "lead": "Stage 1 of 4 for a medical supplies store on Shoper running on five domains.",
+      "status": "Useme order, accepted",
+      "image_alt": "Stage 1 · Czech cart and an automated order test on five domains",
+      "gallery_alt": ["Stage 1 · Czech cart and an automated order test on five domains"],
+      "gallery_note": "Illustrations on sample data (sklep.example, fictional products and companies). Clients' stores and companies, their data and addresses are not shown.",
+      "problem": "The Shoper store runs on five domains (PL, CZ, SK, DE, RO). On the foreign versions the cart stopped at the order step with no error message, and contact details were not switched per language.",
+      "solution": "Diagnosis found a Google reCAPTCHA key registered only for the Polish domain and a syntax error in the store's custom script. The client added the domains following my instructions, the fixed script was deployed with a backup of the previous version, and everything was verified with an automated cart test on all domains.",
+      "role": "Diagnosis, implementation, tests and client communication.",
+      "results": ["Cart works on 5 domains", "First foreign order right after the fix", "Every change backed up and reversible"],
+      "links_label": ["Stage 2 · SEO audit during the migration to the Storefront theme", "Stage 3 · Country switcher and order tests on 5 domains", "Stage 4 · The new theme in four languages"],
+      "links_title": "Other stages for this store"
+    },
+    "seo-storefront": {
+      "title": "SEO audit during the migration to the Storefront theme",
+      "lead": "Stage 2 of 4 for a medical supplies store on Shoper running on five domains.",
+      "status": "Useme order, accepted",
+      "image_alt": "Stage 2 · SEO audit checklist and JSON-LD structured data",
+      "gallery_alt": ["Stage 2 · SEO audit checklist and JSON-LD structured data"],
+      "gallery_note": "Illustrations on sample data (sklep.example, fictional products and companies). Clients' stores and companies, their data and addresses are not shown.",
+      "problem": "The store moving to the new Storefront theme had an agency SEO audit (66 items). The recommendations had to be implemented without touching theme files without the owner's consent.",
+      "solution": "Google Tag Manager and GA4, the blog H1 and JSON-LD structured data (Organization, WebSite) added to the new theme. Meta tag patterns set according to the audit, with a backup of previous values. Completed items reported to the agency, and items needing consent described instead of applied.",
+      "role": "Diagnosis, implementation, tests and client communication.",
+      "results": ["66 audit items reviewed and settled", "Structured data and analytics in the new theme", "Work accepted by the client"],
+      "links_label": ["Stage 1 · A cart that rejected orders from abroad", "Stage 3 · Country switcher and order tests on 5 domains", "Stage 4 · The new theme in four languages"],
+      "links_title": "Other stages for this store"
+    },
+    "wybor-kraju-storefront": {
+      "title": "Country switcher and order tests on 5 domains",
+      "lead": "Stage 3 of 4 for a medical supplies store on Shoper running on five domains.",
+      "status": "Useme order, accepted",
+      "image_alt": "Stage 3 · Country and currency switcher in the header and a checkout test",
+      "gallery_alt": ["Stage 3 · Country and currency switcher in the header and a checkout test"],
+      "gallery_note": "Illustrations on sample data (sklep.example, fictional products and companies). Clients' stores and companies, their data and addresses are not shown.",
+      "problem": "Countries are language versions of one store on five domains. After moving to the new theme the version URLs worked, but a customer on the Polish store had no way to switch country. It also had to be confirmed that an order can be placed on every domain.",
+      "solution": "The new theme lacked the country and language module from the old one. The standard Shoper language and currency module with flags was added to the header for desktop, tablet and phone, with no other changes and with rollback instructions. Switching between all countries tested on desktop and phone, and the full checkout tested on every domain up to the active final button, without placing fake orders.",
+      "role": "Diagnosis, implementation, tests and client communication.",
+      "results": ["Country switching works both ways on 5 domains", "Checkout verified on 5 domains, no fake orders", "One theme change, rollback in one step", "Issues found in tests scoped for the next stage"],
+      "links_label": ["Stage 1 · A cart that rejected orders from abroad", "Stage 2 · SEO audit during the migration to the Storefront theme", "Stage 4 · The new theme in four languages"],
+      "links_title": "Other stages for this store"
+    },
+    "tlumaczenie-storefront-4-jezyki": {
+      "title": "The new theme in four languages",
+      "lead": "Stage 4 of 4 for a medical supplies store on Shoper running on five domains.",
+      "status": "Useme order, accepted",
+      "image_alt": "Stage 4 · The same product page in Czech, Slovak, German and Romanian",
+      "gallery_alt": ["Stage 4 · The same product page in Czech, Slovak, German and Romanian"],
+      "gallery_note": "Illustrations on sample data (sklep.example, fictional products and companies). Clients' stores and companies, their data and addresses are not shown.",
+      "problem": "One Shoper store, four foreign versions on separate domains. Theme modules had Polish texts only, the Romanian version showed English system phrases, and the cart displayed technical keys instead of text. Banners and links on foreign versions led to the Polish store.",
+      "solution": "Theme module texts translated separately for each language: header, mega menu, home page, product page, category, cart with a free gift app, the added-to-cart window and the footer. Banner and slide links pointed to each country's categories, country contact details added, Poland-only blocks hidden elsewhere. All Romanian system phrases completed. The Polish version checked after every change, visual changes kept in separate documented CSS blocks, and a final cart test on every foreign domain up to the active payment button.",
+      "role": "Diagnosis, implementation, tests and client communication.",
+      "results": ["4 language versions on the new theme", "1360 of 1360 Romanian system phrases", "Cart verified on 4 foreign domains", "Polish version unchanged, every change reversible", "9 out-of-scope issues documented for the store's decision"],
+      "links_label": ["Stage 1 · A cart that rejected orders from abroad", "Stage 2 · SEO audit during the migration to the Storefront theme", "Stage 3 · Country switcher and order tests on 5 domains"],
+      "links_title": "Other stages for this store"
+    },
+    "baza-b2b-nl-be": {
+      "title": "B2B company database for entering the Netherlands and Belgium",
+      "lead": "A partner database before entering the Dutch and Belgian market, for a finishing materials distributor.",
+      "status": "Useme order, accepted",
+      "image_alt": "B2B company database, the Netherlands and Belgium · a sheet with potential scoring and a draft first message",
+      "gallery_alt": ["B2B company database, the Netherlands and Belgium · a sheet with potential scoring and a draft first message"],
+      "gallery_note": "Illustrations on sample data (sklep.example, fictional products and companies). Clients' stores and companies, their data and addresses are not shown.",
+      "problem": "The company planned to enter the Dutch and Belgian markets and needed a scored list of potential partners before the first contact.",
+      "solution": "A database built from company websites, with potential scoring and a shortlist of the best fits. Plus a competitor overview and draft messages in English (first contact and follow-up), respecting the client's limits on product claims. Everything in one Google Sheet with company, message and report tabs.",
+      "role": "Diagnosis, implementation, tests and client communication.",
+      "results": ["30 companies (19 NL, 11 BE) with potential scoring", "12 best fits selected for first contact", "Delivered on time and accepted on Useme"],
+      "links_label": []
     }
   },
   "ru": {
@@ -216,58 +233,6 @@
       "links_label": ["Команда AI-агентов, которая задаёт эти вопросы"],
       "gallery_alt": ["Ответ на вопрос агента одним нажатием: подробности карточки, 5 секунд на отмену, итог в журнале решений, затем страница моделей; запись экрана, примерные данные", "Карточки решений: вопросы агентов с вариантами, рекомендуемый отмечен звёздочкой, рядом лимиты и сессии Claude", "Подробности карточки и журнал решений: выбранный вариант и итог исполнения", "Языковые модели: баланс платных аккаунтов, вызовы по дням, доля моделей и оценка качества", "Карточки решений на телефоне: ответ одним касанием", "Страница моделей на телефоне"]
     },
-    "zlecenia": {
-      "title": "Заказы для компаний: магазин на пяти доменах, SEO и данные B2B",
-      "lead": "Последовательные этапы для магазина на Shoper, работающего на пяти доменах, и база B2B-компаний. Всё принято клиентами.",
-      "status": "Заказы Useme, все приняты",
-      "problem": "Магазин не принимал заказы из-за границы, новый шаблон терял функции и переводы, а перед выходом на новый рынок не было списка партнёров.",
-      "solution": "В каждом заказе один метод: диагностика и цена заранее, копия перед изменением, автоматический тест оформления заказа на каждом домене и краткое описание изменений.",
-      "role": "Диагностика, внедрение, тесты и общение с клиентом.",
-      "results": ["Корзина и оформление проверены на 5 доменах", "66 пунктов SEO-аудита разобраны и закрыты", "30 B2B-компаний (19 NL, 11 BE) с оценкой потенциала", "Каждое изменение с копией и возможностью отката"],
-      "gallery_alt": ["Этап 1 · Чешская корзина и автотест заказа на пяти доменах", "Этап 2 · Чек-лист SEO-аудита и структурированные данные JSON-LD", "Этап 3 · Выбор страны и валюты в шапке и тест оформления", "Этап 4 · Одна карточка товара на чешском, словацком, немецком и румынском", "База B2B-компаний, Нидерланды и Бельгия · таблица с оценкой потенциала и черновик первого письма"],
-      "image_alt": "Магазин с выбором страны и валюты на пяти доменах и итоги заказов: тест корзины на 5 из 5 доменов, 66 пунктов SEO-аудита, база из 30 компаний B2B, примерные данные",
-      "gallery_note": "Иллюстрации на примерных данных (sklep.example, вымышленные товары и компании). Магазины и компании клиентов, их данные и адреса не показаны.",
-      "stages": {
-        "koszyk-sklep-5-domen": {
-          "title": "Этап 1 · Корзина, которая не принимала заказы из-за границы",
-          "client": "Магазин медицинских товаров (Shoper, 5 доменов)",
-          "problem": "Магазин на Shoper работает на пяти доменах (PL, CZ, SK, DE, RO). В зарубежных версиях корзина останавливалась на шаге заказа без сообщения об ошибке, а контакты по языковым версиям не подменялись.",
-          "solution": "Диагностика нашла ключ Google reCAPTCHA, зарегистрированный только для польского домена, и синтаксическую ошибку в собственном скрипте магазина. Клиентка добавила домены по инструкции, исправленный скрипт внедрён с копией прежней версии, всё проверено автотестом корзины на всех доменах.",
-          "results": ["Корзина работает на 5 доменах", "Первый зарубежный заказ сразу после исправления", "Каждое изменение с копией и откатом"]
-        },
-        "seo-storefront": {
-          "title": "Этап 2 · SEO-аудит при переходе на шаблон Storefront",
-          "client": "Магазин медицинских товаров (Shoper, 5 доменов)",
-          "problem": "У магазина, переезжающего на новый шаблон Storefront, был SEO-аудит агентства (66 пунктов). Рекомендации нужно было внедрить, не трогая файлы шаблона без согласия владелицы.",
-          "solution": "В новый шаблон добавлены Google Tag Manager и GA4, заголовок H1 блога и структурированные данные JSON-LD (Organization, WebSite). Шаблоны мета-тегов настроены по аудиту с копией прежних значений. Выполненные пункты переданы агентству, а пункты, требующие согласия, описаны вместо внедрения.",
-          "results": ["66 пунктов аудита разобраны и закрыты", "Структурированные данные и аналитика в новом шаблоне", "Работа принята клиенткой"]
-        },
-        "wybor-kraju-storefront": {
-          "title": "Этап 3 · Выбор страны и тест заказов на 5 доменах",
-          "client": "Магазин медицинских товаров (Shoper, 5 доменов)",
-          "problem": "Страны являются языковыми версиями одного магазина на пяти доменах. После перехода на новый шаблон адреса работали, но покупатель с польского магазина не мог перейти в другую страну. Также нужно было подтвердить, что заказ оформляется на каждом домене.",
-          "solution": "В новом шаблоне не было модуля выбора страны и языка из старого. В шапку добавлен стандартный модуль Shoper «Язык и валюты» с флагами для компьютера, планшета и телефона, без других изменений и с инструкцией отката. Переходы между всеми странами проверены на компьютере и телефоне, оформление заказа на каждом домене пройдено до активной итоговой кнопки без фиктивных заказов.",
-          "results": ["Выбор страны работает в обе стороны на 5 доменах", "Оформление проверено на 5 доменах без фиктивных заказов", "Одно изменение шаблона, откат в один шаг", "Найденные проблемы описаны как объём следующего этапа"],
-          "stack": ["Shoper", "Storefront", "Playwright", "тесты пути покупки"]
-        },
-        "tlumaczenie-storefront-4-jezyki": {
-          "title": "Этап 4 · Новый шаблон на четырёх языках",
-          "client": "Магазин медицинских товаров (Shoper, 5 доменов)",
-          "problem": "Один магазин на Shoper, четыре зарубежные версии на отдельных доменах. Модули шаблона были только на польском, румынская версия показывала системные фразы на английском, а в корзине вместо текстов были технические ключи. Баннеры и ссылки вели в польский магазин.",
-          "solution": "Тексты модулей переведены отдельно для каждого языка: шапка, мега-меню, главная, карточка товара, категория, корзина с приложением подарка, окно добавления в корзину и подвал. Ссылки баннеров и слайдов ведут в категории своей страны, добавлены контакты страны, блоки только для Польши скрыты в других версиях. Дополнены все системные фразы румынской версии. Польская версия проверялась после каждого изменения, визуальные правки вынесены в отдельные описанные блоки CSS, в конце тест корзины на каждом зарубежном домене до активной кнопки оплаты.",
-          "results": ["4 языковые версии на новом шаблоне", "1360 из 1360 системных фраз румынской версии", "Корзина проверена на 4 зарубежных доменах", "Польская версия без изменений, каждое изменение откатывается", "9 вопросов вне объёма описаны для решения магазина"],
-          "stack": ["Shoper", "Storefront", "CSS", "Playwright", "локализация", "тесты пути покупки"]
-        },
-        "baza-b2b-nl-be": {
-          "title": "База B2B-компаний для выхода на рынок Нидерландов и Бельгии",
-          "client": "Дистрибьютор отделочных материалов",
-          "problem": "Компания планировала выход на рынки Нидерландов и Бельгии и нуждалась в оценённом списке потенциальных партнёров до первого контакта.",
-          "solution": "База собрана по данным сайтов компаний, с оценкой потенциала и отбором лучших. Плюс обзор конкурентов и черновики писем на английском (первый контакт и follow-up) с учётом ограничений клиентки по заявлениям о продукте. Всё в одной Google-таблице с вкладками компаний, писем и отчёта.",
-          "results": ["30 компаний (19 NL, 11 BE) с оценкой потенциала", "12 лучших выбраны для первого контакта", "Сдано в срок и принято на Useme"],
-          "stack": ["Google Sheets", "исследование рынка", "лидогенерация", "B2B"]
-        }
-      }
-    },
     "pulpit-gitcloud": {
       "title": "Рабочий стол GitCloud: своя среда работы с консолью и файлами",
       "lead": "Сеанс Linux, построенный вокруг панели и ИИ-ассистента: без рамок окон, со своей консолью, файловым менеджером и панелью в одном стиле.",
@@ -304,6 +269,75 @@
       "results": ["Каждую ночь 72 случайных файла из 6 источников восстанавливаются и сверяются по SHA-256, вся копия проверяется за неделю", "По воскресеньям полные учения: восстановление базы и запуск контейнера из копии в изоляции", "Архив базы каждые 10 минут, шифрование AES-256, восстановление на момент времени за последние 7 дней", "Около 40% бесплатного лимита запросов облака в месяц", "30 заданий расписания и 151 миграция базы в репозитории, изменение = коммит", "Обновления и перезагрузки ночью без ручного подтверждения, первая ошибка останавливает остальное"],
       "gallery_alt": ["Время ночных заданий и итог проверки копий за ночь 09.11.2026, без адресов и имён машин", "План ночи по расписанию: от дампа базы в 00:05 до одной сводки в 7:00", "Копии в трёх местах: архив базы в облаке, внешняя копия, внешний диск, плюс проверка восстановления", "Отчёт проверки восстановления за ночь 9 ноября 2026: все пункты пройдены за 17 минут"],
       "links_label": ["AI-агенты: ночные тревоги и разборы"]
+    },
+    "koszyk-sklep-5-domen": {
+      "title": "Корзина, которая не принимала заказы из-за границы",
+      "lead": "Этап 1 из 4 для магазина медицинских товаров на Shoper, работающего на пяти доменах.",
+      "status": "Заказ Useme, принят",
+      "image_alt": "Этап 1 · Чешская корзина и автотест заказа на пяти доменах",
+      "gallery_alt": ["Этап 1 · Чешская корзина и автотест заказа на пяти доменах"],
+      "gallery_note": "Иллюстрации на примерных данных (sklep.example, вымышленные товары и компании). Магазины и компании клиентов, их данные и адреса не показаны.",
+      "problem": "Магазин на Shoper работает на пяти доменах (PL, CZ, SK, DE, RO). В зарубежных версиях корзина останавливалась на шаге заказа без сообщения об ошибке, а контакты по языковым версиям не подменялись.",
+      "solution": "Диагностика нашла ключ Google reCAPTCHA, зарегистрированный только для польского домена, и синтаксическую ошибку в собственном скрипте магазина. Клиентка добавила домены по инструкции, исправленный скрипт внедрён с копией прежней версии, всё проверено автотестом корзины на всех доменах.",
+      "role": "Диагностика, внедрение, тесты и общение с клиентом.",
+      "results": ["Корзина работает на 5 доменах", "Первый зарубежный заказ сразу после исправления", "Каждое изменение с копией и откатом"],
+      "links_label": ["Этап 2 · SEO-аудит при переходе на шаблон Storefront", "Этап 3 · Выбор страны и тест заказов на 5 доменах", "Этап 4 · Новый шаблон на четырёх языках"],
+      "links_title": "Другие этапы этого магазина"
+    },
+    "seo-storefront": {
+      "title": "SEO-аудит при переходе на шаблон Storefront",
+      "lead": "Этап 2 из 4 для магазина медицинских товаров на Shoper, работающего на пяти доменах.",
+      "status": "Заказ Useme, принят",
+      "image_alt": "Этап 2 · Чек-лист SEO-аудита и структурированные данные JSON-LD",
+      "gallery_alt": ["Этап 2 · Чек-лист SEO-аудита и структурированные данные JSON-LD"],
+      "gallery_note": "Иллюстрации на примерных данных (sklep.example, вымышленные товары и компании). Магазины и компании клиентов, их данные и адреса не показаны.",
+      "problem": "У магазина, переезжающего на новый шаблон Storefront, был SEO-аудит агентства (66 пунктов). Рекомендации нужно было внедрить, не трогая файлы шаблона без согласия владелицы.",
+      "solution": "В новый шаблон добавлены Google Tag Manager и GA4, заголовок H1 блога и структурированные данные JSON-LD (Organization, WebSite). Шаблоны мета-тегов настроены по аудиту с копией прежних значений. Выполненные пункты переданы агентству, а пункты, требующие согласия, описаны вместо внедрения.",
+      "role": "Диагностика, внедрение, тесты и общение с клиентом.",
+      "results": ["66 пунктов аудита разобраны и закрыты", "Структурированные данные и аналитика в новом шаблоне", "Работа принята клиенткой"],
+      "links_label": ["Этап 1 · Корзина, которая не принимала заказы из-за границы", "Этап 3 · Выбор страны и тест заказов на 5 доменах", "Этап 4 · Новый шаблон на четырёх языках"],
+      "links_title": "Другие этапы этого магазина"
+    },
+    "wybor-kraju-storefront": {
+      "title": "Выбор страны и тест заказов на 5 доменах",
+      "lead": "Этап 3 из 4 для магазина медицинских товаров на Shoper, работающего на пяти доменах.",
+      "status": "Заказ Useme, принят",
+      "image_alt": "Этап 3 · Выбор страны и валюты в шапке и тест оформления",
+      "gallery_alt": ["Этап 3 · Выбор страны и валюты в шапке и тест оформления"],
+      "gallery_note": "Иллюстрации на примерных данных (sklep.example, вымышленные товары и компании). Магазины и компании клиентов, их данные и адреса не показаны.",
+      "problem": "Страны являются языковыми версиями одного магазина на пяти доменах. После перехода на новый шаблон адреса работали, но покупатель с польского магазина не мог перейти в другую страну. Также нужно было подтвердить, что заказ оформляется на каждом домене.",
+      "solution": "В новом шаблоне не было модуля выбора страны и языка из старого. В шапку добавлен стандартный модуль Shoper «Язык и валюты» с флагами для компьютера, планшета и телефона, без других изменений и с инструкцией отката. Переходы между всеми странами проверены на компьютере и телефоне, оформление заказа на каждом домене пройдено до активной итоговой кнопки без фиктивных заказов.",
+      "role": "Диагностика, внедрение, тесты и общение с клиентом.",
+      "results": ["Выбор страны работает в обе стороны на 5 доменах", "Оформление проверено на 5 доменах без фиктивных заказов", "Одно изменение шаблона, откат в один шаг", "Найденные проблемы описаны как объём следующего этапа"],
+      "links_label": ["Этап 1 · Корзина, которая не принимала заказы из-за границы", "Этап 2 · SEO-аудит при переходе на шаблон Storefront", "Этап 4 · Новый шаблон на четырёх языках"],
+      "links_title": "Другие этапы этого магазина"
+    },
+    "tlumaczenie-storefront-4-jezyki": {
+      "title": "Новый шаблон на четырёх языках",
+      "lead": "Этап 4 из 4 для магазина медицинских товаров на Shoper, работающего на пяти доменах.",
+      "status": "Заказ Useme, принят",
+      "image_alt": "Этап 4 · Одна карточка товара на чешском, словацком, немецком и румынском",
+      "gallery_alt": ["Этап 4 · Одна карточка товара на чешском, словацком, немецком и румынском"],
+      "gallery_note": "Иллюстрации на примерных данных (sklep.example, вымышленные товары и компании). Магазины и компании клиентов, их данные и адреса не показаны.",
+      "problem": "Один магазин на Shoper, четыре зарубежные версии на отдельных доменах. Модули шаблона были только на польском, румынская версия показывала системные фразы на английском, а в корзине вместо текстов были технические ключи. Баннеры и ссылки вели в польский магазин.",
+      "solution": "Тексты модулей переведены отдельно для каждого языка: шапка, мега-меню, главная, карточка товара, категория, корзина с приложением подарка, окно добавления в корзину и подвал. Ссылки баннеров и слайдов ведут в категории своей страны, добавлены контакты страны, блоки только для Польши скрыты в других версиях. Дополнены все системные фразы румынской версии. Польская версия проверялась после каждого изменения, визуальные правки вынесены в отдельные описанные блоки CSS, в конце тест корзины на каждом зарубежном домене до активной кнопки оплаты.",
+      "role": "Диагностика, внедрение, тесты и общение с клиентом.",
+      "results": ["4 языковые версии на новом шаблоне", "1360 из 1360 системных фраз румынской версии", "Корзина проверена на 4 зарубежных доменах", "Польская версия без изменений, каждое изменение откатывается", "9 вопросов вне объёма описаны для решения магазина"],
+      "links_label": ["Этап 1 · Корзина, которая не принимала заказы из-за границы", "Этап 2 · SEO-аудит при переходе на шаблон Storefront", "Этап 3 · Выбор страны и тест заказов на 5 доменах"],
+      "links_title": "Другие этапы этого магазина"
+    },
+    "baza-b2b-nl-be": {
+      "title": "База B2B-компаний для выхода на рынок Нидерландов и Бельгии",
+      "lead": "База партнёров перед выходом на рынок Нидерландов и Бельгии, для дистрибьютора отделочных материалов.",
+      "status": "Заказ Useme, принят",
+      "image_alt": "База B2B-компаний, Нидерланды и Бельгия · таблица с оценкой потенциала и черновик первого письма",
+      "gallery_alt": ["База B2B-компаний, Нидерланды и Бельгия · таблица с оценкой потенциала и черновик первого письма"],
+      "gallery_note": "Иллюстрации на примерных данных (sklep.example, вымышленные товары и компании). Магазины и компании клиентов, их данные и адреса не показаны.",
+      "problem": "Компания планировала выход на рынки Нидерландов и Бельгии и нуждалась в оценённом списке потенциальных партнёров до первого контакта.",
+      "solution": "База собрана по данным сайтов компаний, с оценкой потенциала и отбором лучших. Плюс обзор конкурентов и черновики писем на английском (первый контакт и follow-up) с учётом ограничений клиентки по заявлениям о продукте. Всё в одной Google-таблице с вкладками компаний, писем и отчёта.",
+      "role": "Диагностика, внедрение, тесты и общение с клиентом.",
+      "results": ["30 компаний (19 NL, 11 BE) с оценкой потенциала", "12 лучших выбраны для первого контакта", "Сдано в срок и принято на Useme"],
+      "links_label": []
     }
   }
 }
