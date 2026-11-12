@@ -69,6 +69,13 @@ const icons = [
         </div>
         <p class="dz-next muted">{S.next}</p>
 
+        <h2 class="lbl dz-h" id="shield">{S.shH}</h2>
+        <p class="dz-ex">{S.shP}</p>
+        <div class="dz-does">
+          {S.shDoes.map(([t, d]) => <div class="dz-do"><b>{t}</b><span>{d}</span></div>)}
+        </div>
+        <div class="dz-stats">{S.shStats.map(([v, l]) => <div class="tile"><b class="mono">{v}</b><span class="sub">{l}</span></div>)}</div>
+
         <div class="pd-grid dz-grid">
           <section>
             <h2 class="lbl">{S.stayH}</h2>

@@ -17,6 +17,18 @@ const pl = {
     ['Decyzje kartą', 'Gdy przepis nie wystarcza albo zmiana jest ryzykowna, dostaję kartę: co się stało, co już zrobione, 2 do 4 możliwych kroków. Wybieram i odpowiadam za decyzję ja.'],
   ],
   next: 'Od listopada 2026 dyżurny obsługuje też alarmy z zapory OPNsense i błędy z dzienników Loki.',
+  shH: 'GitCloud Shield: tarcza w abonamencie',
+  shP: 'Własny system bezpieczeństwa GitCloud, w cenie abonamentu. Sprawdza wiadomości i pocztę, zanim ktoś je otworzy, i ocenia bezpieczeństwo serwera w skali 0 do 100.',
+  shDoes: [
+    ['Poczta i komunikatory', 'Phishing, oszustwa („własny kurier”, płatność „przed wysyłką”, kod BLIK lub SMS), podróbki banków, OLX, InPost i gov.pl. Ostrzeżenie przychodzi bez treści i bez linków.'],
+    ['Załączniki', '„faktura.pdf.exe”, programy, obrazy dysków, strony logowania, makra. Treść sprawdza antywirus ClamAV, zainfekowany plik trafia do kwarantanny.'],
+    ['Blokada w sieci', '515 tys. domen phishingowych (CERT Polska i otwarte listy) zablokowanych na DNS zapory: fałszywa strona nie otworzy się na żadnym urządzeniu w firmie.'],
+    ['Ocena 0 do 100', 'Zapora, fail2ban, integralność plików, kopie, aktualizacje i tarcza w jednym widoku z listą „do naprawy”. Spadek oceny to alarm dla dyżurnego.'],
+  ],
+  shStats: [
+    ['515 tys.', 'domen phishingowych w blokadzie, aktualizacja co godzinę'],
+    ['1 z 1057', 'wiadomości z miesiąca oznaczona jako groźna: prawdziwe oszustwo na OLX'],
+  ],
   howH: 'Jak to działa',
   flow: [
     ['Alarm', 'Netdata wykrywa: usługa stoi, dysk się kończy, certyfikat wygasa.'],
@@ -88,6 +100,18 @@ const en: D = {
     ['Decisions by card', 'When a recipe is not enough or a change is risky, I get a card: what happened, what is already done, 2 to 4 possible steps. I choose and I am responsible for the decision.'],
   ],
   next: 'Since November 2026 the on-call program also handles alarms from the OPNsense firewall and errors from Loki logs.',
+  shH: 'GitCloud Shield: included in the subscription',
+  shP: 'GitCloud’s own security system, included in the subscription. It checks messages and mail before anyone opens them and scores server security from 0 to 100.',
+  shDoes: [
+    ['Mail and messengers', 'Phishing, scams (“my own courier”, payment “before shipping”, BLIK or SMS codes), fake banks, OLX, InPost and gov.pl. The warning arrives without the text and without links.'],
+    ['Attachments', '“invoice.pdf.exe”, programs, disk images, login pages, macros. Contents are scanned by ClamAV, an infected file goes to quarantine.'],
+    ['Network block', '515k phishing domains (CERT Polska and open lists) blocked on the firewall DNS: a fake site will not open on any device in the company.'],
+    ['Score 0 to 100', 'Firewall, fail2ban, file integrity, backups, updates and the shield in one view with a “to fix” list. A falling score is an alarm for the on-call program.'],
+  ],
+  shStats: [
+    ['515k', 'phishing domains blocked, updated hourly'],
+    ['1 of 1057', 'messages from a month flagged as dangerous: a real OLX scam'],
+  ],
   howH: 'How it works',
   flow: [
     ['Alarm', 'Netdata detects it: a service is down, a disk is filling up, a certificate expires.'],
@@ -158,6 +182,18 @@ const ru: D = {
     ['Решения карточкой', 'Когда рецепта мало или правка рискованная, мне приходит карточка: что случилось, что уже сделано, 2-4 возможных шага. Выбираю и отвечаю за решение я.'],
   ],
   next: 'С ноября 2026 дежурный обрабатывает и тревоги шлюза OPNsense, и ошибки из журналов Loki.',
+  shH: 'GitCloud Shield: щит в абонементе',
+  shP: 'Своя система безопасности GitCloud, входит в абонемент. Проверяет сообщения и почту до того, как их откроют, и оценивает безопасность сервера от 0 до 100.',
+  shDoes: [
+    ['Почта и мессенджеры', 'Фишинг, мошенники («свой курьер», оплата «до отправки», код BLIK или SMS), подделки банков, OLX, InPost и gov.pl. Предупреждение приходит без текста и без ссылок.'],
+    ['Вложения', '«faktura.pdf.exe», программы, образы дисков, страницы входа, макросы. Содержимое проверяет антивирус ClamAV, заражённый файл уходит в карантин.'],
+    ['Блок в сети', '515 тыс. фишинговых доменов (CERT Polska и открытые списки) закрыты на DNS шлюза: поддельный сайт не откроется ни на одном устройстве фирмы.'],
+    ['Оценка 0 до 100', 'Файрвол, fail2ban, целостность файлов, копии, обновления и щит на одной странице со списком «исправить». Падение оценки становится тревогой для дежурного.'],
+  ],
+  shStats: [
+    ['515 тыс.', 'фишинговых доменов в блоке, обновление раз в час'],
+    ['1 из 1057', 'сообщений за месяц помечено опасным: настоящее мошенничество на OLX'],
+  ],
   howH: 'Как это работает',
   flow: [
     ['Тревога', 'Netdata видит: служба стоит, диск кончается, сертификат истекает.'],
