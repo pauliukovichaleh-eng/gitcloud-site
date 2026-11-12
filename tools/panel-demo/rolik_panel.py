@@ -5,20 +5,18 @@
 import sys, os, json, base64
 from playwright.sync_api import sync_playwright
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-from rolik_common import init, CYR
+from rolik_common import init, CYR, koduj
 base, out = "http://my.gitcloud.pl:18932", sys.argv[1]
 os.makedirs(out + "/frames", exist_ok=True)
 # подписи из app.js ядра (тост gcAct, карточка решения) — по-польски, без длинного тире
 EXTRA = [["^Ответ: ", "Odpowiedź: "], ["Отменить", "Cofnij"], [" — исполняется", " · w realizacji"], ["исполняется…", "w realizacji…"],
          ["изменить:", "zmień:"], ["журнал решений", "dziennik decyzji"]]
-# в кадре только пульт решений: строка денег сверху и «Dom (tylko odczyt)» в шапке скрыты
-CSS = "[data-key='hud-now'], .auth-user-chip { display: none !important; }"
 frames, errs, cyr = [], [], {}
 with sync_playwright() as p:
     b = p.chromium.launch(executable_path="/usr/bin/google-chrome", args=["--host-resolver-rules=MAP my.gitcloud.pl 127.0.0.1"])
     ctx = b.new_context(viewport={"width": 1280, "height": 720})
     ctx.add_cookies([{"name": "gc_lang", "value": "pl", "url": base}])
-    ctx.add_init_script(init(EXTRA, CSS))
+    ctx.add_init_script(init(EXTRA))   # pasek finansów, «Dom (tylko odczyt)», most — ukrywa HIDE
     pg = ctx.new_page()
     pg.on("console", lambda m: m.type == "error" and errs.append(m.text[:120]))
     pg.on("response", lambda r: r.status >= 400 and errs.append(f"{r.status} {r.url}"))
@@ -69,3 +67,4 @@ with sync_playwright() as p:
     b.close()
 json.dump({"frames": frames, "errs": errs, "cyr": cyr}, open(out + "/meta.json", "w"), ensure_ascii=False, indent=0)
 print("frames", len(frames), "dur", round(frames[-1][0], 2)); print("errs", errs); print("cyr", cyr)
+koduj(out, "panel")

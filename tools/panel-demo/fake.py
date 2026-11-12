@@ -79,3 +79,7 @@ def patch():
     from gitcloud_ai import app
     app.now_important = lambda *a, **k: {"show": False, "items": []}
     app.personal_line = lambda *a, **k: [{"lvl": "ok", "text": "✓ Всё спокойно", "href": "/", "kind": ""}]
+    # 12.11.2026: warsztaty czytają prawdziwy stan z dysku (kręgi Claude, pomiary) — w demo ich nie ma
+    from gitcloud_ai import workshop
+    workshop.view = lambda *a, **k: None
+    workshop.claude_rows = lambda *a, **k: []

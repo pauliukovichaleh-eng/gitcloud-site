@@ -1,20 +1,9 @@
-"""Итоговые снимки демо-панели для сайта: перевод оставшихся русских надписей на польский, кадры, проверка кириллицы в кадре."""
-import sys, re
+"""Zrzuty demo-panelu na stronę: polskie napisy, ukryte prywatne elementy, kadry, kontrola cyrylicy w kadrze (rolik_common.py)."""
+import os, sys
 from playwright.sync_api import sync_playwright
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+from rolik_common import PL, TR, HIDE, CYR
 base, out = sys.argv[1], sys.argv[2]   # [modele]
-PL = [[r"из (\d+) действий", "z $1 działań"], ["[hH][rR], бухгалтер и диктор", "korespondencja i terminy"], ["kadry, księgowość i lektor", "korespondencja i terminy"], ["Вживую", "Na żywo"], ["Мастерская", "Warsztat"],
-      ["меньше: ", "najmniej: "], ["ответов", "odpowiedzi"], ["сломано", "zepsute"], ["отказов", "odmów"], ["провал экзамена", "egzamin oblany"],
-      ["категория", "kategoria"], ["Открыть", "Otwórz"], ["дольше всех", "najdłużej"], [" мин", " min"], ["само: ", "automatycznie: "], ["Claude готовит", "Claude przygotowuje"], ["вопросы", "pytania"], ["Решила", "Zdecydowała"], ["Отправила", "Wysłała"], ["Решил", "Zdecydował"], ["Отправил", "Wysłał"],
-      ["пн (\\d)", "pn $1"], ["вт (\\d)", "wt $1"], ["ср (\\d)", "śr $1"], ["чт (\\d)", "czw $1"], ["пт (\\d)", "pt $1"], ["сб (\\d)", "sob $1"], ["вс (\\d)", "nd $1"]]
-JS = """(pl) => { const w = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT); let n;
-  while ((n = w.nextNode())) { let t = n.nodeValue, o = t; for (const [a, b] of pl) t = t.replace(new RegExp(a, 'g'), b); if (t !== o) n.nodeValue = t; } }"""
-# 10.11.2026: na stronie bez „Dom (tylko odczyt)” w nagłówku i bez przycisku mostu „Dom ↔ Praca” (prywatne)
-HIDE = """() => { for (const e of document.querySelectorAll('body *')) { const t = (e.textContent || '').replace(/\\s+/g, ' ').trim();
-  if (/^Dom \\(tylko odczyt\\)$/.test(t) || /^Дом ↔ Работа$/.test(t)) e.style.visibility = 'hidden'; } }"""
-CYR = """(r) => { const bad = []; const w = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT); let n;
-  while ((n = w.nextNode())) { if (!/[\\u0400-\\u04FF]/.test(n.nodeValue)) continue; const e = n.parentElement; if (!e || !e.offsetParent) continue;
-    const b = e.getBoundingClientRect(); if (b.bottom > r.y && b.top < r.y + r.h && b.right > 0 && b.left < r.w) bad.push(n.nodeValue.trim().slice(0, 60)); }
-  return bad; }"""
 SHOTS = [  # (имя, путь, ширина, высота, высота кадра)
     ("panel-agenci", "/agenty", 1440, 900, 790),
     ("panel-tony", "/agenty/tony", 1440, 900, 625),
@@ -33,13 +22,13 @@ errs, cyr = [], {}
 with sync_playwright() as p:
     b = p.chromium.launch(executable_path="/usr/bin/google-chrome", args=["--host-resolver-rules=MAP my.gitcloud.pl 127.0.0.1"])
     for name, path, w, h, ch in SHOTS:
-        ctx = b.new_context(viewport={"width": w, "height": h}, device_scale_factor=2 if w < 500 else int(__import__("os").environ.get("DSF", "1")))
+        ctx = b.new_context(viewport={"width": w, "height": h}, device_scale_factor=2 if w < 500 else int(os.environ.get("DSF", "1")))
         ctx.add_cookies([{"name": "gc_lang", "value": "pl", "url": base}])
         pg = ctx.new_page()
         pg.on("console", lambda m, n=name: m.type == "error" and errs.append(f"{n}: {m.text[:120]}"))
         pg.on("response", lambda r, n=name: r.status >= 400 and errs.append(f"{n}: {r.status} {r.url}"))
         pg.goto(base + path, wait_until="domcontentloaded"); pg.wait_for_timeout(3000)
-        pg.evaluate(JS, PL); pg.wait_for_timeout(300); pg.evaluate(JS, PL); pg.evaluate(HIDE)
+        pg.evaluate(TR, PL); pg.wait_for_timeout(300); pg.evaluate(TR, PL); pg.evaluate(HIDE)
         hs = pg.evaluate("document.documentElement.scrollWidth > innerWidth")
         if mode == "decyzje":
             pg.add_style_tag(content="#gc-tabbar{display:none!important}")
@@ -50,7 +39,7 @@ with sync_playwright() as p:
                 s1 = pg.locator('[data-key="cc:s1"]')   # 11.11.2026: rozwinięta sesja w toku — nić sprawy (fake_dec.PLANS)
                 if s1.count():
                     s1.first.click(); pg.wait_for_timeout(1200)
-                pg.evaluate(JS, PL); pg.wait_for_timeout(400)
+                pg.evaluate(TR, PL); pg.wait_for_timeout(400)
             el.scroll_into_view_if_needed(); bb = el.bounding_box()
             sy = pg.evaluate("scrollY"); top = bb["y"] + sy
             if w < 500:   # телефон: только шапка и карточки, до полос лимитов

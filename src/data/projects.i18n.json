@@ -91,13 +91,13 @@
       "title": "Data platform and nightly automation pipeline",
       "lead": "One PostgreSQL database for the whole system, a job schedule described in code and a night after which, by 7:00, everything is updated, backed up and verified.",
       "status": "Running daily since September 2026",
-      "image_alt": "The nightly job pipeline from 00:05 to 07:00, the restore check result, the number of jobs and free cloud tier usage",
+      "image_alt": "The night in six steps: backups, restore test, maintenance window, code review, reports and one summary at 7:00",
       "gallery_note": "Diagrams drawn from the schedule and the report, without addresses or internal names.",
       "problem": "Dozens of scripts wrote data to files and separate databases, jobs ran scattered across the whole day, and reports kept arriving until noon. Backups existed, but nobody checked whether they could be restored.",
       "solution": "A shared PostgreSQL database with a separate role for every service, migrations in the repository and secrets encrypted in the database. The schedule lives in a single TOML file, deployed by a script and compared with the server to catch manual changes. The night has a fixed order: backups, a restore check, an update and reboot window with a check after every step, then reports and a morning review. Backups go to three places, and restoring is a separate job that recovers random files and the database every night.",
       "role": "Architecture, database schema and migrations, scheduling, backups and their verification.",
       "results": ["Every night 72 random files from 6 sources restored and compared by SHA-256; the whole backup verified within a week", "A full drill on Sundays: database restore and a container started from backup in isolation", "Database archive every 10 minutes, AES-256 encrypted, point-in-time recovery from the last 7 days", "About 40% of the free cloud request quota per month", "30 scheduled jobs and 151 database migrations in the repository, a change = a commit", "Updates and reboots at night without manual approval; the first error stops the rest"],
-      "gallery_alt": ["Night job times and the backup check result from the night of 09.11.2026, without addresses or machine names", "The night plan from the schedule: from the database dump at 00:05 to a single summary at 7:00", "Backups in three places: database archive in the cloud, off-site copy, external disk, plus a restore check", "Restore check report from the night of 9 November 2026: all items passed in 17 minutes"],
+      "gallery_alt": ["Night steps from backups at 00:05 to the summary at 7:00", "The night plan from the schedule: from the database dump at 00:05 to a single summary at 7:00", "Backups in three places: database archive in the cloud, off-site copy, external disk, plus a restore check", "Restore check report from the night of 9 November 2026: all items passed in 17 minutes"],
       "links_label": ["AI agents: night alarms and reviews"]
     },
     "koszyk-sklep-5-domen": {
@@ -261,13 +261,13 @@
       "title": "Платформа данных и ночной конвейер автоматизации",
       "lead": "Одна база PostgreSQL для всей системы, расписание задач в коде и ночь, после которой к 7:00 всё обновлено, скопировано и проверено.",
       "status": "Работает ежедневно с сентября 2026",
-      "image_alt": "Ночной конвейер задач с 00:05 до 07:00, итог проверки восстановления, число заданий и расход бесплатного лимита облака",
+      "image_alt": "Ночь в шести шагах: копии, проба восстановления, окно обслуживания, обзор кода, отчёты и одна сводка в 7:00",
       "gallery_note": "Схемы нарисованы по расписанию и отчёту, без адресов и внутренних имён.",
       "problem": "Десятки скриптов писали данные в файлы и отдельные базы, задания запускались вразброс весь день, а отчёты приходили до полудня. Резервные копии были, но никто не проверял, восстанавливаются ли они.",
       "solution": "Общая база PostgreSQL с отдельной ролью для каждой службы, миграциями в репозитории и секретами, зашифрованными в базе. Расписание в одном файле TOML, выкладывается скриптом и сверяется с сервером, чтобы ловить ручные правки. У ночи постоянный порядок: копии, проверка восстановления, окно обновлений и перезагрузок с проверкой после каждого шага, затем отчёты и утренний разбор. Копии уходят в три места, а восстановление: отдельное задание, которое каждую ночь поднимает случайные файлы и базу.",
       "role": "Архитектура, схема базы и миграции, расписание, копии и их проверка.",
       "results": ["Каждую ночь 72 случайных файла из 6 источников восстанавливаются и сверяются по SHA-256, вся копия проверяется за неделю", "По воскресеньям полные учения: восстановление базы и запуск контейнера из копии в изоляции", "Архив базы каждые 10 минут, шифрование AES-256, восстановление на момент времени за последние 7 дней", "Около 40% бесплатного лимита запросов облака в месяц", "30 заданий расписания и 151 миграция базы в репозитории, изменение = коммит", "Обновления и перезагрузки ночью без ручного подтверждения, первая ошибка останавливает остальное"],
-      "gallery_alt": ["Время ночных заданий и итог проверки копий за ночь 09.11.2026, без адресов и имён машин", "План ночи по расписанию: от дампа базы в 00:05 до одной сводки в 7:00", "Копии в трёх местах: архив базы в облаке, внешняя копия, внешний диск, плюс проверка восстановления", "Отчёт проверки восстановления за ночь 9 ноября 2026: все пункты пройдены за 17 минут"],
+      "gallery_alt": ["Шаги ночи от копий в 00:05 до сводки в 7:00", "План ночи по расписанию: от дампа базы в 00:05 до одной сводки в 7:00", "Копии в трёх местах: архив базы в облаке, внешняя копия, внешний диск, плюс проверка восстановления", "Отчёт проверки восстановления за ночь 9 ноября 2026: все пункты пройдены за 17 минут"],
       "links_label": ["AI-агенты: ночные тревоги и разборы"]
     },
     "koszyk-sklep-5-domen": {

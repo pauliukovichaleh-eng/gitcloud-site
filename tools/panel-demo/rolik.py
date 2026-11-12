@@ -4,7 +4,7 @@ from playwright.sync_api import sync_playwright
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 base, out = "http://my.gitcloud.pl:18932", sys.argv[1]
 os.makedirs(out + "/frames", exist_ok=True)
-from rolik_common import init, CYR
+from rolik_common import init, CYR, koduj
 INIT = init()
 frames, errs, cyr = [], [], {}
 with sync_playwright() as p:
@@ -52,3 +52,4 @@ with sync_playwright() as p:
     b.close()
 json.dump({"frames": frames, "errs": errs, "cyr": cyr}, open(out + "/meta.json", "w"), ensure_ascii=False, indent=0)
 print("frames", len(frames), "dur", round(frames[-1][0], 2)); print("errs", errs); print("cyr", cyr)
+koduj(out, "agenci")

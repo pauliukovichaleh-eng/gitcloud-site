@@ -1,7 +1,10 @@
 """Klatki głów agentów na stronę (public/img/agenci/*.webp, projekty/glowa-*.mp4). Przeniesione 07.11.2026 z
 ~/exports/agent-faces-2026-11-05/v2/clipgpu.py dla nocnego odświeżania (decyzja #748). Głowa: ~/src/gitcloud-remote/head
-na http://127.0.0.1:8788 (python3 -m http.server). NAGRYWAĆ NA KARCIE GRAFICZNEJ (Vulkan, Radeon), nie SwiftShader;
-Tony w head.js = „vale”; &nobrowcards=1 (brwi jak w eterze). Porównać klatkę z żywą stroną 127.0.0.1:8770.
+na http://127.0.0.1:8788 (python3 -m http.server). NAGRYWAĆ NA KARCIE GRAFICZNEJ (ANGLE gl-egl, Radeon; Vulkan w headless
+nie rysuje), nie SwiftShader. Tony w head.js = „vale”; &nobrowcards=1 (brwi jak w eterze). Kadr z ramionami (12.11.2026):
+&withbody=1 pokazuje tors, który ?clip chowa; kamera CAM odsunięta tak, by w kwadracie ramiona mieściły się całe, a głowy
+wszystkich trzech stały na tej samej wysokości. Porównać klatkę z żywą stroną 127.0.0.1:8770.
+Dalej: wyjscie.py składa z klatek WebP, filmy i plakaty.
 
 Клипы эмоций голов для аватаров my.gitcloud.pl (24.10.2026, владелец: «не крутиться — уникальная эмоция каждого,
 чтобы выглядели живыми»). head/ на http://127.0.0.1:8788 (python3 -m http.server), Chrome со SwiftShader, ?clip — head.js
@@ -12,6 +15,7 @@ import sys
 from playwright.sync_api import sync_playwright
 
 FPS = 15
+CAM = "-0.18,5.6"   # ?cam=y,odległość — ramiona w kadrze 1:1 (domyślna kamera head.js ucina je po bokach)
 SCRIPT = {   # (секунда, эмоция) — своя у каждого: Салли тёплая и игривая, Тони уверенный техник, Марк думающий аналитик
     "sally": [(0, "calm"), (1.2, "amused"), (3.6, "playful"), (5.4, "calm")],
     "vale": [(0, "confident"), (1.6, "interested"), (3.4, "thoughtful"), (5.2, "confident")],
@@ -32,7 +36,7 @@ with sync_playwright() as p:
     pg = b.new_page(device_scale_factor=3, viewport={"width": int(__import__("os").environ.get("SZ","480")), "height": int(__import__("os").environ.get("SZ","480"))})
     pg.set_default_timeout(180000)
     pg.add_init_script(VCLOCK)
-    pg.goto(f"http://127.0.0.1:8788/index.html?who={who}&offline=1&clip=1&pr=3&nobrowcards=1&mood={SCRIPT[who][0][1]}", wait_until="load")
+    pg.goto(f"http://127.0.0.1:8788/index.html?who={who}&offline=1&clip=1&withbody=1&cam={CAM}&pr=3&nobrowcards=1&mood={SCRIPT[who][0][1]}", wait_until="load")
     for _ in range(600):                                  # загрузка модели: шагаем время, пока голова не готова
         pg.evaluate("window.__step(33)")
         if pg.evaluate("!!window.gcReady"):

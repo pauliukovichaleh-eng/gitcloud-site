@@ -256,12 +256,12 @@
       "year": "2026",
       "status": "Działa codziennie od września 2026",
       "image": "/img/projekty/platforma-okladka.webp",
-      "image_alt": "Nocny potok zadań od 00:05 do 07:00, wynik sprawdzenia odtworzenia kopii, liczba zadań i zużycie darmowego limitu chmury",
+      "image_alt": "Noc w sześciu krokach: kopie, próba odtworzenia, okno konserwacji, przegląd kodu, raporty i jedno podsumowanie o 7:00",
       "gallery": [
         {
           "src": "/img/projekty/platforma-okladka.webp",
           "tel": "/img/projekty/platforma-okladka-tel.webp",
-          "alt": "Godziny nocnych zadań i wynik sprawdzenia kopii z nocy 09.11.2026, bez adresów i nazw maszyn"
+          "alt": "Kroki nocy od kopii o 00:05 do podsumowania o 7:00"
         },
         {
           "src": "/img/projekty/dane-noc.webp",

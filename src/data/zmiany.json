@@ -2,6 +2,21 @@
   "_opis": "Dziennik zmian /zmiany/ (decyzja #748). Prowadzi go nocne odświeżanie (host/site-refresh): nowe wpisy NA POCZĄTKU. Pola: id (data-slug), date, area, project (slug z projects.json: wpis pokazuje się też na stronie projektu, decyzja #751) (strona|panel|agenci|glowy|pilot|isp|infra), kind (wizualna = z obrazami przed/po, techniczna = krótko, bez obrazów), img [{src, alt{pl,en,ru}, label: przed|po|kadr}], link (kotwica albo strona projektu), pl/en/ru {t, x}. Tylko to, co publiczne: bez klientów, pracodawców, domu, finansów, adresów IP.",
   "wpisy": [
     {
+      "id": "2026-11-12-glowy-z-ramionami",
+      "date": "2026-11-12",
+      "area": "glowy",
+      "project": "glowy-agentow",
+      "kind": "wizualna",
+      "img": [
+        {"src": "/img/zmiany/2026-11-12-glowy-ramiona-przed.webp", "label": "przed", "alt": {"pl": "Trzy głowy agentów przed zmianą: same głowy na szyi, bez ramion", "en": "The three agent heads before: heads on necks only, no shoulders", "ru": "Три головы агентов до: только головы на шее, без плеч"}},
+        {"src": "/img/zmiany/2026-11-12-glowy-ramiona-po.webp", "label": "po", "alt": {"pl": "Trzy głowy po zmianie: głowa z ramionami, wszystkie na tej samej wysokości", "en": "The three heads after: head and shoulders, all at the same height", "ru": "Три головы после: голова с плечами, все на одной высоте"}}
+      ],
+      "link": "/projekty/glowy-agentow/",
+      "pl": {"t": "Głowy agentów z ramionami, nowe nagrania panelu i pilota", "x": "Sally, Tony i Mark są nagrani z ramionami, jak na żywej stronie głowy. Filmy panelu i pilota oraz zrzuty kart decyzji, agentów i modeli nagrane na nowo w obecnym wyglądzie, na danych przykładowych. Okładka platformy danych pokazuje noc dużym pismem."},
+      "en": {"t": "Agent heads with shoulders, new panel and remote recordings", "x": "Sally, Tony and Mark are recorded with shoulders, as on the live head page. The panel and remote videos and the screenshots of decision cards, agents and models were retaken in the current look, on sample data. The data platform cover shows the night in large type."},
+      "ru": {"t": "Головы агентов с плечами, новые записи панели и пульта", "x": "Салли, Тони и Марк сняты с плечами, как на живой странице головы. Фильмы панели и пульта и снимки карточек решений, агентов и моделей сняты заново в текущем виде, на примерных данных. Обложка платформы данных показывает ночь крупным шрифтом."}
+    },
+    {
       "id": "2026-11-11-nic-w-panelu",
       "date": "2026-11-11",
       "area": "panel",
