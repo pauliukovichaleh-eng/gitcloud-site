@@ -60,8 +60,9 @@ def init(extra_pl=(), css=""):
     return js
 
 
-def koduj(out, name):
-    """Klatki screencastu (meta.json: [czas, plik]) → public/img/projekty/<name>.mp4 i plakat <plakat>.jpg (klatka 2. sekundy)."""
+def koduj(out, name, width=None):
+    """Klatki screencastu (meta.json: [czas, plik]) → public/img/projekty/<name>.mp4 i plakat <name>-wideo.jpg (klatka 2. sekundy);
+    width — zmniejszenie klatek do tej szerokości (pulpit: zrzuty 1920 px → 1280)."""
     import subprocess
     from pathlib import Path
     proj = Path(__file__).resolve().parents[2] / "public/img/projekty"
@@ -73,9 +74,10 @@ def koduj(out, name):
     open(f"{out}/list.ffconcat", "w").write("\n".join(lines) + "\n")
     mp4 = proj / f"{name}.mp4"
     subprocess.run(["nice", "-n", "19", "ffmpeg", "-y", "-loglevel", "error", "-threads", "2", "-f", "concat", "-safe", "0",
-                    "-i", f"{out}/list.ffconcat", "-vf", "fps=25,format=yuv420p", "-c:v", "libx264", "-preset", "veryslow",
+                    "-i", f"{out}/list.ffconcat", "-vf", (f"scale={width}:-2:flags=lanczos," if width else "") + "fps=25,format=yuv420p", "-c:v", "libx264", "-preset", "veryslow",
                     "-crf", "28", "-tune", "stillimage", "-movflags", "+faststart", "-an", str(mp4)], check=True)
     poster = min(fr, key=lambda x: abs(x[0] - 2.0))[1]
-    jpg = proj / {"agenci": "agenci-wideo.jpg", "panel": "panel-wideo.jpg"}[name]
-    subprocess.run(["ffmpeg", "-y", "-loglevel", "error", "-i", poster, "-q:v", "3", str(jpg)], check=True)
+    jpg = proj / f"{name}-wideo.jpg"
+    subprocess.run(["ffmpeg", "-y", "-loglevel", "error", "-i", poster] + (["-vf", f"scale={width}:-2:flags=lanczos"] if width else [])
+                   + ["-q:v", "3", str(jpg)], check=True)
     print(mp4.name, mp4.stat().st_size // 1024, "KB;", jpg.name, jpg.stat().st_size // 1024, "KB")
