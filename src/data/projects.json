@@ -23,7 +23,7 @@
       "title": "GitCloud: platforma operacyjna dla operatora sieci",
       "lead": "Jedna konsola dla zespołu sieciowego: monitoring, automatyzacja, dostęp i kopie, z alertami wspieranymi przez AI.",
       "year": "2026",
-      "status": "Działa, wersja demonstracyjna na wymyślonych danych",
+      "status": "Zakończony, wersja demonstracyjna na wymyślonych danych",
       "image": "/img/projekty/isp-okladka.webp",
       "image_alt": "Konsola GitCloud: pulpit alertów w wersji demonstracyjnej",
       "gallery": [
@@ -53,7 +53,7 @@
         }
       ],
       "problem": "Zespół pracował na kilku osobnych narzędziach, a pełny obraz sieci trzeba było składać ręcznie.",
-      "solution": "Platforma zbudowana od podstaw: panele na żywo, inwentarz urządzeń w wielu lokalizacjach, alerty grupowane przez AI, własny urząd certyfikacji SSH i sprawdzane kopie zapasowe. Wersja demonstracyjna działa na wymyślonym operatorze, bez prawdziwych danych.",
+      "solution": "Platforma zbudowana od podstaw: panele na żywo, inwentarz urządzeń w wielu lokalizacjach, alerty grupowane przez AI, dostęp do urządzeń przez krótkotrwałe certyfikaty i sprawdzane kopie zapasowe. Wersja demonstracyjna działa na wymyślonym operatorze, bez prawdziwych danych.",
       "stack": [
         "PHP",
         "JavaScript",
@@ -65,8 +65,8 @@
       ],
       "role": "Architektura, kod, baza danych i wdrożenie.",
       "results": [
-        "56 sekcji konsoli w jednym panelu",
-        "Dostęp przez certyfikaty ważne 12 godzin zamiast stałych kluczy",
+        "Jedna konsola zamiast kilku osobnych narzędzi",
+        "Dostęp przez krótkotrwałe certyfikaty zamiast stałych kluczy",
         "Alerty z gotowymi komendami diagnostycznymi",
         "Demo w izolowanym środowisku, tylko do odczytu"
       ],
@@ -81,12 +81,12 @@
     {
       "slug": "pilot-esp32",
       "category": "wlasne",
-      "title": "Urządzenie IoT na ESP32-S3 z symulatorem ekranu",
-      "lead": "Firmware dla sprzętowego panelu: stan systemów, alerty i polecenia pod pokrętłem, łączność przez Bluetooth LE.",
+      "title": "Pilot ESP32-S3: ekran systemu pod pokrętłem",
+      "lead": "Firmware dla sprzętowego pilota: decyzje, powiadomienia i stan systemów pod pokrętłem, z tego samego rdzenia co panel.",
       "year": "2026",
       "status": "W codziennym użyciu",
       "image": "/img/projekty/pilot-okladka.webp",
-      "image_alt": "Pilot z pokrętłem: menu kafelków na ekranie oraz wykres CPU, sesja z asystentem i PIN dla ważnego polecenia, zrzuty z symulatora, dane przykładowe",
+      "image_alt": "Pilot z pokrętłem: menu kafelków, wykres CPU, ekran sesji Claude i PIN dla ważnego polecenia, zrzuty z symulatora, dane przykładowe",
       "gallery": [
         {
           "video": "/img/projekty/pilot.mp4",
@@ -97,11 +97,11 @@
         },
         {
           "src": "/img/projekty/pilot-kafelki.png",
-          "alt": "Menu kafelków: serwer, kopie, sieć, praca, kalendarz"
+          "alt": "Menu kafelków systemów"
         },
         {
           "src": "/img/projekty/pilot-claude.png",
-          "alt": "Sesja z asystentem: mów, kliknij i wyślij"
+          "alt": "Ekran sesji Claude: stan sesji i zużycie limitu"
         },
         {
           "src": "/img/projekty/pilot-muzyka.png",
@@ -120,8 +120,8 @@
           "alt": "Ważne polecenie (restart zapory) wymaga PIN-u"
         }
       ],
-      "problem": "Potrzebny był fizyczny panel do podglądu alertów i szybkich akcji, który nie przechowuje żadnych haseł.",
-      "solution": "Firmware w C++ z szyfrowaną usługą Bluetooth LE. Serwer wykonuje tylko polecenia z białej listy, a ważne akcje wymagają PIN-u. Symulator kompiluje ten sam kod na komputerze i porównuje zrzuty ekranu przy każdym buildzie.",
+      "problem": "Potrzebny był fizyczny pilot do decyzji, alertów i szybkich akcji, bez sięgania po komputer czy telefon.",
+      "solution": "Firmware w C++ z szyfrowaną łącznością. Pilot pokazuje te same karty decyzji i powiadomienia co panel, bo bierze je z rdzenia GitCloud. Serwer wykonuje tylko polecenia z białej listy, ważne akcje wymagają PIN-u. Symulator kompiluje ten sam kod na komputerze i porównuje zrzuty ekranu przy każdym buildzie.",
       "stack": [
         "C++",
         "ESP32-S3",
@@ -131,10 +131,9 @@
       ],
       "role": "Projekt urządzenia, firmware, usługa po stronie serwera i testy.",
       "results": [
-        "Ponad 1800 commitów",
         "9,2 h pracy na baterii przy włączonym ekranie",
-        "Każda zmiana interfejsu sprawdzana zrzutami",
-        "Bez Wi-Fi i haseł na urządzeniu"
+        "Ważne polecenia tylko z PIN-em",
+        "Każda zmiana interfejsu sprawdzana zrzutami z symulatora"
       ],
       "links": [],
       "gallery_note": "Nagranie i zrzuty z symulatora ekranu: ten sam kod co w firmware, napisy przetłumaczone na polski, dane przykładowe (wymyślone usługi i utwór); ekran 320×170 pokazany w skali 3:1 w nagraniu i 4:1 na zrzutach, w nagraniu pominięte przewijanie sekcji między wykresem a listą maszyn."
@@ -143,9 +142,9 @@
       "slug": "glowy-agentow",
       "category": "wlasne",
       "title": "Awatary 3D dla asystentów głosowych",
-      "lead": "Trzy postacie 3D, które mówią głosem agentów, z ruchem ust dopasowanym do mowy i emocjami.",
+      "lead": "Trzy postacie 3D, które mówią głosem agentów, z ruchem ust dopasowanym do mowy i własną mimiką.",
       "year": "2026",
-      "status": "Działa w przeglądarce i w widżecie pulpitu",
+      "status": "Działa w przeglądarce i w kolumnie widżetów pulpitu",
       "image": "/img/projekty/glowy.jpg",
       "image_alt": "Trzy głowy agentów 3D: Sally, Tony i Mark",
       "video": {
@@ -166,7 +165,7 @@
         {
           "video": "/img/projekty/glowa-tony.mp4",
           "src": "/img/projekty/glowa-tony.jpg",
-          "alt": "Tony: infrastruktura i alerty"
+          "alt": "Tony: dyżur infrastruktury"
         },
         {
           "video": "/img/projekty/glowa-mark.mp4",
@@ -175,19 +174,18 @@
         }
       ],
       "problem": "Asystent głosowy bez twarzy jest mniej czytelny w rozmowie. Celem była żywa mimika na własnym sprzęcie, bez płatnych modeli 3D.",
-      "solution": "Głowy zbudowane kodem w three.js, ruch ust liczony z tekstu i dźwięku co 10 ms. Działają w przeglądarce i w widżecie pulpitu. W pierwszej wersji serwer renderował obraz na GPU i przesyłał strumień wideo do lekkiego odbiornika na rzutniku; z tego etapu pochodzą pomiary opóźnienia i pamięci.",
+      "solution": "Głowy zbudowane kodem w three.js, ruch ust liczony z mowy. Każda postać ma własny charakter mimiki i emocji. Działają w przeglądarce i w kolumnie widżetów pulpitu, kolory biorą z palety rdzenia.",
       "stack": [
         "three.js",
         "WebGL",
         "Python",
-        "WebSocket",
-        "H.264"
+        "WebSocket"
       ],
-      "role": "Projekt postaci, animacja, synchronizacja ust i strumieniowanie.",
+      "role": "Projekt postaci, animacja i synchronizacja ust.",
       "results": [
         "Synchronizacja ust z dokładnością 10 do 30 ms",
-        "Opóźnienie obrazu 720p60 około 83 ms",
-        "Odbiornik zużywa 16 MB zamiast 382 MB pamięci"
+        "Własna mimika i emocje każdej postaci",
+        "Nagrania na stronę z karty graficznej, głowa z ramionami jak na żywo"
       ],
       "links": []
     },
@@ -195,7 +193,7 @@
       "slug": "agenci-ai",
       "category": "wlasne",
       "title": "Zespół agentów AI do pracy operacyjnej",
-      "lead": "Trzech agentów z podziałem ról jak w firmie: korespondencja i terminy, utrzymanie infrastruktury, modernizacja.",
+      "lead": "Trzech agentów z podziałem ról jak w firmie: korespondencja i terminy, dyżur infrastruktury, modernizacja. Zadania wykonuje Claude.",
       "year": "2026",
       "status": "Działa codziennie, także w nocy",
       "image": "/img/projekty/agenci-okladka.webp",
@@ -226,20 +224,19 @@
         }
       ],
       "gallery_note": "Nagranie i zrzuty panelu uruchomionego na danych przykładowych: wymyślony dziennik spraw i wymyślone wyniki agentów, bez połączenia z bazą i siecią; brakujące polskie napisy interfejsu przetłumaczone, w nagraniu ukryta lista harmonogramu.",
-      "problem": "Rutynowe zadania (alarmy, poczta, terminy, aktualizacje) zabierały czas każdego dnia, a jeden ogólny asystent mylił kompetencje.",
-      "solution": "Każdy agent ma swoją rolę, umiejętności i pamięć decyzji w PostgreSQL. Propozycje zmian ocenia rada agentów, a decyzje wymagające człowieka trafiają do panelu jako karty z wariantami. Każda akcja jest zapisana w dzienniku.",
+      "problem": "Rutynowe sprawy (alarmy, poczta, terminy, aktualizacje) zabierały czas każdego dnia, a jeden ogólny asystent mylił kompetencje.",
+      "solution": "Każdy agent ma swoją rolę, umiejętności i pamięć decyzji. Sprawy oczywiste agent rozstrzyga sam, resztę dostaję w panelu jako kartę z wariantami. Pisanie do ludzi, naprawy i zmiany w kodzie wykonuje Claude w osobnych sesjach. Każda sprawa trafia do dziennika: kto, co, dlaczego i z jakim wynikiem.",
       "stack": [
         "Python",
         "FastAPI",
         "PostgreSQL",
-        "pgvector",
         "LLM API"
       ],
       "role": "Architektura, kod agentów, procedury i testy.",
       "results": [
-        "Alarmy rozwiązywane w nocy, rano tylko raport",
-        "Tanie zadania na lekkim modelu, trudne na mocnym",
-        "Pełny dziennik działań agentów"
+        "Alarmy rozwiązywane w nocy, rano jeden raport",
+        "Decyzja dla agenta jednym dotknięciem",
+        "Pełny dziennik spraw agentów"
       ],
       "links": [
         {
@@ -252,7 +249,7 @@
       "slug": "platforma-danych",
       "category": "wlasne",
       "title": "Platforma danych i nocny potok automatyzacji",
-      "lead": "Jedna baza PostgreSQL dla całego systemu, harmonogram zadań opisany w kodzie i noc, po której o 7:00 wszystko jest zaktualizowane, skopiowane i sprawdzone.",
+      "lead": "Jedna baza dla całego systemu, harmonogram opisany w kodzie i noc, po której o 7:00 wszystko jest skopiowane, sprawdzone i zebrane w jednym podsumowaniu.",
       "year": "2026",
       "status": "Działa codziennie od września 2026",
       "image": "/img/projekty/platforma-okladka.webp",
@@ -281,7 +278,7 @@
       ],
       "gallery_note": "Schematy narysowane na podstawie harmonogramu i raportu, bez adresów i nazw wewnętrznych.",
       "problem": "Kilkadziesiąt skryptów zapisywało dane w plikach i osobnych bazach, zadania uruchamiały się rozproszone przez cały dzień, a raporty spływały do południa. Kopie zapasowe istniały, ale nikt nie sprawdzał, czy dają się odtworzyć.",
-      "solution": "Wspólna baza PostgreSQL z osobną rolą dla każdej usługi, migracjami w repozytorium i sekretami szyfrowanymi w bazie. Harmonogram w jednym pliku TOML, wdrażany skryptem i porównywany z serwerem, żeby wykryć ręczne zmiany. Noc ma stały porządek: kopie, sprawdzenie odtworzenia, okno aktualizacji i restartów z kontrolą po każdym kroku, potem raporty i poranny przegląd. Kopie trafiają w trzy miejsca, a odtwarzanie jest osobnym zadaniem, które co noc odzyskuje losowe pliki i bazę.",
+      "solution": "Wspólna baza z osobnym dostępem dla każdej usługi i zmianami schematu w repozytorium. Harmonogram opisany w kodzie i porównywany z serwerem, żeby wykryć ręczne zmiany. Noc ma stały porządek: kopie, próba odtworzenia, okno konserwacji z kontrolą po każdym kroku, przegląd kodu, raporty i jedno podsumowanie rano. Kopie trafiają w trzy miejsca.",
       "stack": [
         "PostgreSQL",
         "pgBackRest",
@@ -294,12 +291,10 @@
       ],
       "role": "Architektura, schemat bazy i migracje, harmonogram, kopie i ich weryfikacja.",
       "results": [
-        "Co noc 72 losowe pliki z 6 źródeł odtwarzane i porównywane SHA-256, cała kopia sprawdzona w ciągu tygodnia",
-        "W niedzielę pełne ćwiczenie: odtworzenie bazy i start kontenera z kopii w izolacji",
-        "Archiwum bazy co 10 minut, szyfrowane AES-256, punkt w czasie z ostatnich 7 dni",
-        "Około 40% darmowego limitu zapytań chmury w miesiącu",
-        "30 zadań harmonogramu i 151 migracji bazy w repozytorium, zmiana = commit",
-        "Aktualizacje i restarty w nocy bez ręcznego potwierdzania, pierwszy błąd zatrzymuje resztę"
+        "Co noc próba odtworzenia losowych plików i bazy, cała kopia sprawdzona w ciągu tygodnia",
+        "W niedzielę pełne ćwiczenie odtworzenia w izolacji",
+        "Kopie w trzech miejscach, archiwum bazy z punktem w czasie",
+        "Konserwacja w nocy bez ręcznego potwierdzania, pierwszy błąd zatrzymuje resztę"
       ],
       "links": [
         {
@@ -323,7 +318,7 @@
           "src": "/img/projekty/panel-wideo.jpg",
           "w": 1280,
           "h": 720,
-          "alt": "Odpowiedź na pytanie agenta jednym kliknięciem: szczegóły karty, 5 sekund na cofnięcie, wynik w dzienniku decyzji, potem strona modeli; nagranie z ekranu, dane przykładowe"
+          "alt": "Odpowiedź na pytanie agenta jednym kliknięciem: szczegóły karty, chwila na cofnięcie, wynik w dzienniku decyzji, potem strona modeli; nagranie z ekranu, dane przykładowe"
         },
         {
           "src": "/img/projekty/panel-decyzje.webp",
@@ -335,7 +330,7 @@
         },
         {
           "src": "/img/projekty/panel-modele.webp",
-          "alt": "Modele językowe: saldo płatnych kont, wywołania wg dni, udział modeli i ich wynik jakości"
+          "alt": "Modele językowe: saldo kont, wywołania wg dni, udział modeli i ich wynik jakości"
         },
         {
           "src": "/img/projekty/panel-decyzje-tel.webp",
@@ -346,9 +341,9 @@
           "alt": "Strona modeli na telefonie"
         }
       ],
-      "gallery_note": "Nagranie i zrzuty panelu uruchomionego na danych przykładowych: wymyślone pytania agentów do właściciela i wymyślone wywołania modeli z kwotami, bez połączenia z bazą i siecią; brakujące polskie napisy interfejsu przetłumaczone, w nagraniu ukryty pasek finansów.",
-      "problem": "Praca agentów, alarmy i koszty modeli były rozrzucone po kilku narzędziach, a pytania wymagające decyzji człowieka ginęły wśród powiadomień.",
-      "solution": "Aplikacja webowa na FastAPI z szablonami po stronie serwera i odświeżaniem na żywo przez WebSocket. Pytania agentów przychodzą jako karty z wariantami, polecany oznaczony gwiazdką; wybór trafia do dziennika decyzji, a agent wykonuje go sam. Każda sesja Claude ma nić sprawy: pasek kroków od decyzji do wyniku, jedno dotknięcie pokazuje cały łańcuch. Strona modeli łączy wywołania z ostatnich dni, saldo płatnych kont i wynik jakości każdego modelu. Na telefonie panel działa jako aplikacja PWA z dolnym paskiem zakładek.",
+      "gallery_note": "Nagranie i zrzuty panelu uruchomionego na danych przykładowych: wymyślone pytania agentów i wymyślone wywołania modeli z kwotami, bez połączenia z bazą i siecią; brakujące polskie napisy interfejsu przetłumaczone, prywatne elementy nagłówka ukryte.",
+      "problem": "Praca agentów, alarmy i koszt modeli były rozrzucone po kilku narzędziach, a pytania wymagające decyzji człowieka ginęły wśród powiadomień.",
+      "solution": "Panel stoi na rdzeniu GitCloud, więc te same karty decyzji i powiadomienia widać na pulpicie i na pilocie. Pytania agentów przychodzą jako karty z wariantami, polecany oznaczony gwiazdką; wybór trafia do dziennika decyzji, a agent wykonuje go sam. Każda sesja Claude ma nić sprawy: pasek kroków od decyzji do wyniku. Strona modeli łączy wywołania z ostatnich dni, saldo kont i wynik jakości każdego modelu. Na telefonie panel działa jako aplikacja z dolnym paskiem zakładek.",
       "stack": [
         "Python",
         "FastAPI",
@@ -359,8 +354,8 @@
       ],
       "role": "Projekt interfejsu, kod serwera i frontendu, automatyczne testy wyglądu.",
       "results": [
-        "Decyzja dla agenta jednym dotknięciem, także z telefonu",
-        "Koszt modeli i saldo kont widoczne na bieżąco",
+        "Decyzja dla agenta jednym dotknięciem, także z telefonu i pilota",
+        "Koszt modeli widoczny na bieżąco",
         "Kontrola wyglądu na telefonie i komputerze przed każdą zmianą"
       ],
       "links": [
@@ -374,7 +369,7 @@
       "slug": "pulpit-gitcloud",
       "category": "wlasne",
       "title": "Pulpit GitCloud: własne środowisko pracy z konsolą i plikami",
-      "lead": "Sesja Linux zbudowana wokół panelu i asystenta AI: bez ramek okien, z własną konsolą, menedżerem plików i paskiem w jednym stylu.",
+      "lead": "Sesja Linux zbudowana wokół panelu i asystenta AI: własna konsola, menedżer plików, zdjęcia, odtwarzacz i pasek w jednym stylu.",
       "year": "2026",
       "status": "Domyślna sesja na dwóch komputerach",
       "image": "/img/projekty/pulpit-okladka.webp",
@@ -398,7 +393,7 @@
       ],
       "gallery_note": "Nagranie i zrzuty konsoli i menedżera plików uruchomionych w osobnym katalogu domowym z wymyślonymi folderami, plikami i repozytorium; polskie napisy interfejsu przetłumaczone na czas nagrania.",
       "problem": "Standardowy pulpit rozpraszał: dziesiątki okien, powiadomienia i różne style. Potrzebne było jedno spójne środowisko, w którym panel i konsola dla asystenta AI są zawsze na miejscu.",
-      "solution": "Sesja w kompozytorze sway: po lewej panel w oknie na WebKit, po prawej własna konsola (serwer kart trzyma procesy, okno na xterm.js pokazuje też obrazy i szuka w wyniku), na górze pasek webowy z odtwarzaczem, dźwiękiem, powiadomieniami i wyszukiwarką. Własny menedżer plików z kafelkami, podglądem i koszem zamiast zewnętrznej aplikacji. Konfiguracja w jednym repozytorium Ansible, oba komputery pobierają zmiany same; strażnik interfejsu sprawdza go co 15 minut i przywraca okno po awarii.",
+      "solution": "Sesja w kompozytorze sway: panel w oknie na WebKit, obok własna konsola (serwer kart trzyma procesy, okno pokazuje też obrazy i szuka w wyniku), na górze pasek z odtwarzaczem, dźwiękiem, powiadomieniami i wyszukiwarką. Własne aplikacje zamiast zewnętrznych: pliki, zdjęcia, odtwarzacz, każda w ramce w stylu GitCloud. Kolory i ikony z rdzenia. Konfiguracja w jednym repozytorium Ansible, oba komputery pobierają zmiany same, a strażnik interfejsu przywraca okno po awarii.",
       "stack": [
         "sway",
         "Wayland",
@@ -413,7 +408,7 @@
       "results": [
         "Jedna konfiguracja dla dwóch komputerów, zmiana = commit",
         "Karty konsoli przeżywają restart okna, razem z uruchomionym asystentem AI",
-        "Samokontrola interfejsu co 15 minut z automatycznym przywróceniem"
+        "Strażnik interfejsu przywraca okno po awarii"
       ],
       "links": [
         {
@@ -445,8 +440,8 @@
           "alt": "Pętla bez szwu: koniec przechodzi w początek bez skoku obrazu"
         }
       ],
-      "problem": "Rzutnik w pokoju pokazywał launcher producenta. Miał pokazywać coś spokojnego i spójnego z resztą systemu, a urządzenie ma 1 GB pamięci, słaby procesor i Androida 11 bez roota, więc ciężka grafika na nim odpada.",
-      "solution": "Scena napisana w GLSL renderuje się na serwerze w 2160p, jest zmniejszana do 1080p i kodowana jako pętla wideo. Aplikacja odtwarza plik i rysuje zegar, a kolory bierze z palety rdzenia GitCloud przy budowaniu. Każda wersja sceny przechodzi automatyczne sprawdzenia obrazu; nieudana nie trafia na ekran. Mechanizm nocnych rozdziałów, w którym model językowy rozwija scenę na podstawie zmian w repozytoriach, jest gotowy i czeka na pierwszy przebieg. Wcześniejsza aplikacja na ten sam rzutnik odbierała strumień H.264 z awatarami agentów.",
+      "problem": "Rzutnik pokazywał launcher producenta. Miał pokazywać coś spokojnego i spójnego z resztą systemu, a urządzenie ma 1 GB pamięci, słaby procesor i Androida 11 bez roota, więc ciężka grafika na nim odpada.",
+      "solution": "Scena napisana w GLSL renderuje się na serwerze na karcie graficznej i jest kodowana jako pętla wideo. Aplikacja odtwarza plik i rysuje zegar, a kolory bierze z palety rdzenia GitCloud przy budowaniu. Każda wersja sceny przechodzi automatyczne sprawdzenia obrazu; nieudana nie trafia na ekran. Nocne rozdziały, w których model językowy rozwija scenę, ruszyły 11.11: pierwszy nie przeszedł sprawdzeń, więc na ekranie została poprzednia wersja. Wcześniejsza aplikacja na ten sam rzutnik odbierała strumień wideo z awatarami agentów.",
       "stack": [
         "Java",
         "Android SDK",
@@ -458,10 +453,9 @@
       ],
       "role": "Pomysł, aplikacja, renderer sceny, sprawdzenia obrazu i wdrożenie przez ADB.",
       "results": [
-        "Aplikacja 74 KB, 176 linii Javy, budowana bez Gradle",
+        "Aplikacja 74 KB, budowana bez Gradle",
         "Bez uprawnienia do sieci: tylko plik wideo i zegar",
-        "7 automatycznych sprawdzeń sceny: kompilacja, jasność, prześwietlenie, ruch, szew pętli, migotanie, czas klatki",
-        "Sterowanie głosem i pilotem, uśpienie razem z zamknięciem laptopa"
+        "7 automatycznych sprawdzeń sceny: kompilacja, jasność, prześwietlenie, ruch, szew pętli, migotanie, czas klatki"
       ],
       "links": []
     },

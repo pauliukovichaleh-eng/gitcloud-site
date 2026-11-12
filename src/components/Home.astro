@@ -19,10 +19,11 @@ const EMAIL = 'pauliukovichaleh@gmail.com';
 const ordered = orderedPl.map((p) => localize(p, lang));
 const categories = T.mod.categories as Record<string, string>;
 const count = (c: string) => projects.filter((p) => p.category === c).length;
-const layerLinks = [
-  ['#konsola', '#agenci', has('pilot-esp32') ? `#${anchor('pilot-esp32')}` : ''],
-  [has('agenci-ai') ? `#${anchor('agenci-ai')}` : '', '', ''],
-  ['', '', ''],
+const pj = (slug: string) => (has(slug) ? `#${anchor(slug)}` : '');
+const layerLinks = [   // jak T.arch.layers: interfejs, agenci, dane
+  [pj('panel-operacyjny'), pj('pilot-esp32'), '#agenci'],
+  [pj('agenci-ai'), pj('panel-operacyjny'), ''],
+  ['', '', pj('platforma-danych')],
 ];
 // Interfejsy: prawdziwe ekrany na danych przykładowych (klucz, plik, szerokość, wysokość, projekt, adres w pasku, pikselowy).
 const uiShots: [string, string, number, number, string, string, boolean][] = [
@@ -34,10 +35,10 @@ const uiShots: [string, string, number, number, string, string, boolean][] = [
 ];
 // Żywa architektura: powiązania elementów warstw (L3 interfejs, L2 agenci, L1 dane), indeksy jak w T.arch.layers.
 const archLinks: [string, string][] = [
-  ['L3-0', 'L2-0'], ['L3-0', 'L2-2'], ['L3-0', 'L1-1'], ['L3-0', 'L1-2'],
+  ['L3-0', 'L2-0'], ['L3-0', 'L2-1'], ['L3-0', 'L2-2'], ['L3-0', 'L1-1'],
   ['L3-1', 'L2-0'], ['L3-1', 'L2-1'],
-  ['L3-2', 'L2-2'], ['L3-2', 'L1-1'],
-  ['L2-0', 'L1-0'], ['L2-1', 'L1-1'], ['L2-2', 'L1-0'],
+  ['L3-2', 'L2-0'], ['L3-2', 'L1-1'],
+  ['L2-0', 'L1-1'], ['L2-0', 'L1-2'], ['L2-1', 'L1-0'], ['L2-2', 'L1-0'],
 ];
 const kpiVals = [`${stats.exam}%`, `${stats.years}+`];
 const agentMeta = [['Sally', 'sally', 'm'], ['Tony', 'tony', 'b'], ['Mark', 'mark', 'g']];

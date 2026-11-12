@@ -11,12 +11,12 @@ const hex = (x: number, y: number, r: number) =>
     return `${(x + r * Math.cos(a)).toFixed(1)},${(y + r * Math.sin(a)).toFixed(1)}`;
   }).join(' ');
 const link = (slug: string, fallback: string) => (has(slug) ? `#${anchor(slug)}` : fallback);
-const nodes = [
+const nodes = [   // 12.11.2026: wokół rdzenia tylko to, co na nim działa (konsola ISP i zlecenia to osobne projekty)
   { code: 'AI', t: T.nodes[0][0], s: T.nodes[0][1], href: link('agenci-ai', '#agenci'), x: 300, y: 72, side: 'top' },
-  { code: 'ISP', t: T.nodes[1][0], s: T.nodes[1][1], href: '#konsola', x: 492, y: 166, side: 'r' },
+  { code: 'UI', t: T.nodes[1][0], s: T.nodes[1][1], href: link('panel-operacyjny', '#moduly'), x: 492, y: 166, side: 'r' },
   { code: 'IoT', t: T.nodes[2][0], s: T.nodes[2][1], href: link('pilot-esp32', '#moduly'), x: 492, y: 354, side: 'r' },
-  { code: 'WEB', t: T.nodes[3][0], s: T.nodes[3][1], href: '#uslugi', x: 300, y: 448, side: 'bottom' },
-  { code: 'API', t: T.nodes[4][0], s: T.nodes[4][1], href: '#uslugi', x: 108, y: 354, side: 'l' },
+  { code: 'NOC', t: T.nodes[3][0], s: T.nodes[3][1], href: link('platforma-danych', '#moduly'), x: 300, y: 448, side: 'bottom' },
+  { code: 'PC', t: T.nodes[4][0], s: T.nodes[4][1], href: link('pulpit-gitcloud', '#moduly'), x: 108, y: 354, side: 'l' },
   { code: '3D', t: T.nodes[5][0], s: T.nodes[5][1], href: link('glowy-agentow', '#agenci'), x: 108, y: 166, side: 'l' },
 ];
 // Ścieżka "płytki": z rdzenia poziomo/pionowo, potem skos 45° do węzła.
