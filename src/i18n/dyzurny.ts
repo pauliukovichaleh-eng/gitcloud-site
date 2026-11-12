@@ -3,10 +3,10 @@
 import type { Lang } from './index';
 
 const pl = {
-  title: 'Dyżurny admin: nocny dyżur dla serwera Proxmox i OPNsense',
+  name: 'Dyżurny admin',
+  kw: 'nocny dyżur dla serwera Proxmox i OPNsense',
   crumb: 'usługi',
   tag: 'Usługa · abonament',
-  h1: 'Dyżurny admin',
   lead: 'Dla małej firmy z serwerem Proxmox i zaporą OPNsense. Alarmy w nocy obsługuje program dyżurny: znane usterki naprawia sam, przed każdą zmianą robi kopię, a to, czego nie może rozstrzygnąć, wysyła mi jako kartę z wyborem na telefon.',
   status: 'Działa na mojej infrastrukturze od października 2026, dla firm od listopada 2026',
   doH: 'Co robi',
@@ -86,10 +86,10 @@ const pl = {
 type D = typeof pl;
 
 const en: D = {
-  title: 'On-call admin: night duty for a Proxmox and OPNsense server',
+  name: 'On-call admin',
+  kw: 'night duty for a Proxmox and OPNsense server',
   crumb: 'services',
   tag: 'Service · subscription',
-  h1: 'On-call admin',
   lead: 'For a small business running a Proxmox server and an OPNsense firewall. Night alarms are handled by an on-call program: it fixes known faults by itself, takes a copy before every change, and sends me whatever it cannot settle as a card with options on my phone.',
   status: 'Running on my own infrastructure since October 2026, for businesses from November 2026',
   doH: 'What it does',
@@ -168,10 +168,10 @@ const en: D = {
 };
 
 const ru: D = {
-  title: 'Дежурный админ: ночное дежурство для сервера Proxmox и OPNsense',
+  name: 'Дежурный админ',
+  kw: 'ночное дежурство для сервера Proxmox и OPNsense',
   crumb: 'услуги',
   tag: 'Услуга · абонемент',
-  h1: 'Дежурный админ',
   lead: 'Для небольшой фирмы с сервером Proxmox и шлюзом OPNsense. Ночные тревоги разбирает дежурная программа: известные сбои чинит сама, перед каждой правкой делает копию, а то, что решить не может, присылает мне карточкой с вариантами на телефон.',
   status: 'Работает на моей инфраструктуре с октября 2026, для фирм с ноября 2026',
   doH: 'Что делает',

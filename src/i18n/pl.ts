@@ -7,7 +7,7 @@ export default {
   inLanguage: 'pl-PL',
   meta: {
     title: 'Aleh Pauliukovich: administracja systemów, automatyzacja i AI | GitCloud',
-    description: 'Administruję systemami i sieciami, automatyzuję je z AI. Tu opisuję, co zbudowałem: rdzeń GitCloud z panelem, agentami, pulpitem i pilotem ESP32, konsolę dla operatora sieci i zlecenia dla sklepów. Przy każdym zadanie, rozwiązanie i wynik.',
+    description: 'Administracja systemów i sieci z automatyzacją AI: Proxmox, OPNsense, Linux, agenci AI i sklepy na Shoperze. Projekty z zadaniem, rozwiązaniem i wynikiem.',
   },
   ui: {
     skip: 'Przejdź do treści',

@@ -7,7 +7,7 @@ const en: Dict = {
   inLanguage: 'en',
   meta: {
     title: 'Aleh Pauliukovich: systems administration, automation and AI | GitCloud',
-    description: 'I run systems and networks and automate them with AI. Here I describe what I have built: the GitCloud core with a panel, agents, a desktop and an ESP32 remote, a console for a network operator and client work for online stores. Each with the task, the solution and the result.',
+    description: 'Systems and network administration automated with AI: Proxmox, OPNsense, Linux, AI agents and Shoper stores. Projects with the task, solution and result.',
   },
   ui: {
     skip: 'Skip to content',

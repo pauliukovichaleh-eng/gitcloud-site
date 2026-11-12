@@ -104,7 +104,7 @@
     },
     "koszyk-sklep-5-domen": {
       "title": "A cart that rejected orders from abroad",
-      "lead": "Stage 1 of 4 for a medical supplies store on Shoper running on five domains.",
+      "lead": "Stage 1 of 4, a Shoper store on five domains: the cart in foreign versions stopped silently. The cause was reCAPTCHA and a script, fixed with an order test.",
       "status": "Useme order, accepted",
       "image_alt": "Stage 1 · Czech cart and an automated order test on five domains",
       "gallery_alt": ["Stage 1 · Czech cart and an automated order test on five domains"],
@@ -118,7 +118,7 @@
     },
     "seo-storefront": {
       "title": "SEO audit during the migration to the Storefront theme",
-      "lead": "Stage 2 of 4 for a medical supplies store on Shoper running on five domains.",
+      "lead": "Stage 2 of 4, a Shoper store on five domains: a 66-point agency SEO audit implemented during the move to the Storefront theme, with structured data.",
       "status": "Useme order, accepted",
       "image_alt": "Stage 2 · SEO audit checklist and JSON-LD structured data",
       "gallery_alt": ["Stage 2 · SEO audit checklist and JSON-LD structured data"],
@@ -132,7 +132,7 @@
     },
     "wybor-kraju-storefront": {
       "title": "Country switcher and order tests on 5 domains",
-      "lead": "Stage 3 of 4 for a medical supplies store on Shoper running on five domains.",
+      "lead": "Stage 3 of 4, a Shoper store on five domains: a country switcher in the new Storefront theme and the checkout path verified on every domain.",
       "status": "Useme order, accepted",
       "image_alt": "Stage 3 · Country and currency switcher in the header and a checkout test",
       "gallery_alt": ["Stage 3 · Country and currency switcher in the header and a checkout test"],
@@ -146,7 +146,7 @@
     },
     "tlumaczenie-storefront-4-jezyki": {
       "title": "The new theme in four languages",
-      "lead": "Stage 4 of 4 for a medical supplies store on Shoper running on five domains.",
+      "lead": "Stage 4 of 4, a Shoper store on five domains: the Storefront theme translated into four languages, 1360 system phrases, a cart without technical keys.",
       "status": "Useme order, accepted",
       "image_alt": "Stage 4 · The same product page in Czech, Slovak, German and Romanian",
       "gallery_alt": ["Stage 4 · The same product page in Czech, Slovak, German and Romanian"],
@@ -276,7 +276,7 @@
     },
     "koszyk-sklep-5-domen": {
       "title": "Корзина, которая не принимала заказы из-за границы",
-      "lead": "Этап 1 из 4 для магазина медицинских товаров на Shoper, работающего на пяти доменах.",
+      "lead": "Этап 1 из 4, магазин на Shoper с пятью доменами: корзина в зарубежных версиях вставала без ошибки. Причина в reCAPTCHA и скрипте, починка с тестом заказов.",
       "status": "Заказ Useme, принят",
       "image_alt": "Этап 1 · Чешская корзина и автотест заказа на пяти доменах",
       "gallery_alt": ["Этап 1 · Чешская корзина и автотест заказа на пяти доменах"],
@@ -290,7 +290,7 @@
     },
     "seo-storefront": {
       "title": "SEO-аудит при переходе на шаблон Storefront",
-      "lead": "Этап 2 из 4 для магазина медицинских товаров на Shoper, работающего на пяти доменах.",
+      "lead": "Этап 2 из 4, магазин на Shoper с пятью доменами: 66 пунктов SEO-аудита агентства внедрены при переходе на шаблон Storefront, с разметкой данных.",
       "status": "Заказ Useme, принят",
       "image_alt": "Этап 2 · Чек-лист SEO-аудита и структурированные данные JSON-LD",
       "gallery_alt": ["Этап 2 · Чек-лист SEO-аудита и структурированные данные JSON-LD"],
@@ -304,7 +304,7 @@
     },
     "wybor-kraju-storefront": {
       "title": "Выбор страны и тест заказов на 5 доменах",
-      "lead": "Этап 3 из 4 для магазина медицинских товаров на Shoper, работающего на пяти доменах.",
+      "lead": "Этап 3 из 4, магазин на Shoper с пятью доменами: выбор страны в новом шаблоне Storefront и проверенный путь покупки на каждом домене.",
       "status": "Заказ Useme, принят",
       "image_alt": "Этап 3 · Выбор страны и валюты в шапке и тест оформления",
       "gallery_alt": ["Этап 3 · Выбор страны и валюты в шапке и тест оформления"],
@@ -318,7 +318,7 @@
     },
     "tlumaczenie-storefront-4-jezyki": {
       "title": "Новый шаблон на четырёх языках",
-      "lead": "Этап 4 из 4 для магазина медицинских товаров на Shoper, работающего на пяти доменах.",
+      "lead": "Этап 4 из 4, магазин на Shoper с пятью доменами: шаблон Storefront переведён на четыре языка, 1360 системных фраз, корзина без технических ключей.",
       "status": "Заказ Useme, принят",
       "image_alt": "Этап 4 · Одна карточка товара на чешском, словацком, немецком и румынском",
       "gallery_alt": ["Этап 4 · Одна карточка товара на чешском, словацком, немецком и румынском"],

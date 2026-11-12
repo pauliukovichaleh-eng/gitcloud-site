@@ -18,7 +18,7 @@ const jsonld = {
   '@context': 'https://schema.org',
   '@graph': [
     {
-      '@type': 'Service', '@id': `${SITE}${path}#usluga`, name: S.h1, description: S.lead, url: `${SITE}${path}`,
+      '@type': 'Service', '@id': `${SITE}${path}#usluga`, name: S.name, description: S.lead, url: `${SITE}${path}`,
       serviceType: 'IT system administration', areaServed: 'PL',
       provider: { '@type': 'Organization', '@id': `${SITE}/#org`, name: 'GitCloud' },
       offers: [
@@ -31,7 +31,7 @@ const jsonld = {
       '@type': 'BreadcrumbList',
       itemListElement: [
         { '@type': 'ListItem', position: 1, name: 'GitCloud', item: `${SITE}${base}` },
-        { '@type': 'ListItem', position: 2, name: S.h1, item: `${SITE}${path}` },
+        { '@type': 'ListItem', position: 2, name: S.name, item: `${SITE}${path}` },
       ],
     },
   ],
@@ -43,7 +43,7 @@ const icons = [
   '<rect x="7" y="2.5" width="10" height="19" rx="2.5"/><path d="M10.5 18.5h3"/>',
 ];
 ---
-<Base title={`${S.title} | GitCloud`} description={S.lead.slice(0, S.lead.lastIndexOf(' ', 157)) + '…'} path={path} jsonld={jsonld} nav={false} og={og} lang={lang} alternates altPaths={altPaths}>
+<Base title={`${S.name}: ${S.kw} | GitCloud`} description={S.lead.slice(0, S.lead.lastIndexOf(' ', 157)) + '…'} path={path} jsonld={jsonld} nav={false} og={og} lang={lang} alternates altPaths={altPaths}>
   <section class="sec pp dz">
     <div class="wrap pp-in">
       <nav class="pp-crumbs mono" aria-label="breadcrumbs">
@@ -51,7 +51,7 @@ const icons = [
       </nav>
       <article class="pd-body pp-body">
         <span class="card-cat mono">{S.tag}</span>
-        <h1 id="dz-t">{S.h1}</h1>
+        <h1 id="dz-t">{S.name}<span class="dz-kw">{S.kw}</span></h1>
         <p class="pd-lead">{S.lead}</p>
         <div class="pd-status mono"><span class="dot ok pulse"></span>{S.status}</div>
 
@@ -100,7 +100,7 @@ const icons = [
           {S.steps.map(([st, ss], i) => <li><span class="mono step-n">{i + 1}</span><div><b>{st}</b><span>{ss}</span></div></li>)}
         </ol>
         <div class="mail dz-mail">
-          <a class="btn btn-p btn-lg" href={`mailto:${EMAIL}?subject=${encodeURIComponent(S.h1)}`}>{S.btn} &rarr;</a>
+          <a class="btn btn-p btn-lg" href={`mailto:${EMAIL}?subject=${encodeURIComponent(S.name)}`}>{S.btn} &rarr;</a>
           <button type="button" class="btn btn-g mono copy" data-copy={EMAIL} aria-label={S.copyAria}>{EMAIL}</button>
         </div>
 
@@ -123,6 +123,7 @@ const icons = [
 </script>
 
 <style>
+  .dz-kw{ display:block; margin-top:6px; font-size:.5em; font-weight:500; line-height:1.3; color:var(--muted); }
   .pp-body .dz-h{ margin:40px 0 14px; color:var(--neon2); }
   .pp-body .pd-grid .lbl{ margin-top:0; }
   .dz-flow{ display:grid; grid-template-columns:repeat(4,1fr); gap:22px; }

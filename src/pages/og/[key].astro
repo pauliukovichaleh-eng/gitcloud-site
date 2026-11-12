@@ -20,7 +20,7 @@ const T: any = t(lang);
 const p = slug ? localize(projects.find((x) => x.slug === slug)!, lang) : undefined;
 const cut = (s: string, n: number) => (s.length <= n ? s : s.slice(0, s.lastIndexOf(' ', n - 1)) + '…');
 const esc = (s: string) => s.replace(/&/g, '&amp;').replace(/</g, '&lt;');
-const h1 = S ? esc(S.h1) : p ? esc(p.title) : `${esc(T.hero.h1a)}<b>${esc(T.hero.h1b)}</b>`;
+const h1 = S ? esc(S.name) : p ? esc(p.title) : `${esc(T.hero.h1a)}<b>${esc(T.hero.h1b)}</b>`;
 const lead = S ? cut(S.lead, 150) : p ? cut(p.lead, 150) : T.hero.lead;
 const img = S ? '' : p ? p.image || p.video?.poster || p.gallery?.[0]?.src : '/img/demo/ai-router.webp';
 const tag = S ? S.tag : p ? (T.mod.categories as Record<string, string>)[p.category] : 'Aleh Pauliukovich';
