@@ -20,7 +20,7 @@
   --gc-hi-1:inset 0 1px 0 rgba(255,255,255,.06);
   --gc-lift-btn:0 4px 10px -8px rgba(0,0,0,.9);
   --gc-lift-sel:0 6px 12px -8px rgba(0,0,0,.9);
-  --gc-sb-size:8px;
+  --gc-sb-size:6px;
   --gc-sb-inset:2px;
   --gc-sb-thumb-w:calc(var(--gc-sb-size) - 2 * var(--gc-sb-inset));
   --gc-sb-thumb:linear-gradient(180deg, rgba(95,184,194,.32), rgba(184,139,208,.28));
