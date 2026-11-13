@@ -1,0 +1,33 @@
+<!doctype html><html lang="pl"><head><meta charset="utf-8"><link rel="stylesheet" href="base.css">
+<!-- Okładka projektu „Rdzeń GitCloud” (13.11.2026, karta #1230): rdzeń na dole, nad nim systemy, które z niego korzystają,
+     na dole co rdzeń daje. Bez zrzutów i danych. Lewy górny róg pusty: tam na karcie jest etykieta kategorii.
+     Render: zrzut 1280x720 (Playwright + google-chrome) → public/img/projekty/rdzen-okladka.webp (q86) -->
+<style>
+@font-face{font-family:Onest;src:url(../../node_modules/@fontsource-variable/onest/files/onest-latin-ext-wght-normal.woff2) format('woff2');font-weight:100 900}
+@font-face{font-family:Onest;src:url(../../node_modules/@fontsource-variable/onest/files/onest-latin-wght-normal.woff2) format('woff2');font-weight:100 900}
+@font-face{font-family:JBM;src:url(../../node_modules/@fontsource-variable/jetbrains-mono/files/jetbrains-mono-latin-wght-normal.woff2) format('woff2');font-weight:100 800}
+html,body{font-family:Onest,sans-serif}
+.bg{background:radial-gradient(900px 560px at 50% 0%,#10303a 0,#030408 72%)}
+.ph{position:absolute;right:40px;top:96px;font:600 22px JBM,monospace;letter-spacing:.14em;text-transform:uppercase;color:#7d8ba3}
+.p{position:absolute;left:36px;top:150px;width:1208px;height:534px;border-radius:18px;background:#070b12;box-shadow:0 30px 80px rgba(0,0,0,.65);color:#e3e9f2;overflow:hidden}
+.g{position:absolute;left:40px;top:40px;right:40px;display:grid;grid-template-columns:repeat(5,1fr);gap:16px}
+.m{height:120px;border-radius:14px;background:#0d1320;display:flex;flex-direction:column;justify-content:center;gap:8px;padding:0 20px;font-size:30px;font-weight:500}
+.m small{font:500 18px JBM,monospace;color:#7d8ba3}
+.wire{position:absolute;top:160px;height:56px;width:4px;background:linear-gradient(#5fb8c2,#b88bd0)}
+.core{position:absolute;left:40px;right:40px;top:216px;height:120px;border-radius:14px;background:linear-gradient(90deg,rgba(95,184,194,.24),rgba(184,139,208,.24));display:flex;align-items:center;justify-content:center;font:600 44px JBM,monospace;letter-spacing:.06em}
+.acc{position:absolute;left:40px;right:40px;bottom:46px;display:flex;justify-content:space-between;font:500 27px JBM,monospace;color:#7d8ba3}
+.acc b{color:#b88bd0;font-weight:600}
+</style></head><body><div class="bg">
+<div class="ph">jeden kod · wiele systemów</div>
+<div class="p">
+ <div class="g">
+  <div class="m">Panel<small>osobisty</small></div>
+  <div class="m">Panel IT<small>w pracy</small></div>
+  <div class="m">Pulpit<small>Linux</small></div>
+  <div class="m">Pilot<small>ESP32-S3</small></div>
+  <div class="m">Strona<small>gitcloud.pl</small></div>
+ </div>
+ <div class="wire" style="left:149px"></div><div class="wire" style="left:385px"></div><div class="wire" style="left:620px"></div><div class="wire" style="left:856px"></div><div class="wire" style="left:1091px"></div>
+ <div class="core">rdzeń GitCloud</div>
+ <div class="acc"><span><b>●</b> tokeny kolorów</span><span><b>●</b> okna i widżety</span><span><b>●</b> decyzje</span><span><b>●</b> powiadomienia</span></div>
+</div></div></body></html>

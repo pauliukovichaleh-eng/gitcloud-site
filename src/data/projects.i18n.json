@@ -183,6 +183,19 @@
       "results": ["Access only through company sign-in, separate database roles for reading, decisions and alert intake", "A service with minimal privileges and no ports exposed to the outside", "Core fixes flow back to the other GitCloud systems and vice versa, without company data", "Interface tests on phones too, Web Push notifications"],
       "gallery_alt": ["Panel sections: current matters and tasks, accounts and access, domains and registers, AI review, decisions and log, knowledge base"],
       "links_label": ["Operations panel on the same core"]
+    },
+    "rdzen-gitcloud": {
+      "title": "GitCloud core: shared code for every system",
+      "lead": "One library with the look, windows, decisions and notifications. The panel, the desktop, the remote, this website and the IT department panel at work all use it.",
+      "status": "Developed daily since October 2026",
+      "image_alt": "Diagram: five systems above the shared GitCloud core and what the core gives them",
+      "gallery_note": "Diagram drawn from the core repository.",
+      "problem": "Every system had its own colours, windows and notifications, and a fix in one panel had to be carried over to the other by hand.",
+      "solution": "The Python core provides the page shell, menu, windows, widgets, a decision module, Web Push notifications and live pages over WebSocket. A service adds only its own menu, sections and data, and a file with the same name overrides the core one. Colours, spacing and motion live in one token file, from which a tool builds CSS, JSON and a C header for the remote. The company panel gets the code as a copy, without access to my repositories, and the data stays separate.",
+      "role": "Architecture, code, tests and carrying changes between services.",
+      "results": ["One fix reaches both the personal panel and the IT department panel at work", "Colours from one file: website, panel, desktop and the remote's screen", "Ratcheting CI gates: hand-written colours, animations and unused CSS can only go down", "Tests of both services in Chromium and Firefox before every change"],
+      "gallery_alt": ["Personal panel, IT panel at work, desktop, remote and website above one core: colour tokens, windows and widgets, decisions, notifications"],
+      "links_label": ["IT department panel on this core", "Operations panel on this core"]
     }
   },
   "ru": {
@@ -368,6 +381,19 @@
       "results": ["Вход только через рабочую учётную запись, отдельные роли базы для чтения, решений и приёма алертов", "Служба с минимальными правами, без портов наружу", "Исправления ядра возвращаются в остальные системы GitCloud и обратно, без данных компании", "Проверки интерфейса и на телефоне, уведомления Web Push"],
       "gallery_alt": ["Разделы панели: текущие дела и задачи, учётные записи и доступ, домены и реестры, разбор с ИИ, решения и журнал, база знаний"],
       "links_label": ["Операционная панель на том же ядре"]
+    },
+    "rdzen-gitcloud": {
+      "title": "Ядро GitCloud: общий код для всех систем",
+      "lead": "Одна библиотека с внешним видом, окнами, решениями и уведомлениями. На ней работают панель, рабочий стол, пульт, этот сайт и панель ИТ-отдела на работе.",
+      "status": "Развивается каждый день с октября 2026",
+      "image_alt": "Схема: пять систем над общим ядром GitCloud и то, что ядро им даёт",
+      "gallery_note": "Схема нарисована по репозиторию ядра.",
+      "problem": "У каждой системы были свои цвета, окна и уведомления, а исправление в одной панели приходилось вручную переносить в другую.",
+      "solution": "Ядро на Python даёт оболочку страницы, меню, окна, виджеты, модуль решений, уведомления Web Push и живые страницы через WebSocket. Сервис добавляет только своё меню, разделы и данные, а файл с тем же именем перекрывает файл ядра. Цвета, отступы и движение лежат в одном файле токенов, из которого инструмент делает CSS, JSON и заголовок C для пульта. В рабочую панель код попадает копией, без доступа к моим репозиториям, а данные остаются раздельными.",
+      "role": "Архитектура, код, тесты и перенос изменений между сервисами.",
+      "results": ["Одно исправление попадает и в личную панель, и в панель ИТ-отдела на работе", "Цвета из одного файла: сайт, панель, рабочий стол и экран пульта", "Ворота CI с храповиком: вписанных вручную цветов, анимаций и неиспользуемого CSS может только убывать", "Перед изменением проверки обоих сервисов в Chromium и Firefox"],
+      "gallery_alt": ["Личная панель, ИТ-панель на работе, рабочий стол, пульт и сайт над одним ядром: токены цветов, окна и виджеты, решения, уведомления"],
+      "links_label": ["Панель ИТ-отдела на этом ядре", "Операционная панель на этом ядре"]
     }
   }
 }

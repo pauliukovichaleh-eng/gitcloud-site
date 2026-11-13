@@ -11,6 +11,7 @@
     "panel-operacyjny",
     "platforma-isp",
     "platforma-dzialu-it",
+    "rdzen-gitcloud",
     "pilot-esp32",
     "zlecenia",
     "pulpit-gitcloud",
@@ -118,6 +119,53 @@
         {
           "href": "/projekty/panel-operacyjny/",
           "label": "Panel operacyjny na tym samym rdzeniu"
+        }
+      ]
+    },
+    {
+      "slug": "rdzen-gitcloud",
+      "category": "wlasne",
+      "title": "Rdzeń GitCloud: wspólny kod dla wszystkich systemów",
+      "lead": "Jedna biblioteka z wyglądem, oknami, decyzjami i powiadomieniami. Korzystają z niej panel, pulpit, pilot, ta strona i panel działu IT w pracy.",
+      "year": "2026",
+      "status": "Rozwijany codziennie od października 2026",
+      "image": "/img/projekty/rdzen-okladka.webp",
+      "image_alt": "Schemat: pięć systemów nad wspólnym rdzeniem GitCloud i to, co rdzeń im daje",
+      "gallery": [
+        {
+          "src": "/img/projekty/rdzen-okladka.webp",
+          "alt": "Panel osobisty, panel IT w pracy, pulpit, pilot i strona nad jednym rdzeniem: tokeny kolorów, okna i widżety, decyzje, powiadomienia"
+        }
+      ],
+      "gallery_note": "Schemat narysowany na podstawie repozytorium rdzenia.",
+      "problem": "Każdy system miał własne kolory, okna i powiadomienia, a poprawkę z jednego panelu trzeba było ręcznie przenosić do drugiego.",
+      "solution": "Rdzeń w Pythonie daje powłokę strony, menu, okna, widżety, moduł decyzji, powiadomienia Web Push i strony na żywo przez WebSocket. Serwis dokłada tylko swoje menu, sekcje i dane, a plik o tej samej nazwie nadpisuje plik rdzenia. Kolory, odstępy i ruch są w jednym pliku tokenów, z którego narzędzie robi CSS, JSON i nagłówek C dla pilota. Do firmowego panelu kod trafia kopią, bez dostępu do moich repozytoriów, a dane zostają osobno.",
+      "stack": [
+        "Python",
+        "FastAPI",
+        "Jinja2",
+        "CSS",
+        "JavaScript",
+        "WebSocket",
+        "Web Push",
+        "pytest",
+        "Playwright"
+      ],
+      "role": "Architektura, kod, testy i przenoszenie zmian między serwisami.",
+      "results": [
+        "Jedna poprawka trafia do panelu osobistego i do panelu działu IT w pracy",
+        "Kolory z jednego pliku: strona, panel, pulpit i ekran pilota",
+        "Bramki CI z zapadką: ręcznie wpisanych kolorów, animacji i nieużywanego CSS może tylko ubywać",
+        "Przed zmianą testy obu serwisów w Chromium i Firefoksie"
+      ],
+      "links": [
+        {
+          "href": "/projekty/platforma-dzialu-it/",
+          "label": "Panel działu IT na tym rdzeniu"
+        },
+        {
+          "href": "/projekty/panel-operacyjny/",
+          "label": "Panel operacyjny na tym rdzeniu"
         }
       ]
     },
