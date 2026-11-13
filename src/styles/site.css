@@ -437,7 +437,8 @@ html:not(.cv-off) #kontakt{ content-visibility:auto; contain-intrinsic-size:auto
   .eco-t, .eco-s, .eco-orbit{ display:none; }
   .eco-code{ font-size:18px; }
   .eco-list{ display:grid; grid-template-columns:1fr 1fr; gap:8px; list-style:none; margin:4px 0 0; padding:0; }
-  .eco-list a{ display:grid; grid-template-columns:auto 1fr; column-gap:10px; align-items:center; padding:10px 12px; border-radius:12px; text-decoration:none;
+  /* stała wysokość na dwie linie tytułu: zawijanie „Asystent głosowy” zależy od fontu (zapasowy / Onest) i bez tego przesuwało mapę (CLS) */
+  .eco-list a{ display:grid; grid-template-columns:auto 1fr; column-gap:10px; align-items:center; min-height:72px; padding:10px 12px; border-radius:12px; text-decoration:none;
     background:var(--panel-bg); border:var(--panel-bd); }
   .eco-list span{ grid-row:span 2; width:34px; height:34px; display:grid; place-items:center; font-size:11px; color:var(--neon2); border-radius:9px;
     border:0; background:var(--well); box-shadow:var(--well-sh); }
