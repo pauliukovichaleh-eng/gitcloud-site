@@ -10,6 +10,7 @@
     "agenci-ai",
     "panel-operacyjny",
     "platforma-isp",
+    "platforma-dzialu-it",
     "pilot-esp32",
     "zlecenia",
     "pulpit-gitcloud",
@@ -77,6 +78,48 @@
         }
       ],
       "gallery_note": "Zrzuty z wersji demonstracyjnej: wymyślony operator, adresy z dokumentacyjnych pul RFC 5737."
+    },
+    {
+      "slug": "platforma-dzialu-it",
+      "category": "platformy",
+      "title": "Platforma operacyjna działu IT w firmie produkcyjnej",
+      "lead": "Wewnętrzny panel działu IT u obecnego pracodawcy: bieżące sprawy, konta, domeny, decyzje i poranny przegląd w jednym miejscu, na tym samym rdzeniu co pozostałe systemy GitCloud.",
+      "year": "2026",
+      "status": "W codziennym użyciu od października 2026",
+      "image": "/img/projekty/pracodawca-okladka.webp",
+      "image_alt": "Schemat platformy: sześć działów panelu na wspólnym rdzeniu GitCloud i zasady dostępu",
+      "gallery": [
+        {
+          "src": "/img/projekty/pracodawca-okladka.webp",
+          "alt": "Działy panelu: bieżące sprawy i zadania, konta i dostęp, domeny i rejestry, przegląd z AI, decyzje i dziennik, baza wiedzy"
+        }
+      ],
+      "gallery_note": "Schemat narysowany od zera. Bez zrzutów systemu, nazw, osób i danych pracodawcy (umowa o poufności).",
+      "problem": "Dział IT w międzynarodowej firmie produkcyjnej potrzebował jednego miejsca na bieżące sprawy, konta, domeny i decyzje, dostępnego tylko dla zespołu po zalogowaniu firmowym.",
+      "solution": "Panel na wspólnym rdzeniu GitCloud: strona z bieżącymi sprawami, zadania, podsumowanie i trendy wskaźników, kalendarz zespołu, rejestry, dziennik decyzji i wyszukiwanie w bazie wiedzy. Poranny przegląd przygotowuje agent AI, a człowiek zatwierdza wariant jednym kliknięciem. Pierwszą wersję postawiłem na prototypie w PHP, po kilku dniach całość działała już jako usługa w Pythonie.",
+      "stack": [
+        "Python",
+        "FastAPI",
+        "PostgreSQL",
+        "Cloudflare Access",
+        "Caddy",
+        "systemd",
+        "Web Push",
+        "MCP"
+      ],
+      "role": "Architektura, kod, baza danych, wdrożenie i zasady dostępu.",
+      "results": [
+        "Wejście tylko przez logowanie firmowe, osobne role bazy do odczytu, decyzji i przyjmowania alertów",
+        "Usługa z minimalnymi uprawnieniami, bez portów wystawionych na zewnątrz",
+        "Poprawki rdzenia wracają do pozostałych systemów GitCloud i odwrotnie, bez danych firmy",
+        "Testy interfejsu także na telefonie, powiadomienia Web Push"
+      ],
+      "links": [
+        {
+          "href": "/projekty/panel-operacyjny/",
+          "label": "Panel operacyjny na tym samym rdzeniu"
+        }
+      ]
     },
     {
       "slug": "pilot-esp32",

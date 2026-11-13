@@ -170,6 +170,19 @@
       "role": "Diagnosis, implementation, tests and client communication.",
       "results": ["30 companies (19 NL, 11 BE) with potential scoring", "12 best fits selected for first contact", "Delivered on time and accepted on Useme"],
       "links_label": []
+    },
+    "platforma-dzialu-it": {
+      "title": "IT department operations platform at a manufacturing company",
+      "lead": "An internal IT panel at my current employer: current matters, accounts, domains, decisions and the morning review in one place, on the same core as the other GitCloud systems.",
+      "status": "In daily use since October 2026",
+      "image_alt": "Platform diagram: six panel sections on the shared GitCloud core and the access rules",
+      "gallery_note": "Diagram drawn from scratch. No screenshots, names, people or data of the employer (confidentiality agreement).",
+      "problem": "The IT department of an international manufacturing company needed one place for current matters, accounts, domains and decisions, available only to the team after company sign-in.",
+      "solution": "A panel on the shared GitCloud core: a page with current matters, tasks, a summary and metric trends, a team calendar, registers, a decision log and knowledge base search. An AI agent prepares the morning review and a person approves an option with one click. I built the first version on a PHP prototype; a few days later everything ran as a Python service.",
+      "role": "Architecture, code, database, deployment and access rules.",
+      "results": ["Access only through company sign-in, separate database roles for reading, decisions and alert intake", "A service with minimal privileges and no ports exposed to the outside", "Core fixes flow back to the other GitCloud systems and vice versa, without company data", "Interface tests on phones too, Web Push notifications"],
+      "gallery_alt": ["Panel sections: current matters and tasks, accounts and access, domains and registers, AI review, decisions and log, knowledge base"],
+      "links_label": ["Operations panel on the same core"]
     }
   },
   "ru": {
@@ -342,6 +355,19 @@
       "role": "Диагностика, внедрение, тесты и общение с клиентом.",
       "results": ["30 компаний (19 NL, 11 BE) с оценкой потенциала", "12 лучших выбраны для первого контакта", "Сдано в срок и принято на Useme"],
       "links_label": []
+    },
+    "platforma-dzialu-it": {
+      "title": "Операционная платформа ИТ-отдела в производственной компании",
+      "lead": "Внутренняя панель ИТ-отдела у нынешнего работодателя: текущие дела, учётные записи, домены, решения и утренний разбор в одном месте, на том же ядре, что и остальные системы GitCloud.",
+      "status": "В ежедневной работе с октября 2026",
+      "image_alt": "Схема платформы: шесть разделов панели на общем ядре GitCloud и правила доступа",
+      "gallery_note": "Схема нарисована с нуля. Без снимков, названий, людей и данных работодателя (соглашение о конфиденциальности).",
+      "problem": "ИТ-отделу международной производственной компании нужно было одно место для текущих дел, учётных записей, доменов и решений, доступное только команде после входа под рабочей учётной записью.",
+      "solution": "Панель на общем ядре GitCloud: страница текущих дел, задачи, сводка и тренды показателей, календарь команды, реестры, журнал решений и поиск по базе знаний. Утренний разбор готовит агент ИИ, а человек одним нажатием утверждает вариант. Первую версию я поднял на прототипе на PHP, через несколько дней всё работало как служба на Python.",
+      "role": "Архитектура, код, база данных, развёртывание и правила доступа.",
+      "results": ["Вход только через рабочую учётную запись, отдельные роли базы для чтения, решений и приёма алертов", "Служба с минимальными правами, без портов наружу", "Исправления ядра возвращаются в остальные системы GitCloud и обратно, без данных компании", "Проверки интерфейса и на телефоне, уведомления Web Push"],
+      "gallery_alt": ["Разделы панели: текущие дела и задачи, учётные записи и доступ, домены и реестры, разбор с ИИ, решения и журнал, база знаний"],
+      "links_label": ["Операционная панель на том же ядре"]
     }
   }
 }
