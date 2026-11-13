@@ -1,7 +1,7 @@
 """Głowy agentów: klatki 1:1 z clip.py → animowane WebP do sekcji „Agenci”, filmy 2:1 i plakaty do projektu „Awatary 3D”.
 
 Uruchomienie: ~/job-hunter/.venv/bin/python -I tools/glowy/wyjscie.py <katalog klatek clip.py> [katalog roboczy]
-Klatki <who>_NNN.png (kwadrat, głowa z ramionami, dół kadru ucina pierś). Kadry filmów stoją ramionami na dolnej krawędzi,
+Klatki <who>_NNN.png (kwadrat, głowa z ramionami i piersią) — fr() przycina do ramion (PLECY). Kadry filmów stoją ramionami na dolnej krawędzi,
 żeby tors nie wisiał w powietrzu; tło jak w head.js (5, 7, 11).
 """
 import os
@@ -20,8 +20,15 @@ N = 99   # 6,6 s × 15 kl./s
 WHO = [("sally", "sally"), ("vale", "tony"), ("mark", "mark")]
 
 
+# 13.11.2026 (właściciel: «wszędzie tylko do ramion, torsu niżej nigdzie»): z kadru clip.py (głowa z ramionami i piersią)
+# wycinamy kwadrat od czubka do linii ramion — w ułamkach boku, ta sama wysokość głów u wszystkich trzech
+PLECY = (0.11, 0.03, 0.89, 0.81)
+
+
 def fr(w, i):
-    return Image.open(C / f"{w}_{i:03d}.png").convert("RGB")
+    im = Image.open(C / f"{w}_{i:03d}.png").convert("RGB")
+    x0, y0, x1, y1 = PLECY
+    return im.crop((round(x0 * im.width), round(y0 * im.height), round(x1 * im.width), round(y1 * im.height)))
 
 
 def single(w, i):   # 960×474: głowa z ramionami pośrodku
