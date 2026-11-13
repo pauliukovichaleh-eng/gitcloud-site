@@ -1,8 +1,15 @@
 {
-  "_opis": "Liczby w pasku KPI. Odświeżenie: tools/stats.sh (liczy commity w lokalnych repozytoriach GitCloud). sections = widoki konsoli ISP w wersji demo, każdy sprawdzony (HTTP 200).",
+  "_opis": "Liczby w pasku KPI. Odświeżenie: tools/stats.sh (liczy commity w lokalnych repozytoriach GitCloud). sections = widoki konsoli ISP w wersji demo, każdy sprawdzony (HTTP 200). useme = liczniki z publicznego profilu Useme (umowy, zakończone, sporne); bez opinii tekstowych, dopóki ich nie ma.",
   "measured": "2026-11-06",
   "sections": 56,
   "commits": 3700,
   "exam": 98,
-  "years": 4
+  "years": 4,
+  "useme": {
+    "measured": "2026-11-13",
+    "url": "https://useme.com/pl/roles/contractor/aleh-pauliukovich,621653/",
+    "contracts": 5,
+    "done": 5,
+    "disputed": 0
+  }
 }

@@ -127,6 +127,7 @@ const en: Dict = {
       ['Acceptance', 'Result test and a short change summary.'],
     ],
     more: 'Completed orders: stages, results, tests',
+    useme: (n: number, z: number, s: number) => `Useme profile: ${n} contracts, ${z} completed, ${s} disputed`,
   },
   exp: {
     idx: '06 / experience',

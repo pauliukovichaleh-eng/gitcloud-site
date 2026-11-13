@@ -213,6 +213,7 @@ const jsonld = {
       </div>
       <a class="link-more" href={dyzPath(lang)}>{DYZ[lang].more}: {DYZ[lang].prices[0][0]} + {DYZ[lang].prices[1][0]} &rarr;</a>
       {count('zlecenia') > 0 && <a class="link-more" href="#moduly" data-filtr="zlecenia">{T.svc.more} &rarr;</a>}
+      <a class="link-more" href={stats.useme.url} rel="noopener">{T.svc.useme(stats.useme.contracts, stats.useme.done, stats.useme.disputed)} &rarr;</a>
     </div>
   </section>
 

@@ -127,6 +127,7 @@ export default {
       ['Odbiór', 'Test wyniku i krótki opis zmian.'],
     ],
     more: 'Zrealizowane zlecenia: etapy, wyniki, testy',
+    useme: (n: number, z: number, s: number) => `Profil na Useme: umowy ${n}, zakończone ${z}, sporne ${s}`,
   },
   exp: {
     idx: '06 / doświadczenie',
