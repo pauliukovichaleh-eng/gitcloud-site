@@ -125,7 +125,8 @@ p{ margin:0; }
    html.cv-off (wejście z #kotwicą, odświeżenie, wstecz, klik w kotwicę, paleta): wszystko układane od razu,
    bo przewijanie do celu liczone na wysokościach zastępczych ląduje o 50 do 300 px obok.
    Pomiar 13.11.2026 (strona PL, html.cv-off, po załadowaniu fontów; szerokości 1280 / 768 do 820 / 390): nowe projekty
-   i wiersze w sekcji zmieniają wysokość, więc po większej zmianie treści zmierzyć ponownie. */
+   i wiersze w sekcji zmieniają wysokość, więc po większej zmianie treści zmierzyć ponownie; build (tools/krytyczny.mjs)
+   ostrzega, gdy liczba odbiega od prawdziwej wysokości o ponad 15%. */
 html:not(.cv-off) #architektura{ content-visibility:auto; contain-intrinsic-size:auto none auto 610px; }
 html:not(.cv-off) #moduly{ content-visibility:auto; contain-intrinsic-size:auto none auto 3250px; }
 html:not(.cv-off) #konsola{ content-visibility:auto; contain-intrinsic-size:auto none auto 1070px; }

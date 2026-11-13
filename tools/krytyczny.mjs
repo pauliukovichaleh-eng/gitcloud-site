@@ -4,6 +4,9 @@
 // jak po minifikacji Astro (cele Safari 14, astro.config.mjs). Pełny arkusz dociąga <link rel="preload"> i włącza go po
 // pobraniu; bez JS działa <noscript>. Wejście z kotwicą (/#kontakt), odświeżenie i powrót wstecz od razu ładują pełny
 // arkusz blokująco (document.write w <head>), bo wtedy pierwszy ekran nie jest górą strony.
+// Przy okazji tego samego pomiaru: strażnik wysokości zastępczych (contain-intrinsic-size sekcji z content-visibility:auto,
+// site.css). Trzy szerokości tu = trzy zestawy wysokości tam (do 620 / do 980 / szerzej). Po nowym projekcie albo wierszu
+// treść rośnie, a liczba w CSS nie; rozjazd > CV_TOL to ostrzeżenie (w CI adnotacja ::warning::), build idzie dalej.
 // GC_NO_CRITICAL=1 pomija krok. Bez Chrome: lokalnie ostrzeżenie, w CI błąd.
 import { createServer } from 'node:http';
 import { spawn } from 'node:child_process';
@@ -22,6 +25,7 @@ if (!CHROME) {
 // Szerokość × wysokość okna; za pierwszy ekran liczy się FOLD × wysokość (zapas na wyższe telefony i przewinięcie).
 const VIEWPORTS = [[390, 844, true], [820, 1180, true], [1350, 940, false]];
 const FOLD = 1.3;
+const CV_TOL = 0.15; // strażnik wysokości: dopuszczalny rozjazd wysokości zastępczej względem prawdziwej
 // Gdy pierwszy ekran potrzebuje większej części arkusza, zysku nie ma (dłuższy HTML i drugie przeliczenie stylów po
 // dociągnięciu arkusza) – strona zostaje ze zwykłym <link>. Główna PL/EN/RU po pominięciu ukrytych okien: ~31%.
 const MAX_SHARE = 0.4;
@@ -124,12 +128,28 @@ const PROBE = (href, fold) => `(async () => {
     if (r.cssRules && !(r instanceof CSSKeyframesRule)) return { g: tree(r.cssRules) };
     return { o: 1 };
   });
-  return { tree: tree(sheet.cssRules) };
+  const rules = tree(sheet.cssRules);
+  // Wysokość zastępcza (computed contain-intrinsic-height, np. "auto 610px") i prawdziwa wysokość treści tej samej sekcji:
+  // html.cv-off układa wszystko od razu; treść = clientHeight bez paddingu (tak mierzono liczby w site.css).
+  const secs = [...document.querySelectorAll('section[id]')].filter((e) => getComputedStyle(e).contentVisibility === 'auto')
+    .map((e) => ({ e, id: e.id, decl: parseFloat(getComputedStyle(e).containIntrinsicHeight.replace('auto', '')) }))
+    .filter((x) => x.decl > 0);
+  let cv = [];
+  if (secs.length) {
+    const root = document.documentElement, had = root.classList.contains('cv-off');
+    root.classList.add('cv-off');
+    await new Promise((r) => requestAnimationFrame(() => requestAnimationFrame(r)));
+    cv = secs.map(({ e, id, decl }) => { const st = getComputedStyle(e);
+      return { id, decl, real: Math.round(e.clientHeight - parseFloat(st.paddingTop) - parseFloat(st.paddingBottom)) }; });
+    if (!had) root.classList.remove('cv-off');
+  }
+  return { tree: rules, cv };
 })()`;
 
 // Suma z kilku szerokości: reguła zostaje, jeśli trafiła w pierwszy ekran choć raz.
 const merge = (a, b) => (a ? a.map((x, i) => (x.g ? { g: merge(x.g, b[i].g) } : x.s !== undefined ? { s: x.s, k: x.k || b[i].k } : x)) : b);
 let failed = false;
+const cvWarn = []; let cvCount = 0;
 for (const p of pages) {
   const href = [...p.html.matchAll(LINK)][0][1];
   const url = `${base}/${relative(DIST, p.f).replace(/index\.html$/, '')}`;
@@ -142,6 +162,10 @@ for (const p of pages) {
     const { result, exceptionDetails } = await send('Runtime.evaluate', { expression: PROBE(href, FOLD), awaitPromise: true, returnByValue: true });
     if (exceptionDetails || result.value?.error) { console.error(`krytyczny: ${p.f}: ${result.value?.error || exceptionDetails.text}`); failed = true; ok = false; break; }
     tree = merge(tree, result.value.tree);
+    for (const { id, decl, real } of result.value.cv) {
+      cvCount++;
+      if (real > 0 && Math.abs(decl - real) / real > CV_TOL) cvWarn.push(`${relative(DIST, p.f)} ${w}px #${id}: ${decl} → ${real} px (${real > decl ? '+' : ''}${Math.round((real - decl) / decl * 100)}%)`);
+    }
   }
   p.href = href; p.tree = ok && tree; // niepełny pomiar = strona bez zmian
 }
@@ -196,5 +220,10 @@ const full = Math.max(...[...roots.values()].map((r) => r.toString().length));
 const avg = out.length ? Math.round(out.reduce((s, [, n]) => s + n, 0) / out.length / 1024) : 0;
 console.log(`krytyczny: ${out.length} stron, w <style> średnio ${avg} KB z ${Math.round(full / 1024)} KB arkusza`
   + (skipped.length ? `; bez zmian (pierwszy ekran > ${MAX_SHARE * 100}% arkusza): ${skipped.join(', ')}` : ''));
+if (cvWarn.length) {
+  const msg = `wysokości zastępcze w site.css nieaktualne (> ${CV_TOL * 100}%, zmierzyć ponownie):`;
+  if (process.env.CI) cvWarn.forEach((x) => console.log(`::warning title=krytyczny: wysokości zastępcze::${x}`));
+  console.warn(`krytyczny: ${msg}\n  ${cvWarn.join('\n  ')}`);
+} else if (cvCount) console.log(`krytyczny: wysokości zastępcze ok (${cvCount} pomiarów, rozjazd ≤ ${CV_TOL * 100}%)`);
 if (process.env.GC_CRITICAL_VERBOSE) out.forEach(([f, n, u]) => console.log(`  ${f} ${(n / 1024).toFixed(1)} KB (spoza Chrome: ${u})`));
 await finish(failed ? 1 : 0);
