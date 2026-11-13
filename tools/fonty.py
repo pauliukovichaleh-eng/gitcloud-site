@@ -101,14 +101,18 @@ def main():
     for fam, src, cps, name, css_w in plan:
         fn, keep = cut(src, cps, name)
         files[name] = f'/fonts/{fn}'
-        css.append(f"@font-face{{font-family:{fam};font-style:normal;font-display:swap;font-weight:{css_w};"
+        # Onest: optional. Plik jest w preload i zwykle przychodzi w ~100 ms okresu blokady; jeśli nie zdąży, ta odsłona
+        # zostaje przy foncie zapasowym bez podmiany (zero CLS), następna bierze Onest z pamięci podręcznej. Przy swap łamanie
+        # tekstu hero zależało od fontu: lead na 412 px 4 lub 3 linie, tytuł EN 3 lub 4 (pomiar 13.11.2026, CLS 0,02), a na
+        # Androidzie bez Arial font zapasowy to Roboto bez size-adjust. JetBrains Mono (krótkie etykiety) bez preload: swap.
+        disp = 'optional' if 'Onest' in fam else 'swap'
+        css.append(f"@font-face{{font-family:{fam};font-style:normal;font-display:{disp};font-weight:{css_w};"
                    f"src:url(/fonts/{fn}) format('woff2');unicode-range:{fmt_range(keep)};}}")
     css += FALLBACK
     CSS.write_text('\n'.join(css) + '\n')
-    # Onest przed pierwszą odrysowką (okres blokady swap ~100 ms): bez podmiany fontu tytuł hero nie zmienia łamania
+    # Onest przed pierwszą odrysowką: preload, żeby zdążył w okresie blokady font-display:optional
     PRELOAD.write_text(json.dumps({'pl': [files['onest-lat'], files['onest-pl']], 'en': [files['onest-lat']],
                                    'ru': [files['onest-lat'], files['onest-cyr']]}, indent=2) + '\n')
-    # Bez <link rel=preload>: przy tak małych plikach preload tylko opóźnia pierwsze malowanie (pomiar 06.11.2026).
     print('->', CSS.relative_to(ROOT))
 
 if __name__ == '__main__':
