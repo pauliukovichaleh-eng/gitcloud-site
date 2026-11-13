@@ -11,7 +11,7 @@ Co robi:
 - unicode-range każdego pliku to dokładnie to, co w nim jest: przeglądarka pobiera tylko potrzebne pliki,
   a znak spoza podzbioru pokazuje fontem systemowym.
 """
-import pathlib, hashlib
+import pathlib, hashlib, json
 from fontTools.ttLib import TTFont
 from fontTools import subset
 
@@ -19,6 +19,7 @@ ROOT = pathlib.Path(__file__).resolve().parent.parent
 NM = ROOT / 'node_modules'
 OUT = ROOT / 'public' / 'fonts'
 CSS = ROOT / 'src' / 'styles' / 'fonts.css'
+PRELOAD = ROOT / 'src' / 'data' / 'fonty.json'  # Base.astro: <link rel=preload> kroju tekstu dla języka strony
 
 def rng(*parts):
     cps = set()
@@ -34,17 +35,22 @@ LAT = rng((0x20, 0x7E), (0xA0, 0xFF), (0x2010, 0x2027), (0x2030, 0x203A), 0x2044
 PL = rng('ĄąĆćĘęŁłŃńŚśŹźŻż')
 CYR = rng((0x400, 0x45F), 0x490, 0x491, 0x2116)
 
-# Font zapasowy o metrykach Inter / Plex Mono: zanim przyjdzie woff2, tekst ma tę samą szerokość i wysokość,
-# więc podmiana fontu nie przesuwa układu (CLS). Wartości policzone 06.11.2026 fontTools: średnia szerokość znaków
-# z tekstów strony, Inter (regular i wght 700-800) do Arial / Liberation Sans (zgodne metrycznie), Plex Mono do Courier New.
-# size-adjust = szerokość Inter / szerokość Arial; ascent/descent = metryki Inter / size-adjust.
+# Font zapasowy o metrykach Onest / JetBrains Mono: zanim przyjdzie woff2, tekst ma prawie tę samą szerokość i wysokość,
+# więc podmiana fontu nie przesuwa układu (CLS). Pomiar 13.11.2026: size-adjust = mediana stosunku szerokości Onest do
+# Liberation Sans (metrycznie = Arial) na nagłówkach, przyciskach i akapitach głównej PL/EN/RU, osobno dla wagi 400, 600,
+# 700 i 800 (jedna wartość na 600 do 900 łamała tytuł hero inaczej niż Onest: na ekranie 1280 px tekst skakał o 62 px).
+# ascent/descent = metryki Onest (970 / 305 na 1000) / size-adjust; JetBrains Mono (1020 / 300) do Liberation Mono 1:1.
 FALLBACK = [
     "@font-face{font-family:'Onest Fallback';font-weight:100 500;src:local('Arial'),local('Liberation Sans'),local('Helvetica');"
-    "size-adjust:106.31%;ascent-override:91.13%;descent-override:22.69%;line-gap-override:0%;}",
-    "@font-face{font-family:'Onest Fallback';font-weight:600 900;src:local('Arial Bold'),local('Arial-BoldMT'),local('Liberation Sans Bold'),local('Helvetica Bold');"
-    "size-adjust:101.6%;ascent-override:95.3%;descent-override:23.7%;line-gap-override:0%;}",
+    "size-adjust:106.4%;ascent-override:91.17%;descent-override:28.67%;line-gap-override:0%;}",
+    "@font-face{font-family:'Onest Fallback';font-weight:600;src:local('Arial Bold'),local('Arial-BoldMT'),local('Liberation Sans Bold'),local('Helvetica Bold');"
+    "size-adjust:98.0%;ascent-override:98.98%;descent-override:31.12%;line-gap-override:0%;}",
+    "@font-face{font-family:'Onest Fallback';font-weight:700;src:local('Arial Bold'),local('Arial-BoldMT'),local('Liberation Sans Bold'),local('Helvetica Bold');"
+    "size-adjust:99.7%;ascent-override:97.29%;descent-override:30.59%;line-gap-override:0%;}",
+    "@font-face{font-family:'Onest Fallback';font-weight:800 900;src:local('Arial Bold'),local('Arial-BoldMT'),local('Liberation Sans Bold'),local('Helvetica Bold');"
+    "size-adjust:102.3%;ascent-override:94.82%;descent-override:29.81%;line-gap-override:0%;}",
     "@font-face{font-family:'Mono Fallback';src:local('Courier New'),local('CourierNewPSMT'),local('Liberation Mono');"
-    "size-adjust:100%;ascent-override:102.5%;descent-override:27.5%;line-gap-override:0%;}",
+    "size-adjust:100%;ascent-override:102%;descent-override:30%;line-gap-override:0%;}",
 ]
 
 def fmt_range(cps):
@@ -91,12 +97,17 @@ def main():
         ("'JetBrains Mono Variable'", mono / 'jetbrains-mono-cyrillic-wght-normal.woff2', CYR, 'jbmono-cyr', '100 800'),
     ]
     css = ['/* Wygenerowane przez tools/fonty.py, nie edytować ręcznie. */']
+    files = {}
     for fam, src, cps, name, css_w in plan:
         fn, keep = cut(src, cps, name)
+        files[name] = f'/fonts/{fn}'
         css.append(f"@font-face{{font-family:{fam};font-style:normal;font-display:swap;font-weight:{css_w};"
                    f"src:url(/fonts/{fn}) format('woff2');unicode-range:{fmt_range(keep)};}}")
     css += FALLBACK
     CSS.write_text('\n'.join(css) + '\n')
+    # Onest przed pierwszą odrysowką (okres blokady swap ~100 ms): bez podmiany fontu tytuł hero nie zmienia łamania
+    PRELOAD.write_text(json.dumps({'pl': [files['onest-lat'], files['onest-pl']], 'en': [files['onest-lat']],
+                                   'ru': [files['onest-lat'], files['onest-cyr']]}, indent=2) + '\n')
     # Bez <link rel=preload>: przy tak małych plikach preload tylko opóźnia pierwsze malowanie (pomiar 06.11.2026).
     print('->', CSS.relative_to(ROOT))
 

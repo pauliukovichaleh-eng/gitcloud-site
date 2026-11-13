@@ -5,6 +5,7 @@ import '../styles/site.css';
 import Mark from '../components/Mark.astro';
 import Palette from '../components/Palette.astro';
 import { build } from '../lib/build';
+import fonty from '../data/fonty.json'; // tools/fonty.py
 import { t, LANGS, LABEL, home, type Lang } from '../i18n';
 
 interface Props {
@@ -43,6 +44,7 @@ const locale = lang === 'pl' ? 'pl-PL' : lang === 'ru' ? 'ru-RU' : 'en-GB';
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+{fonty[lang].map((f) => <link rel="preload" href={f} as="font" type="font/woff2" crossorigin />)}
 <title>{title}</title>
 <meta name="description" content={description}>
 <link rel="canonical" href={url}>

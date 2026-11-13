@@ -302,7 +302,8 @@ const jsonld = {
     </div></div>
   </section>
 
-  {ordered.map((p) => <ProjectDialog p={p} lang={lang} />)}
+  {/* Okna projektów w <template>: DOM i obrazy powstają dopiero przy pierwszym otwarciu (połowa HTML głównej). */}
+  {ordered.map((p) => <template data-pd={anchor(p.slug)}><ProjectDialog p={p} lang={lang} /></template>)}
   <div class="toast mono" id="toast" role="status" aria-live="polite"></div>
 </Base>
 
@@ -327,17 +328,7 @@ const jsonld = {
   }, true);
 
   // ── Okna projektów: #p-<slug> otwiera okno (link z zewnątrz też), zamknięcie czyści adres.
-  const openFromHash = () => {
-    const h = decodeURIComponent(location.hash.slice(1));
-    $$<HTMLDialogElement>('dialog.pd[open]').forEach((d) => { if (d.id !== h) d.close(); });
-    if (!h.startsWith('p-')) return;
-    const d = document.getElementById(h) as HTMLDialogElement | null;
-    if (d && !d.open) {
-      d.showModal();
-      d.querySelector<HTMLElement>('.pd-body')?.scrollTo(0, 0);
-    }
-  };
-  $$<HTMLDialogElement>('dialog.pd').forEach((d) => {
+  const wire = (d: HTMLDialogElement) => {
     d.addEventListener('close', () => {
       if (location.hash === '#' + d.id) history.replaceState(history.state, '', location.pathname + location.search);
       $$('video', d).forEach((v) => (v as HTMLVideoElement).pause());
@@ -357,7 +348,27 @@ const jsonld = {
       if (big && !video) { big.removeAttribute('srcset'); big.src = src!; big.alt = alt || ''; big.classList.toggle('px', px === '1'); let so = big.parentElement?.querySelector('source'); if (tel) { if (!so) { so = document.createElement('source'); so.media = '(max-width: 600px)'; big.before(so); } so.srcset = tel; } else so?.remove(); }
       if (cap) cap.textContent = alt || '';
     }));
-  });
+  };
+  // Okno z <template data-pd> wstawiane przy pierwszym otwarciu; potem zostaje w dokumencie.
+  const dialog = (id: string) => {
+    const got = document.getElementById(id) as HTMLDialogElement | null;
+    if (got) return got;
+    const t = $<HTMLTemplateElement>(`template[data-pd="${id}"]`);
+    const d = t?.content.firstElementChild?.cloneNode(true) as HTMLDialogElement | undefined;
+    if (!t || !d) return null;
+    t.replaceWith(d); wire(d);
+    return d;
+  };
+  const openFromHash = () => {
+    const h = decodeURIComponent(location.hash.slice(1));
+    $$<HTMLDialogElement>('dialog.pd[open]').forEach((d) => { if (d.id !== h) d.close(); });
+    if (!h.startsWith('p-')) return;
+    const d = dialog(h);
+    if (d && !d.open) {
+      d.showModal();
+      d.querySelector<HTMLElement>('.pd-body')?.scrollTo(0, 0);
+    }
+  };
   addEventListener('hashchange', openFromHash);
   openFromHash();
 
