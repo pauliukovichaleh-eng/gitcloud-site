@@ -123,16 +123,19 @@ p{ margin:0; }
    Każda sekcja ma content-visibility i wysokość w JEDNEJ regule: krytyczny CSS bierze regułę całą albo wcale
    (sama content-visibility bez wysokości zwija sekcję, a „auto” zapamiętałoby rozmiar sprzed pełnego arkusza).
    html.cv-off (wejście z #kotwicą, odświeżenie, wstecz, klik w kotwicę, paleta): wszystko układane od razu,
-   bo przewijanie do celu liczone na wysokościach zastępczych ląduje o 50 do 300 px obok. */
-html:not(.cv-off) #architektura{ content-visibility:auto; contain-intrinsic-size:auto none auto 860px; }
-html:not(.cv-off) #moduly{ content-visibility:auto; contain-intrinsic-size:auto none auto 2150px; }
-html:not(.cv-off) #konsola{ content-visibility:auto; contain-intrinsic-size:auto none auto 1210px; }
-html:not(.cv-off) #agenci{ content-visibility:auto; contain-intrinsic-size:auto none auto 670px; }
+   bo przewijanie do celu liczone na wysokościach zastępczych ląduje o 50 do 300 px obok.
+   Pomiar 13.11.2026 (strona PL, html.cv-off, po załadowaniu fontów; szerokości 1280 / 768 do 820 / 390): nowe projekty
+   i wiersze w sekcji zmieniają wysokość, więc po większej zmianie treści zmierzyć ponownie. */
+html:not(.cv-off) #architektura{ content-visibility:auto; contain-intrinsic-size:auto none auto 610px; }
+html:not(.cv-off) #moduly{ content-visibility:auto; contain-intrinsic-size:auto none auto 3250px; }
+html:not(.cv-off) #konsola{ content-visibility:auto; contain-intrinsic-size:auto none auto 1070px; }
+html:not(.cv-off) #agenci{ content-visibility:auto; contain-intrinsic-size:auto none auto 690px; }
 html:not(.cv-off) #uslugi{ content-visibility:auto; contain-intrinsic-size:auto none auto 650px; }
 html:not(.cv-off) #doswiadczenie{ content-visibility:auto; contain-intrinsic-size:auto none auto 1080px; }
-html:not(.cv-off) #kontakt{ content-visibility:auto; contain-intrinsic-size:auto none auto 470px; }
-@media (max-width:980px){ html:not(.cv-off) #architektura{ contain-intrinsic-size:auto none auto 1010px; } html:not(.cv-off) #moduly{ contain-intrinsic-size:auto none auto 2220px; } html:not(.cv-off) #konsola{ contain-intrinsic-size:auto none auto 940px; } html:not(.cv-off) #agenci{ contain-intrinsic-size:auto none auto 610px; } html:not(.cv-off) #uslugi{ contain-intrinsic-size:auto none auto 630px; } html:not(.cv-off) #doswiadczenie{ contain-intrinsic-size:auto none auto 1490px; } html:not(.cv-off) #kontakt{ contain-intrinsic-size:auto none auto 700px; } }
-@media (max-width:620px){ html:not(.cv-off) #architektura{ contain-intrinsic-size:auto none auto 1080px; } html:not(.cv-off) #moduly{ contain-intrinsic-size:auto none auto 2650px; } html:not(.cv-off) #konsola{ contain-intrinsic-size:auto none auto 920px; } html:not(.cv-off) #agenci{ contain-intrinsic-size:auto none auto 610px; } html:not(.cv-off) #uslugi{ contain-intrinsic-size:auto none auto 960px; } html:not(.cv-off) #doswiadczenie{ contain-intrinsic-size:auto none auto 2330px; } html:not(.cv-off) #kontakt{ contain-intrinsic-size:auto none auto 705px; } }
+html:not(.cv-off) #zmiany{ content-visibility:auto; contain-intrinsic-size:auto none auto 390px; }
+html:not(.cv-off) #kontakt{ content-visibility:auto; contain-intrinsic-size:auto none auto 330px; }
+@media (max-width:980px){ html:not(.cv-off) #architektura{ contain-intrinsic-size:auto none auto 800px; } html:not(.cv-off) #moduly{ contain-intrinsic-size:auto none auto 4350px; } html:not(.cv-off) #konsola{ contain-intrinsic-size:auto none auto 780px; } html:not(.cv-off) #agenci{ contain-intrinsic-size:auto none auto 630px; } html:not(.cv-off) #uslugi{ contain-intrinsic-size:auto none auto 710px; } html:not(.cv-off) #doswiadczenie{ contain-intrinsic-size:auto none auto 1500px; } html:not(.cv-off) #zmiany{ contain-intrinsic-size:auto none auto 390px; } html:not(.cv-off) #kontakt{ contain-intrinsic-size:auto none auto 540px; } }
+@media (max-width:620px){ html:not(.cv-off) #architektura{ contain-intrinsic-size:auto none auto 850px; } html:not(.cv-off) #moduly{ contain-intrinsic-size:auto none auto 5580px; } html:not(.cv-off) #konsola{ contain-intrinsic-size:auto none auto 740px; } html:not(.cv-off) #agenci{ contain-intrinsic-size:auto none auto 630px; } html:not(.cv-off) #uslugi{ contain-intrinsic-size:auto none auto 1090px; } html:not(.cv-off) #doswiadczenie{ contain-intrinsic-size:auto none auto 2300px; } html:not(.cv-off) #zmiany{ contain-intrinsic-size:auto none auto 380px; } html:not(.cv-off) #kontakt{ contain-intrinsic-size:auto none auto 580px; } }
 .sec-h{ max-width:760px; margin-bottom:clamp(28px,4vw,44px); }
 .idx{ display:inline-flex; align-items:center; gap:10px; font-size:12.5px; color:var(--neon2); letter-spacing:.06em; text-transform:uppercase; margin-bottom:14px; }
 .idx::before{ content:''; width:22px; height:2px; background:linear-gradient(90deg, var(--neon2), var(--cyan)); border-radius:2px; }
