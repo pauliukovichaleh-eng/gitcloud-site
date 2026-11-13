@@ -14,7 +14,10 @@ public/img/zmiany/) i aktualizuje plan `PLAN.md`. Bez zmian w żadnym repo: nic 
 
 Zasady: plik podmieniany tylko, gdy kadr widocznie się zmienił (bez zmian = stary plik zostaje, repo nie puchnie);
 tylko dane przykładowe; `npm run build` (check.mjs) musi przejść. Wynik idzie od razu na main (GitHub Pages),
-rano jedna linia w podsumowaniu. Miniatury i plakaty (img/mini, img/plakat) odtwarza `node tools/miniatury.mjs`.
+rano jedna linia w podsumowaniu.
+Twarze agentów na my.gitcloud.pl (gitcloud-ai static/heads) robi się z tych samych `img/agenci/*.webp`
+(`gitcloud-ai/tools/heads-from-site`, wycięta twarz 240²): wrapper woła go po wdrożeniu nocy i po jej cofnięciu —
+jedno źródło, strona i panel zawsze mają te same głowy. Miniatury i plakaty (img/mini, img/plakat) odtwarza `node tools/miniatury.mjs`.
 
 ## Ochrona i zasięg (decyzje #749–#752)
 - **OCR** (`tools/odswiez/ocr.py`, tesseract pol+eng+rus): każdy nowy obraz i film nocy jest czytany; słowo z FORBIDDEN
