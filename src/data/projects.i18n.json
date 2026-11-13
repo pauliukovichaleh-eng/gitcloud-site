@@ -173,7 +173,7 @@
     },
     "platforma-dzialu-it": {
       "title": "IT department operations platform at a manufacturing company",
-      "lead": "An internal IT panel at my current employer: current matters, accounts, domains, decisions and the morning review in one place, on the same core as the other GitCloud systems.",
+      "lead": "An internal IT panel at my current employer: matters, accounts, domains and decisions in one place, on the GitCloud core.",
       "status": "In daily use since October 2026",
       "image_alt": "Platform diagram: six panel sections on the shared GitCloud core and the access rules",
       "gallery_note": "Diagram drawn from scratch. No screenshots, names, people or data of the employer (confidentiality agreement).",
@@ -358,7 +358,7 @@
     },
     "platforma-dzialu-it": {
       "title": "Операционная платформа ИТ-отдела в производственной компании",
-      "lead": "Внутренняя панель ИТ-отдела у нынешнего работодателя: текущие дела, учётные записи, домены, решения и утренний разбор в одном месте, на том же ядре, что и остальные системы GitCloud.",
+      "lead": "Внутренняя панель ИТ-отдела у нынешнего работодателя: дела, учётные записи, домены и решения в одном месте, на ядре GitCloud.",
       "status": "В ежедневной работе с октября 2026",
       "image_alt": "Схема платформы: шесть разделов панели на общем ядре GitCloud и правила доступа",
       "gallery_note": "Схема нарисована с нуля. Без снимков, названий, людей и данных работодателя (соглашение о конфиденциальности).",
