@@ -11,6 +11,8 @@ Ostatnia noc: 2026-11-14 (panel: Agenci i Modele z modułów rdzenia, nowe twarz
   (profil demo pulpitu, wymyślone pliki, bez prawdziwego ekranu).
 
 ## Do pokazania
+- Nowy projekt w katalogu (decyzja właściciela #1312, 13.11): następny projekt z repozytoriów lub Useme, którego
+  jeszcze nie ma na stronie; gałąź + zrzuty na danych przykładowych, PL/EN/RU.
 - Centrum bezpieczeństwa rdzenia (ocena od 0 do 100, „Napraw”, dziennik tarczy): kadr na danych przykładowych. W
   tools/panel-demo nie ma jeszcze danych tarczy; dopisać je do fake.py jak dla dziennika agentów.
 - Nić sprawy w ruchu: pętla kilku sekund (dane w tools/panel-demo/fake_dec.py, PLANS), screencast jak rolik.py.
