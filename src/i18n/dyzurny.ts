@@ -8,7 +8,7 @@ const pl = {
   crumb: 'usługi',
   tag: 'Usługa · abonament',
   lead: 'Dla małej firmy z serwerem Proxmox i zaporą OPNsense. Alarmy w nocy obsługuje program dyżurny: znane usterki naprawia sam, przed każdą zmianą robi kopię, a to, czego nie może rozstrzygnąć, wysyła mi jako kartę z wyborem na telefon.',
-  status: 'Działa na mojej infrastrukturze od października 2026, dla firm od listopada 2026',
+  status: 'Działa na mojej infrastrukturze od października 2026. Zestaw dla firm od 14 listopada 2026, instalacja sprawdzona na czystym Debianie 12',
   doH: 'Co robi',
   does: [
     ['Nocny dyżur', 'Alarmy Netdata: usługi hosta i maszyn, dyski, pamięć, restart po aktualizacji jądra, strony i certyfikaty. Każdy alarm ma przepis: co sprawdzić, co zrobić, kiedy uznać za naprawiony.'],
@@ -17,6 +17,17 @@ const pl = {
     ['Decyzje kartą', 'Gdy przepis nie wystarcza albo zmiana jest ryzykowna, dostaję kartę: co się stało, co już zrobione, 2 do 4 możliwych kroków. Wybieram i odpowiadam za decyzję ja.'],
   ],
   next: 'Od listopada 2026 dyżurny obsługuje też alarmy z zapory OPNsense i błędy z dzienników Loki.',
+  rulesH: 'Zasady dyżurnego',
+  rules: [
+    ['Sam', ['sprawdza alarm jeszcze raz na żywej metryce', 'restartuje usługę, która padła (poza siecią, SSH i klastrem Proxmox)', 'sprawdza usługi w maszynach Proxmox i na OPNsense', 'testuje strony, porty i certyfikaty']],
+    ['Tylko w oknie nocnym', ['cięższe kroki, które mogą na chwilę przerwać pracę', 'okno ustalamy razem, domyślnie 02:00-05:00']],
+    ['Tylko za zgodą', ['restart serwera po aktualizacji', 'ograniczanie maszyn, które zjadają pamięć', 'wszystko, czego przepis nie obejmuje']],
+    ['Nigdy', ['nie usuwa danych', 'nie zmienia sieci ani zapory', 'nie dotyka kluczy i płatności', 'nie pisze do ludzi w Twoim imieniu']],
+  ] as [string, string[]][],
+  rulesNote: 'Przepis, który w ciągu doby dwa razy nie pomógł, nie jest powtarzany: sprawa trafia do mnie. Każdy krok zapisuje się w dzienniku na Twoim serwerze (90 dni).',
+  repH: 'Raport co tydzień',
+  repP: 'W poniedziałek o 7:00 przychodzi e-mail po polsku, na jedną stronę. Przykład:',
+  repNote: 'Jeśli Netdata przestanie odpowiadać, dostaję wiadomość od razu, a raport mówi o przerwie wprost: tydzień bez przeglądów nie udaje spokojnego tygodnia.',
   shH: 'GitCloud Shield: tarcza w abonamencie',
   shP: 'Własny system bezpieczeństwa GitCloud, w cenie abonamentu. Sprawdza wiadomości i pocztę, zanim ktoś je otworzy, i ocenia bezpieczeństwo serwera w skali 0 do 100.',
   shDoes: [
@@ -40,11 +51,11 @@ const pl = {
   flowAria: 'Schemat: alarm, dyżurny, działanie, karta na telefon',
   stayH: 'Co zostaje u Ciebie',
   stay: [
-    'Dyżurny działa na Twoim serwerze, w osobnym kontenerze.',
+    'Dyżurny to usługa systemd na Twoim serwerze, kod w Pythonie leży otwarty w /opt/dyzurny.',
     'Dane, dzienniki i kopie zostają na Twoim sprzęcie.',
-    'Na zewnątrz wychodzi tylko krótki, szyfrowany opis alarmu.',
-    'Osobne konto z minimalnymi uprawnieniami, wyłączenie jednym poleceniem.',
-    'Przepisy i konfiguracja w repozytorium, które dostajesz.',
+    'Na zewnątrz wychodzą tylko e-maile: prośba o decyzję do mnie i raport tygodniowy do Ciebie.',
+    'Ustawienia w jednym pliku: /etc/dyzurny/dyzurny.toml.',
+    'Wyłączenie i usunięcie jednym poleceniem: install.sh --uninstall.',
   ],
   exH: 'Przykład z życia',
   exP: 'Środowisko: jeden serwer Proxmox z kontenerami i maszynami wirtualnymi, zapora OPNsense, monitoring Netdata. Stan na 12 listopada 2026:',
@@ -54,8 +65,8 @@ const pl = {
   ],
   exCases: [
     'Usługa nie wstała po aktualizacji: restart, kontrola metryki, alarm zamknięty bez budzenia kogokolwiek.',
-    'Prognoza „dysk pełny za kilka dni”: dyżurny znalazł porzucone pliki tymczasowe przeglądarki i je usunął.',
-    'Nowe jądro po aktualizacji: restart hosta w oknie nocnym, potem sprawdzenie, że wszystkie maszyny wróciły.',
+    'Prognoza „dysk pełny za kilka dni”: dyżurny sprawdził miejsce od razu. To był chwilowy skok plików tymczasowych, miejsca było dość. Opisał to i niczego nie usuwał.',
+    'Nowe jądro po aktualizacji: restart hosta tylko w oknie nocnym i za zgodą, potem kontrola, czy zamknięcie było czyste i czy usługi wróciły.',
   ],
   priceH: 'Cena',
   prices: [
@@ -68,7 +79,7 @@ const pl = {
   steps: [
     ['Napisz', 'Ile masz serwerów i co na nich działa.'],
     ['Diagnoza', 'Sprawdzam środowisko, cena i zakres na piśmie.'],
-    ['Wdrożenie', 'Tydzień: konto, przepisy pod Twoje usługi, test alarmów.'],
+    ['Wdrożenie', 'Tydzień: instalacja zestawu w jeden wieczór, przepisy pod Twoje usługi, test alarmów.'],
     ['Abonament', 'Dyżur co noc, raport co tydzień.'],
   ],
   btn: 'Napisz wiadomość',
@@ -76,7 +87,8 @@ const pl = {
   faqH: 'Pytania',
   faq: [
     ['Co, jeśli dyżurny nie zna alarmu?', 'Nic nie zmienia, tylko wysyła mi kartę. Po rozwiązaniu dopisuję przepis, więc następnym razem poradzi sobie sam.'],
-    ['Czy program może coś zepsuć?', 'Każda zmiana ma kopię i automatyczne cofnięcie. Nie usuwa danych i nie wyłącza maszyn bez mojej decyzji.'],
+    ['Czy program może coś zepsuć?', 'Zasady są zapisane w kodzie: nie usuwa danych, nie zmienia sieci ani zapory, cięższe kroki tylko w oknie, restart serwera tylko za zgodą. Zmiany konfiguracji robię z kopią i automatycznym cofnięciem.'],
+    ['Co, jeśli padnie sam monitoring?', 'Dyżurny sprawdza Netdatę przed każdym przeglądem. Gdy nie odpowiada, od razu dostaję e-mail, a raport tygodniowy pokazuje przerwę.'],
     ['Czy to zastępuje kopie zapasowe?', 'Nie. Przegląd sprawdza, czy kopie są świeże, a ich brak jest alarmem.'],
     ['Czy wszystko odbywa się zdalnie?', 'Tak. Nie wykonuję napraw sprzętu ani wizyt na miejscu.'],
   ],
@@ -91,7 +103,7 @@ const en: D = {
   crumb: 'services',
   tag: 'Service · subscription',
   lead: 'For a small business running a Proxmox server and an OPNsense firewall. Night alarms are handled by an on-call program: it fixes known faults by itself, takes a copy before every change, and sends me whatever it cannot settle as a card with options on my phone.',
-  status: 'Running on my own infrastructure since October 2026, for businesses from November 2026',
+  status: 'Running on my own infrastructure since October 2026. Package for businesses since 14 November 2026, install tested on a clean Debian 12',
   doH: 'What it does',
   does: [
     ['Night duty', 'Netdata alarms: host and guest services, disks, memory, reboot after a kernel update, websites and certificates. Every alarm has a recipe: what to check, what to do, when it counts as fixed.'],
@@ -100,6 +112,17 @@ const en: D = {
     ['Decisions by card', 'When a recipe is not enough or a change is risky, I get a card: what happened, what is already done, 2 to 4 possible steps. I choose and I am responsible for the decision.'],
   ],
   next: 'Since November 2026 the on-call program also handles alarms from the OPNsense firewall and errors from Loki logs.',
+  rulesH: 'Rules of the on-call program',
+  rules: [
+    ['By itself', ['re-checks the alarm against the live metric', 'restarts a failed service (except networking, SSH and the Proxmox cluster)', 'checks services inside Proxmox machines and on OPNsense', 'tests websites, ports and certificates']],
+    ['Only in the night window', ['heavier steps that may briefly interrupt work', 'we set the window together, 02:00-05:00 by default']],
+    ['Only with consent', ['server reboot after an update', 'limiting machines that eat memory', 'anything a recipe does not cover']],
+    ['Never', ['does not delete data', 'does not change the network or firewall', 'does not touch keys or payments', 'does not write to people on your behalf']],
+  ],
+  rulesNote: 'A recipe that failed twice within a day is not repeated: the case comes to me. Every step is written to a log on your server (90 days).',
+  repH: 'A report every week',
+  repP: 'On Monday at 7:00 you get a one-page e-mail in Polish. Example:',
+  repNote: 'If Netdata stops responding, I get a message straight away and the report says so plainly: a week without checks does not pretend to be a quiet week.',
   shH: 'GitCloud Shield: included in the subscription',
   shP: 'GitCloud’s own security system, included in the subscription. It checks messages and mail before anyone opens them and scores server security from 0 to 100.',
   shDoes: [
@@ -123,11 +146,11 @@ const en: D = {
   flowAria: 'Diagram: alarm, on-call, action, card on the phone',
   stayH: 'What stays with you',
   stay: [
-    'The on-call program runs on your server, in a separate container.',
+    'The on-call program is a systemd service on your server, its Python code lies open in /opt/dyzurny.',
     'Data, logs and backups stay on your hardware.',
-    'Only a short, encrypted description of the alarm leaves the network.',
-    'A separate account with minimal permissions, switched off with one command.',
-    'Recipes and configuration in a repository you receive.',
+    'Only e-mails leave the network: a decision request to me and the weekly report to you.',
+    'Settings in one file: /etc/dyzurny/dyzurny.toml.',
+    'Switched off and removed with one command: install.sh --uninstall.',
   ],
   exH: 'A real example',
   exP: 'Environment: one Proxmox server with containers and virtual machines, an OPNsense firewall, Netdata monitoring. As of 12 November 2026:',
@@ -137,8 +160,8 @@ const en: D = {
   ],
   exCases: [
     'A service did not start after an update: restart, metric check, alarm closed without waking anyone.',
-    'Forecast "disk full in a few days": the on-call program found abandoned browser temp files and removed them.',
-    'A new kernel after an update: host reboot in the night window, then a check that every machine came back.',
+    'Forecast "disk full in a few days": the on-call program checked free space right away. It was a short spike of temporary files and there was enough space. It reported this and deleted nothing.',
+    'A new kernel after an update: host reboot only in the night window and with consent, then a check that the shutdown was clean and services came back.',
   ],
   priceH: 'Price',
   prices: [
@@ -151,7 +174,7 @@ const en: D = {
   steps: [
     ['Write', 'How many servers you have and what runs on them.'],
     ['Assessment', 'I check the environment, price and scope in writing.'],
-    ['Setup', 'One week: account, recipes for your services, alarm tests.'],
+    ['Setup', 'One week: the package installs in one evening, then recipes for your services and alarm tests.'],
     ['Subscription', 'Duty every night, a report every week.'],
   ],
   btn: 'Send a message',
@@ -159,7 +182,8 @@ const en: D = {
   faqH: 'Questions',
   faq: [
     ['What if the on-call program does not know the alarm?', 'It changes nothing and sends me a card. Once solved, I add a recipe, so next time it handles it by itself.'],
-    ['Can the program break something?', 'Every change has a copy and an automatic rollback. It does not delete data or shut machines down without my decision.'],
+    ['Can the program break something?', 'The rules are written in the code: it does not delete data or change the network or firewall, heavier steps run only in the window, a server reboot only with consent. Configuration changes I make with a copy and automatic rollback.'],
+    ['What if monitoring itself goes down?', 'The on-call program checks Netdata before every run. If it does not respond, I get an e-mail straight away and the weekly report shows the gap.'],
     ['Does it replace backups?', 'No. The review checks that backups are fresh, and a missing one is an alarm.'],
     ['Is everything done remotely?', 'Yes. I do not do hardware repairs or on-site visits.'],
   ],
@@ -173,7 +197,7 @@ const ru: D = {
   crumb: 'услуги',
   tag: 'Услуга · абонемент',
   lead: 'Для небольшой фирмы с сервером Proxmox и шлюзом OPNsense. Ночные тревоги разбирает дежурная программа: известные сбои чинит сама, перед каждой правкой делает копию, а то, что решить не может, присылает мне карточкой с вариантами на телефон.',
-  status: 'Работает на моей инфраструктуре с октября 2026, для фирм с ноября 2026',
+  status: 'Работает на моей инфраструктуре с октября 2026. Набор для фирм с 14 ноября 2026, установка проверена на чистом Debian 12',
   doH: 'Что делает',
   does: [
     ['Ночное дежурство', 'Тревоги Netdata: службы хоста и машин, диски, память, перезагрузка после обновления ядра, сайты и сертификаты. На каждую тревогу есть рецепт: что проверить, что сделать, когда считать исправленным.'],
@@ -182,6 +206,17 @@ const ru: D = {
     ['Решения карточкой', 'Когда рецепта мало или правка рискованная, мне приходит карточка: что случилось, что уже сделано, 2-4 возможных шага. Выбираю и отвечаю за решение я.'],
   ],
   next: 'С ноября 2026 дежурный обрабатывает и тревоги шлюза OPNsense, и ошибки из журналов Loki.',
+  rulesH: 'Правила дежурного',
+  rules: [
+    ['Сам', ['ещё раз проверяет тревогу по живой метрике', 'перезапускает упавшую службу (кроме сети, SSH и кластера Proxmox)', 'проверяет службы в машинах Proxmox и на OPNsense', 'проверяет сайты, порты и сертификаты']],
+    ['Только в ночном окне', ['тяжёлые шаги, которые могут ненадолго прервать работу', 'окно согласуем вместе, по умолчанию 02:00-05:00']],
+    ['Только с согласия', ['перезагрузка сервера после обновления', 'урезание машин, которые съедают память', 'всё, чего нет в рецепте']],
+    ['Никогда', ['не удаляет данные', 'не меняет сеть и файрвол', 'не трогает ключи и платежи', 'не пишет людям от вашего имени']],
+  ],
+  rulesNote: 'Рецепт, который за сутки дважды не помог, не повторяется: дело переходит ко мне. Каждый шаг записывается в журнал на вашем сервере (90 дней).',
+  repH: 'Отчёт каждую неделю',
+  repP: 'В понедельник в 7:00 приходит письмо на польском, на одну страницу. Пример:',
+  repNote: 'Если Netdata перестанет отвечать, мне сразу приходит письмо, а отчёт прямо говорит о перерыве: неделя без проверок не выдаёт себя за спокойную.',
   shH: 'GitCloud Shield: щит в абонементе',
   shP: 'Своя система безопасности GitCloud, входит в абонемент. Проверяет сообщения и почту до того, как их откроют, и оценивает безопасность сервера от 0 до 100.',
   shDoes: [
@@ -205,11 +240,11 @@ const ru: D = {
   flowAria: 'Схема: тревога, дежурный, действие, карточка на телефон',
   stayH: 'Что остаётся у вас',
   stay: [
-    'Дежурный работает на вашем сервере, в отдельном контейнере.',
+    'Дежурный работает службой systemd на вашем сервере, его код на Python лежит открыто в /opt/dyzurny.',
     'Данные, журналы и копии остаются на вашем железе.',
-    'Наружу уходит только короткое зашифрованное описание тревоги.',
-    'Отдельная учётная запись с минимальными правами, отключение одной командой.',
-    'Рецепты и настройки в репозитории, который вы получаете.',
+    'Наружу уходят только письма: просьба о решении мне и недельный отчёт вам.',
+    'Настройки в одном файле: /etc/dyzurny/dyzurny.toml.',
+    'Отключение и удаление одной командой: install.sh --uninstall.',
   ],
   exH: 'Пример из жизни',
   exP: 'Среда: один сервер Proxmox с контейнерами и виртуальными машинами, шлюз OPNsense, мониторинг Netdata. На 12 ноября 2026:',
@@ -219,8 +254,8 @@ const ru: D = {
   ],
   exCases: [
     'Служба не поднялась после обновления: перезапуск, проверка метрики, тревога закрыта, никого не будили.',
-    'Прогноз «диск заполнится через несколько дней»: дежурный нашёл брошенные временные файлы браузера и удалил их.',
-    'Новое ядро после обновления: перезагрузка хоста в ночном окне, затем проверка, что все машины вернулись.',
+    'Прогноз «диск заполнится через несколько дней»: дежурный сразу проверил место. Это был короткий всплеск временных файлов, места хватало. Он описал это и ничего не удалял.',
+    'Новое ядро после обновления: перезагрузка хоста только в ночном окне и с согласия, затем проверка, что выключение было штатным и службы вернулись.',
   ],
   priceH: 'Цена',
   prices: [
@@ -233,7 +268,7 @@ const ru: D = {
   steps: [
     ['Напишите', 'Сколько у вас серверов и что на них работает.'],
     ['Диагностика', 'Смотрю среду, цена и объём письменно.'],
-    ['Внедрение', 'Неделя: учётная запись, рецепты под ваши службы, проверка тревог.'],
+    ['Внедрение', 'Неделя: набор ставится за один вечер, потом рецепты под ваши службы и проверка тревог.'],
     ['Абонемент', 'Дежурство каждую ночь, отчёт каждую неделю.'],
   ],
   btn: 'Написать',
@@ -241,7 +276,8 @@ const ru: D = {
   faqH: 'Вопросы',
   faq: [
     ['Что, если дежурный не знает тревогу?', 'Ничего не меняет, только присылает мне карточку. После решения я дописываю рецепт, и в следующий раз он справится сам.'],
-    ['Может ли программа что-то сломать?', 'У каждой правки есть копия и автоматический откат. Она не удаляет данные и не выключает машины без моего решения.'],
+    ['Может ли программа что-то сломать?', 'Правила записаны в коде: не удаляет данные, не меняет сеть и файрвол, тяжёлые шаги только в окне, перезагрузка сервера только с согласия. Правки настроек я делаю с копией и автоматическим откатом.'],
+    ['Что, если упадёт сам мониторинг?', 'Дежурный проверяет Netdata перед каждым прогоном. Если она не отвечает, мне сразу приходит письмо, а недельный отчёт показывает перерыв.'],
     ['Это заменяет резервные копии?', 'Нет. Ревизия проверяет, что копии свежие, а отсутствие копии само по себе тревога.'],
     ['Всё делается удалённо?', 'Да. Ремонт железа и выезды не делаю.'],
   ],
@@ -250,4 +286,17 @@ const ru: D = {
 };
 
 export const DYZ: Record<Lang, D> = { pl, en, ru };
+
+// Przykład tygodniowego e-maila: wynik gitcloud-core gitcloud_core/dyzurny/report.py 1:1 (zawsze po polsku).
+// 672 = 7 dni × 96 przeglądów (co 15 min).
+export const DYZ_REPORT = `Dyżurny admin · raport · Firma Przykład · serwer pve1 · 07.11-14.11.2026
+
+W skrócie: 672 przeglądy, alarmów: 3, zamknięte bez Państwa udziału: 2, czeka na decyzję: 1.
+
+Czeka na decyzję:
+• ram_available: czeka na decyzję (od 13.11 22:05)
+
+Co się działo:
+• 09.11 03:12 systemd_service_unit_failed_state: restart usługi → rozwiązane
+• 11.11 14:40 disk_space_usage: kontrola miejsca na dysku → sprawdzone, bez zagrożenia`;
 export const dyzPath = (l: Lang) => (l === 'pl' ? '/dyzurny/' : `/${l}/dyzurny/`);

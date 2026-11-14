@@ -3,7 +3,7 @@
 // Wygląd jak strona projektu (ProjectPage): ta sama karta szkła, nisze dla liczb, schemat jako HTML (tłumaczy się i nie rozmywa).
 import Base from '../layouts/Base.astro';
 import { home, LANGS, type Lang } from '../i18n';
-import { DYZ, dyzPath } from '../i18n/dyzurny';
+import { DYZ, DYZ_REPORT, dyzPath } from '../i18n/dyzurny';
 interface Props { lang: Lang }
 const { lang } = Astro.props;
 const S = DYZ[lang];
@@ -68,6 +68,19 @@ const icons = [
           {S.does.map(([t, d]) => <div class="dz-do"><b>{t}</b><span>{d}</span></div>)}
         </div>
         <p class="dz-next muted">{S.next}</p>
+
+        <h2 class="lbl dz-h" id="zasady">{S.rulesH}</h2>
+        <div class="dz-rules">
+          {S.rules.map(([t, xs], i) => (
+            <div class={`dz-rule${i === S.rules.length - 1 ? ' dz-never' : ''}`}><b>{t}</b><ul>{xs.map((x) => <li>{x}</li>)}</ul></div>
+          ))}
+        </div>
+        <p class="dz-next muted">{S.rulesNote}</p>
+
+        <h2 class="lbl dz-h" id="raport">{S.repH}</h2>
+        <p class="dz-ex">{S.repP}</p>
+        <pre class="dz-report mono" lang="pl">{DYZ_REPORT}</pre>
+        <p class="dz-next muted">{S.repNote}</p>
 
         <h2 class="lbl dz-h" id="shield">{S.shH}</h2>
         <p class="dz-ex">{S.shP}</p>
@@ -141,6 +154,12 @@ const icons = [
   .dz-do b{ color:#fff; font-size:15.5px; }
   .dz-do span{ font-size:14px; color:var(--muted); }
   .dz-grid{ margin-top:40px; }
+  .dz-rules{ display:grid; grid-template-columns:repeat(4,1fr); gap:12px; }
+  .dz-rule{ display:flex; flex-direction:column; gap:10px; padding:18px 20px; border-radius:var(--r-m); background:var(--panel-bg); border:var(--panel-bd); }
+  .dz-rule b{ color:#fff; font-size:15.5px; }
+  .dz-never b{ color:var(--warn); }
+  .dz-rule ul{ margin:0; padding-left:18px; display:grid; gap:6px; font-size:13.5px; color:var(--muted); }
+  .dz-report{ margin:0; padding:18px 20px; border-radius:var(--r-m); background:var(--well); box-shadow:var(--well-sh); font-size:12.5px; line-height:1.6; color:var(--muted); white-space:pre-wrap; overflow-wrap:anywhere; }
   .dz-mail{ margin-bottom:8px; }
   .dz-next{ margin-top:12px; font-size:13.5px; }
   .dz-ex{ font-size:14.5px; }
@@ -155,9 +174,10 @@ const icons = [
   .dz-price .sub{ font-size:13.5px; color:var(--muted); }
   .dz-mail{ display:flex; flex-wrap:wrap; gap:12px; margin-top:16px; }
   .dz-faq{ display:grid; gap:10px; }
+  @media (max-width: 1100px){ .dz-rules{ grid-template-columns:1fr 1fr; } }
   @media (max-width: 860px){
     .dz-flow{ grid-template-columns:1fr; gap:20px; }
     .dz-node:not(:last-child)::after{ content:'⌄'; right:auto; left:50%; top:auto; bottom:-20px; transform:translateX(-50%); }
-    .dz-does, .dz-prices, .dz-stats{ grid-template-columns:1fr; }
+    .dz-does, .dz-prices, .dz-stats, .dz-rules{ grid-template-columns:1fr; }
   }
 </style>
