@@ -2,6 +2,43 @@
   "_opis": "Dziennik zmian /zmiany/ (decyzja #748). Prowadzi go nocne odświeżanie (host/site-refresh): nowe wpisy NA POCZĄTKU. Pola: id (data-slug), date, area, project (slug z projects.json: wpis pokazuje się też na stronie projektu, decyzja #751) (strona|panel|agenci|glowy|pilot|isp|infra), kind (wizualna = z obrazami przed/po, techniczna = krótko, bez obrazów), img [{src, alt{pl,en,ru}, label: przed|po|kadr}], link (kotwica albo strona projektu), pl/en/ru {t, x}. Tylko to, co publiczne: bez klientów, pracodawców, domu, finansów, adresów IP.",
   "wpisy": [
     {
+      "id": "2026-11-13-panel-rdzen",
+      "date": "2026-11-13",
+      "area": "panel",
+      "project": "panel-operacyjny",
+      "kind": "wizualna",
+      "img": [
+        {"src": "/img/zmiany/2026-11-13-panel-rdzen-przed.webp", "label": "przed", "alt": {"pl": "Karta Tony'ego w panelu przed zmianą: stara twarz, inna niż na stronie", "en": "Tony's card in the panel before: the old face, different from the website", "ru": "Карточка Тони в панели до: старое лицо, не такое, как на сайте"}},
+        {"src": "/img/zmiany/2026-11-13-panel-rdzen-po.webp", "label": "po", "alt": {"pl": "Karta Tony'ego po zmianie: ta sama głowa z ramionami co na stronie", "en": "Tony's card after: the same head and shoulders as on the website", "ru": "Карточка Тони после: та же голова с плечами, что и на сайте"}}
+      ],
+      "link": "/projekty/panel-operacyjny/",
+      "pl": {"t": "Agenci i Modele w panelu z modułów rdzenia", "x": "Zakładki „Agenci” i „Modele” rysuje teraz rdzeń GitCloud, jedna wersja dla każdej instalacji panelu. Twarze agentów w panelu pochodzą z tych samych kadrów co na stronie, a „Modele” mają podzakładki: zużycie, przebiegi, wynik modeli, limity i trasy."},
+      "en": {"t": "Agents and Models in the panel from core modules", "x": "The Agents and Models tabs are now drawn by the GitCloud core, one version for every panel installation. Agent faces in the panel come from the same frames as on the website, and Models has sub-tabs: usage, runs, model score, limits and routes."},
+      "ru": {"t": "Агенты и Модели в панели из модулей ядра", "x": "Вкладки «Агенты» и «Модели» теперь рисует ядро GitCloud, одна версия для каждой установки панели. Лица агентов в панели берутся из тех же кадров, что и на сайте, а у «Моделей» подвкладки: расход, прогоны, оценка моделей, лимиты и маршруты."}
+    },
+    {
+      "id": "2026-11-13-glowy-charakter",
+      "date": "2026-11-13",
+      "area": "glowy",
+      "project": "glowy-agentow",
+      "kind": "techniczna",
+      "link": "/projekty/glowy-agentow/",
+      "pl": {"t": "Głowy: każdy agent wygląda po swojemu", "x": "Mark nosi dzianinową czapkę, mikrofon na pałąku i wzór obwodu pod oczami, Tony ma cięższą sylwetkę. Pancerz ramion jest osobny dla każdego (Sally satyna, Tony matowy metal z rysami, Mark karbon), a neon w oczach jaśnieje z basem muzyki i bierze jej barwę."},
+      "en": {"t": "Heads: each agent has its own look", "x": "Mark wears a knit cap, a boom microphone and a circuit pattern under the eyes, Tony has a heavier silhouette. Shoulder armour differs per agent (Sally satin, Tony scratched matte metal, Mark carbon), and the neon in the eyes brightens with the music's bass and takes its colour."},
+      "ru": {"t": "Головы: у каждого агента свой облик", "x": "Марк в вязаной шапке, с микрофоном на штанге и схемой под глазами, у Тони силуэт тяжелее. Броня плеч у каждого своя (Салли сатин, Тони матовый металл с царапинами, Марк карбон), а неон в глазах светлеет с басами музыки и берёт её цвет."}
+    },
+    {
+      "id": "2026-11-12-centrum-bezpieczenstwa",
+      "date": "2026-11-12",
+      "area": "infra",
+      "project": "rdzen-gitcloud",
+      "kind": "techniczna",
+      "link": "/dyzurny/",
+      "pl": {"t": "Centrum bezpieczeństwa w rdzeniu", "x": "Rdzeń GitCloud ocenia bezpieczeństwo instalacji w skali od 0 do 100 i przy każdym znalezisku podpowiada, jak je naprawić. Tarcza sprawdza linki w wiadomościach z publicznymi listami domen phishingowych, załączniki skanuje ClamAV, a panel pokazuje dziennik z 30 dni z przyciskiem „to nie zagrożenie”."},
+      "en": {"t": "Security centre in the core", "x": "The GitCloud core scores an installation's security from 0 to 100 and suggests a fix for each finding. The shield checks links in messages against public phishing domain lists, ClamAV scans attachments, and the panel shows a 30-day log with a \"not a threat\" button."},
+      "ru": {"t": "Центр безопасности в ядре", "x": "Ядро GitCloud оценивает безопасность установки по шкале от 0 до 100 и к каждой находке подсказывает, как её исправить. Щит сверяет ссылки в сообщениях с публичными списками фишинговых доменов, вложения проверяет ClamAV, а панель показывает журнал за 30 дней с кнопкой «не угроза»."}
+    },
+    {
       "id": "2026-11-12-glowy-z-ramionami",
       "date": "2026-11-12",
       "area": "glowy",

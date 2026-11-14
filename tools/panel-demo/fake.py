@@ -61,6 +61,14 @@ def rows(sql, params=None):
     if "where agent = %s" in s:
         ag, days = params
         return [a for a in _since(24 * int(days)) if a["agent"] == ag]
+    if "count(*) filter (where kind = 'handoff')" in s:   # 14.11.2026: samodzielność (reliability.autonomy), 7 dni i poprzednie 7
+        out = {}
+        for a in _since(24 * 14):
+            r = out.setdefault((a["agent"], a["at"] > NOW - timedelta(days=7)), {"n": 0, "failed": 0, "owner": 0})
+            r["n"] += 1
+            r["failed"] += a["ok"] is False
+            r["owner"] += a["kind"] == "handoff"
+        return [{"agent": ag, "now": now, **v} for (ag, now), v in out.items()]
     if s.startswith("select kind, ok, count(*)"):
         from collections import Counter
         c = Counter((a["kind"], a["ok"]) for a in _since(24))

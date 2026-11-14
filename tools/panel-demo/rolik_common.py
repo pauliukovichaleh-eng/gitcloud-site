@@ -17,6 +17,7 @@ PL = [
     ["категория", "kategoria"], ["аналитика", "analiza"], ["новости", "wiadomości"], ["Открыть", "Otwórz"], ["дольше всех", "najdłużej"],
     [" мин", " min"], ["(\\d) ч(?![а-я])", "$1 godz."], ["само: ", "automatycznie: "], ["Claude готовит", "Claude przygotowuje"], ["вопросы", "pytania"],
     ["Решила", "Zdecydowała"], ["Отправила", "Wysłała"], ["Решил", "Zdecydował"], ["Отправил", "Wysłał"],
+    ["Лимиты и маршруты", "Limity i trasy"], ["Расход", "Zużycie"], ["Прогоны", "Przebiegi"], ["вызовы", "wywołania"],  # moduł „Modele” rdzenia (14.11)
     ["пн (\\d)", "pn $1"], ["вт (\\d)", "wt $1"], ["ср (\\d)", "śr $1"], ["чт (\\d)", "czw $1"], ["пт (\\d)", "pt $1"], ["сб (\\d)", "sob $1"], ["вс (\\d)", "nd $1"],
 ]
 # Funkcje JS (tekst do page.evaluate albo do skryptu startowego).
