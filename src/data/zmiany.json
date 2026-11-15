@@ -2,6 +2,39 @@
   "_opis": "Dziennik zmian /zmiany/ (decyzja #748). Prowadzi go nocne odświeżanie (host/site-refresh): nowe wpisy NA POCZĄTKU. Pola: id (data-slug), date, area, project (slug z projects.json: wpis pokazuje się też na stronie projektu, decyzja #751) (strona|panel|agenci|glowy|pilot|isp|infra), kind (wizualna = z obrazami przed/po, techniczna = krótko, bez obrazów), img [{src, alt{pl,en,ru}, label: przed|po|kadr}], link (kotwica albo strona projektu), pl/en/ru {t, x}. Tylko to, co publiczne: bez klientów, pracodawców, domu, finansów, adresów IP.",
   "wpisy": [
     {
+      "id": "2026-11-14-pilot-okno-rozmowy",
+      "date": "2026-11-14",
+      "area": "pilot",
+      "project": "pilot-esp32",
+      "kind": "techniczna",
+      "link": "/projekty/pilot-esp32/",
+      "pl": {"t": "Pilot: twarz agenta w oknie rozmowy", "x": "Zamiast rysowanego robota okno rozmowy pokazuje twarz mówiącego agenta w sześciokącie, z klatek tej samej głowy 3D co na stronie. 24 segmenty wokół pokazują stan: słucha, myśli, mówi, czeka. Okno błędu zamyka się samo po 8 s, a dźwięki pilota, pulpitu i serwera biorą się z jednej galerii w rdzeniu."},
+      "en": {"t": "Remote: the agent's face in the conversation window", "x": "Instead of a drawn robot, the conversation window shows the speaking agent's face in a hexagon, rendered from the same 3D head as on this site. 24 segments around it show the state: listening, thinking, speaking, waiting. The error window now closes by itself after 8 s, and the sounds of the remote, the desktop and the server come from one gallery in the core."},
+      "ru": {"t": "Пульт: лицо агента в окне разговора", "x": "Вместо нарисованного робота окно разговора показывает лицо говорящего агента в шестиграннике, из кадров той же 3D-головы, что на сайте. 24 сегмента вокруг показывают состояние: слушает, думает, говорит, ждёт. Окно ошибки закрывается само через 8 с, а звуки пульта, рабочего стола и сервера берутся из одной галереи в ядре."}
+    },
+    {
+      "id": "2026-11-14-glowy-klatka",
+      "date": "2026-11-14",
+      "area": "glowy",
+      "project": "glowy-agentow",
+      "kind": "techniczna",
+      "link": "/projekty/glowy-agentow/",
+      "pl": {"t": "Głowy: krótsza klatka i słuchanie gry na żywo", "x": "W scenie jest 1147 obiektów, a widać 198; ukryte gałęzie nie są już przeliczane w każdej klatce, więc czas JS klatki spadł z około 29 do 19 ms przy tym samym wyglądzie. Gdy na wejściu karty dźwiękowej gra gitara, głowy słuchają z przyjemnością i zamkniętymi oczami."},
+      "en": {"t": "Heads: shorter frame and listening to live playing", "x": "The scene has 1147 objects, of which 198 are visible; hidden branches are no longer recomputed every frame, so JS frame time dropped from about 29 to 19 ms with the same look. When a guitar plays into the sound card input, the heads listen with enjoyment and closed eyes."},
+      "ru": {"t": "Головы: кадр короче, слушают живую игру", "x": "В сцене 1147 объектов, видно 198; спрятанные ветки больше не пересчитываются каждый кадр, и время JS на кадр упало примерно с 29 до 19 мс при том же виде. Когда на вход звуковой карты играет гитара, головы слушают с удовольствием и закрытыми глазами."}
+    },
+    {
+      "id": "2026-11-14-dyzurny-zestaw",
+      "date": "2026-11-14",
+      "area": "infra",
+      "project": "rdzen-gitcloud",
+      "kind": "techniczna",
+      "link": "/dyzurny/",
+      "pl": {"t": "Dyżurny admin jako zestaw na serwer klienta", "x": "Dyżurny z rdzenia ma instalator: usługa systemd sprawdza serwer co 15 minut, a w poniedziałek o 7:00 wysyła raport po polsku. Przebieg bez danych z monitoringu nie udaje spokojnego tygodnia; zestaw sprawdziłem na czystym Debianie 12."},
+      "en": {"t": "On-call admin as a kit for a client's server", "x": "The on-call admin from the core now has an installer: a systemd service checks the server every 15 minutes and sends a report in Polish on Mondays at 7:00. A run without monitoring data does not pass for a quiet week; I tested the kit on a clean Debian 12."},
+      "ru": {"t": "Дежурный админ как набор для сервера клиента", "x": "У дежурного из ядра появился установщик: служба systemd проверяет сервер каждые 15 минут, а в понедельник в 7:00 присылает отчёт по-польски. Прогон без данных мониторинга не выдаётся за спокойную неделю; набор проверил на чистом Debian 12."}
+    },
+    {
       "id": "2026-11-13-panel-rdzen",
       "date": "2026-11-13",
       "area": "panel",

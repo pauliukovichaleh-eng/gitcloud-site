@@ -1,6 +1,6 @@
 # Plan prowadzenia strony (aktualizowany co noc)
 
-Ostatnia noc: 2026-11-14 (panel: Agenci i Modele z modułów rdzenia, nowe twarze; dziennik: 3 wpisy)
+Ostatnia noc: 2026-11-15 (dziennik: 3 wpisy techniczne; kadry pilota i głów bez zmian; SEO: tytuł pulpitu)
 
 ## Nieaktualne
 - Film panel.mp4 (12.11): zakładka „Modele” ma już podzakładki rdzenia (zużycie, przebiegi, wynik, limity i trasy),
@@ -8,9 +8,11 @@ Ostatnia noc: 2026-11-14 (panel: Agenci i Modele z modułów rdzenia, nowe twarz
 - Konsola ISP (public/img/demo): zrzuty z 05.11 w niebieskim motywie „Kolor”. Przenagrać, gdy platforma ISP dostanie
   ciemny motyw zbliżony do panelu; inaczej zostają.
 - Pulpit (pulpit-gitcloud): film pulpit.mp4 nagrany ręcznie, przepisu w repo nie ma. Przenagrać dopiero z przepisem
-  (profil demo pulpitu, wymyślone pliki, bez prawdziwego ekranu).
+  (profil demo pulpitu, wymyślone pliki, bez prawdziwego ekranu). Od 14.11 pulpit ma szklane menu nad stroną.
 
 ## Do pokazania
+- Pilot 3.218.0: okno rozmowy z twarzą agenta w sześciokącie i 24 segmentami głosu. W scenariuszu render.py nie ma
+  tego ekranu; dopisać kadr (wiadomość głosowa z danymi przykładowymi) i sprawdzić, czy symulator ma zasoby twarzy.
 - Nowy projekt w katalogu (decyzja właściciela #1312, 13.11): następny projekt z repozytoriów lub Useme, którego
   jeszcze nie ma na stronie; gałąź + zrzuty na danych przykładowych, PL/EN/RU.
 - Centrum bezpieczeństwa rdzenia (ocena od 0 do 100, „Napraw”, dziennik tarczy): kadr na danych przykładowych. W
@@ -19,12 +21,12 @@ Ostatnia noc: 2026-11-14 (panel: Agenci i Modele z modułów rdzenia, nowe twarz
 - Czat głów na pulpicie: kadr z trzema awatarami na danych przykładowych.
 
 ## Nie udało się / ograniczenia
-- Głowy: po kadrach z 13.11 doszła tylko średnia warstwa porów (działa w małym oknie, w kadrze 360 px niewidoczna),
-  więc bez przenagrania. Pilot: zniknęła lista rankingu, której na stronie nie było; bez przenagrania.
+- Głowy 15.11: zmiany tylko w trybie gry na żywo i w wydajności (wygląd ten sam), bez przenagrania.
+- Pilot 15.11: render.py daje kadry identyczne co do piksela (nowe okno rozmowy nie występuje w scenariuszu).
 
 ## SEO (Marek, obchód 12.11)
 - Title > 70 znaków: główna PL/EN/RU (72/71/74) zostaje, to pozycjonowanie właściciela.
-- Title > 70: pulpit-gitcloud PL i RU (71/72), EN baza-b2b-nl-be (72), RU dyzurny (74); skrócić o kilka znaków.
+- Title > 70: EN baza-b2b-nl-be (72), RU dyzurny (74); skrócić o kilka znaków.
 - Description /cv/ PL i EN (197/202): składa się z roli i pierwszego akapitu bio; potrzebne osobne krótkie pole opisu.
 
 ## Pomysły
