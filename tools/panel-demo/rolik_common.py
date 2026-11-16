@@ -24,9 +24,9 @@ PL = [
 TR = """(pl) => { const w = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT); let n;
   while ((n = w.nextNode())) { let t = n.nodeValue, o = t; for (const [a, b] of pl) t = t.replace(new RegExp(a, 'g'), b); if (t !== o) n.nodeValue = t; } }"""
 HIDE_SEL = "[data-key='hud-now'], [data-key='hud-cena'], .auth-user-chip"   # pasek finansów, «Dom (tylko odczyt)»
-# 10.11.2026: w kadrze bez „Dom (tylko odczyt)” w nagłówku, bez przycisku mostu „Dom ↔ Praca” i bez paska finansów (prywatne)
+# 10.11.2026: w kadrze bez „Dom (tylko odczyt)” w nagłówku, bez przycisku mostu „Sally ↔ Mark” (do 16.11 „Dom ↔ Praca”) i bez paska finansów (prywatne)
 HIDE = """() => { for (const e of document.querySelectorAll('body *')) { const t = (e.textContent || '').replace(/\\s+/g, ' ').trim();
-  if (/^Dom \\(tylko odczyt\\)$/.test(t) || /^Дом ↔ Работа$/.test(t) || /^Dom ↔ Praca$/.test(t)) e.style.visibility = 'hidden'; }
+  if (/^Dom \\(tylko odczyt\\)$/.test(t) || /^Салли ↔ Марк$/.test(t)) e.style.visibility = 'hidden'; }
   for (const e of document.querySelectorAll(HIDE_SEL)) e.style.display = 'none'; }""".replace("HIDE_SEL", json.dumps(HIDE_SEL))
 # cyrylica w widocznym prostokącie r = {y, h, w} (bez r — cały ekran)
 CYR = """(r) => { r = r || {y: 0, h: innerHeight, w: innerWidth}; const bad = []; const w = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT); let n;
