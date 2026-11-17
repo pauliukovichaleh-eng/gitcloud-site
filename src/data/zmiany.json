@@ -2,6 +2,28 @@
   "_opis": "Dziennik zmian /zmiany/ (decyzja #748). Prowadzi go nocne odświeżanie (host/site-refresh): nowe wpisy NA POCZĄTKU. Pola: id (data-slug), date, area, project (slug z projects.json: wpis pokazuje się też na stronie projektu, decyzja #751) (strona|panel|agenci|glowy|pilot|isp|infra), kind (wizualna = z obrazami przed/po, techniczna = krótko, bez obrazów), img [{src, alt{pl,en,ru}, label: przed|po|kadr}], link (kotwica albo strona projektu), pl/en/ru {t, x}. Tylko to, co publiczne: bez klientów, pracodawców, domu, finansów, adresów IP.",
   "wpisy": [
     {
+      "id": "2026-11-16-szyna-zdarzen",
+      "date": "2026-11-16",
+      "area": "infra",
+      "project": "rdzen-gitcloud",
+      "kind": "techniczna",
+      "link": "/projekty/rdzen-gitcloud/",
+      "pl": {"t": "Szyna zdarzeń i jeden harmonogram w rdzeniu", "x": "Około 25 timerów budziło się co 1-5 minut, żeby sprawdzić, czy coś się pojawiło. Teraz źródło (alert monitoringu, czujnik, plik innego zadania) wysyła zdarzenie, systemd uruchamia tylko zadania, które na nie czekają, a rzadki przebieg zapasowy łapie to, co przepadło. Zadania i agenci deklarują swój harmonogram danymi, jednostki systemd generuje z tego rdzeń."},
+      "en": {"t": "An event bus and one schedule in the core", "x": "About 25 timers woke up every 1-5 minutes just to check whether something had appeared. Now the source (a monitoring alert, a sensor, another job's file) emits an event, systemd starts only the jobs waiting for it, and a rare fallback run picks up anything missed. Jobs and agents declare their schedule as data and the core generates the systemd units from it."},
+      "ru": {"t": "Шина событий и одно расписание в ядре", "x": "Около 25 таймеров просыпались раз в 1-5 минут проверить, не появилось ли что-то. Теперь источник (тревога мониторинга, датчик, файл другой задачи) шлёт событие, systemd запускает только те задачи, что его ждут, а редкий страховочный запуск подбирает пропущенное. Задачи и агенты объявляют расписание данными, юниты systemd из него делает ядро."}
+    },
+    {
+      "id": "2026-11-16-zestaw-kontrolny",
+      "date": "2026-11-16",
+      "area": "agenci",
+      "project": "agenci-ai",
+      "kind": "techniczna",
+      "link": "/projekty/agenci-ai/",
+      "pl": {"t": "Agenci: nocny zestaw pytań kontrolnych", "x": "Co noc agenci odpowiadają na zestaw pytań z oczekiwaniami: właściwe narzędzie, słowa wymagane i zakazane w odpowiedzi. Nowa wersja agenta wchodzi do kodu dopiero wtedy, gdy porównanie z poprzednią nocą nie pokazuje regresji; pytanie oblane jest zadawane jeszcze dwa razy, żeby odsiać przypadek."},
+      "en": {"t": "Agents: a nightly check set of questions", "x": "Every night the agents answer a set of questions with expectations: the right tool, words required and forbidden in the answer. A new agent version is merged only when the comparison with the previous night shows no regression; a failed question is asked twice more to filter out chance."},
+      "ru": {"t": "Агенты: ночной проверочный набор вопросов", "x": "Каждую ночь агенты отвечают на набор вопросов с ожиданиями: нужный инструмент, обязательные и запрещённые слова в ответе. Новая версия агента вливается в код, только если сравнение с прошлой ночью не показывает регрессий; проваленный вопрос задаётся ещё дважды, чтобы отсеять случайность."}
+    },
+    {
       "id": "2026-11-14-pilot-okno-rozmowy",
       "date": "2026-11-14",
       "area": "pilot",

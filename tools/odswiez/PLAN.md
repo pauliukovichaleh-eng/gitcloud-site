@@ -1,6 +1,6 @@
 # Plan prowadzenia strony (aktualizowany co noc)
 
-Ostatnia noc: 2026-11-15 (dziennik: 3 wpisy techniczne; kadry pilota i głów bez zmian; SEO: tytuł pulpitu)
+Ostatnia noc: 2026-11-17 (dziennik: 2 wpisy techniczne; kadry pilota, głów i panelu bez zmian; SEO: 2 tytuły)
 
 ## Nieaktualne
 - Film panel.mp4 (12.11): zakładka „Modele” ma już podzakładki rdzenia (zużycie, przebiegi, wynik, limity i trasy),
@@ -19,14 +19,17 @@ Ostatnia noc: 2026-11-15 (dziennik: 3 wpisy techniczne; kadry pilota i głów be
   tools/panel-demo nie ma jeszcze danych tarczy; dopisać je do fake.py jak dla dziennika agentów.
 - Nić sprawy w ruchu: pętla kilku sekund (dane w tools/panel-demo/fake_dec.py, PLANS), screencast jak rolik.py.
 - Czat głów na pulpicie: kadr z trzema awatarami na danych przykładowych.
+- Szyna zdarzeń rdzenia: schemat „zdarzenie → zadanie” zamiast timerów (do strony rdzenia), rysowany od zera.
 
 ## Nie udało się / ograniczenia
-- Głowy 15.11: zmiany tylko w trybie gry na żywo i w wydajności (wygląd ten sam), bez przenagrania.
-- Pilot 15.11: render.py daje kadry identyczne co do piksela (nowe okno rozmowy nie występuje w scenariuszu).
+- Głowy 17.11: zmiany tylko w trybie muzyki i w napisach (wygląd w klipach ten sam), bez przenagrania.
+- Pilot 17.11: render.py daje kadry identyczne co do piksela; nowa strona „Dźwięk” (głośności) i wiersz trybów
+  ze sprawą w toku nie występują w scenariuszu. Do dopisania razem z oknem rozmowy (dane przykładowe, PL).
+- Panel 17.11: zmiany w sekcjach prywatnych i w nazwach serwerów (przycisk mostu w kadrach ukryty), bez przenagrania.
 
-## SEO (Marek, obchód 12.11)
+## SEO (Marek, obchód 15.11)
 - Title > 70 znaków: główna PL/EN/RU (72/71/74) zostaje, to pozycjonowanie właściciela.
-- Title > 70: EN baza-b2b-nl-be (72), RU dyzurny (74); skrócić o kilka znaków.
+- Title > 70: EN i RU platforma-dzialu-it (71/71); skrócić o kilka znaków.
 - Description /cv/ PL i EN (197/202): składa się z roli i pierwszego akapitu bio; potrzebne osobne krótkie pole opisu.
 
 ## Pomysły
