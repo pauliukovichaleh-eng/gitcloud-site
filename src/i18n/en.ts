@@ -34,7 +34,7 @@ const en: Dict = {
     h1a: 'I run systems and networks ',
     h1b: 'and automate them with AI',
     h1c: '.',
-    lead: 'At the centre is the GitCloud core: the panel, the desktop and the remote run on it, and so do the agents and the night pipeline. Next to it, a console for a network operator and client work for online stores.',
+    lead: 'Systems, networks and AI agents on one GitCloud core. Details inside each project.',
     cta1: 'Work',
     cta2: 'Write to me',
   },
@@ -59,7 +59,7 @@ const en: Dict = {
   mod: {
     idx: '01 / work',
     h2: 'Selected work',
-    p: 'Each with the task, the solution and the result. Client names are not shown.',
+    p: 'Open a project to see the task, the solution and the result.',
     all: 'All',
     filterAria: 'Project filter',
     categories: { wlasne: 'Own systems', platformy: 'Platforms', zlecenia: 'Client work' },
@@ -68,7 +68,7 @@ const en: Dict = {
   console: {
     idx: '02 / interfaces',
     h2: 'Interfaces',
-    p: 'Real screens on sample data: models in the panel, desktop, ESP32 remote and the network operator console.',
+    p: 'Real screens on sample data.',
     tabsAria: 'System screens',
     open: 'Open full-size screenshot',
     alt: 'Screenshot',
@@ -84,11 +84,11 @@ const en: Dict = {
   agents: {
     idx: '03 / agents',
     h2: 'Agents',
-    p: 'Each agent has its own scope and case log. What it cannot settle on its own reaches me as a card with options. Tasks are carried out by Claude. The agents speak with a voice and a 3D face.',
+    p: 'Each has its own scope. What it cannot settle on its own reaches me as a card with options.',
     list: [
-      ['correspondence and deadlines', 'Collects mail, messages and deadlines. Deadlines and matters for decision reach the panel as cards.'],
-      ['infrastructure on duty', 'Watches alerts and system logs, fixes things by runbook, also at night. One report in the morning.'],
-      ['modernization and ideas', 'Checks what has aged and proposes one or two changes with cost and benefit. Speaks rarely and to the point.'],
+      'correspondence and deadlines',
+      'infrastructure on duty',
+      'modernization and ideas',
     ],
     alt: 'animated agent face',
     more: 'How the agent team works',
@@ -96,7 +96,7 @@ const en: Dict = {
   svc: {
     idx: '04 / services',
     h2: 'Services',
-    p: 'Remote, with the price agreed after diagnosis. Every change comes with a backup, a test and a summary.',
+    p: 'Remote, priced after diagnosis.',
     areas: [
       ['E-commerce', 'Shoper, WooCommerce, WordPress: checkout, language versions, integrations, SEO.'],
       ['Infrastructure and Microsoft 365', 'Linux and Windows servers, mail, DNS, VPN, backups and monitoring.'],
@@ -107,12 +107,6 @@ const en: Dict = {
       ['One price for the whole job', 'agreed after a short diagnosis, no hourly rate'],
       ['Scope in writing', 'scope, price and deadline agreed before we start'],
       ['Pay after acceptance', 'contract and invoice via Useme on request'],
-    ],
-    steps: [
-      ['Brief', 'A few sentences about the problem or goal.'],
-      ['Quote', 'Root cause, price and deadline before any change.'],
-      ['Delivery', 'Separate account, state backup, remote work.'],
-      ['Acceptance', 'Result test and a short change summary.'],
     ],
     more: 'Completed orders: stages, results, tests',
     useme: (n: number, z: number, s: number) => `Useme profile: ${n} contracts, ${z} completed, ${s} disputed`,
@@ -149,7 +143,7 @@ const en: Dict = {
   contact: {
     idx: '06 / contact',
     h2: 'Contact',
-    p: 'Write a few sentences: what is broken or what should be built. I usually reply the same day, first with an assessment and a price.',
+    p: 'Write what is broken or what should be built. I usually reply the same day.',
     btn: 'Send a message',
     copyAria: 'Copy e-mail address',
   },

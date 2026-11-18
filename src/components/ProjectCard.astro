@@ -22,8 +22,6 @@ const media = p.video ? 'video' : p.image ? 'img' : 'gen';
   </div>
   <div class="card-body">
     <h3>{p.title}</h3>
-    <p>{p.lead}</p>
     {p.results?.[0] && <div class="card-res mono"><span class="dot ok"></span>{p.results[0]}</div>}
-    <div class="tags">{p.stack.slice(0, 5).map((s) => <span>{s}</span>)}</div>
   </div>
 </a>

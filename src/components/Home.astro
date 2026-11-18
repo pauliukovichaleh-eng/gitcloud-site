@@ -139,8 +139,7 @@ const jsonld = {
             </div>
             <div class="agent-body">
               <h3>{n}</h3>
-              <span class="agent-role mono">{T.agents.list[i][0]}</span>
-              <p>{T.agents.list[i][1]}</p>
+              <span class="agent-role mono">{T.agents.list[i]}</span>
             </div>
           </article>
         ))}
@@ -166,9 +165,6 @@ const jsonld = {
         <div class="prices">
           {T.svc.prices.map(([pt, ps]) => <div class="tile deal"><b>{pt}</b><span class="sub">{ps}</span></div>)}
         </div>
-        <ol class="steps">
-          {T.svc.steps.map(([st, ss], i) => <li><span class="mono step-n">{i + 1}</span><div><b>{st}</b><span>{ss}</span></div></li>)}
-        </ol>
       </div>
       <a class="link-more" href={dyzPath(lang)}>{DYZ[lang].more}: {DYZ[lang].prices[0][0]} + {DYZ[lang].prices[1][0]} &rarr;</a>
       {count('zlecenia') > 0 && <a class="link-more" href="#moduly" data-filtr="zlecenia">{T.svc.more} &rarr;</a>}
@@ -185,7 +181,7 @@ const jsonld = {
         <div class="who-txt">
           <span class="idx mono">{T.exp.idx}</span>
           <h2>{T.exp.h2}</h2>
-          {T.exp.bio.map((b) => <p>{b}</p>)}
+          <p>{T.exp.bio[0]}</p>
           <a class="btn btn-g btn-sm cv-btn" href={T.cv.file} download><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v11m0 0-4.5-4.5M12 15l4.5-4.5M5 19.5h14"/></svg> {T.exp.cv}</a>
         </div>
       </div>
@@ -194,19 +190,19 @@ const jsonld = {
         <div class="exp-roles">
           <h3 class="lbl">{T.exp.rolesTitle}</h3>
           <ol class="timeline">
-            {T.exp.roles.map(([when, role, where, pts]) => (
+            {T.exp.roles.map(([when, role, where]) => (
               <li>
                 <span class="tl-when mono">{when}</span>
                 <div class="tl-body">
                   <b>{role}</b><span class="tl-where">{where}</span>
-                  <ul>{pts.map((x) => <li>{x}</li>)}</ul>
                 </div>
               </li>
             ))}
           </ol>
         </div>
         <div class="exp-skills">
-          <h3 class="lbl">{T.exp.skillsTitle}</h3>
+          <details class="fold">
+          <summary>{T.exp.skillsTitle}</summary>
           <div class="skills">
             {T.exp.skills.map(([g, items]) => (
               <div class="skill">
@@ -215,6 +211,7 @@ const jsonld = {
               </div>
             ))}
           </div>
+          </details>
           <div class="exp-side">
             <div class="tile">
               <span class="lbl">{T.exp.certTitle}</span>

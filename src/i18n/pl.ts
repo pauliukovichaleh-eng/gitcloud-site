@@ -34,7 +34,7 @@ export default {
     h1a: 'Administruję systemami i sieciami, ',
     h1b: 'automatyzuję je z AI',
     h1c: '.',
-    lead: 'Centrum to rdzeń GitCloud: na nim stoją panel, pulpit i pilot, pracują agenci i nocny potok. Obok konsola dla operatora sieci i zlecenia dla sklepów.',
+    lead: 'Systemy, sieci i agenci AI na jednym rdzeniu GitCloud. Szczegóły w każdym projekcie.',
     cta1: 'Realizacje',
     cta2: 'Napisz do mnie',
   },
@@ -59,7 +59,7 @@ export default {
   mod: {
     idx: '01 / realizacje',
     h2: 'Realizacje',
-    p: 'Przy każdej: zadanie, rozwiązanie i wynik. Nazw klientów nie podaję.',
+    p: 'Kliknij projekt, żeby zobaczyć zadanie, rozwiązanie i wynik.',
     all: 'Wszystkie',
     filterAria: 'Filtr projektów',
     categories: { wlasne: 'Systemy własne', platformy: 'Platformy', zlecenia: 'Zlecenia dla klientów' },
@@ -68,7 +68,7 @@ export default {
   console: {
     idx: '02 / interfejsy',
     h2: 'Interfejsy',
-    p: 'Prawdziwe ekrany na danych przykładowych: modele w panelu, pulpit, pilot ESP32 i konsola operatora sieci.',
+    p: 'Prawdziwe ekrany na danych przykładowych.',
     tabsAria: 'Ekrany systemu',
     open: 'Otwórz zrzut w pełnym rozmiarze',
     alt: 'Zrzut ekranu',
@@ -84,11 +84,11 @@ export default {
   agents: {
     idx: '03 / agenci',
     h2: 'Agenci',
-    p: 'Każdy agent ma swój zakres i dziennik spraw. Czego nie rozstrzygnie sam, dostaję jako kartę z wariantami. Zadania wykonuje Claude. Agenci mówią głosem i twarzą 3D.',
+    p: 'Każdy ma swój zakres. Czego nie rozstrzygnie sam, dostaję jako kartę z wariantami.',
     list: [
-      ['korespondencja i terminy', 'Zbiera pocztę, wiadomości i terminy. Terminy i sprawy do decyzji trafiają do panelu jako karty.'],
-      ['dyżur infrastruktury', 'Pilnuje alarmów i dzienników systemu, naprawia według procedur, także w nocy. Rano jeden raport.'],
-      ['modernizacja i pomysły', 'Sprawdza, co się zestarzało, i proponuje jedną lub dwie zmiany z ceną i zyskiem. Mówi rzadko i rzeczowo.'],
+      'korespondencja i terminy',
+      'dyżur infrastruktury',
+      'modernizacja i pomysły',
     ],
     alt: 'animowana twarz agenta',
     more: 'Jak działa zespół agentów',
@@ -96,7 +96,7 @@ export default {
   svc: {
     idx: '04 / usługi',
     h2: 'Usługi',
-    p: 'Zdalnie, z ceną ustaloną po diagnozie. Każda zmiana z kopią, testem i opisem.',
+    p: 'Zdalnie, z ceną po diagnozie.',
     areas: [
       ['Sklepy internetowe', 'Shoper, WooCommerce, WordPress: koszyk, wersje językowe, integracje, SEO.'],
       ['Infrastruktura i Microsoft 365', 'Serwery Linux i Windows, poczta, DNS, VPN, kopie i monitoring.'],
@@ -107,12 +107,6 @@ export default {
       ['Cena za całość', 'ustalona po krótkiej diagnozie, bez stawki godzinowej'],
       ['Zakres na piśmie', 'zakres, cena i termin uzgodnione przed startem'],
       ['Płatność po odbiorze', 'umowa i faktura przez Useme na życzenie'],
-    ],
-    steps: [
-      ['Opis', 'Kilka zdań o problemie lub celu.'],
-      ['Wycena', 'Przyczyna, cena i termin przed zmianami.'],
-      ['Wykonanie', 'Osobne konto, kopia stanu, praca zdalna.'],
-      ['Odbiór', 'Test wyniku i krótki opis zmian.'],
     ],
     more: 'Zrealizowane zlecenia: etapy, wyniki, testy',
     useme: (n: number, z: number, s: number) => `Profil na Useme: umowy ${n}, zakończone ${z}, sporne ${s}`,
@@ -149,7 +143,7 @@ export default {
   contact: {
     idx: '06 / kontakt',
     h2: 'Kontakt',
-    p: 'Napisz kilka zdań: co nie działa albo co ma powstać. Odpowiadam zwykle tego samego dnia, najpierw z oceną i ceną.',
+    p: 'Napisz, co nie działa albo co ma powstać. Odpowiadam zwykle tego samego dnia.',
     btn: 'Napisz wiadomość',
     copyAria: 'Skopiuj adres e-mail',
   },
