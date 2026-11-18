@@ -15,7 +15,7 @@ APPS = [
     ("gw/agenci:sally-rozmowa", "sally", 38, [("claude:sonnet", 4), ("groq:openai/gpt-oss-120b", 3), ("groq:qwen/qwen3.8-27b", 1)], 2400, 320),
     ("gw/agenci:tony-alarmy", "write_fast", 22, [("cerebras:gpt-oss-120b", 4), ("groq:openai/gpt-oss-120b", 3), ("google:gemini-3.5-flash-lite", 1)], 1600, 260),
     ("gw/agenci:podsumowanie-dnia", "digest", 6, [("claude:sonnet", 3), ("openai:gpt-5-mini", 2), ("google:gemini-3.8-flash", 1)], 5200, 700),
-    ("gw/agenci:mark-przeglad", "recheck", 9, [("claude:sonnet", 2), ("groq:openai/gpt-oss-120b", 2), ("openai:gpt-5-mini", 1)], 3800, 420),
+    ("gw/agenci:buzz-przeglad", "recheck", 9, [("claude:sonnet", 2), ("groq:openai/gpt-oss-120b", 2), ("openai:gpt-5-mini", 1)], 3800, 420),
     ("gw/agenci:szkola-egzamin", "judge", 18, [("openai:gpt-5-mini", 3), ("groq:openai/gpt-oss-120b", 3), ("cerebras:gpt-oss-120b", 2)], 1400, 150),
     ("gw/agenci:ocena-odpowiedzi", "score", 30, [("claude:haiku", 3), ("groq:openai/gpt-oss-20b", 3), ("google:gemini-3.1-flash-lite", 2), ("ollama:qwen3:4b-instruct", 1)], 700, 40),
     ("glos-asystenta", "voice", 14, [("cerebras:gpt-oss-120b", 4), ("groq:openai/gpt-oss-120b", 3), ("groq:qwen/qwen3.8-27b", 1)], 1100, 90),

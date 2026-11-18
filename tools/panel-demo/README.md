@@ -27,7 +27,7 @@ Okładka karty „Agenci AI” (16:9): wycinek 1280×720 ze zrzutu `/agenty` w 2
 WebP (jakość 82) do `public/img/projekty/agenci-okladka.webp`.
 
 Film „Agenci AI” (`/img/projekty/agenci.mp4`, 1280×720, ok. 25 s): `python rolik.py <katalog>` nagrywa przejście
-po panelu (przegląd /agenty, szczegóły sprawy, karty Tony, Sally, Mark) przez CDP screencast (JPEG 92) z narysowanym
+po panelu (przegląd /agenty, szczegóły sprawy, karty Tony, Sally, Buzz) przez CDP screencast (JPEG 92) z narysowanym
 kursorem; tłumaczy opisy postaci na polski, ukrywa listę harmonogramu i sprawdza cyrylicę w kadrze w każdym punkcie.
 Na końcu `koduj()`: klatki → ffconcat z czasami → H.264 (`-preset veryslow -crf 28 -tune stillimage`) prosto do
 `public/img/projekty/agenci.mp4`, plakat `agenci-wideo.jpg` = klatka z 2. sekundy.

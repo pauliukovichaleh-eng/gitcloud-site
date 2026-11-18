@@ -11,7 +11,7 @@ def _o(*opts):
 
 
 OPEN = [
-    ("mark", 6, "Migracja bazy demo na PostgreSQL 18?",
+    ("buzz", 6, "Migracja bazy demo na PostgreSQL 18?",
      "Plan w 3 krokach: kopia, migracja w oknie 15 min w niedzielę, test odtworzenia. Ryzyko niskie, testy 41 z 41.",
      _o(("Tak, w niedzielę", "Kopia przed i test odtworzenia po"), ("Za tydzień", "Najpierw próba na kopii"), ("Nie teraz", "Wrócić za miesiąc"))),
     ("handoff_tony", 23, "Dysk zewnętrzny kopii: SMART ostrzega",
@@ -23,7 +23,7 @@ OPEN = [
 ]
 DONE = [  # (źródło, min temu zadane, min do odpowiedzi, pytanie, wybrany, wynik, auto)
     ("claude", 95, 11, "Strona: zrzuty modeli na danych przykładowych?", "Zrzuty modeli", "Zrobione, 2 kadry, testy ok", False),
-    ("mark", 180, 4, "Nocny przegląd: 2 znaleziska do naprawy", "Napraw sam", "Naprawione 2 z 2, testy zielone", False),
+    ("buzz", 180, 4, "Nocny przegląd: 2 znaleziska do naprawy", "Napraw sam", "Naprawione 2 z 2, testy zielone", False),
     ("morning", 420, 0, "Raport dzienny o 05:12 czy o 07:00?", "O 07:00", "Harmonogram zmieniony", True),
     ("handoff_sally", 610, 26, "Spotkanie w czwartek: przenieść na 10:00?", "Tak, 10:00", "Kalendarz zaktualizowany", False),
 ]

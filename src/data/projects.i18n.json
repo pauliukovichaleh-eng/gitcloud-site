@@ -47,7 +47,7 @@
       "role": "Architecture, agent code, runbooks and tests.",
       "results": ["Alerts resolved at night, one report in the morning", "A decision for an agent with one tap", "A full log of agent cases"],
       "image_alt": "Agent panel: actions from the last 24 hours by agent, agent cards and the share of tasks resolved on their own, sample data",
-      "gallery_alt": ["A walk through the agent panel: tasks from the last 24 hours, details of one task, the cards of Tony, Sally and Mark; screen recording, sample data", "Agents in the last 24 hours: what they did on their own, what went to the owner, task log", "Technical agent card: day summary and 14-day success rate", "Assistant card: tasks of the day, success rate and 3D avatar", "The same panel on a phone"],
+      "gallery_alt": ["A walk through the agent panel: tasks from the last 24 hours, details of one task, the cards of Tony, Sally and Buzz; screen recording, sample data", "Agents in the last 24 hours: what they did on their own, what went to the owner, task log", "Technical agent card: day summary and 14-day success rate", "Assistant card: tasks of the day, success rate and 3D avatar", "The same panel on a phone"],
       "links_label": ["Operations panel: decisions and model costs"],
       "gallery_note": "A recording and screenshots of the panel running on sample data: a made-up task log and made-up agent results, no connection to the database or network; missing Polish interface labels translated, the schedule list hidden in the recording.",
       "stack": ["Python", "FastAPI", "PostgreSQL", "LLM API"]
@@ -258,7 +258,7 @@
       "role": "Архитектура, код агентов, регламенты и тесты.",
       "results": ["Тревоги решаются ночью, утром один отчёт", "Решение для агента одним касанием", "Полный журнал дел агентов"],
       "image_alt": "Панель агентов: действия за сутки по агентам, карточки агентов и доля дел, решённых самостоятельно, примерные данные",
-      "gallery_alt": ["Проход по панели агентов: дела за сутки, подробности одного дела, карточки Тони, Салли и Марка; запись экрана, примерные данные", "Агенты за сутки: что сделали сами, что передали владельцу, журнал дел", "Карточка технического агента: итог дня и успешность за 14 дней", "Карточка ассистентки: дела дня, успешность и 3D-аватар", "Та же панель на телефоне"],
+      "gallery_alt": ["Проход по панели агентов: дела за сутки, подробности одного дела, карточки Тони, Салли и Базза; запись экрана, примерные данные", "Агенты за сутки: что сделали сами, что передали владельцу, журнал дел", "Карточка технического агента: итог дня и успешность за 14 дней", "Карточка ассистентки: дела дня, успешность и 3D-аватар", "Та же панель на телефоне"],
       "links_label": ["Операционная панель: решения и стоимость моделей"],
       "gallery_note": "Запись и снимки панели, запущенной на примерных данных: выдуманный журнал дел и выдуманные итоги агентов, без связи с базой и сетью; недостающие польские надписи интерфейса переведены, в записи скрыт список расписания.",
       "stack": ["Python", "FastAPI", "PostgreSQL", "LLM API"]

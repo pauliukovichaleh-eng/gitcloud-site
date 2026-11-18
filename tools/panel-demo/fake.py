@@ -21,18 +21,18 @@ T = {
               ("close", "Zamknięta sprawa: odnowienie domeny demo", "sally", "Opłacone, ważne do 2027"),
               ("send", "Poranne podsumowanie dnia", "sally", "6 punktów, 1 do decyzji"),
               ("handoff", "Wybór oferty hostingu: dwa warianty", "sally", "Karta decyzji w panelu")],
-    "mark": [("check", "Przegląd zależności: 4 repozytoria", "mark", "2 aktualizacje bezpieczeństwa"),
-             ("decide", "Propozycja: cache zapytań panelu", "mark", "Rada agentów: tak, 3 z 3"),
-             ("fix", "Aktualizacja biblioteki HTTP w repozytorium demo", "mark", "Testy zielone, 41 z 41"),
+    "buzz": [("check", "Przegląd zależności: 4 repozytoria", "buzz", "2 aktualizacje bezpieczeństwa"),
+             ("decide", "Propozycja: cache zapytań panelu", "buzz", "Rada agentów: tak, 3 z 3"),
+             ("fix", "Aktualizacja biblioteki HTTP w repozytorium demo", "buzz", "Testy zielone, 41 z 41"),
              ("check", "Nocny przegląd kodu", "review", "Znaleziska 2, naprawione 2"),
-             ("fix", "Szybsza strona statusu: 4,7 s do 0,3 s", "mark", "Pomiar przed i po w dzienniku"),
-             ("handoff", "Migracja bazy na nową wersję: zgoda właściciela", "mark", "Karta z planem i ryzykiem")],
+             ("fix", "Szybsza strona statusu: 4,7 s do 0,3 s", "buzz", "Pomiar przed i po w dzienniku"),
+             ("handoff", "Migracja bazy na nową wersję: zgoda właściciela", "buzz", "Karta z planem i ryzykiem")],
 }
 ACTIONS = []
 _id = 1
 for d in range(14):
     for agent, pool in T.items():
-        for _ in range(R.choice([1, 2, 2, 3, 3, 4]) if agent != "mark" else R.choice([0, 1, 1, 2])):
+        for _ in range(R.choice([1, 2, 2, 3, 3, 4]) if agent != "buzz" else R.choice([0, 1, 1, 2])):
             kind, title, src, res = R.choice(pool)
             at = (NOW - timedelta(days=d)).replace(hour=R.choice([2, 3, 4, 6, 7, 9, 11, 14, 16, 19, 22]), minute=R.randrange(60))
             if at > NOW:
@@ -41,7 +41,7 @@ for d in range(14):
             ACTIONS.append({"id": _id, "at": at, "agent": agent, "kind": kind, "title": title, "why": "", "result": res,
                             "ok": ok, "source": src, "ref": "", "steps": []})
             _id += 1
-for i, (ag, k) in enumerate([("tony", 0), ("sally", 0), ("tony", 3), ("mark", 1), ("sally", 5)]):
+for i, (ag, k) in enumerate([("tony", 0), ("sally", 0), ("tony", 3), ("buzz", 1), ("sally", 5)]):
     kind, title, src, res = T[ag][k]
     ACTIONS.append({"id": _id + i, "at": NOW - timedelta(minutes=7 + 9 * i), "agent": ag, "kind": kind, "title": title,
                     "why": "", "result": res, "ok": True, "source": src, "ref": "", "steps": []})

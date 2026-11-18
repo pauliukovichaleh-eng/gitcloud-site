@@ -16,7 +16,7 @@ with sync_playwright() as p:
     pg.on("console", lambda m: m.type == "error" and errs.append(m.text[:120]))
     pg.on("response", lambda r: r.status >= 400 and errs.append(f"{r.status} {r.url}"))
     # прогрев: кэш картинок/шрифтов, чтобы в записи не было пустых кадров
-    for u in ("/agenty/tony", "/agenty/sally", "/agenty/mark", "/agenty"):
+    for u in ("/agenty/tony", "/agenty/sally", "/agenty/buzz", "/agenty"):
         pg.goto(base + u, wait_until="networkidle")
     pg.wait_for_timeout(500)
     cdp = ctx.new_cdp_session(pg)
@@ -47,7 +47,7 @@ with sync_playwright() as p:
     scroll(330, 1100); pg.wait_for_timeout(1700); check("tony-330")
     scroll(0, 700)
     go(".card a[href='/agenty/sally']", 2600); check("sally-top")
-    go(".card a[href='/agenty/mark']", 2600); check("mark-top")
+    go(".card a[href='/agenty/buzz']", 2600); check("buzz-top")
     cdp.send("Page.stopScreencast"); pg.wait_for_timeout(200)
     b.close()
 json.dump({"frames": frames, "errs": errs, "cyr": cyr}, open(out + "/meta.json", "w"), ensure_ascii=False, indent=0)

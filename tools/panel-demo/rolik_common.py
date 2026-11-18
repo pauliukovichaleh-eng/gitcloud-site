@@ -3,17 +3,17 @@ prywatnych elementów, narysowany kursor, kontrola cyrylicy w kadrze."""
 import json
 
 # Zamiany napisów (regex → tekst), kolejno; najpierw dłuższe. Role agentów jak na stronie: Sally korespondencja i terminy,
-# Tony dyżur infrastruktury, Mark modernizacja i analiza.
+# Tony dyżur infrastruktury, Buzz modernizacja i pomysły.
 PL = [
     ["^снято ", "zdjęte "], ["пойманные щитом", "złapane przez tarczę"], ["^Банов всего$", "Blokad łącznie"], ["^Файрвол Proxmox$", "Zapora Proxmox"],
     ["Техник дома: сервер, машины, сеть, копии, код, задания Клоду\\. ИИ на домашнем сервере, это не скрывает\\.",
      "Dyżurny infrastruktury: serwer, maszyny wirtualne, sieć, kopie zapasowe, alarmy. AI na własnym serwerze, nie ukrywa tego."],
     ["Собеседница и диктор дома:[^]*", "Korespondencja i terminy: poczta, sprawy, przypomnienia. AI na własnym serwerze, nie ukrywa tego."],
-    ["Модернизатор дома:[^]*", "Modernizacja i analiza: sprawdza, co się zestarzało i które nowe wersje są warte uwagi, potem proponuje wdrożenie. AI na własnym serwerze, nie ukrywa tego."],
+    ["Модернизатор (дома|сервера Салли):[^]*", "Modernizacja i pomysły: sprawdza, co się zestarzało, i przynosi jedną lub dwie zmiany z ceną i zyskiem; pilnuje kopii zapasowych. AI na własnym serwerze, nie ukrywa tego."],
     ["модернизатор, админ, аналитик, новостник, хранитель копий", "modernizacja, administracja, analiza, kopie"],
     [r"из (\d+) действий", "z $1 działań"], ["[hH][rR], бухгалтер и диктор", "korespondencja i terminy"],
     ["kadry · księgowość · lektor", "korespondencja i terminy"], ["кадры · бухгалтерия · диктор", "korespondencja i terminy"],
-    ["kadry, księgowość i lektor", "korespondencja i terminy"], ["Вживую", "Na żywo"], ["Мастерская", "Warsztat"],
+    ["kadry, księgowość i lektor", "korespondencja i terminy"], ["^Не смогли", "Nieudane"], ["Вживую", "Na żywo"], ["Мастерская", "Warsztat"],
     ["меньше: ", "najmniej: "], ["ответов", "odpowiedzi"], ["сломано", "zepsute"], ["отказов", "odmów"], ["провал экзамена", "egzamin oblany"],
     ["категория", "kategoria"], ["аналитика", "analiza"], ["новости", "wiadomości"], ["Открыть", "Otwórz"], ["дольше всех", "najdłużej"],
     [" мин", " min"], ["(\\d) ч(?![а-я])", "$1 godz."], ["само: ", "automatycznie: "], ["Claude готовит", "Claude przygotowuje"], ["вопросы", "pytania"],
