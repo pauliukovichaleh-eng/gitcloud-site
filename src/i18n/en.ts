@@ -37,10 +37,6 @@ const en: Dict = {
     cta1: 'Work',
     cta2: 'Write to me',
   },
-  kpis: [
-    ['Oracle OCI AI', 'AI Foundations Associate exam'],
-    ['Years in IT', 'systems and network administration'],
-  ],
   eco: {
     title: 'The GitCloud core and what runs on it: AI agents, panel, ESP32 remote, night, desktop, shield',
     aria: 'GitCloud ecosystem map',
@@ -113,6 +109,7 @@ const en: Dict = {
   exp: {
     idx: '05 / about',
     h2: 'About me',
+    about: 'A systems and network administrator who automates. I take care of a company\'s infrastructure: servers, network, mail and backups, and hand repetitive work over to scripts and AI agents. I work remotely, to the point and in writing.',
     bio: [
       'Over four years in systems and network administration, in companies and multi-site environments. Today I combine classic administration with automation and AI.',
       'I own the full cycle: from diagnosis and design, through implementation, to operations and documentation.',
@@ -123,7 +120,6 @@ const en: Dict = {
       ['2023-2026', 'IT Administrator', 'IT services, multi-branch environment', ['Windows Server and Active Directory, Microsoft 365 and Intune, Linux and Docker', 'Cisco and Fortigate networks, VPN, monitoring with Grafana and Zabbix']],
       ['2022-2023', 'IT Support Specialist', 'on-site deployments for business clients', ['Rack infrastructure, network devices and POS systems', 'Support together with an English-speaking team']],
     ],
-    skillsTitle: 'Skills',
     skills: [
       ['Cloud and Modern Workplace', ['Microsoft 365', 'Entra ID', 'Intune', 'Exchange Online', 'Google Workspace', 'Azure', 'Oracle Cloud']],
       ['Systems and virtualization', ['Windows Server', 'Active Directory', 'Linux', 'Docker', 'Proxmox', 'VMware']],
@@ -132,9 +128,7 @@ const en: Dict = {
       ['AI in automation', ['LLM agents', 'Claude and OpenAI APIs', 'cost-aware model choice', 'Playwright', 'Whisper', 'local models']],
       ['Security and monitoring', ['IAM and MFA', 'Linux hardening', 'Suricata and CrowdSec', 'Grafana', 'Zabbix', 'Loki']],
     ],
-    certTitle: 'Certifications and training',
     certs: [['Oracle Cloud Infrastructure AI Foundations Associate', 'exam 2026, score 98%, valid until 2028'], ['Microsoft Azure Administrator (AZ-104)', 'training path, 2023']],
-    langsTitle: 'Languages',
     langs: [['Polish', 'C2'], ['Russian', 'native'], ['Belarusian', 'fluent'], ['English', 'B2']],
   },
   contact: {

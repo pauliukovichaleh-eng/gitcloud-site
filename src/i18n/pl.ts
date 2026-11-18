@@ -37,10 +37,6 @@ export default {
     cta1: 'Realizacje',
     cta2: 'Napisz do mnie',
   },
-  kpis: [
-    ['Oracle OCI AI', 'egzamin AI Foundations Associate'],
-    ['Lata w IT', 'administracja systemów i sieci'],
-  ],
   eco: {
     title: 'Rdzeń GitCloud i to, co na nim działa: agenci AI, panel, pilot ESP32, noc, pulpit, tarcza',
     aria: 'Mapa ekosystemu GitCloud',
@@ -113,6 +109,7 @@ export default {
   exp: {
     idx: '05 / o mnie',
     h2: 'O mnie',
+    about: 'Administrator systemów i sieci, który automatyzuje. Biorę na siebie infrastrukturę firmy: serwery, sieć, pocztę i kopie, a powtarzalną pracę przekazuję skryptom i agentom AI. Pracuję zdalnie, konkretnie i na piśmie.',
     bio: [
       'Ponad cztery lata w administracji systemów i sieci, w firmach i środowiskach wielooddziałowych. Dziś łączę klasyczną administrację z automatyzacją i AI.',
       'Odpowiadam za cały cykl: od diagnozy i projektu, przez wdrożenie, po utrzymanie i dokumentację.',
@@ -123,7 +120,6 @@ export default {
       ['2023-2026', 'Administrator IT', 'serwis IT, środowisko wielooddziałowe', ['Windows Server i Active Directory, Microsoft 365 i Intune, Linux i Docker', 'Sieci Cisco i Fortigate, VPN, monitoring w Grafanie i Zabbixie']],
       ['2022-2023', 'Specjalista IT Support', 'wdrożenia u klientów biznesowych', ['Infrastruktura rack, urządzenia sieciowe i systemy POS', 'Wsparcie we współpracy z anglojęzycznym zespołem']],
     ],
-    skillsTitle: 'Kompetencje',
     skills: [
       ['Chmura i Modern Workplace', ['Microsoft 365', 'Entra ID', 'Intune', 'Exchange Online', 'Google Workspace', 'Azure', 'Oracle Cloud']],
       ['Systemy i wirtualizacja', ['Windows Server', 'Active Directory', 'Linux', 'Docker', 'Proxmox', 'VMware']],
@@ -132,9 +128,7 @@ export default {
       ['AI w automatyzacji', ['agenci LLM', 'API Claude i OpenAI', 'dobór modeli pod koszt', 'Playwright', 'Whisper', 'modele lokalne']],
       ['Bezpieczeństwo i monitoring', ['IAM i MFA', 'hardening Linux', 'Suricata i CrowdSec', 'Grafana', 'Zabbix', 'Loki']],
     ],
-    certTitle: 'Certyfikaty i szkolenia',
     certs: [['Oracle Cloud Infrastructure AI Foundations Associate', 'egzamin 2026, wynik 98%, ważny do 2028'], ['Microsoft Azure Administrator (AZ-104)', 'ścieżka szkoleniowa, 2023']],
-    langsTitle: 'Języki',
     langs: [['polski', 'C2'], ['rosyjski', 'ojczysty'], ['białoruski', 'biegły'], ['angielski', 'B2']],
   },
   contact: {

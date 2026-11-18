@@ -27,14 +27,13 @@ const uiShots: [string, string, number, number, string, string, boolean][] = [
   ['pilot', '/img/projekty/pilot-kafelki.png', 1280, 680, 'pilot-esp32', 'pilot esp32 · 320×170', true],
   ['isp', '/img/demo/dashboard.webp', 2000, 1250, 'platforma-isp', 'demo.gitcloud · dashboard', false],
 ];
-const kpiVals = [`${stats.exam}%`, `${stats.years}+`];
 const agentMeta = [['Sally', 'sally', 'm'], ['Tony', 'tony', 'b'], ['Buzz', 'buzz', 'g']];
 const jsonld = {
   '@context': 'https://schema.org',
   '@graph': [
     { '@type': 'WebSite', '@id': `${SITE}/#website`, name: 'GitCloud', alternateName: T.ld.altNames, url: URL0, inLanguage: T.inLanguage, publisher: { '@id': `${SITE}/#org` } },
     { '@type': ['Organization', 'ProfessionalService'], '@id': `${SITE}/#org`, name: 'GitCloud', url: `${SITE}/`, logo: `${SITE}/favicon-192.png`, email: `mailto:${EMAIL}`, areaServed: 'PL', description: T.ld.orgDesc, founder: { '@id': `${SITE}/#aleh` } },
-    { '@type': 'Person', '@id': `${SITE}/#aleh`, name: 'Aleh Pauliukovich', url: `${SITE}/`, image: `${SITE}/img/aleh.jpg`, jobTitle: T.ld.job, knowsAbout: T.ld.knows, knowsLanguage: ['pl', 'ru', 'be', 'en'], hasCredential: { '@type': 'EducationalOccupationalCredential', name: 'Oracle Cloud Infrastructure Certified AI Foundations Associate', credentialCategory: 'certification', recognizedBy: { '@type': 'Organization', name: 'Oracle' } }, worksFor: { '@id': `${SITE}/#org` } },
+    { '@type': 'Person', '@id': `${SITE}/#aleh`, name: 'Aleh Pauliukovich', url: `${SITE}/`, image: `${SITE}/img/aleh.jpg`, jobTitle: T.ld.job, knowsAbout: T.ld.knows, knowsLanguage: ['pl', 'ru', 'be', 'en'], worksFor: { '@id': `${SITE}/#org` } },
     { '@type': 'ItemList', name: T.ld.list, itemListElement: ordered.map((p, i) => ({ '@type': 'ListItem', position: i + 1, url: `${SITE}${projectPath(p.slug, lang)}`, name: p.title })) },
     { '@type': 'FAQPage', mainEntity: T.faq.map(([q, a]) => ({ '@type': 'Question', name: q, acceptedAnswer: { '@type': 'Answer', text: a } })) },
   ],
@@ -60,13 +59,6 @@ const jsonld = {
         </div>
       </div>
       <EcoMap lang={lang} />
-    </div>
-    <div class="wrap">
-      <ul class="kpis">
-        {kpiVals.map((v, i) => (
-          <li class="tile"><span class="lbl">{T.kpis[i][0]}</span><b class="val mono">{v}</b><span class="sub">{T.kpis[i][1]}</span></li>
-        ))}
-      </ul>
     </div>
   </section>
 
@@ -172,7 +164,7 @@ const jsonld = {
     </div>
   </section>
 
-  <!-- ═══ 05 · O MNIE (kotwica #doswiadczenie zostaje; ścieżka zawodowa tylko w /cv/, decyzja #1773) ═══ -->
+  <!-- ═══ 05 · O MNIE: kim jestem jako specjalista, bez certyfikatów i stażu (kotwica #doswiadczenie zostaje; CV tylko pod /cv/) ═══ -->
   <section class="sec" id="doswiadczenie">
     <span id="operator" aria-hidden="true"></span>
     <div class="wrap">
@@ -181,35 +173,10 @@ const jsonld = {
         <div class="who-txt">
           <span class="idx mono">{T.exp.idx}</span>
           <h2>{T.exp.h2}</h2>
-          <p>{T.exp.bio[0]}</p>
+          <p>{T.exp.about}</p>
         </div>
       </div>
 
-      <div class="exp">
-        <div class="exp-skills">
-          <details class="fold">
-          <summary>{T.exp.skillsTitle}</summary>
-          <div class="skills">
-            {T.exp.skills.map(([g, items]) => (
-              <div class="skill">
-                <b>{g}</b>
-                <div class="tags">{items.map((x) => <span>{x}</span>)}</div>
-              </div>
-            ))}
-          </div>
-          </details>
-          <div class="exp-side">
-            <div class="tile">
-              <span class="lbl">{T.exp.certTitle}</span>
-              <ul class="certs">{T.exp.certs.map(([cn, cd]) => <li><b>{cn}</b><span>{cd}</span></li>)}</ul>
-            </div>
-            <div class="tile">
-              <span class="lbl">{T.exp.langsTitle}</span>
-              <ul class="langs-list">{T.exp.langs.map(([ln, lv]) => <li><span>{ln}</span><b class="mono">{lv}</b></li>)}</ul>
-            </div>
-          </div>
-        </div>
-      </div>
     </div>
   </section>
 

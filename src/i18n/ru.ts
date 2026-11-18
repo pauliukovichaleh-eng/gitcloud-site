@@ -37,10 +37,6 @@ const ru: Dict = {
     cta1: 'Кейсы',
     cta2: 'Написать мне',
   },
-  kpis: [
-    ['Oracle OCI AI', 'экзамен AI Foundations Associate'],
-    ['Лет в IT', 'администрирование систем и сетей'],
-  ],
   eco: {
     title: 'Ядро GitCloud и то, что на нём работает: AI-агенты, панель, пульт ESP32, ночь, рабочий стол, щит',
     aria: 'Карта экосистемы GitCloud',
@@ -113,6 +109,7 @@ const ru: Dict = {
   exp: {
     idx: '05 / обо мне',
     h2: 'Обо мне',
+    about: 'Администратор систем и сетей, который автоматизирует. Беру на себя инфраструктуру фирмы: серверы, сеть, почту и копии, а повторяющуюся работу передаю скриптам и AI-агентам. Работаю удалённо, по делу и письменно.',
     bio: [
       'Более четырёх лет в администрировании систем и сетей, в компаниях и многофилиальных средах. Сегодня соединяю классическое администрирование с автоматизацией и AI.',
       'Отвечаю за весь цикл: от диагностики и проекта через внедрение до сопровождения и документации.',
@@ -123,7 +120,6 @@ const ru: Dict = {
       ['2023-2026', 'IT-администратор', 'IT-сервис, многофилиальная среда', ['Windows Server и Active Directory, Microsoft 365 и Intune, Linux и Docker', 'Сети Cisco и Fortigate, VPN, мониторинг в Grafana и Zabbix']],
       ['2022-2023', 'Специалист IT Support', 'внедрения у бизнес-клиентов', ['Стойки, сетевое оборудование и POS-системы', 'Поддержка вместе с англоязычной командой']],
     ],
-    skillsTitle: 'Компетенции',
     skills: [
       ['Облако и Modern Workplace', ['Microsoft 365', 'Entra ID', 'Intune', 'Exchange Online', 'Google Workspace', 'Azure', 'Oracle Cloud']],
       ['Системы и виртуализация', ['Windows Server', 'Active Directory', 'Linux', 'Docker', 'Proxmox', 'VMware']],
@@ -132,9 +128,7 @@ const ru: Dict = {
       ['AI в автоматизации', ['LLM-агенты', 'API Claude и OpenAI', 'выбор модели по цене', 'Playwright', 'Whisper', 'локальные модели']],
       ['Безопасность и мониторинг', ['IAM и MFA', 'hardening Linux', 'Suricata и CrowdSec', 'Grafana', 'Zabbix', 'Loki']],
     ],
-    certTitle: 'Сертификаты и обучение',
     certs: [['Oracle Cloud Infrastructure AI Foundations Associate', 'экзамен 2026, результат 98%, действует до 2028'], ['Microsoft Azure Administrator (AZ-104)', 'учебный курс, 2023']],
-    langsTitle: 'Языки',
     langs: [['польский', 'C2'], ['русский', 'родной'], ['белорусский', 'свободно'], ['английский', 'B2']],
   },
   contact: {
