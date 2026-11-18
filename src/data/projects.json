@@ -93,9 +93,17 @@
         {
           "src": "/img/projekty/pracodawca-okladka.webp",
           "alt": "Działy panelu: bieżące sprawy i zadania, konta i dostęp, domeny i rejestry, przegląd z AI, decyzje i dziennik, baza wiedzy"
+        },
+        {
+          "src": "/img/projekty/pracodawca-dostep.jpg",
+          "alt": "Droga zapytania: przeglądarka, logowanie firmowe, Caddy, usługa bez portów na zewnątrz; w bazie osobne role do odczytu, decyzji i przyjmowania alertów"
+        },
+        {
+          "src": "/img/projekty/pracodawca-przeglad.jpg",
+          "alt": "Poranny przegląd: agent AI zbiera sprawy, człowiek zatwierdza wariant jednym kliknięciem, decyzja trafia do dziennika; poprawki rdzenia wracają w obie strony bez danych firmy"
         }
       ],
-      "gallery_note": "Schemat narysowany od zera. Bez zrzutów systemu, nazw, osób i danych pracodawcy (umowa o poufności).",
+      "gallery_note": "Schematy narysowane od zera. Bez zrzutów systemu, nazw, osób i danych pracodawcy (umowa o poufności).",
       "problem": "Dział IT w międzynarodowej firmie produkcyjnej potrzebował jednego miejsca na bieżące sprawy, konta, domeny i decyzje, dostępnego tylko dla zespołu po zalogowaniu firmowym.",
       "solution": "Panel na wspólnym rdzeniu GitCloud: strona z bieżącymi sprawami, zadania, podsumowanie i trendy wskaźników, kalendarz zespołu, rejestry, dziennik decyzji i wyszukiwanie w bazie wiedzy. Poranny przegląd przygotowuje agent AI, a człowiek zatwierdza wariant jednym kliknięciem. Pierwszą wersję postawiłem na prototypie w PHP, po kilku dniach całość działała już jako usługa w Pythonie.",
       "stack": [
@@ -135,9 +143,17 @@
         {
           "src": "/img/projekty/rdzen-okladka.webp",
           "alt": "Panel osobisty, panel IT w pracy, pulpit, pilot i strona nad jednym rdzeniem: tokeny kolorów, okna i widżety, decyzje, powiadomienia"
+        },
+        {
+          "src": "/img/projekty/rdzen-serwis.jpg",
+          "alt": "Serwis na rdzeniu: rdzeń daje powłokę, menu, okna, decyzje, Web Push i strony na żywo; serwis dokłada swoje menu, sekcje i dane, a plik o tej samej nazwie nadpisuje plik rdzenia"
+        },
+        {
+          "src": "/img/projekty/rdzen-tokeny.jpg",
+          "alt": "Jeden plik tokenów: narzędzie robi CSS, JSON i nagłówek C dla strony, panelu, pulpitu i pilota; bramki CI z zapadką pilnują kolorów, animacji, nieużywanego CSS, warstw kodu, kontraktu API i wydajności"
         }
       ],
-      "gallery_note": "Schemat narysowany na podstawie repozytorium rdzenia.",
+      "gallery_note": "Schematy narysowane na podstawie repozytorium rdzenia.",
       "problem": "Każdy system miał własne kolory, okna i powiadomienia, a poprawkę z jednego panelu trzeba było ręcznie przenosić do drugiego.",
       "solution": "Rdzeń w Pythonie daje powłokę strony, menu, okna, widżety, moduł decyzji, powiadomienia Web Push i strony na żywo przez WebSocket. Serwis dokłada tylko swoje menu, sekcje i dane, a plik o tej samej nazwie nadpisuje plik rdzenia. Kolory, odstępy i ruch są w jednym pliku tokenów, z którego narzędzie robi CSS, JSON i nagłówek C dla pilota. Do firmowego panelu kod trafia kopią, bez dostępu do moich repozytoriów, a dane zostają osobno.",
       "stack": [

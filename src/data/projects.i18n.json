@@ -176,12 +176,12 @@
       "lead": "An internal IT panel at my current employer: matters, accounts, domains and decisions in one place, on the GitCloud core.",
       "status": "In daily use since October 2026",
       "image_alt": "Platform diagram: six panel sections on the shared GitCloud core and the access rules",
-      "gallery_note": "Diagram drawn from scratch. No screenshots, names, people or data of the employer (confidentiality agreement).",
+      "gallery_note": "Diagrams drawn from scratch. No screenshots, names, people or data of the employer (confidentiality agreement).",
       "problem": "The IT department of an international manufacturing company needed one place for current matters, accounts, domains and decisions, available only to the team after company sign-in.",
       "solution": "A panel on the shared GitCloud core: a page with current matters, tasks, a summary and metric trends, a team calendar, registers, a decision log and knowledge base search. An AI agent prepares the morning review and a person approves an option with one click. I built the first version on a PHP prototype; a few days later everything ran as a Python service.",
       "role": "Architecture, code, database, deployment and access rules.",
       "results": ["Access only through company sign-in, separate database roles for reading, decisions and alert intake", "A service with minimal privileges and no ports exposed to the outside", "Core fixes flow back to the other GitCloud systems and vice versa, without company data", "Interface tests on phones too, Web Push notifications"],
-      "gallery_alt": ["Panel sections: current matters and tasks, accounts and access, domains and registers, AI review, decisions and log, knowledge base"],
+      "gallery_alt": ["Panel sections: current matters and tasks, accounts and access, domains and registers, AI review, decisions and log, knowledge base", "Request path: browser, company sign-in, Caddy, a service with no ports exposed; separate database roles for reading, decisions and accepting alerts", "Morning review: an AI agent gathers the matters, a person approves an option with one click, the decision goes to the log; core fixes travel both ways without company data"],
       "links_label": ["Operations panel on the same core"]
     },
     "rdzen-gitcloud": {
@@ -189,12 +189,12 @@
       "lead": "One library with the look, windows, decisions and notifications. The panel, the desktop, the remote, this website and the IT department panel at work all use it.",
       "status": "Developed daily since October 2026",
       "image_alt": "Diagram: five systems above the shared GitCloud core and what the core gives them",
-      "gallery_note": "Diagram drawn from the core repository.",
+      "gallery_note": "Diagrams drawn from the core repository.",
       "problem": "Every system had its own colours, windows and notifications, and a fix in one panel had to be carried over to the other by hand.",
       "solution": "The Python core provides the page shell, menu, windows, widgets, a decision module, Web Push notifications and live pages over WebSocket. A service adds only its own menu, sections and data, and a file with the same name overrides the core one. Colours, spacing and motion live in one token file, from which a tool builds CSS, JSON and a C header for the remote. The company panel gets the code as a copy, without access to my repositories, and the data stays separate.",
       "role": "Architecture, code, tests and carrying changes between services.",
       "results": ["One fix reaches both the personal panel and the IT department panel at work", "Colours from one file: website, panel, desktop and the remote's screen", "Ratcheting CI gates: hand-written colours, animations and unused CSS can only go down", "Tests of both services in Chromium and Firefox before every change"],
-      "gallery_alt": ["Personal panel, IT panel at work, desktop, remote and website above one core: colour tokens, windows and widgets, decisions, notifications"],
+      "gallery_alt": ["Personal panel, IT panel at work, desktop, remote and website above one core: colour tokens, windows and widgets, decisions, notifications", "A service on the core: the core provides the shell, menu, windows, decisions, Web Push and live pages; the service adds its own menu, sections and data, and a file with the same name overrides the core file", "One token file: a tool generates CSS, JSON and a C header for the website, panel, desktop and remote; ratcheted CI gates guard colours, animations, unused CSS, code layers, the API contract and performance"],
       "links_label": ["IT department panel on this core", "Operations panel on this core"]
     }
   },
@@ -374,12 +374,12 @@
       "lead": "Внутренняя панель ИТ-отдела у нынешнего работодателя: дела, учётные записи, домены и решения в одном месте, на ядре GitCloud.",
       "status": "В ежедневной работе с октября 2026",
       "image_alt": "Схема платформы: шесть разделов панели на общем ядре GitCloud и правила доступа",
-      "gallery_note": "Схема нарисована с нуля. Без снимков, названий, людей и данных работодателя (соглашение о конфиденциальности).",
+      "gallery_note": "Схемы нарисованы с нуля. Без снимков, названий, людей и данных работодателя (соглашение о конфиденциальности).",
       "problem": "ИТ-отделу международной производственной компании нужно было одно место для текущих дел, учётных записей, доменов и решений, доступное только команде после входа под рабочей учётной записью.",
       "solution": "Панель на общем ядре GitCloud: страница текущих дел, задачи, сводка и тренды показателей, календарь команды, реестры, журнал решений и поиск по базе знаний. Утренний разбор готовит агент ИИ, а человек одним нажатием утверждает вариант. Первую версию я поднял на прототипе на PHP, через несколько дней всё работало как служба на Python.",
       "role": "Архитектура, код, база данных, развёртывание и правила доступа.",
       "results": ["Вход только через рабочую учётную запись, отдельные роли базы для чтения, решений и приёма алертов", "Служба с минимальными правами, без портов наружу", "Исправления ядра возвращаются в остальные системы GitCloud и обратно, без данных компании", "Проверки интерфейса и на телефоне, уведомления Web Push"],
-      "gallery_alt": ["Разделы панели: текущие дела и задачи, учётные записи и доступ, домены и реестры, разбор с ИИ, решения и журнал, база знаний"],
+      "gallery_alt": ["Разделы панели: текущие дела и задачи, учётные записи и доступ, домены и реестры, разбор с ИИ, решения и журнал, база знаний", "Путь запроса: браузер, вход через корпоративную учётную запись, Caddy, служба без портов наружу; в базе отдельные роли для чтения, решений и приёма тревог", "Утренний разбор: агент ИИ собирает дела, человек утверждает вариант одним нажатием, решение уходит в журнал; правки ядра идут в обе стороны без данных фирмы"],
       "links_label": ["Операционная панель на том же ядре"]
     },
     "rdzen-gitcloud": {
@@ -387,12 +387,12 @@
       "lead": "Одна библиотека с внешним видом, окнами, решениями и уведомлениями. На ней работают панель, рабочий стол, пульт, этот сайт и панель ИТ-отдела на работе.",
       "status": "Развивается каждый день с октября 2026",
       "image_alt": "Схема: пять систем над общим ядром GitCloud и то, что ядро им даёт",
-      "gallery_note": "Схема нарисована по репозиторию ядра.",
+      "gallery_note": "Схемы нарисованы по репозиторию ядра.",
       "problem": "У каждой системы были свои цвета, окна и уведомления, а исправление в одной панели приходилось вручную переносить в другую.",
       "solution": "Ядро на Python даёт оболочку страницы, меню, окна, виджеты, модуль решений, уведомления Web Push и живые страницы через WebSocket. Сервис добавляет только своё меню, разделы и данные, а файл с тем же именем перекрывает файл ядра. Цвета, отступы и движение лежат в одном файле токенов, из которого инструмент делает CSS, JSON и заголовок C для пульта. В рабочую панель код попадает копией, без доступа к моим репозиториям, а данные остаются раздельными.",
       "role": "Архитектура, код, тесты и перенос изменений между сервисами.",
       "results": ["Одно исправление попадает и в личную панель, и в панель ИТ-отдела на работе", "Цвета из одного файла: сайт, панель, рабочий стол и экран пульта", "Ворота CI с храповиком: вписанных вручную цветов, анимаций и неиспользуемого CSS может только убывать", "Перед изменением проверки обоих сервисов в Chromium и Firefox"],
-      "gallery_alt": ["Личная панель, ИТ-панель на работе, рабочий стол, пульт и сайт над одним ядром: токены цветов, окна и виджеты, решения, уведомления"],
+      "gallery_alt": ["Личная панель, ИТ-панель на работе, рабочий стол, пульт и сайт над одним ядром: токены цветов, окна и виджеты, решения, уведомления", "Сервис на ядре: ядро даёт оболочку, меню, окна, решения, Web Push и живые страницы; сервис добавляет своё меню, разделы и данные, а файл с тем же именем заменяет файл ядра", "Один файл токенов: инструмент делает CSS, JSON и заголовок C для сайта, панели, рабочего стола и пульта; ворота CI с храповиком следят за цветами, анимацией, неиспользуемым CSS, слоями кода, контрактом API и скоростью"],
       "links_label": ["Панель ИТ-отдела на этом ядре", "Операционная панель на этом ядре"]
     }
   }

@@ -1,0 +1,20 @@
+/* Wspólny wygląd schematów (ciemne tło, panel, moduły, rdzeń): rdzen*.html, pracodawca*.html. */
+@font-face{font-family:Onest;src:url(../../node_modules/@fontsource-variable/onest/files/onest-latin-ext-wght-normal.woff2) format('woff2');font-weight:100 900}
+@font-face{font-family:Onest;src:url(../../node_modules/@fontsource-variable/onest/files/onest-latin-wght-normal.woff2) format('woff2');font-weight:100 900}
+@font-face{font-family:JBM;src:url(../../node_modules/@fontsource-variable/jetbrains-mono/files/jetbrains-mono-latin-wght-normal.woff2) format('woff2');font-weight:100 800}
+html,body{font-family:Onest,sans-serif}
+.ph{display:block;height:auto;background:none;border-radius:0;position:absolute;right:40px;top:96px;font:600 22px JBM,monospace;letter-spacing:.14em;text-transform:uppercase;color:#7d8ba3}
+.p{position:absolute;left:36px;top:150px;width:1208px;height:534px;border-radius:18px;background:#070b12;box-shadow:0 30px 80px rgba(0,0,0,.65);color:#e3e9f2;overflow:hidden}
+.m{border-radius:14px;background:#0d1320;display:flex;font-weight:500}
+.wire{position:absolute;width:4px;background:linear-gradient(#5fb8c2,#b88bd0)}
+.core{position:absolute;border-radius:14px;background:linear-gradient(90deg,rgba(95,184,194,.22),rgba(184,139,208,.22));display:flex;align-items:center;justify-content:center;font-family:JBM,monospace;font-weight:600;letter-spacing:.06em}
+.acc{position:absolute;left:40px;right:40px;display:flex;justify-content:space-between;font-family:JBM,monospace;font-weight:500;color:#7d8ba3}
+.d{width:18px;height:18px;border-radius:50%;flex:none;background:#5fb8c2;box-shadow:0 0 0 6px rgba(95,184,194,.15)}
+.d.v{background:#b88bd0;box-shadow:0 0 0 6px rgba(184,139,208,.15)}
+/* kolumny i strzałki nowych schematów */
+.col{position:absolute;top:34px;bottom:34px;display:flex;flex-direction:column;gap:12px}
+.col h3{margin:0 0 4px;font:600 18px JBM,monospace;letter-spacing:.14em;text-transform:uppercase;color:#7d8ba3}
+.col .m{flex:1;align-items:center;gap:14px;padding:0 20px;font-size:24px}
+.col .m small{margin-left:auto;font:500 16px JBM,monospace;color:#7d8ba3}
+.arr{position:absolute;font:600 40px JBM,monospace;color:#5fb8c2;display:flex;align-items:center;justify-content:center}
+.em{color:#b88bd0}
