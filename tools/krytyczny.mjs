@@ -7,6 +7,8 @@
 // Przy okazji tego samego pomiaru: strażnik wysokości zastępczych (contain-intrinsic-size sekcji z content-visibility:auto,
 // site.css). Trzy szerokości tu = trzy zestawy wysokości tam (do 620 / do 980 / szerzej). Po nowym projekcie albo wierszu
 // treść rośnie, a liczba w CSS nie; rozjazd > CV_TOL to ostrzeżenie (w CI adnotacja ::warning::), build idzie dalej.
+// Ostrzeżenie podaje gotowe liczby z głównej PL (tak mierzono site.css); GC_CV_WRITE=1 wpisuje je do site.css
+// (tylko te poza CV_TOL, zaokrąglone w górę do 10 px; drobny rozjazd zostaje), potem zbudować jeszcze raz.
 // GC_NO_CRITICAL=1 pomija krok. Bez Chrome: lokalnie ostrzeżenie, w CI błąd.
 import { createServer } from 'node:http';
 import { spawn } from 'node:child_process';
@@ -29,6 +31,9 @@ const CV_TOL = 0.15; // strażnik wysokości: dopuszczalny rozjazd wysokości za
 // Gdy pierwszy ekran potrzebuje większej części arkusza, zysku nie ma (dłuższy HTML i drugie przeliczenie stylów po
 // dociągnięciu arkusza) – strona zostaje ze zwykłym <link>. Główna PL/EN/RU po pominięciu ukrytych okien: ~31%.
 const MAX_SHARE = 0.4;
+const SITE_CSS = 'src/styles/site.css';
+// Szerokość z VIEWPORTS → miejsce liczby w site.css: @media (max-width:620px), (max-width:980px), reguła bez @media.
+const CV_MEDIA = { 390: 620, 820: 980, 1350: null };
 const LINK = /<link rel="stylesheet" href="(\/_astro\/[^"]+\.css)">/g;
 
 const walk = (d) => readdirSync(d).flatMap((f) => { const p = join(d, f); return statSync(p).isDirectory() ? walk(p) : [p]; });
@@ -150,6 +155,9 @@ const PROBE = (href, fold) => `(async () => {
 const merge = (a, b) => (a ? a.map((x, i) => (x.g ? { g: merge(x.g, b[i].g) } : x.s !== undefined ? { s: x.s, k: x.k || b[i].k } : x)) : b);
 let failed = false;
 const cvWarn = []; let cvCount = 0;
+const cvPl = new Map(); // `${w} ${id}` → { decl, real } z głównej PL
+const up10 = (n) => Math.ceil(n / 10) * 10;
+const cvOff = () => [...cvPl].filter(([, { decl, real }]) => Math.abs(decl - real) / real > CV_TOL);
 for (const p of pages) {
   const href = [...p.html.matchAll(LINK)][0][1];
   const url = `${base}/${relative(DIST, p.f).replace(/index\.html$/, '')}`;
@@ -164,6 +172,7 @@ for (const p of pages) {
     tree = merge(tree, result.value.tree);
     for (const { id, decl, real } of result.value.cv) {
       cvCount++;
+      if (relative(DIST, p.f) === 'index.html' && real > 0) cvPl.set(`${w} ${id}`, { decl, real });
       if (real > 0 && Math.abs(decl - real) / real > CV_TOL) cvWarn.push(`${relative(DIST, p.f)} ${w}px #${id}: ${decl} → ${real} px (${real > decl ? '+' : ''}${Math.round((real - decl) / decl * 100)}%)`);
     }
   }
@@ -224,6 +233,25 @@ if (cvWarn.length) {
   const msg = `wysokości zastępcze w site.css nieaktualne (> ${CV_TOL * 100}%, zmierzyć ponownie):`;
   if (process.env.CI) cvWarn.forEach((x) => console.log(`::warning title=krytyczny: wysokości zastępcze::${x}`));
   console.warn(`krytyczny: ${msg}\n  ${cvWarn.join('\n  ')}`);
+  const fix = cvOff().map(([k, { decl, real }]) => { const [w, id] = k.split(' ');
+      return `${CV_MEDIA[w] ? `@media (max-width:${CV_MEDIA[w]}px) ` : ''}#${id}: ${decl} → ${up10(real)}px`; });
+  if (fix.length) console.warn(`krytyczny: propozycja do ${SITE_CSS} (główna PL; GC_CV_WRITE=1 wpisze):\n  ${fix.join('\n  ')}`);
 } else if (cvCount) console.log(`krytyczny: wysokości zastępcze ok (${cvCount} pomiarów, rozjazd ≤ ${CV_TOL * 100}%)`);
+if (process.env.GC_CV_WRITE === '1' && cvOff().length) {
+  // Każda liczba ma jedno miejsce: reguła sekcji (szerokie) albo jej wpis w linii @media (max-width:…px).
+  const lines = readFileSync(SITE_CSS, 'utf8').split('\n');
+  let changed = 0;
+  for (const [k, { real }] of cvOff()) {
+    const [w, id] = k.split(' '); const m = CV_MEDIA[w];
+    const i = lines.findIndex((l) => (m ? l.startsWith(`@media (max-width:${m}px){ html:not(.cv-off) #`) : l.startsWith(`html:not(.cv-off) #${id}{ content-visibility:auto;`)));
+    const re = new RegExp(`(#${id}\\{[^}]*contain-intrinsic-size:auto none auto )(\\d+)px`);
+    if (i < 0 || !re.test(lines[i])) { console.error(`krytyczny: ${SITE_CSS}: nie ma miejsca na ${m ? `@media ${m}px ` : ''}#${id}`); failed = true; continue; }
+    const before = lines[i];
+    lines[i] = lines[i].replace(re, (_, a) => `${a}${up10(real)}px`);
+    if (lines[i] !== before) changed++;
+  }
+  writeFileSync(SITE_CSS, lines.join('\n'));
+  console.log(`krytyczny: ${SITE_CSS}: wpisane wysokości (${changed}); zbudować jeszcze raz`);
+}
 if (process.env.GC_CRITICAL_VERBOSE) out.forEach(([f, n, u]) => console.log(`  ${f} ${(n / 1024).toFixed(1)} KB (spoza Chrome: ${u})`));
 await finish(failed ? 1 : 0);
