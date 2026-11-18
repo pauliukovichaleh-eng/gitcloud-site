@@ -13,11 +13,16 @@ SHOTS = [  # (имя, путь, ширина, высота, высота кад�
 MODELE = [("panel-modele", "/ai-router", 1440, 1000, 985), ("panel-modele-tel", "/ai-router", 390, 844, 844)]
 # круг 19: пульт Claude на Главной — карточки «Решения» (fake_dec.py); кадр = сам виджет, ("sel", раскрыть, ширина)
 DECYZJE = [("panel-decyzje", "/", 1440, 1000, 0), ("panel-decyzje-szczegoly", "/", 1440, 1000, 0), ("panel-decyzje-tel", "/", 390, 844, 0)]
+# 18.11.2026: strona «Bezpieczeństwo» na fake_sec.py — ocena, tarcza wiadomości, dziennik złapanych
+TARCZA = [("tarcza-panel", "/bezopasnost", 1440, 1000, 1000), ("tarcza-tel", "/bezopasnost", 390, 844, 844),
+          ("tarcza-listy", "/bezopasnost", 1440, 1000, -1)]   # -1: kadr od nagłówka grupy «Tarcza wiadomości» do końca strony
 mode = sys.argv[3] if len(sys.argv) > 3 else ""
 if mode == "modele":   # круг 17: страница «Модели» на fake_llm.py
     SHOTS = MODELE
 elif mode == "decyzje":
     SHOTS = DECYZJE
+elif mode == "tarcza":
+    SHOTS = TARCZA
 errs, cyr = [], {}
 with sync_playwright() as p:
     b = p.chromium.launch(executable_path="/usr/bin/google-chrome", args=["--host-resolver-rules=MAP my.gitcloud.pl 127.0.0.1"])
@@ -29,6 +34,8 @@ with sync_playwright() as p:
         pg.on("response", lambda r, n=name: r.status >= 400 and errs.append(f"{n}: {r.status} {r.url}"))
         pg.goto(base + path, wait_until="domcontentloaded"); pg.wait_for_timeout(3000)
         pg.evaluate(TR, PL); pg.wait_for_timeout(300); pg.evaluate(TR, PL); pg.evaluate(HIDE)
+        if mode == "tarcza":   # ochrona mieszkania to prywatna część domu, nie tarcza; zrzut bez niej
+            pg.add_style_tag(content="[data-key=guard]{display:none!important}")
         hs = pg.evaluate("document.documentElement.scrollWidth > innerWidth")
         if mode == "decyzje":
             pg.add_style_tag(content="#gc-tabbar{display:none!important}")
@@ -48,6 +55,13 @@ with sync_playwright() as p:
                 bb["height"] = (lim - top - 12) if lim > top else min(bb["height"], 1150)
             cyr[name] = pg.evaluate(CYR, {"y": bb["y"], "h": bb["height"], "w": w})
             pg.screenshot(path=f"{out}/{name}.png", clip={"x": bb["x"] - 6, "y": top - 6, "width": bb["width"] + 12, "height": bb["height"] + 12}, full_page=True)
+        elif ch < 0:
+            top = pg.evaluate("""() => { const e = [...document.querySelectorAll('*')].find(x => x.children.length === 0 && /^Tarcza wiadomości$/i.test(x.textContent.trim()));
+              return e ? e.getBoundingClientRect().top + scrollY - 24 : 0; }""")
+            hh = pg.evaluate("document.documentElement.scrollHeight") - top
+            pg.evaluate(f"scrollTo(0, {top})"); pg.wait_for_timeout(300)
+            cyr[name] = pg.evaluate(CYR, {"y": top - pg.evaluate("scrollY"), "h": hh, "w": w})
+            pg.screenshot(path=f"{out}/{name}.png", clip={"x": 0, "y": top, "width": w, "height": hh}, full_page=True)
         else:
             cyr[name] = pg.evaluate(CYR, {"y": 0, "h": ch, "w": w})
             pg.screenshot(path=f"{out}/{name}.png", clip={"x": 0, "y": 0, "width": w, "height": ch})

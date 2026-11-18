@@ -5,6 +5,7 @@ import json
 # Zamiany napisów (regex → tekst), kolejno; najpierw dłuższe. Role agentów jak na stronie: Sally korespondencja i terminy,
 # Tony dyżur infrastruktury, Mark modernizacja i analiza.
 PL = [
+    ["^снято ", "zdjęte "], ["пойманные щитом", "złapane przez tarczę"], ["^Банов всего$", "Blokad łącznie"], ["^Файрвол Proxmox$", "Zapora Proxmox"],
     ["Техник дома: сервер, машины, сеть, копии, код, задания Клоду\\. ИИ на домашнем сервере, это не скрывает\\.",
      "Dyżurny infrastruktury: serwer, maszyny wirtualne, sieć, kopie zapasowe, alarmy. AI na własnym serwerze, nie ukrywa tego."],
     ["Собеседница и диктор дома:[^]*", "Korespondencja i terminy: poczta, sprawy, przypomnienia. AI na własnym serwerze, nie ukrywa tego."],

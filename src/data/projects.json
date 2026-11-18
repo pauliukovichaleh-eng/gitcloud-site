@@ -487,6 +487,57 @@
       ]
     },
     {
+      "slug": "tarcza-gitcloud",
+      "category": "wlasne",
+      "title": "Tarcza GitCloud: ochrona przed phishingiem w poczcie i czatach",
+      "lead": "Każda przychodząca wiadomość z poczty i czatów przechodzi przez reguły i model językowy, zanim zobaczy ją człowiek. Groźne linki blokuje też domowy DNS.",
+      "year": "2026",
+      "status": "Działa na własnym serwerze, sprawdza każdą nową wiadomość",
+      "image": "/img/projekty/tarcza-okladka.webp",
+      "image_alt": "Centrum bezpieczeństwa: ocena 93 ze 100, rzecz do naprawy i dziennik złapanych wiadomości, dane przykładowe",
+      "gallery": [
+        {
+          "src": "/img/projekty/tarcza-panel.webp",
+          "alt": "Centrum bezpieczeństwa: ocena ze 100, co naprawić, dziennik złapanych wiadomości z kanałem i powodem, ochrona serwera"
+        },
+        {
+          "src": "/img/projekty/tarcza-listy.webp",
+          "alt": "Tarcza wiadomości: sprawdzone w ciągu doby, groźne z 7 dni i listy phishingu z liczbą domen, w tym lista w blokadzie DNS"
+        },
+        {
+          "src": "/img/projekty/tarcza-tel.webp",
+          "alt": "To samo centrum na telefonie"
+        }
+      ],
+      "gallery_note": "Zrzuty panelu uruchomionego na danych przykładowych: wymyśleni nadawcy (domeny .example, ukryte numery), wymyślone liczby, bez połączenia z bazą i siecią; brakujące polskie napisy interfejsu przetłumaczone, część o ochronie mieszkania ukryta.",
+      "problem": "Wiadomość od fałszywego kupującego z ogłoszenia (własny kurier i zapłata przed wysyłką) wyglądała jak zwykła rozmowa. Filtry poczty nie widzą czatów, a linki z czatu nie przechodzą przez żaden filtr.",
+      "solution": "Tarcza sprawdza nowe wiadomości z poczty, czatów i skrzynki agentów: reguły po polsku, angielsku i rosyjsku (skracacze linków, adresy IP, punycode, marka w obcej domenie), domeny z list CERT Polska, OpenPhish i Phishing.Database, a przy wątpliwości model językowy. Załączniki skanuje ClamAV, zanim trafią do kopii. Groźna wiadomość nie staje się sprawą agenta, a właściciel dostaje ostrzeżenie bez cytatu. Fałszywe domeny trafiają do blokady DNS na routerze, więc kliknięcie w domu albo przez VPN niczego nie otwiera. Wszystko zbiera centrum bezpieczeństwa z oceną 0 do 100 i gotową radą, co naprawić; nadawcę można oznaczyć jako bezpiecznego jednym przyciskiem.",
+      "stack": [
+        "Python",
+        "PostgreSQL",
+        "LLM API",
+        "ClamAV",
+        "OPNsense (DNSBL)",
+        "FastAPI"
+      ],
+      "role": "Projekt, reguły i kod tarczy, integracja z pocztą, czatami i routerem, kalibracja na prawdziwej korespondencji.",
+      "results": [
+        "Kalibracja na 1057 prawdziwych wiadomościach (631 z czatów, 426 maili): jedna groźna, ta prawdziwa",
+        "0 fałszywych trafień list phishingu na 200 domenach z korespondencji z miesiąca",
+        "Ostrzeżenie zanim wiadomość zostanie otwarta, bez treści w bazie"
+      ],
+      "links": [
+        {
+          "href": "/dyzurny/#shield",
+          "label": "Tarcza w abonamencie Dyżurny admin"
+        },
+        {
+          "href": "/projekty/agenci-ai/",
+          "label": "Agenci, którzy dostają tylko bezpieczne sprawy"
+        }
+      ]
+    },
+    {
       "slug": "pulpit-gitcloud",
       "category": "wlasne",
       "title": "Pulpit GitCloud: środowisko pracy z konsolą i plikami",

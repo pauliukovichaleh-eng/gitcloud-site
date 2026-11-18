@@ -196,6 +196,19 @@
       "results": ["One fix reaches both the personal panel and the IT department panel at work", "Colours from one file: website, panel, desktop and the remote's screen", "Ratcheting CI gates: hand-written colours, animations and unused CSS can only go down", "Tests of both services in Chromium and Firefox before every change"],
       "gallery_alt": ["Personal panel, IT panel at work, desktop, remote and website above one core: colour tokens, windows and widgets, decisions, notifications", "A service on the core: the core provides the shell, menu, windows, decisions, Web Push and live pages; the service adds its own menu, sections and data, and a file with the same name overrides the core file", "One token file: a tool generates CSS, JSON and a C header for the website, panel, desktop and remote; ratcheted CI gates guard colours, animations, unused CSS, code layers, the API contract and performance"],
       "links_label": ["IT department panel on this core", "Operations panel on this core"]
+    },
+    "tarcza-gitcloud": {
+      "title": "GitCloud Shield: phishing protection for mail and chats",
+      "lead": "Every incoming message from mail and chats goes through rules and a language model before a person sees it. The home DNS blocks dangerous links as well.",
+      "status": "Runs on my own server, checks every new message",
+      "image_alt": "Security centre: score 93 out of 100, one item to fix and the log of caught messages, sample data",
+      "problem": "A message from a fake buyer of a listing (their own courier and payment before shipping) looked like an ordinary conversation. Mail filters do not see chats, and links from a chat pass through no filter at all.",
+      "solution": "The shield checks new messages from mail, chats and the agents' mailbox: rules in Polish, English and Russian (link shorteners, IP addresses, punycode, a brand on someone else's domain), domains from the CERT Polska, OpenPhish and Phishing.Database lists, and a language model when in doubt. ClamAV scans attachments before they reach the backup. A dangerous message never becomes an agent task, and the owner gets a warning without a quote. Fake domains go to the DNS block on the router, so a click at home or over the VPN opens nothing. The security centre collects it all with a score from 0 to 100 and ready advice on what to fix; a sender can be marked safe with one button.",
+      "role": "Design, rules and code of the shield, integration with mail, chats and the router, calibration on real correspondence.",
+      "results": ["Calibrated on 1057 real messages (631 from chats, 426 emails): one dangerous, the real one", "0 false phishing list matches on 200 domains from a month of correspondence", "A warning before the message is opened, no message text in the database"],
+      "gallery_alt": ["Security centre: score out of 100, what to fix, log of caught messages with channel and reason, server protection", "Message shield: checked in the last day, dangerous in 7 days and phishing lists with domain counts, including the list in the DNS block", "The same centre on a phone"],
+      "gallery_note": "Screenshots of the panel running on sample data: made-up senders (.example domains, hidden numbers), made-up numbers, no database or network connection; missing Polish UI labels translated, the home protection part hidden.",
+      "links_label": ["The shield in the Dyżurny admin subscription", "Agents that only get safe tasks"]
     }
   },
   "ru": {
@@ -394,6 +407,19 @@
       "results": ["Одно исправление попадает и в личную панель, и в панель ИТ-отдела на работе", "Цвета из одного файла: сайт, панель, рабочий стол и экран пульта", "Ворота CI с храповиком: вписанных вручную цветов, анимаций и неиспользуемого CSS может только убывать", "Перед изменением проверки обоих сервисов в Chromium и Firefox"],
       "gallery_alt": ["Личная панель, ИТ-панель на работе, рабочий стол, пульт и сайт над одним ядром: токены цветов, окна и виджеты, решения, уведомления", "Сервис на ядре: ядро даёт оболочку, меню, окна, решения, Web Push и живые страницы; сервис добавляет своё меню, разделы и данные, а файл с тем же именем заменяет файл ядра", "Один файл токенов: инструмент делает CSS, JSON и заголовок C для сайта, панели, рабочего стола и пульта; ворота CI с храповиком следят за цветами, анимацией, неиспользуемым CSS, слоями кода, контрактом API и скоростью"],
       "links_label": ["Панель ИТ-отдела на этом ядре", "Операционная панель на этом ядре"]
+    },
+    "tarcza-gitcloud": {
+      "title": "Щит GitCloud: защита от фишинга в почте и чатах",
+      "lead": "Каждое входящее сообщение из почты и чатов проходит правила и языковую модель до того, как его увидит человек. Опасные ссылки блокирует и домашний DNS.",
+      "status": "Работает на своём сервере, проверяет каждое новое сообщение",
+      "image_alt": "Центр безопасности: оценка 93 из 100, что исправить и журнал пойманных сообщений, данные для примера",
+      "problem": "Сообщение от фальшивого покупателя по объявлению (свой курьер и оплата до отправки) выглядело как обычная переписка. Фильтры почты не видят чатов, а ссылки из чата не проходят ни через какой фильтр.",
+      "solution": "Щит проверяет новые сообщения из почты, чатов и ящика агентов: правила на польском, английском и русском (сокращатели ссылок, IP-адреса, punycode, марка в чужом домене), домены из списков CERT Polska, OpenPhish и Phishing.Database, а при сомнении языковая модель. Вложения проверяет ClamAV до того, как они попадут в копию. Опасное сообщение не становится делом агента, а владелец получает предупреждение без цитаты. Поддельные домены попадают в DNS-блок на роутере, поэтому клик дома или через VPN ничего не открывает. Всё собирает центр безопасности с оценкой от 0 до 100 и готовым советом, что исправить; отправителя можно отметить безопасным одной кнопкой.",
+      "role": "Проект, правила и код щита, связка с почтой, чатами и роутером, калибровка на настоящей переписке.",
+      "results": ["Калибровка на 1057 настоящих сообщениях (631 из чатов, 426 писем): одно опасное, и оно настоящее", "0 ложных совпадений списков фишинга на 200 доменах переписки за месяц", "Предупреждение до открытия сообщения, текста сообщений в базе нет"],
+      "gallery_alt": ["Центр безопасности: оценка из 100, что исправить, журнал пойманных сообщений с каналом и причиной, защита сервера", "Щит сообщений: проверено за сутки, опасные за 7 дней и списки фишинга с числом доменов, включая список в DNS-блоке", "Тот же центр на телефоне"],
+      "gallery_note": "Снимки панели, запущенной на данных для примера: выдуманные отправители (домены .example, скрытые номера), выдуманные числа, без связи с базой и сетью; недостающие польские надписи переведены, часть об охране квартиры скрыта.",
+      "links_label": ["Щит в абонементе Dyżurny admin", "Агенты, которым достаются только безопасные дела"]
     }
   }
 }

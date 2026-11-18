@@ -37,3 +37,10 @@ Film „Panel operacyjny” (`/img/projekty/panel.mp4`, 1280×720, ok. 33 s): pr
 na stronie głównej → szczegóły pytania → odpowiedź jednym kliknięciem (chwila na cofnięcie, potem „w trakcie”, karta
 przechodzi do dziennika z wymyślonym wynikiem) → dziennik decyzji → zakładka „Modele”, rozwinięty wynik modelu.
 Pasek finansów u góry i nazwa użytkownika w nagłówku ukryte (`HIDE`). Kodowanie i plakat `panel-wideo.jpg` jak przy „Agenci AI”.
+
+Strona «Bezpieczeństwo» (`/bezopasnost`, projekt „Tarcza GitCloud”): `fake_sec.py` daje wymyślone listy ochrony serwera
+(fail2ban, AIDE, Lynis, kopie, aktualizacje), tarczę wiadomości (liczniki, listy phishingu) i dziennik złapanych wiadomości
+(nadawcy w domenach `.example`, numery ukryte); ochrona mieszkania bez zdarzeń i ukryta na zrzucie. Zrzuty:
+`DSF=2 python final.py http://my.gitcloud.pl:18932 <katalog> tarcza` (komputer, telefon, wycinek od «Tarcza wiadomości»).
+WebP (jakość 82): `tarcza-panel` (1440 px), `tarcza-tel`, `tarcza-listy`; okładka 16:9 = wycinek (232, 316, 2600×1463) z 2x
+zrzutu komputera → 1280×720. Potem `node tools/miniatury.mjs`.

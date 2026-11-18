@@ -13,10 +13,10 @@ def _nosub(*a, **k): raise FileNotFoundError("demo: no subprocess")
 subprocess.run = subprocess.Popen = subprocess.check_output = subprocess.call = _nosub
 class Zero(dict):
     def __missing__(self, k): return 0
-import fake, fake_llm, fake_dec
+import fake, fake_llm, fake_dec, fake_sec
 from gitcloud_ai import db
 def rows(sql, params=None):
-    for f in (fake, fake_llm, fake_dec):
+    for f in (fake, fake_llm, fake_dec, fake_sec):
         r = f.rows(sql, params)
         if r is not None: return r
     s = " ".join(sql.split()).upper()
@@ -30,6 +30,7 @@ db.conn = _nc
 fake.patch()
 fake_llm.patch()
 fake_dec.patch()
+fake_sec.patch()
 # DEMO_LANG=pl (tools/pulpit): język bez ciasteczka — okna pulpitu mają własne magazyny ciasteczek
 if (_dl := os.environ.get("DEMO_LANG")):
     from gitcloud_core import i18n
