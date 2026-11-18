@@ -22,7 +22,7 @@ const other = lang === 'pl' ? '/en/cv/' : '/cv/';
 <meta name="description" content={`${C.role}. ${E.bio[0]}`}>
 <link rel="canonical" href={new URL(self, Astro.site).href}>
 <link rel="alternate" hreflang={lang === 'pl' ? 'en' : 'pl'} href={new URL(other, Astro.site).href}>
-<meta name="robots" content="index, follow">
+<meta name="robots" content="noindex, follow">  <!-- decyzja #1773: CV tylko po bezpośrednim linku -->
 <meta property="og:image" content={new URL(`/img/og/home-${lang}.png`, Astro.site).href}>
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <meta name="color-scheme" content="light dark">

@@ -172,7 +172,7 @@ const jsonld = {
     </div>
   </section>
 
-  <!-- ═══ 05 · DOŚWIADCZENIE I KOMPETENCJE ═══ -->
+  <!-- ═══ 05 · O MNIE (kotwica #doswiadczenie zostaje; ścieżka zawodowa tylko w /cv/, decyzja #1773) ═══ -->
   <section class="sec" id="doswiadczenie">
     <span id="operator" aria-hidden="true"></span>
     <div class="wrap">
@@ -182,24 +182,10 @@ const jsonld = {
           <span class="idx mono">{T.exp.idx}</span>
           <h2>{T.exp.h2}</h2>
           <p>{T.exp.bio[0]}</p>
-          <a class="btn btn-g btn-sm cv-btn" href={T.cv.file} download><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v11m0 0-4.5-4.5M12 15l4.5-4.5M5 19.5h14"/></svg> {T.exp.cv}</a>
         </div>
       </div>
 
       <div class="exp">
-        <div class="exp-roles">
-          <h3 class="lbl">{T.exp.rolesTitle}</h3>
-          <ol class="timeline">
-            {T.exp.roles.map(([when, role, where]) => (
-              <li>
-                <span class="tl-when mono">{when}</span>
-                <div class="tl-body">
-                  <b>{role}</b><span class="tl-where">{where}</span>
-                </div>
-              </li>
-            ))}
-          </ol>
-        </div>
         <div class="exp-skills">
           <details class="fold">
           <summary>{T.exp.skillsTitle}</summary>

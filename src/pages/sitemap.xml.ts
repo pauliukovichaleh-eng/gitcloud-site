@@ -12,7 +12,6 @@ const MOD = {
   home: changed('src/components/Home.astro', 'src/components/ProjectCard.astro', 'src/i18n', 'src/data'),
   project: changed('src/data/projects.json', 'src/data/projects.i18n.json', 'src/components/ProjectPage.astro', 'src/components/ProjectBody.astro'),
   dyzurny: changed('src/i18n/dyzurny.ts', 'src/components/Dyzurny.astro'),
-  cv: changed('src/components/Cv.astro'),
   zmiany: changed('src/data/zmiany.json', 'src/components/Zmiany.astro', 'src/lib/zmiany.ts'),
   privacy: changed('src/components/Privacy.astro'),
 };
@@ -24,7 +23,6 @@ const urls: Url[] = [
   ...group(byLang(home), MOD.home, 'weekly', (l) => (l === 'pl' ? '1.0' : '0.9')),
   ...projects.flatMap((p) => group(byLang((l) => projectPath(p.slug, l)), MOD.project, 'monthly', (l) => (l === 'pl' ? '0.7' : '0.6'))),
   ...group(byLang(dyzPath), MOD.dyzurny, 'monthly', (l) => (l === 'pl' ? '0.8' : '0.7')),
-  { loc: '/cv/', mod: MOD.cv, freq: 'monthly', prio: '0.5' }, { loc: '/en/cv/', mod: MOD.cv, freq: 'monthly', prio: '0.5' },
   ...group(byLang((l) => (l === 'pl' ? '/zmiany/' : `/${l}/zmiany/`)), MOD.zmiany, 'daily', (l) => (l === 'pl' ? '0.6' : '0.5')),
   ...group(byLang((l) => (l === 'pl' ? '/privacy.html' : `/${l}/privacy.html`)), MOD.privacy, 'yearly', () => '0.3'),
 ];

@@ -17,7 +17,6 @@ const items: Item[] = [
   ...ordered.map((p0) => { const p = localize(p0, lang); return { g: P.g.proj, t: p.title, s: p.stack.slice(0, 3).join(' · '), href: `${base}#p-${p.slug}`, k: `${p.slug} ${p.stack.join(' ')}` }; }),
   { g: P.g.act, t: P.mail, s: EMAIL, href: `mailto:${EMAIL}`, k: 'mail email kontakt' },
   { g: P.g.act, t: P.copy, s: EMAIL, act: 'copy', k: 'mail email copy' },
-  { g: P.g.act, t: P.cv, s: 'PDF', href: T.cv.file, k: 'cv pdf resume' },
   { g: P.g.act, t: P.privacy, href: lang === 'pl' ? '/privacy.html' : `/${lang}/privacy.html`, k: 'privacy rodo gdpr' },
   ...LANGS.filter((l) => l !== lang).map((l) => ({ g: P.g.lang, t: LNAME[l], s: l.toUpperCase(), href: altPaths?.[l] || home(l), k: `lang ${l}` })),
 ];
