@@ -17,8 +17,6 @@ Ostatnia noc: 2026-11-18 (dziennik: 3 wpisy; przenagrana głowa Marka; panel bez
   (profil demo pulpitu, wymyślone pliki, bez prawdziwego ekranu). Od 14.11 pulpit ma szklane menu nad stroną.
 
 ## Do pokazania
-- Pilot 3.218.0: okno rozmowy z twarzą agenta w sześciokącie i 24 segmentami głosu. W scenariuszu render.py nie ma
-  tego ekranu; dopisać kadr (wiadomość głosowa z danymi przykładowymi) i sprawdzić, czy symulator ma zasoby twarzy.
 - Nowy projekt w katalogu (decyzja właściciela #1312, 13.11): następny projekt z repozytoriów lub Useme, którego
   jeszcze nie ma na stronie; gałąź + zrzuty na danych przykładowych, PL/EN/RU.
 - Centrum bezpieczeństwa rdzenia (ocena od 0 do 100, „Napraw”, dziennik tarczy): kadr na danych przykładowych. W
@@ -28,8 +26,8 @@ Ostatnia noc: 2026-11-18 (dziennik: 3 wpisy; przenagrana głowa Marka; panel bez
 - Szyna zdarzeń rdzenia: schemat „zdarzenie → zadanie” zamiast timerów (do strony rdzenia), rysowany od zera.
 
 ## Nie udało się / ograniczenia
-- Pilot 17.11: render.py daje kadry identyczne co do piksela; nowa strona „Dźwięk” (głośności) i wiersz trybów
-  ze sprawą w toku nie występują w scenariuszu. Do dopisania razem z oknem rozmowy (dane przykładowe, PL).
+- Pilot: okno rozmowy (Sally, Tony) i strona „Dźwięk” są od 18.11 w tools/pilot/scenariusz-glos.txt (warsztat strony).
+  Wiersz trybów ze sprawą w toku jeszcze nie występuje w scenariuszu.
 - Panel 18.11: Buzz zamiast Marka i kafel zadań kontenera zamiast Cronicle; bez przenagrania (patrz „Nieaktualne”).
 - Głowy 18.11: Tony i Sally po ponownym renderze różnią się tylko odcieniem skóry, zostały stare pliki; trójka
   glowy.mp4 i Mark nowe.
