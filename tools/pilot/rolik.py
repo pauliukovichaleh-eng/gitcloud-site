@@ -48,7 +48,8 @@ def main():
     keep = Path(sys.argv[1]) if len(sys.argv) > 1 else None
     tmp = Path(tempfile.mkdtemp(prefix="pilot-rolik-"))
     try:
-        sim = render.prepare(tmp, (HERE / "rolik.txt").read_text(), EXTRA_PL)
+        sim = render.prepare(tmp, EXTRA_PL)
+        (sim / "pl.txt").write_text((HERE / "rolik.txt").read_text().replace("@PIN@", render.PIN_CMD))
         p = sim / "sim.cpp"
         t = p.read_text()
         for a, b in SIM_PATCH:

@@ -203,6 +203,18 @@
           "alt": "Obsługa pokrętłem: menu kafelków, serwer i wykres CPU, maszyny wirtualne, restart zapory z PIN-em; nagranie z symulatora, dane przykładowe"
         },
         {
+          "src": "/img/projekty/pilot-rozmowa.png",
+          "alt": "Okno rozmowy: twarz Sally w sześciokącie, wokół 24 segmenty głosu, pytanie i odpowiedź"
+        },
+        {
+          "src": "/img/projekty/pilot-tony.png",
+          "alt": "Ta sama rozmowa z Tonym: jego twarz i kolor, stan serwera w odpowiedzi"
+        },
+        {
+          "src": "/img/projekty/pilot-dzwiek.png",
+          "alt": "Strona Dźwięk: głośność serwera, mikrofonu, muzyki i głosów agentów, na górze powód ciszy"
+        },
+        {
           "src": "/img/projekty/pilot-kafelki.png",
           "alt": "Menu kafelków systemów"
         },
@@ -243,7 +255,7 @@
         "Każda zmiana interfejsu sprawdzana zrzutami z symulatora"
       ],
       "links": [],
-      "gallery_note": "Nagranie i zrzuty z symulatora ekranu: ten sam kod co w firmware, napisy przetłumaczone na polski, dane przykładowe (wymyślone usługi i utwór); ekran 320×170 pokazany w skali 3:1 w nagraniu i 4:1 na zrzutach, w nagraniu pominięte przewijanie sekcji między wykresem a listą maszyn."
+      "gallery_note": "Nagranie i zrzuty z symulatora ekranu: ten sam kod co w firmware, napisy przetłumaczone na polski, dane przykładowe (wymyślone usługi, utwór i rozmowa); ekran 320×170 pokazany w skali 3:1 w nagraniu i 4:1 na zrzutach, w nagraniu pominięte przewijanie sekcji między wykresem a listą maszyn."
     },
     {
       "slug": "glowy-agentow",

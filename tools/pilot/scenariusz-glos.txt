@@ -1,0 +1,25 @@
+# Okno rozmowy 3.218 i strona «Dźwięk» (render.py: data-glos.jsonl = dane bez «nav», pilot ma swój układ ze stroną Dźwięk).
+# Status → Muzyka → Dźwięk (side ×2); okno otwiera się nad Claude Code. Rozmowa na danych przykładowych.
+clock 2026-11-06 18:40:12
+msgs data-glos.jsonl
+wait 1000
+side
+side
+wait 300
+shot dzwiek
+side
+wait 300
+voice open
+voice sally 1
+voice st play
+voice out 60
+voice q Co dziś w planie?
+voice a Masz dwa spotkania: o 10:00 rozmowę z klientem i o 15:00 przegląd zleceń. Kopia zapasowa przeszła w nocy bez błędów.
+wait 1500
+shot rozmowa
+voice who 1
+voice out 80
+voice q Tony, jak obciążenie serwera?
+voice a Procesor 14%, pamięć 55%. Wszystko w normie, alarmów brak.
+wait 600
+shot tony
