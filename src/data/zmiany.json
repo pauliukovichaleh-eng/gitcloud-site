@@ -2,6 +2,18 @@
   "_opis": "Dziennik zmian /zmiany/ (decyzja #748). Prowadzi go nocne odświeżanie (host/site-refresh): nowe wpisy NA POCZĄTKU. Pola: id (data-slug), date, area, project (slug z projects.json: wpis pokazuje się też na stronie projektu, decyzja #751) (strona|panel|agenci|glowy|pilot|isp|infra), kind (wizualna = z obrazami przed/po, techniczna = krótko, bez obrazów), img [{src, alt{pl,en,ru}, label: przed|po|kadr}], link (kotwica albo strona projektu), pl/en/ru {t, x}. Tylko to, co publiczne: bez klientów, pracodawców, domu, finansów, adresów IP.",
   "wpisy": [
     {
+      "id": "2026-11-18-buzz",
+      "date": "2026-11-18",
+      "area": "glowy",
+      "project": "glowy-agentow",
+      "kind": "wizualna",
+      "img": [{"src": "/img/zmiany/2026-11-18-buzz-przed.webp", "label": "przed", "alt": {"pl": "Mark w czapce z monoklem i słuchawką", "en": "Mark in a knit cap with a monocle and headset", "ru": "Марк в вязаной шапке с моноклем и гарнитурой"}}, {"src": "/img/zmiany/2026-11-18-buzz-po.webp", "label": "po", "alt": {"pl": "Buzz: własna twarz, liliowa czapka, bez monokla i mikrofonu", "en": "Buzz: his own face, a lilac cap, no monocle or microphone", "ru": "Базз: своё лицо, сиреневая шапка, без монокля и микрофона"}}],
+      "link": "/projekty/glowy-agentow/",
+      "pl": {"t": "Agenci: Buzz zamiast Marka", "x": "Trzecim agentem jest teraz Buzz, spokojny badacz: sprawdza, co się zestarzało, i proponuje jedną lub dwie zmiany z ceną i zyskiem. Ma własną głowę 3D; nowe nagranie trzech głów i karta w sekcji „Agenci”."},
+      "en": {"t": "Agents: Buzz instead of Mark", "x": "The third agent is now Buzz, a calm researcher: he checks what has aged and proposes one or two changes with cost and benefit. He has his own 3D head; a new recording of the three heads and a card in the Agents section."},
+      "ru": {"t": "Агенты: Базз вместо Марка", "x": "Третий агент теперь Базз, спокойный исследователь: проверяет, что устарело, и предлагает одно-два изменения с ценой и выгодой. У него своя 3D-голова; новая запись трёх голов и карточка в разделе «Агенты»."}
+    },
+    {
       "id": "2026-11-17-glowa-marka",
       "date": "2026-11-17",
       "area": "glowy",

@@ -17,7 +17,7 @@ C = Path(sys.argv[1])
 T = Path(sys.argv[2]) if len(sys.argv) > 2 else Path(tempfile.mkdtemp(prefix="glowy-"))
 BG = (5, 7, 11)
 N = 99   # 6,6 s × 15 kl./s
-WHO = [("sally", "sally"), ("vale", "tony"), ("mark", "mark")]
+WHO = [("sally", "sally"), ("vale", "tony"), ("buzz", "buzz")]   # 18.11.2026: Buzz zamiast Marka
 
 
 # 13.11.2026 (właściciel: «wszędzie tylko do ramion, torsu niżej nigdzie»): z kadru clip.py (głowa z ramionami i piersią)

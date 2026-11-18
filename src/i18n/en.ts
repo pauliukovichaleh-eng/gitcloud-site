@@ -47,7 +47,7 @@ const en: Dict = {
     aria: 'GitCloud ecosystem map',
     listAria: 'Ecosystem modules',
     nodes: [
-      ['AI agents', 'Sally · Tony · Mark · Claude'],
+      ['AI agents', 'Sally · Tony · Buzz · Claude'],
       ['Panel', 'decisions · case log'],
       ['ESP32 remote', 'screen · knob'],
       ['Night', 'backups · review · report'],
@@ -99,7 +99,7 @@ const en: Dict = {
     list: [
       ['correspondence and deadlines', 'Collects mail, messages and deadlines. Deadlines and matters for decision reach the panel as cards.'],
       ['infrastructure on duty', 'Watches alerts and system logs, fixes things by runbook, also at night. One report in the morning.'],
-      ['modernization and analysis', 'Checks what has aged and proposes changes backed by data. Looks after backups and links the work environments.'],
+      ['modernization and ideas', 'Checks what has aged and proposes one or two changes with cost and benefit. Speaks rarely and to the point.'],
     ],
     alt: 'animated agent face',
     more1: 'How the agent team works',

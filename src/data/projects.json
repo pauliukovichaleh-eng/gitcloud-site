@@ -265,7 +265,7 @@
       "year": "2026",
       "status": "Działa w przeglądarce i w kolumnie widżetów pulpitu",
       "image": "/img/projekty/glowy.jpg",
-      "image_alt": "Trzy głowy agentów 3D: Sally, Tony i Mark",
+      "image_alt": "Trzy głowy agentów 3D: Sally, Tony i Buzz",
       "video": {
         "src": "/img/projekty/glowy.mp4",
         "poster": "/img/projekty/glowy.jpg"
@@ -274,7 +274,7 @@
         {
           "video": "/img/projekty/glowy.mp4",
           "src": "/img/projekty/glowy.jpg",
-          "alt": "Sally, Tony i Mark: mimika i emocje, nagranie na karcie graficznej"
+          "alt": "Sally, Tony i Buzz: mimika i emocje, nagranie na karcie graficznej"
         },
         {
           "video": "/img/projekty/glowa-sally.mp4",
@@ -287,9 +287,9 @@
           "alt": "Tony: dyżur infrastruktury"
         },
         {
-          "video": "/img/projekty/glowa-mark.mp4",
-          "src": "/img/projekty/glowa-mark.jpg",
-          "alt": "Mark: modernizacja i analiza"
+          "video": "/img/projekty/glowa-buzz.mp4",
+          "src": "/img/projekty/glowa-buzz.jpg",
+          "alt": "Buzz: modernizacja i pomysły"
         }
       ],
       "problem": "Asystent głosowy bez twarzy jest mniej czytelny w rozmowie. Celem była żywa mimika na własnym sprzęcie, bez płatnych modeli 3D.",

@@ -20,7 +20,10 @@ SCRIPT = {   # (секунда, эмоция) — своя у каждого: С
     "sally": [(0, "calm"), (1.2, "amused"), (3.6, "playful"), (5.4, "calm")],
     "vale": [(0, "confident"), (1.6, "interested"), (3.4, "thoughtful"), (5.2, "confident")],
     "mark": [(0, "thoughtful"), (1.8, "skeptical"), (3.6, "curious"), (5.4, "thoughtful")],
+    # 18.11.2026: Buzz, agent domowy zamiast Marka (spokojny badacz); w head.js to «mark» z ?buzz=1
+    "buzz": [(0, "calm"), (1.8, "curious"), (3.6, "thoughtful"), (5.4, "calm")],
 }
+HEAD = {"buzz": "mark&buzz=1"}   # who na stronie → parametry head.js
 VCLOCK = """(() => {
   let vt = 0; const q = [];
   performance.now = () => vt; const D0 = Date.now(); Date.now = () => D0 + vt;
@@ -36,7 +39,7 @@ with sync_playwright() as p:
     pg = b.new_page(device_scale_factor=3, viewport={"width": int(__import__("os").environ.get("SZ","480")), "height": int(__import__("os").environ.get("SZ","480"))})
     pg.set_default_timeout(180000)
     pg.add_init_script(VCLOCK)
-    pg.goto(f"http://127.0.0.1:8788/index.html?who={who}&offline=1&clip=1&withbody=1&cam={CAM}&pr=3&nobrowcards=1&mood={SCRIPT[who][0][1]}", wait_until="load")
+    pg.goto(f"http://127.0.0.1:8788/index.html?who={HEAD.get(who, who)}&offline=1&clip=1&withbody=1&cam={CAM}&pr=3&nobrowcards=1&mood={SCRIPT[who][0][1]}", wait_until="load")
     for _ in range(600):                                  # загрузка модели: шагаем время, пока голова не готова
         pg.evaluate("window.__step(33)")
         if pg.evaluate("!!window.gcReady"):

@@ -29,13 +29,13 @@
     "glowy-agentow": {
       "title": "3D avatars for voice assistants",
       "lead": "Three 3D characters that speak with the agents' voices, with lip movement matched to speech and their own facial expressions.",
-      "image_alt": "Three 3D agent heads: Sally, Tony and Mark",
+      "image_alt": "Three 3D agent heads: Sally, Tony and Buzz",
       "status": "Runs in the browser and in the desktop widget column",
       "problem": "A voice assistant without a face is harder to follow in a conversation. The goal was lifelike facial expressions on own hardware, without paid 3D models.",
       "solution": "Heads built in code with three.js, lip movement computed from speech. Each character has its own style of expressions and emotions. They run in the browser and in the desktop widget column, with colours from the core palette.",
       "role": "Character design, animation and lip sync.",
       "results": ["Lip sync accurate to 10 to 30 ms", "Own facial expressions and emotions for each character", "Recordings for this site made on the GPU, head and shoulders as live"],
-      "gallery_alt": ["Sally, Tony and Mark: facial expressions and emotions, recorded on the GPU", "Sally: correspondence and deadlines", "Tony: infrastructure on duty", "Mark: modernization and analysis"],
+      "gallery_alt": ["Sally, Tony and Buzz: facial expressions and emotions, recorded on the GPU", "Sally: correspondence and deadlines", "Tony: infrastructure on duty", "Buzz: modernization and ideas"],
       "stack": ["three.js", "WebGL", "Python", "WebSocket"]
     },
     "agenci-ai": {
@@ -240,13 +240,13 @@
     "glowy-agentow": {
       "title": "3D-аватары для голосовых ассистентов",
       "lead": "Три 3D-персонажа, которые говорят голосами агентов, с движением губ под речь и своей мимикой.",
-      "image_alt": "Три 3D-головы агентов: Салли, Тони и Марк",
+      "image_alt": "Три 3D-головы агентов: Салли, Тони и Базз",
       "status": "Работает в браузере и в колонке виджетов рабочего стола",
       "problem": "Голосовой ассистент без лица хуже воспринимается в разговоре. Цель была живая мимика на своём железе, без платных 3D-моделей.",
       "solution": "Головы построены кодом на three.js, движение губ считается по речи. У каждого персонажа свой характер мимики и эмоций. Работают в браузере и в колонке виджетов рабочего стола, цвета берут из палитры ядра.",
       "role": "Дизайн персонажей, анимация и синхронизация губ.",
       "results": ["Синхронизация губ с точностью от 10 до 30 мс", "Своя мимика и эмоции у каждого персонажа", "Записи для сайта сняты на видеокарте, голова с плечами как вживую"],
-      "gallery_alt": ["Салли, Тони и Марк: мимика и эмоции, запись на видеокарте", "Sally: переписка и сроки", "Tony: дежурный по инфраструктуре", "Mark: модернизация и анализ"],
+      "gallery_alt": ["Салли, Тони и Базз: мимика и эмоции, запись на видеокарте", "Sally: переписка и сроки", "Tony: дежурный по инфраструктуре", "Buzz: модернизация и идеи"],
       "stack": ["three.js", "WebGL", "Python", "WebSocket"]
     },
     "agenci-ai": {

@@ -47,7 +47,7 @@ export default {
     aria: 'Mapa ekosystemu GitCloud',
     listAria: 'Moduły ekosystemu',
     nodes: [
-      ['Agenci AI', 'Sally · Tony · Mark · Claude'],
+      ['Agenci AI', 'Sally · Tony · Buzz · Claude'],
       ['Panel', 'decyzje · dziennik spraw'],
       ['Pilot ESP32', 'ekran · pokrętło'],
       ['Noc', 'kopie · przegląd · raport'],
@@ -99,7 +99,7 @@ export default {
     list: [
       ['korespondencja i terminy', 'Zbiera pocztę, wiadomości i terminy. Terminy i sprawy do decyzji trafiają do panelu jako karty.'],
       ['dyżur infrastruktury', 'Pilnuje alarmów i dzienników systemu, naprawia według procedur, także w nocy. Rano jeden raport.'],
-      ['modernizacja i analiza', 'Sprawdza, co się zestarzało, i proponuje zmiany z danymi. Pilnuje kopii i łączy środowiska pracy.'],
+      ['modernizacja i pomysły', 'Sprawdza, co się zestarzało, i proponuje jedną lub dwie zmiany z ceną i zyskiem. Mówi rzadko i rzeczowo.'],
     ],
     alt: 'animowana twarz agenta',
     more1: 'Jak działa zespół agentów',
