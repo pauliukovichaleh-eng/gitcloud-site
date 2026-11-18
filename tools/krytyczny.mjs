@@ -38,11 +38,13 @@ const LINK = /<link rel="stylesheet" href="(\/_astro\/[^"]+\.css)">/g;
 
 const walk = (d) => readdirSync(d).flatMap((f) => { const p = join(d, f); return statSync(p).isDirectory() ? walk(p) : [p]; });
 // Przekierowania (Redirect.astro: meta refresh, np. /projekty/zlecenia/ → /#moduly) nie mają pierwszego ekranu, a Astro
-// dokleja im arkusz trasy [slug]: arkusz się wycina, strony się nie mierzy (pomiar szedł za przekierowaniem, 18.11.2026).
+// dokleja im arkusz trasy [slug] i wbudowane @font-face (4,5 KB): oba się wycina, strony się nie mierzy
+// (pomiar szedł za przekierowaniem, 18.11.2026). Redirect.astro ma własny styl w atrybutach, nie w <style>.
 const REFRESH = /<meta http-equiv="refresh"/;
+const STYLE = /<style>[\s\S]*?<\/style>/g;
 const all = walk(DIST).filter((f) => f.endsWith('.html')).map((f) => ({ f, html: readFileSync(f, 'utf8') }));
-const redirects = all.filter((p) => REFRESH.test(p.html) && p.html.search(LINK) >= 0);
-redirects.forEach((p) => writeFileSync(p.f, p.html.replace(LINK, '')));
+const redirects = all.filter((p) => REFRESH.test(p.html) && (p.html.search(LINK) >= 0 || p.html.search(STYLE) >= 0));
+redirects.forEach((p) => writeFileSync(p.f, p.html.replace(LINK, '').replace(STYLE, '')));
 const pages = all.filter((p) => !REFRESH.test(p.html))
   .filter((p) => [...p.html.matchAll(LINK)].length === 1)
   .filter((p) => !process.env.GC_CRITICAL_ONLY || p.f.includes(process.env.GC_CRITICAL_ONLY));
