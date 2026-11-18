@@ -7,7 +7,10 @@ Ostatnia noc: 2026-11-18 (dziennik: 3 wpisy; przenagrana głowa Marka; panel bez
   a twarze agentów są nowe. Przenagrać `rolik_panel.py` (panel uruchomić od nowa przed nagraniem).
 - Panel od 17.11: na serwerze Sally agent domowy to Buzz (z twarzą Marka do czasu własnej głowy), Mark zostaje
   w innej roli. Kadry panel-agenci, panel-decyzje, agenci.mp4 pokazują jeszcze Marka. Przenagrać i opisać
-  Buzza w sekcji „Agenci”, gdy dostanie własną głowę (head.js); do tego czasu strona zostaje przy trzech agentach.
+  Buzza w sekcji „Agenci”. Od 18.11 Buzz ma własną głowę (head.js: własna twarz, bez monokla i mikrofonu, neon
+  liliowy; serwer głów Sally rysuje go sam, z pliku: `?who=mark&buzz=1`). Do zrobienia najbliższej nocy: nagrać głowy
+  z Buzzem (clip.py z `buzz=1`), w tekstach strony (i18n „Agenci AI”, Home.astro agentMeta, projects*.json alt)
+  Mark → Buzz (rola: spokojny badacz, rzadko mówi, 1–2 pomysły z ceną i zyskiem). Wpisy dziennika o Marku zostają.
 - Konsola ISP (public/img/demo): zrzuty z 05.11 w niebieskim motywie „Kolor”. Przenagrać, gdy platforma ISP dostanie
   ciemny motyw zbliżony do panelu; inaczej zostają.
 - Pulpit (pulpit-gitcloud): film pulpit.mp4 nagrany ręcznie, przepisu w repo nie ma. Przenagrać dopiero z przepisem
