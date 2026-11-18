@@ -1,10 +1,13 @@
 # Plan prowadzenia strony (aktualizowany co noc)
 
-Ostatnia noc: 2026-11-17 (dziennik: 2 wpisy techniczne; kadry pilota, głów i panelu bez zmian; SEO: 2 tytuły)
+Ostatnia noc: 2026-11-18 (dziennik: 3 wpisy; przenagrana głowa Marka; panel bez zmian; SEO: 2 tytuły; stos platformy danych)
 
 ## Nieaktualne
 - Film panel.mp4 (12.11): zakładka „Modele” ma już podzakładki rdzenia (zużycie, przebiegi, wynik, limity i trasy),
   a twarze agentów są nowe. Przenagrać `rolik_panel.py` (panel uruchomić od nowa przed nagraniem).
+- Panel od 17.11: na serwerze Sally agent domowy to Buzz (z twarzą Marka do czasu własnej głowy), Mark zostaje
+  w innej roli. Kadry panel-agenci, panel-decyzje, agenci.mp4 pokazują jeszcze Marka. Przenagrać i opisać
+  Buzza w sekcji „Agenci”, gdy dostanie własną głowę (head.js); do tego czasu strona zostaje przy trzech agentach.
 - Konsola ISP (public/img/demo): zrzuty z 05.11 w niebieskim motywie „Kolor”. Przenagrać, gdy platforma ISP dostanie
   ciemny motyw zbliżony do panelu; inaczej zostają.
 - Pulpit (pulpit-gitcloud): film pulpit.mp4 nagrany ręcznie, przepisu w repo nie ma. Przenagrać dopiero z przepisem
@@ -22,14 +25,14 @@ Ostatnia noc: 2026-11-17 (dziennik: 2 wpisy techniczne; kadry pilota, głów i p
 - Szyna zdarzeń rdzenia: schemat „zdarzenie → zadanie” zamiast timerów (do strony rdzenia), rysowany od zera.
 
 ## Nie udało się / ograniczenia
-- Głowy 17.11: zmiany tylko w trybie muzyki i w napisach (wygląd w klipach ten sam), bez przenagrania.
 - Pilot 17.11: render.py daje kadry identyczne co do piksela; nowa strona „Dźwięk” (głośności) i wiersz trybów
   ze sprawą w toku nie występują w scenariuszu. Do dopisania razem z oknem rozmowy (dane przykładowe, PL).
-- Panel 17.11: zmiany w sekcjach prywatnych i w nazwach serwerów (przycisk mostu w kadrach ukryty), bez przenagrania.
+- Panel 18.11: Buzz zamiast Marka i kafel zadań kontenera zamiast Cronicle; bez przenagrania (patrz „Nieaktualne”).
+- Głowy 18.11: Tony i Sally po ponownym renderze różnią się tylko odcieniem skóry, zostały stare pliki; trójka
+  glowy.mp4 i Mark nowe.
 
-## SEO (Marek, obchód 15.11)
+## SEO (Marek, obchód 15.11; zrobione: EN/RU platforma-dzialu-it 18.11)
 - Title > 70 znaków: główna PL/EN/RU (72/71/74) zostaje, to pozycjonowanie właściciela.
-- Title > 70: EN i RU platforma-dzialu-it (71/71); skrócić o kilka znaków.
 - Description /cv/ PL i EN (197/202): składa się z roli i pierwszego akapitu bio; potrzebne osobne krótkie pole opisu.
 
 ## Pomysły

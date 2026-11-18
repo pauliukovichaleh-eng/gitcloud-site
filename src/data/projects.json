@@ -369,13 +369,14 @@
       ],
       "gallery_note": "Schematy narysowane na podstawie harmonogramu i raportu, bez adresów i nazw wewnętrznych.",
       "problem": "Kilkadziesiąt skryptów zapisywało dane w plikach i osobnych bazach, zadania uruchamiały się rozproszone przez cały dzień, a raporty spływały do południa. Kopie zapasowe istniały, ale nikt nie sprawdzał, czy dają się odtworzyć.",
-      "solution": "Wspólna baza z osobnym dostępem dla każdej usługi i zmianami schematu w repozytorium. Harmonogram opisany w kodzie i porównywany z serwerem, żeby wykryć ręczne zmiany. Noc ma stały porządek: kopie, próba odtworzenia, okno konserwacji z kontrolą po każdym kroku, przegląd kodu, raporty i jedno podsumowanie rano. Kopie trafiają w trzy miejsca.",
+      "solution": "Wspólna baza z osobnym dostępem dla każdej usługi i zmianami schematu w repozytorium. Harmonogram opisany w kodzie i porównywany z serwerem, żeby wykryć ręczne zmiany. Router, wirtualizacja i system operacyjny serwera też są w kodzie (Terraform, Ansible) i co noc porównywane z tym, co działa. Noc ma stały porządek: kopie, próba odtworzenia, okno konserwacji z kontrolą po każdym kroku, przegląd kodu, raporty i jedno podsumowanie rano. Kopie trafiają w trzy miejsca.",
       "stack": [
         "PostgreSQL",
         "pgBackRest",
         "restic",
-        "Cronicle",
         "systemd",
+        "Terraform",
+        "Ansible",
         "Python",
         "Proxmox",
         "Netdata"
@@ -385,7 +386,8 @@
         "Co noc próba odtworzenia losowych plików i bazy, cała kopia sprawdzona w ciągu tygodnia",
         "W niedzielę pełne ćwiczenie odtworzenia w izolacji",
         "Kopie w trzech miejscach, archiwum bazy z punktem w czasie",
-        "Konserwacja w nocy bez ręcznego potwierdzania, pierwszy błąd zatrzymuje resztę"
+        "Konserwacja w nocy bez ręcznego potwierdzania, pierwszy błąd zatrzymuje resztę",
+        "W niedzielę kontener zadań budowany od zera z kodu w izolacji, pierwszy raz w 5 minut"
       ],
       "links": [
         {

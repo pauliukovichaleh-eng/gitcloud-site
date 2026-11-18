@@ -96,9 +96,9 @@
       "image_alt": "The night in six steps: backups, restore test, maintenance window, code review, reports and one summary at 7:00",
       "gallery_note": "Diagrams drawn from the schedule and the report, without addresses or internal names.",
       "problem": "Dozens of scripts wrote data to files and separate databases, jobs ran scattered throughout the day, and reports trickled in until noon. Backups existed, but nobody checked whether they could be restored.",
-      "solution": "A shared database with separate access for each service and schema changes in the repository. The schedule is described in code and compared with the server to catch manual changes. The night has a fixed order: backups, a restore test, a maintenance window with a check after every step, code review, reports and one summary in the morning. Backups go to three places.",
+      "solution": "A shared database with separate access for each service and schema changes in the repository. The schedule is described in code and compared with the server to catch manual changes. The router, virtualisation and the server OS are in code too (Terraform, Ansible) and compared nightly with what is running. The night has a fixed order: backups, a restore test, a maintenance window with a check after every step, code review, reports and one summary in the morning. Backups go to three places.",
       "role": "Architecture, database schema and migrations, scheduling, backups and their verification.",
-      "results": ["Every night a restore test of random files and the database, the whole backup checked within a week", "On Sunday a full restore drill in isolation", "Backups in three places, database archive with point-in-time recovery", "Night maintenance without manual confirmation, the first error stops the rest"],
+      "results": ["Every night a restore test of random files and the database, the whole backup checked within a week", "On Sunday a full restore drill in isolation", "Backups in three places, database archive with point-in-time recovery", "Night maintenance without manual confirmation, the first error stops the rest", "On Sunday the jobs container is built from scratch from code in isolation, the first time in 5 minutes"],
       "gallery_alt": ["Night steps from backups at 00:05 to the summary at 7:00", "The night plan from the schedule: from the database dump at 00:05 to a single summary at 7:00", "Backups in three places: database archive in the cloud, off-site copy, external disk, plus a restore check", "Restore check report from the night of 9 November 2026: all items passed in 17 minutes"],
       "links_label": ["AI agents: night alarms and reviews"]
     },
@@ -172,7 +172,7 @@
       "links_label": []
     },
     "platforma-dzialu-it": {
-      "title": "IT department operations platform at a manufacturing company",
+      "title": "Operations platform for an IT department in manufacturing",
       "lead": "An internal IT panel at my current employer: matters, accounts, domains and decisions in one place, on the GitCloud core.",
       "status": "In daily use since October 2026",
       "image_alt": "Platform diagram: six panel sections on the shared GitCloud core and the access rules",
@@ -294,9 +294,9 @@
       "image_alt": "Ночь в шести шагах: копии, проба восстановления, окно обслуживания, обзор кода, отчёты и одна сводка в 7:00",
       "gallery_note": "Схемы нарисованы по расписанию и отчёту, без адресов и внутренних имён.",
       "problem": "Десятки скриптов писали данные в файлы и отдельные базы, задания запускались вразброс в течение дня, а отчёты приходили до полудня. Резервные копии были, но никто не проверял, восстанавливаются ли они.",
-      "solution": "Общая база с отдельным доступом для каждой службы и изменениями схемы в репозитории. Расписание описано в коде и сверяется с сервером, чтобы заметить ручные правки. У ночи постоянный порядок: копии, проба восстановления, окно обслуживания с проверкой после каждого шага, обзор кода, отчёты и одна сводка утром. Копии уходят в три места.",
+      "solution": "Общая база с отдельным доступом для каждой службы и изменениями схемы в репозитории. Расписание описано в коде и сверяется с сервером, чтобы заметить ручные правки. Роутер, виртуализация и ОС сервера тоже в коде (Terraform, Ansible) и каждую ночь сверяются с тем, что работает. У ночи постоянный порядок: копии, проба восстановления, окно обслуживания с проверкой после каждого шага, обзор кода, отчёты и одна сводка утром. Копии уходят в три места.",
       "role": "Архитектура, схема базы и миграции, расписание, копии и их проверка.",
-      "results": ["Каждую ночь проба восстановления случайных файлов и базы, вся копия проверяется за неделю", "В воскресенье полные учения восстановления в изоляции", "Копии в трёх местах, архив базы с точкой во времени", "Обслуживание ночью без ручного подтверждения, первая ошибка останавливает остальное"],
+      "results": ["Каждую ночь проба восстановления случайных файлов и базы, вся копия проверяется за неделю", "В воскресенье полные учения восстановления в изоляции", "Копии в трёх местах, архив базы с точкой во времени", "Обслуживание ночью без ручного подтверждения, первая ошибка останавливает остальное", "В воскресенье контейнер задач собирается с нуля из кода в изоляции, первый раз за 5 минут"],
       "gallery_alt": ["Шаги ночи от копий в 00:05 до сводки в 7:00", "План ночи по расписанию: от дампа базы в 00:05 до одной сводки в 7:00", "Копии в трёх местах: архив базы в облаке, внешняя копия, внешний диск, плюс проверка восстановления", "Отчёт проверки восстановления за ночь 9 ноября 2026: все пункты пройдены за 17 минут"],
       "links_label": ["AI-агенты: ночные тревоги и разборы"]
     },
@@ -370,7 +370,7 @@
       "links_label": []
     },
     "platforma-dzialu-it": {
-      "title": "Операционная платформа ИТ-отдела в производственной компании",
+      "title": "Операционная платформа ИТ-отдела на производстве",
       "lead": "Внутренняя панель ИТ-отдела у нынешнего работодателя: дела, учётные записи, домены и решения в одном месте, на ядре GitCloud.",
       "status": "В ежедневной работе с октября 2026",
       "image_alt": "Схема платформы: шесть разделов панели на общем ядре GitCloud и правила доступа",

@@ -2,6 +2,40 @@
   "_opis": "Dziennik zmian /zmiany/ (decyzja #748). Prowadzi go nocne odświeżanie (host/site-refresh): nowe wpisy NA POCZĄTKU. Pola: id (data-slug), date, area, project (slug z projects.json: wpis pokazuje się też na stronie projektu, decyzja #751) (strona|panel|agenci|glowy|pilot|isp|infra), kind (wizualna = z obrazami przed/po, techniczna = krótko, bez obrazów), img [{src, alt{pl,en,ru}, label: przed|po|kadr}], link (kotwica albo strona projektu), pl/en/ru {t, x}. Tylko to, co publiczne: bez klientów, pracodawców, domu, finansów, adresów IP.",
   "wpisy": [
     {
+      "id": "2026-11-17-glowa-marka",
+      "date": "2026-11-17",
+      "area": "glowy",
+      "project": "glowy-agentow",
+      "kind": "wizualna",
+      "img": [{"src": "/img/zmiany/2026-11-17-glowa-marka-przed.webp", "label": "przed", "alt": {"pl": "Głowa Marka przed zmianą: wyższe ciemię, czapka wysoko nad czołem", "en": "Mark's head before: a higher crown, the cap sitting high above the forehead", "ru": "Голова Марка до: выше макушка, шапка высоко над лбом"}}, {"src": "/img/zmiany/2026-11-17-glowa-marka-po.webp", "label": "po", "alt": {"pl": "Głowa Marka po zmianie: niższe ciemię i węższe skronie, twarz bez zmian", "en": "Mark's head after: a lower crown and narrower temples, the face unchanged", "ru": "Голова Марка после: ниже макушка и уже виски, лицо без изменений"}}],
+      "link": "/projekty/glowy-agentow/",
+      "pl": {"t": "Głowy: Mark z niższym ciemieniem", "x": "Czaszka Marka wydawała się za wysoka przy tej twarzy. Ciemię jest niżej o około 9%, skronie węższe o około 6%; czapka i słuchawka siadają na przesuniętej skórze, a twarz poniżej brwi i głowy Sally i Tony'ego zostały bez zmian."},
+      "en": {"t": "Heads: Mark with a lower crown", "x": "Mark's skull looked too tall for his face. The crown is about 9% lower and the temples about 6% narrower; the cap and headset sit on the shifted skin, while the face below the brows and the heads of Sally and Tony are unchanged."},
+      "ru": {"t": "Головы: у Марка ниже макушка", "x": "Череп Марка казался слишком высоким для его лица. Макушка ниже примерно на 9%, виски уже примерно на 6%; шапка и гарнитура садятся на сдвинутую кожу, а лицо ниже бровей и головы Салли и Тони не изменились."}
+    },
+    {
+      "id": "2026-11-17-infrastruktura-w-kodzie",
+      "date": "2026-11-17",
+      "area": "infra",
+      "project": "platforma-danych",
+      "kind": "techniczna",
+      "link": "/projekty/platforma-danych/",
+      "pl": {"t": "Infrastruktura w kodzie: Terraform i Ansible", "x": "Router (reguły, aliasy, DNS, NAT, VPN), wirtualizacja z gośćmi i siecią oraz repozytoria opisane w Terraform przez import, a system operacyjny serwera i kontenera zadań w Ansible. Nocna kontrola porównuje kod z tym, co działa, klucze zapisu są tylko w sejfie haseł na czas zmiany, a w niedzielę kontener zadań buduje się od zera z kodu w izolacji (pierwszy raz: 5 minut)."},
+      "en": {"t": "Infrastructure as code: Terraform and Ansible", "x": "The router (rules, aliases, DNS, NAT, VPN), virtualisation with guests and networking, and the repositories are described in Terraform via import, and the OS of the server and the jobs container in Ansible. A nightly check compares the code with what is running, write keys live only in the password vault for the time of a change, and on Sunday the jobs container is built from scratch from code in isolation (first run: 5 minutes)."},
+      "ru": {"t": "Инфраструктура в коде: Terraform и Ansible", "x": "Роутер (правила, алиасы, DNS, NAT, VPN), виртуализация с гостями и сетью и репозитории описаны в Terraform через import, а ОС сервера и контейнера задач в Ansible. Ночная проверка сверяет код с тем, что работает, ключи записи лежат только в хранилище паролей на время правки, а в воскресенье контейнер задач собирается с нуля из кода в изоляции (первый раз: 5 минут)."}
+    },
+    {
+      "id": "2026-11-17-harmonogram-systemd",
+      "date": "2026-11-17",
+      "area": "infra",
+      "project": "platforma-danych",
+      "kind": "techniczna",
+      "link": "/projekty/platforma-danych/",
+      "pl": {"t": "Jeden harmonogram bez Cronicle", "x": "Ostatnie ręczne timery (ponad 60) i wszystkie zadania kontenera przeszły z Cronicle do jednego pliku harmonogramu, z którego rdzeń generuje jednostki systemd. Część zadań rusza od zdarzenia: nowy plik budzi skan antywirusowy, a sprawdzony plik kopię."},
+      "en": {"t": "One schedule without Cronicle", "x": "The last manual timers (over 60) and all container jobs moved from Cronicle to one schedule file, from which the core generates systemd units. Some jobs start on an event: a new file wakes the antivirus scan, and a checked file wakes the backup."},
+      "ru": {"t": "Одно расписание без Cronicle", "x": "Последние ручные таймеры (больше 60) и все задачи контейнера переехали из Cronicle в один файл расписания, из которого ядро делает юниты systemd. Часть задач стартует по событию: новый файл будит проверку антивирусом, а проверенный файл копию."}
+    },
+    {
       "id": "2026-11-16-szyna-zdarzen",
       "date": "2026-11-16",
       "area": "infra",
