@@ -1,0 +1,24 @@
+<!doctype html><html lang="pl"><head><meta charset="utf-8"><link rel="stylesheet" href="base.css"></head><body><div class="bg">
+<div class="win" style="left:50px;top:90px;width:620px;height:540px">
+ <div class="bar"><span class="dot"></span><span class="dot"></span><span class="dot"></span><div class="url">Szablon Storefront · moduły według języka</div></div>
+ <div style="padding:16px 24px">
+  <div style="display:flex;font-size:12px;color:#7a8496;font-weight:600;padding-bottom:8px;border-bottom:2px solid #e6e9ef"><span style="flex:1">Moduł</span><span style="width:50px;text-align:center">CZ</span><span style="width:50px;text-align:center">SK</span><span style="width:50px;text-align:center">DE</span><span style="width:50px;text-align:center">RO</span></div>
+  <div id="m"></div>
+ </div>
+</div>
+<script>const m=["Nagłówek","Mega menu","Strona główna","Karta produktu","Kategoria","Koszyk i produkt gratisowy","Okno „Dodano do koszyka”","Stopka","Linki banerów i slajdów","Kontakt kraju","Bloki tylko dla Polski: ukryte"];
+document.getElementById('m').innerHTML=m.map(x=>`<div class="row" style="padding:8px 0"><span style="flex:1">${x}</span>`+'<span style="width:50px;text-align:center;color:#1a9e6a;font-weight:700">✓</span>'.repeat(4)+'</div>').join('')</script>
+<div class="term" style="left:700px;top:90px;width:530px;height:540px;font-size:14px">
+ <div class="h">frazy systemowe · wersja RO</div>
+ <div>przetłumaczone   <span class="ok">1360 / 1360</span></div>
+ <div style="height:10px;border-radius:5px;background:#1b2537;margin:8px 0 16px;overflow:hidden"><div style="height:100%;width:100%;background:#3ecf8e"></div></div>
+ <div class="h">wersja PL po każdej zmianie</div>
+ <div><span class="ok">✓</span> teksty bez zmian</div>
+ <div class="mut">  edytor potrafi nadpisać jeden język drugim</div><br>
+ <div class="h">CSS</div>
+ <div class="mut">/* gc: etap 4, koszyk RO, usunąć cały blok */</div>
+ <div class="mut">/* gc: etap 4, stopka CZ SK DE RO */</div><br>
+ <div class="h">test koszyka</div>
+ <div><span class="flag f-cz"></span> <span class="flag f-sk"></span> <span class="flag f-de"></span> <span class="flag f-ro"></span>  <span class="ok">przycisk płatności aktywny</span></div><br>
+ <div>sprawy poza zakresem   <span class="no">9</span> <span class="mut">→ do decyzji sklepu</span></div>
+</div><div class="tag">dane przykładowe · sklep.example</div></div></body></html>

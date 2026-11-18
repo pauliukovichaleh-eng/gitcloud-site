@@ -1,0 +1,31 @@
+<!doctype html><html lang="pl"><head><meta charset="utf-8"><link rel="stylesheet" href="base.css"></head><body><div class="bg">
+<div class="win" style="left:50px;top:150px;width:520px;height:420px">
+ <div class="bar"><span class="dot"></span><span class="dot"></span><span class="dot"></span><div class="url">reCAPTCHA · ustawienia klucza</div></div>
+ <div style="padding:22px 28px">
+  <div style="font-size:22px;font-weight:700;margin-bottom:4px">Domeny klucza</div>
+  <div style="font-size:13px;color:#7a8496;margin-bottom:16px">Klucz działa tylko na domenach z listy</div>
+  <div class="row"><span class="flag f-pl"></span><span style="flex:1;font-family:'DejaVu Sans Mono',monospace;font-size:14px">sklep.example</span><span style="color:#7a8496;font-size:13px">było</span></div>
+  <div class="row"><span class="flag f-cz"></span><span style="flex:1;font-family:'DejaVu Sans Mono',monospace;font-size:14px">sklep-cz.example</span><span style="color:#1a9e6a;font-size:13px;font-weight:600">dodana</span></div>
+  <div class="row"><span class="flag f-sk"></span><span style="flex:1;font-family:'DejaVu Sans Mono',monospace;font-size:14px">sklep-sk.example</span><span style="color:#1a9e6a;font-size:13px;font-weight:600">dodana</span></div>
+  <div class="row"><span class="flag f-de"></span><span style="flex:1;font-family:'DejaVu Sans Mono',monospace;font-size:14px">sklep-de.example</span><span style="color:#1a9e6a;font-size:13px;font-weight:600">dodana</span></div>
+  <div class="row"><span class="flag f-ro"></span><span style="flex:1;font-family:'DejaVu Sans Mono',monospace;font-size:14px">sklep-ro.example</span><span style="color:#1a9e6a;font-size:13px;font-weight:600">dodana</span></div>
+  <div style="margin-top:18px;padding:12px 14px;background:#f4f7fa;border-radius:8px;font-size:13px;color:#465063;line-height:1.5">Domeny dodała klientka na swoim koncie Google według instrukcji krok po kroku.</div>
+ </div>
+</div>
+<div class="term" style="left:600px;top:60px;width:630px;height:600px;font-size:14px">
+ <div class="h">$ diff shop-custom.js.bak shop-custom.js</div>
+ <div class="mut">@@ podmiana danych kontaktowych @@</div>
+ <div class="err">- const kontakt = {pl:{...}, cz:{...},, sk:{...}}</div>
+ <div class="ok">+ const kontakt = {pl:{...}, cz:{...}, sk:{...},</div>
+ <div class="ok">+                 de:{...}, ro:{...}}</div>
+ <div class="err">- document.querySelector('.tel').textContent = </div>
+ <div class="err">-   kontakt[lang].tel)</div>
+ <div class="ok">+ const el = document.querySelector('.tel')</div>
+ <div class="ok">+ if (el &amp;&amp; kontakt[lang]) el.textContent =</div>
+ <div class="ok">+   kontakt[lang].tel</div><br>
+ <div class="h">wdrożenie</div>
+ <div><span class="ok">✓</span> kopia poprzedniej wersji: shop-custom.js.bak</div>
+ <div><span class="ok">✓</span> konsola bez błędów na 5 domenach</div>
+ <div><span class="ok">✓</span> test koszyka: 5 passed</div>
+ <div class="mut">cofnięcie: przywrócić plik .bak</div>
+</div><div class="tag">dane przykładowe · sklep.example</div></div></body></html>

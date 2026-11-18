@@ -573,6 +573,14 @@
         {
           "src": "/img/projekty/zl-koszyk.jpg",
           "alt": "Etap 1 · Koszyk wersji czeskiej i automatyczny test zamówienia na pięciu domenach"
+        },
+        {
+          "src": "/img/projekty/zl-koszyk-przed.jpg",
+          "alt": "Przed · koszyk wersji czeskiej staje bez komunikatu, w konsoli błąd reCAPTCHA i składni skryptu"
+        },
+        {
+          "src": "/img/projekty/zl-koszyk-skrypt.jpg",
+          "alt": "Naprawa · domeny dopisane do klucza reCAPTCHA i poprawiony skrypt z kopią .bak"
         }
       ],
       "gallery_note": "Ilustracje na danych przykładowych (sklep.example, wymyślone produkty i firmy). Sklepy i firmy klientów, ich dane i adresy nie są pokazywane.",
@@ -620,6 +628,14 @@
         {
           "src": "/img/projekty/zl-seo.jpg",
           "alt": "Etap 2 · Lista punktów audytu SEO i dane strukturalne JSON-LD"
+        },
+        {
+          "src": "/img/projekty/zl-seo-meta.jpg",
+          "alt": "Schematy meta tagów przed i po audycie, z kopią poprzednich wartości"
+        },
+        {
+          "src": "/img/projekty/zl-seo-tagi.jpg",
+          "alt": "Nagłówek H1 bloga oraz sprawdzenie GTM, GA4 i JSON-LD w nowym szablonie"
         }
       ],
       "gallery_note": "Ilustracje na danych przykładowych (sklep.example, wymyślone produkty i firmy). Sklepy i firmy klientów, ich dane i adresy nie są pokazywane.",
@@ -670,6 +686,14 @@
         {
           "src": "/img/projekty/zl-wybor-kraju.jpg",
           "alt": "Etap 3 · Moduł wyboru kraju i waluty w nagłówku oraz test ścieżki zakupu"
+        },
+        {
+          "src": "/img/projekty/zl-wybor-kraju-przed.jpg",
+          "alt": "Przed i po · nagłówek nowego szablonu bez wyboru kraju i z modułem „Język i waluty”"
+        },
+        {
+          "src": "/img/projekty/zl-wybor-kraju-tel.jpg",
+          "alt": "Wybór kraju na telefonie i test ścieżki zakupu na 5 domenach bez fikcyjnych zamówień"
         }
       ],
       "gallery_note": "Ilustracje na danych przykładowych (sklep.example, wymyślone produkty i firmy). Sklepy i firmy klientów, ich dane i adresy nie są pokazywane.",
@@ -718,6 +742,14 @@
         {
           "src": "/img/projekty/zl-tlumaczenie.jpg",
           "alt": "Etap 4 · Ta sama karta produktu w wersji czeskiej, słowackiej, niemieckiej i rumuńskiej"
+        },
+        {
+          "src": "/img/projekty/zl-tlumaczenie-przed.jpg",
+          "alt": "Przed i po · koszyk wersji rumuńskiej: klucze techniczne i baner do sklepu polskiego, potem po rumuńsku"
+        },
+        {
+          "src": "/img/projekty/zl-tlumaczenie-frazy.jpg",
+          "alt": "Moduły szablonu w czterech językach, 1360 z 1360 fraz RO i test koszyka"
         }
       ],
       "gallery_note": "Ilustracje na danych przykładowych (sklep.example, wymyślone produkty i firmy). Sklepy i firmy klientów, ich dane i adresy nie są pokazywane.",
@@ -770,6 +802,14 @@
         {
           "src": "/img/projekty/zl-baza-b2b.jpg",
           "alt": "Baza firm B2B Holandia i Belgia · arkusz z oceną potencjału i szkic pierwszej wiadomości"
+        },
+        {
+          "src": "/img/projekty/zl-baza-b2b-raport.jpg",
+          "alt": "Zakładka raportu · 30 firm, 19 NL i 11 BE, 12 do pierwszego kontaktu, przegląd konkurencji"
+        },
+        {
+          "src": "/img/projekty/zl-baza-b2b-wiadomosci.jpg",
+          "alt": "Szkice wiadomości po angielsku: pierwszy kontakt i follow-up"
         }
       ],
       "gallery_note": "Ilustracje na danych przykładowych (sklep.example, wymyślone produkty i firmy). Sklepy i firmy klientów, ich dane i adresy nie są pokazywane.",
