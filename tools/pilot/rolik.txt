@@ -1,4 +1,4 @@
-# Film pilota (rolik.py): menu kafelków → serwer i wykres CPU → maszyny → ważne polecenie z PIN-em.
+# Film pilota (rolik.py): menu kafelków → serwer i wykres CPU → maszyny → ważne polecenie z PIN-em → rozmowa z Sally i Tonym.
 clock 2026-11-06 18:40:12
 msgs data.jsonl
 wait 1000
@@ -79,4 +79,58 @@ click
 wait 1000
 msg {"t":"pin","ok":1,"m":"Zapora uruchomiona ponownie"}
 wait 2500
+# okno rozmowy (voice.h, jak scenariusz-glos.txt): pytanie głosem → odpowiedź Sally, potem Tony; dane przykładowe
+voice open
+voice sally 1
+voice st rec
+voice meter 30
+wait 250
+voice meter 70
+wait 250
+voice meter 45
+wait 250
+voice meter 80
+wait 250
+voice q Co dziś w planie?
+voice meter 0
+voice st wait
+wait 900
+voice st play
+voice a Masz dwa spotkania: o 10:00 rozmowę z klientem i o 15:00 przegląd zleceń. Kopia zapasowa przeszła w nocy bez błędów.
+voice out 60
+wait 600
+voice out 30
+wait 500
+voice out 75
+wait 600
+voice out 40
+wait 1500
+voice out 0
+voice who 1
+voice q
+voice a
+voice st rec
+voice meter 60
+wait 300
+voice meter 35
+wait 300
+voice meter 75
+wait 300
+voice q Tony, jak obciążenie serwera?
+voice meter 0
+voice st wait
+wait 800
+voice st play
+voice a Procesor 14%, pamięć 55%. Wszystko w normie, alarmów brak.
+voice out 70
+wait 600
+voice out 35
+wait 500
+voice out 80
+wait 1500
+voice out 0
+voice st idle
+wait 1200
+voice close
+wait 800
 rec 0

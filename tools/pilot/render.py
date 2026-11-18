@@ -27,6 +27,7 @@ REMOTE = Path(os.environ.get("GC_REMOTE", Path.home() / "src/gitcloud-remote"))
 OUT = SITE / "public/img/projekty"
 SHOTS = {"scenariusz.txt": ["kafelki", "claude", "muzyka", "wykres", "maszyny", "pin"],
          "scenariusz-glos.txt": ["dzwiek", "rozmowa", "tony"]}
+OKLADKA = "rozmowa"  # okładka karty: ekran 4:1 (1280x680) na 1280x720, pasy w kolorze rogu ekranu
 
 # (plik, było, jest) : tylko kopia w katalogu tymczasowym
 PL = [
@@ -130,6 +131,12 @@ def main():
             dst = OUT / f"pilot-{s}.png"
             im.save(dst, optimize=True)
             print(dst.relative_to(SITE), dst.stat().st_size // 1024, "KB")
+            if s == OKLADKA:
+                card = Image.new("RGB", (1280, 720), im.getpixel((0, 0)))
+                card.paste(im, (0, (720 - im.height) // 2))
+                dst = OUT / "pilot-okladka.webp"
+                card.save(dst, quality=86)
+                print(dst.relative_to(SITE), dst.stat().st_size // 1024, "KB")
     finally:
         shutil.rmtree(tmp, ignore_errors=True)
 
