@@ -641,7 +641,8 @@ html:not(.cv-off) #kontakt{ content-visibility:auto; contain-intrinsic-size:auto
 .pp.cat-platformy{ --cc:var(--c-platformy); } .pp.cat-zlecenia{ --cc:var(--c-zlecenia); }
 .pp-in{ max-width:1040px; }
 .pp-crumbs{ font-size:12.5px; color:var(--dim); margin-bottom:14px; overflow:hidden; white-space:nowrap; text-overflow:ellipsis; }
-.pp-crumbs a{ color:var(--muted); text-decoration:none; }
+/* 18.11.2026: podkreślenie, nie tylko kolor (axe link-in-text-block: kontrast linku do tekstu 1.2:1, Lighthouse 0.96) */
+.pp-crumbs a{ color:var(--muted); text-decoration:underline; text-decoration-color:var(--gc-edge); text-underline-offset:3px; }
 .pp-crumbs a:hover{ color:var(--neon2); }
 .pp-body{ overflow:visible; border-radius:16px; background:var(--glass), var(--card2); border:0; box-shadow:var(--lift); }
 .pp-body h1{ font-size:clamp(28px,4vw,40px); margin:14px 0 10px; line-height:1.15; }
