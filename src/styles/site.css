@@ -127,7 +127,6 @@ p{ margin:0; }
    Pomiar 13.11.2026 (strona PL, html.cv-off, po załadowaniu fontów; szerokości 1280 / 768 do 820 / 390): nowe projekty
    i wiersze w sekcji zmieniają wysokość, więc po większej zmianie treści zmierzyć ponownie; build (tools/krytyczny.mjs)
    ostrzega, gdy liczba odbiega od prawdziwej wysokości o ponad 15%, i podaje nową; GC_CV_WRITE=1 npm run build wpisuje ją tutaj. */
-html:not(.cv-off) #architektura{ content-visibility:auto; contain-intrinsic-size:auto none auto 610px; }
 html:not(.cv-off) #moduly{ content-visibility:auto; contain-intrinsic-size:auto none auto 3250px; }
 html:not(.cv-off) #konsola{ content-visibility:auto; contain-intrinsic-size:auto none auto 1070px; }
 html:not(.cv-off) #agenci{ content-visibility:auto; contain-intrinsic-size:auto none auto 690px; }
@@ -135,8 +134,8 @@ html:not(.cv-off) #uslugi{ content-visibility:auto; contain-intrinsic-size:auto 
 html:not(.cv-off) #doswiadczenie{ content-visibility:auto; contain-intrinsic-size:auto none auto 1080px; }
 html:not(.cv-off) #zmiany{ content-visibility:auto; contain-intrinsic-size:auto none auto 390px; }
 html:not(.cv-off) #kontakt{ content-visibility:auto; contain-intrinsic-size:auto none auto 330px; }
-@media (max-width:980px){ html:not(.cv-off) #architektura{ contain-intrinsic-size:auto none auto 800px; } html:not(.cv-off) #moduly{ contain-intrinsic-size:auto none auto 4350px; } html:not(.cv-off) #konsola{ contain-intrinsic-size:auto none auto 780px; } html:not(.cv-off) #agenci{ contain-intrinsic-size:auto none auto 630px; } html:not(.cv-off) #uslugi{ contain-intrinsic-size:auto none auto 710px; } html:not(.cv-off) #doswiadczenie{ contain-intrinsic-size:auto none auto 1500px; } html:not(.cv-off) #zmiany{ contain-intrinsic-size:auto none auto 390px; } html:not(.cv-off) #kontakt{ contain-intrinsic-size:auto none auto 540px; } }
-@media (max-width:620px){ html:not(.cv-off) #architektura{ contain-intrinsic-size:auto none auto 850px; } html:not(.cv-off) #moduly{ contain-intrinsic-size:auto none auto 5580px; } html:not(.cv-off) #konsola{ contain-intrinsic-size:auto none auto 740px; } html:not(.cv-off) #agenci{ contain-intrinsic-size:auto none auto 630px; } html:not(.cv-off) #uslugi{ contain-intrinsic-size:auto none auto 1090px; } html:not(.cv-off) #doswiadczenie{ contain-intrinsic-size:auto none auto 2300px; } html:not(.cv-off) #zmiany{ contain-intrinsic-size:auto none auto 380px; } html:not(.cv-off) #kontakt{ contain-intrinsic-size:auto none auto 580px; } }
+@media (max-width:980px){ html:not(.cv-off) #moduly{ contain-intrinsic-size:auto none auto 4350px; } html:not(.cv-off) #konsola{ contain-intrinsic-size:auto none auto 780px; } html:not(.cv-off) #agenci{ contain-intrinsic-size:auto none auto 630px; } html:not(.cv-off) #uslugi{ contain-intrinsic-size:auto none auto 710px; } html:not(.cv-off) #doswiadczenie{ contain-intrinsic-size:auto none auto 1500px; } html:not(.cv-off) #zmiany{ contain-intrinsic-size:auto none auto 390px; } html:not(.cv-off) #kontakt{ contain-intrinsic-size:auto none auto 540px; } }
+@media (max-width:620px){ html:not(.cv-off) #moduly{ contain-intrinsic-size:auto none auto 5580px; } html:not(.cv-off) #konsola{ contain-intrinsic-size:auto none auto 740px; } html:not(.cv-off) #agenci{ contain-intrinsic-size:auto none auto 630px; } html:not(.cv-off) #uslugi{ contain-intrinsic-size:auto none auto 1090px; } html:not(.cv-off) #doswiadczenie{ contain-intrinsic-size:auto none auto 2300px; } html:not(.cv-off) #zmiany{ contain-intrinsic-size:auto none auto 380px; } html:not(.cv-off) #kontakt{ contain-intrinsic-size:auto none auto 580px; } }
 .sec-h{ max-width:760px; margin-bottom:clamp(28px,4vw,44px); }
 .idx{ display:inline-flex; align-items:center; gap:10px; font-size:12.5px; color:var(--neon2); letter-spacing:.06em; text-transform:uppercase; margin-bottom:14px; }
 .idx::before{ content:''; width:22px; height:2px; background:linear-gradient(90deg, var(--neon2), var(--cyan)); border-radius:2px; }
@@ -178,32 +177,6 @@ html:not(.cv-off) #kontakt{ content-visibility:auto; contain-intrinsic-size:auto
 .eco-node:hover .eco-code{ fill:#fff; }
 @keyframes spin{ to{ transform:rotate(360deg); } }
 
-/* ── ARCHITEKTURA: warstwy ── */
-.stack{ display:grid; gap:12px; position:relative; }
-.layer{ display:grid; grid-template-columns:250px 1fr; gap:18px; align-items:stretch; padding:16px; border-radius:var(--r);
-  background:var(--panel-bg); border:var(--panel-bd); position:relative; overflow:hidden; }
-.layer::before{ content:none; }   /* 07.11.2026: listwa z boku i poświata zdjęte — kolor warstwy niesie znaczek L1–L3 */
-.layer-L3{ --lc:var(--cyan); } .layer-L2{ --lc:var(--neon2); } .layer-L1{ --lc:var(--accent); }
-.layer-h{ display:flex; gap:14px; align-items:center; padding:4px 6px; }
-.layer-k{ font-size:13px; font-weight:600; color:var(--lc); width:44px; height:44px; flex:none; display:grid; place-items:center;
-  border:0; border-radius:10px; background:color-mix(in srgb, var(--lc) 10%, transparent); box-shadow:inset 0 -2px 0 color-mix(in srgb, var(--lc) 70%, transparent); }
-.layer-h h3{ font-size:17px; }
-.layer-h .muted{ font-size:13px; }
-.layer-items{ list-style:none; margin:0; padding:0; display:grid; grid-template-columns:repeat(3,1fr); gap:8px; }
-.layer-items > li > *{ display:flex; flex-direction:column; gap:4px; height:100%; padding:12px 13px; border-radius:10px; background:var(--well);
-  border:0; box-shadow:var(--well-sh); text-decoration:none; transition:box-shadow .15s, transform .15s; }
-.layer-items b{ font-size:14px; font-weight:600; color:#fff; }
-.layer-items span{ font-size:12.5px; color:var(--dim); line-height:1.45; }
-.layer-items a:hover{ box-shadow:var(--well-sh), inset 0 -2px 0 var(--lc); }
-.layer-items a b::after{ content:' →'; color:var(--lc); }
-.flow{ display:flex; align-items:center; justify-content:center; flex-wrap:wrap; gap:10px; padding:14px 0 0; font-size:12.5px; color:var(--muted); text-transform:uppercase; letter-spacing:.08em; }
-.flow i{ width:36px; height:1px; background:linear-gradient(90deg, var(--neon2), var(--cyan)); position:relative; opacity:.7; }
-.flow i::after{ content:''; position:absolute; right:-1px; top:-3px; border:3.5px solid transparent; border-left:5px solid var(--cyan); }
-.flow span:last-child{ color:var(--ok); }
-.flow-br{ display:none; }
-.rule-n{ font-size:12px; color:var(--cyan); }
-@media (max-width:1100px){ .layer{ grid-template-columns:1fr; } }
-@media (max-width:620px){ .layer-items{ grid-template-columns:1fr 1fr; } }
 
 /* ── MODUŁY: bento ── */
 .filters{ margin-bottom:20px; flex-wrap:wrap; }
@@ -403,17 +376,13 @@ html:not(.cv-off) #kontakt{ content-visibility:auto; contain-intrinsic-size:auto
   .toast{ bottom:calc(84px + env(safe-area-inset-bottom)); }
 
   /* karuzele zamiast długich kolumn: następna karta wystaje, przewijanie palcem */
-  .layer-items, .agents, .areas{ display:flex !important; overflow-x:auto; scroll-snap-type:x mandatory; scrollbar-width:none; overscroll-behavior-x:contain;
+  .agents, .areas{ display:flex !important; overflow-x:auto; scroll-snap-type:x mandatory; scrollbar-width:none; overscroll-behavior-x:contain;
     margin-inline:calc(-1 * var(--pad)); padding-inline:var(--pad); scroll-padding-inline:var(--pad); gap:10px; }
-  :is(.layer-items, .agents, .areas)::-webkit-scrollbar{ display:none; }
-  :is(.layer-items, .agents, .areas) > *{ flex:0 0 min(78%, 320px); scroll-snap-align:start; }
-  .layer{ padding:14px 0 14px 14px; overflow:visible; }
-  .layer .layer-items{ margin-inline:0 0; padding-inline:0 var(--pad); scroll-padding-inline:0; }
-  .layer:has(.layer-items){ padding-right:0; }
-  .layer-items > li{ flex-basis:min(62%, 230px); }
+  :is(.agents, .areas)::-webkit-scrollbar{ display:none; }
+  :is(.agents, .areas) > *{ flex:0 0 min(78%, 320px); scroll-snap-align:start; }
   .agents .agent{ display:block; }
   /* prawy brzeg karuzeli gaśnie, żeby ucięta karta czytała się jako „dalej”; na końcu przewijania znika */
-  :is(.layer-items, .agents, .areas):not(.is-end){ -webkit-mask-image:linear-gradient(to right, #000 calc(100% - 64px), transparent); mask-image:linear-gradient(to right, #000 calc(100% - 64px), transparent); }
+  :is(.agents, .areas):not(.is-end){ -webkit-mask-image:linear-gradient(to right, #000 calc(100% - 64px), transparent); mask-image:linear-gradient(to right, #000 calc(100% - 64px), transparent); }
 }
 @media (max-width:620px){
   :root{ --pad:16px; }
@@ -450,14 +419,6 @@ html:not(.cv-off) #kontakt{ content-visibility:auto; contain-intrinsic-size:auto
   .kpis .lbl{ font-size:10.5px; letter-spacing:.08em; }
   .kpis .val{ font-size:24px; margin-top:4px; }
   .kpis .sub{ font-size:12px; }
-
-  /* architektura */
-  .layer-h{ padding:0 var(--pad) 10px 0; }
-  .layer-k{ width:36px; height:36px; font-size:12px; }
-  .layer-items > * > *{ padding:11px 12px; }
-  .flow{ font-size:10.5px; gap:6px; }
-  .flow i{ width:16px; }
-  .flow-br{ display:block; flex-basis:100%; height:0; } /* dwa równe rzędy zamiast osieroconego „dziennik” */
 
   /* moduły: zwarte karty */
   .filters{ flex-wrap:nowrap; margin-inline:calc(-1 * var(--pad)); padding-inline:var(--pad); }
@@ -697,18 +658,6 @@ html:not(.cv-off) #kontakt{ content-visibility:auto; contain-intrinsic-size:auto
 .foot .foot-build a:hover{ text-decoration-color:currentColor; }
 
 
-/* ── żywa architektura ── */
-.arch-wires{ position:absolute; inset:0; width:100%; height:100%; pointer-events:none; z-index:3; overflow:visible; }
-.arch-wires path{ fill:none; stroke:var(--cyan); stroke-width:1.6; stroke-dasharray:5 5; opacity:.7; animation:wire 0.9s linear infinite; }
-.arch-wires circle{ fill:var(--cyan); }
-@keyframes wire{ to{ stroke-dashoffset:-10; } }
-.layer-items > li > div{ cursor:default; }
-.layer-items > li > *{ transition:border-color .15s, transform .15s, opacity .2s, box-shadow .2s; }
-.stack.is-hl .layer-items > li > *{ opacity:.38; }
-.stack.is-hl .layer-items > li.is-src > *, .stack.is-hl .layer-items > li.is-rel > *{ opacity:1; }
-.stack.is-hl li.is-src > *{ border-color:var(--cyan); box-shadow:0 0 0 1px rgba(var(--cyan-rgb),.35), 0 0 22px -6px rgba(var(--cyan-rgb),.8); }
-.stack.is-hl li.is-rel > *{ box-shadow:var(--well-sh), inset 0 -2px 0 var(--lc); }
-.layer:has(li.is-src), .layer:has(li.is-rel){ overflow:visible; }
 .eco svg.is-hl .eco-trace{ opacity:.14; transition:opacity .2s; }
 .eco svg.is-hl .eco-trace.on{ opacity:1; stroke-width:2.6; }
 .eco svg.is-hl .eco-node:not(.on){ opacity:.55; }
@@ -727,7 +676,6 @@ html:not(.cv-off) #kontakt{ content-visibility:auto; contain-intrinsic-size:auto
 .nf-lang p{ color:var(--muted); font-size:14.5px; }
 .nf-acts{ display:flex; flex-wrap:wrap; gap:10px; margin-top:14px; }
 .nf-proj{ display:flex; flex-wrap:wrap; gap:8px; margin-top:22px; }
-@media (prefers-reduced-motion: reduce){ .arch-wires path{ animation:none; } }
 /* Dziennik zmian /zmiany/ (decyzja #748) */
 .zm-in{ max-width:880px; }
 .zm-list{ list-style:none; padding:0; margin:28px 0 0; display:flex; flex-direction:column; gap:16px; }

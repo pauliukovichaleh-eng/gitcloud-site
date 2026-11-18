@@ -34,7 +34,7 @@ const en: Dict = {
     h1a: 'I run systems and networks ',
     h1b: 'and automate them with AI',
     h1c: '.',
-    lead: 'At the centre is the GitCloud core: the panel, the desktop and the remote run on it, and so do the agents and the night pipeline. Next to it, a console for a network operator and client work for online stores. Each project with the task, the solution and the result.',
+    lead: 'At the centre is the GitCloud core: the panel, the desktop and the remote run on it, and so do the agents and the night pipeline. Next to it, a console for a network operator and client work for online stores.',
     cta1: 'Work',
     cta2: 'Write to me',
   },
@@ -43,7 +43,7 @@ const en: Dict = {
     ['Years in IT', 'systems and network administration'],
   ],
   eco: {
-    title: 'The GitCloud core and what runs on it: AI agents, panel, ESP32 remote, night, desktop, voice assistant',
+    title: 'The GitCloud core and what runs on it: AI agents, panel, ESP32 remote, night, desktop, shield',
     aria: 'GitCloud ecosystem map',
     listAria: 'Ecosystem modules',
     nodes: [
@@ -52,22 +52,12 @@ const en: Dict = {
       ['ESP32 remote', 'screen · knob'],
       ['Night', 'backups · review · report'],
       ['Desktop', 'console · files'],
-      ['Voice assistant', 'voice · 3D face'],
+      ['Shield', 'phishing · mail · chats'],
     ],
   },
-  arch: {
-    idx: '01 / architecture',
-    h2: 'How they are built',
-    p: 'One core and three layers: interface, agents, data. The panel, the desktop and the remote use the same core.',
-    layers: [
-      ['Interface', 'where I see the result', [['Panel', 'decisions, agent work and model cost'], ['Desktop and remote', 'the same cards and notifications from the core'], ['Voice and 3D face', 'agents speak and react with facial expressions']]],
-      ['Agents and automation', 'who does the work', [['Agents with roles', 'each has its own scope and skills'], ['Decisions as cards', 'a question with options, answered with one tap'], ['Case log', 'who did what, why and with what result']]],
-      ['Data and infrastructure', 'what it runs on', [['Shared database', 'one database for the system services'], ['Model gateway', 'one access point to models and cost control'], ['Night', 'backups, restore test, maintenance, morning report']]],
-    ],
-    flow: ['data', 'agent', 'option', 'decision', 'log'],
-  },
+
   mod: {
-    idx: '02 / work',
+    idx: '01 / work',
     h2: 'Selected work',
     p: 'Each with the task, the solution and the result. Client names are not shown.',
     all: 'All',
@@ -76,15 +66,14 @@ const en: Dict = {
     deliveries: 'deliveries',
   },
   console: {
-    idx: '03 / interfaces',
+    idx: '02 / interfaces',
     h2: 'Interfaces',
-    p: 'Real screens on sample data: agent panel, models, desktop, ESP32 remote and the network operator console. The panel, the desktop and the remote share one core and one palette.',
+    p: 'Real screens on sample data: models in the panel, desktop, ESP32 remote and the network operator console.',
     tabsAria: 'System screens',
     open: 'Open full-size screenshot',
     alt: 'Screenshot',
     altDemo: 'sample data',
     shots: {
-      agenci: ['Agents', 'Agent panel: what each agent did on its own, what it handed to me and the cases of the day.'],
       modele: ['Models', 'Language models: account balances, calls day by day and the score of each model.'],
       pulpit: ['Desktop', 'Desktop: file manager and console in the panel style.'],
       pilot: ['ESP32 remote', 'Remote screen 320×170: system tiles, alerts and commands under the knob.'],
@@ -93,7 +82,7 @@ const en: Dict = {
     more: 'About the project',
   },
   agents: {
-    idx: '04 / agents',
+    idx: '03 / agents',
     h2: 'Agents',
     p: 'Each agent has its own scope and case log. What it cannot settle on its own reaches me as a card with options. Tasks are carried out by Claude. The agents speak with a voice and a 3D face.',
     list: [
@@ -102,11 +91,10 @@ const en: Dict = {
       ['modernization and ideas', 'Checks what has aged and proposes one or two changes with cost and benefit. Speaks rarely and to the point.'],
     ],
     alt: 'animated agent face',
-    more1: 'How the agent team works',
-    more2: 'How the avatars and lip sync were built',
+    more: 'How the agent team works',
   },
   svc: {
-    idx: '05 / services',
+    idx: '04 / services',
     h2: 'Services',
     p: 'Remote, with the price agreed after diagnosis. Every change comes with a backup, a test and a summary.',
     areas: [
@@ -130,7 +118,7 @@ const en: Dict = {
     useme: (n: number, z: number, s: number) => `Useme profile: ${n} contracts, ${z} completed, ${s} disputed`,
   },
   exp: {
-    idx: '06 / experience',
+    idx: '05 / experience',
     h2: 'Experience and skills',
     bio: [
       'Over four years in systems and network administration, in companies and multi-site environments. Today I combine classic administration with automation and AI.',
@@ -159,7 +147,7 @@ const en: Dict = {
     langs: [['Polish', 'C2'], ['Russian', 'native'], ['Belarusian', 'fluent'], ['English', 'B2']],
   },
   contact: {
-    idx: '07 / contact',
+    idx: '06 / contact',
     h2: 'Contact',
     p: 'Write a few sentences: what is broken or what should be built. I usually reply the same day, first with an assessment and a price.',
     btn: 'Send a message',
@@ -177,7 +165,7 @@ const en: Dict = {
     empty: 'No results',
     hint: '↑↓ select · Enter open · Esc close',
     g: { sec: 'Sections', proj: 'Work', act: 'Commands', lang: 'Language' },
-    secs: [['ekosystem', 'Ecosystem'], ['architektura', 'Architecture'], ['moduly', 'Work'], ['konsola', 'Interfaces'], ['agenci', 'AI agents'], ['uslugi', 'Services'], ['doswiadczenie', 'Experience and skills'], ['kontakt', 'Contact and FAQ']],
+    secs: [['ekosystem', 'Ecosystem'], ['moduly', 'Work'], ['konsola', 'Interfaces'], ['agenci', 'AI agents'], ['uslugi', 'Services'], ['doswiadczenie', 'Experience and skills'], ['kontakt', 'Contact and FAQ']],
     mail: 'Write an e-mail',
     copy: 'Copy e-mail address',
     cv: 'Download CV (PDF)',

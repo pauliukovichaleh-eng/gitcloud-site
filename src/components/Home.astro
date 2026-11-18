@@ -20,25 +20,12 @@ const ordered = orderedPl.map((p) => localize(p, lang));
 const categories = T.mod.categories as Record<string, string>;
 const count = (c: string) => projects.filter((p) => p.category === c).length;
 const pj = (slug: string) => (has(slug) ? `#${anchor(slug)}` : '');
-const layerLinks = [   // jak T.arch.layers: interfejs, agenci, dane
-  [pj('panel-operacyjny'), pj('pilot-esp32'), '#agenci'],
-  [pj('agenci-ai'), pj('panel-operacyjny'), ''],
-  ['', '', pj('platforma-danych')],
-];
 // Interfejsy: prawdziwe ekrany na danych przykładowych (klucz, plik, szerokość, wysokość, projekt, adres w pasku, pikselowy).
 const uiShots: [string, string, number, number, string, string, boolean][] = [
-  ['agenci', '/img/projekty/panel-agenci.webp', 1440, 790, 'agenci-ai', 'my.gitcloud · agenci', false],
   ['modele', '/img/projekty/panel-modele.webp', 1440, 985, 'panel-operacyjny', 'my.gitcloud · modele', false],
   ['pulpit', '/img/projekty/pulpit-okladka.webp', 1280, 720, 'pulpit-gitcloud', 'pulpit gitcloud', false],
   ['pilot', '/img/projekty/pilot-kafelki.png', 1280, 680, 'pilot-esp32', 'pilot esp32 · 320×170', true],
   ['isp', '/img/demo/dashboard.webp', 2000, 1250, 'platforma-isp', 'demo.gitcloud · dashboard', false],
-];
-// Żywa architektura: powiązania elementów warstw (L3 interfejs, L2 agenci, L1 dane), indeksy jak w T.arch.layers.
-const archLinks: [string, string][] = [
-  ['L3-0', 'L2-0'], ['L3-0', 'L2-1'], ['L3-0', 'L2-2'], ['L3-0', 'L1-1'],
-  ['L3-1', 'L2-0'], ['L3-1', 'L2-1'],
-  ['L3-2', 'L2-0'], ['L3-2', 'L1-1'],
-  ['L2-0', 'L1-1'], ['L2-0', 'L1-2'], ['L2-1', 'L1-0'], ['L2-2', 'L1-0'],
 ];
 const kpiVals = [`${stats.exam}%`, `${stats.years}+`];
 const agentMeta = [['Sally', 'sally', 'm'], ['Tony', 'tony', 'b'], ['Buzz', 'buzz', 'g']];
@@ -58,7 +45,7 @@ const jsonld = {
     // Stare kotwice (/#platforma, /#operator …) → nowe sekcje.
     // Kotwica, odświeżenie, wstecz: przewijanie potrzebuje prawdziwych wysokości sekcji → bez content-visibility (site.css).
     (function () { var n = performance.getEntriesByType && performance.getEntriesByType('navigation')[0]; if (location.hash || (n && n.type !== 'navigate')) document.documentElement.classList.add('cv-off'); if ('scrollRestoration' in history) history.scrollRestoration = 'manual'; })();
-    (function () { var h = location.hash.slice(1); if (/^(platforma|mozliwosci|zalozyciel|stat-grid|sw-[a-z]+)$/.test(h)) history.replaceState(null, '', '#konsola'); if (h === 'operator') history.replaceState(null, '', '#doswiadczenie'); })();
+    (function () { var h = location.hash.slice(1); if (/^(platforma|mozliwosci|zalozyciel|stat-grid|sw-[a-z]+)$/.test(h)) history.replaceState(null, '', '#konsola'); if (h === 'architektura') history.replaceState(null, '', '#ekosystem'); if (h === 'operator') history.replaceState(null, '', '#doswiadczenie'); })();
   </script>
 
   <!-- ═══ 00 · HERO ═══ -->
@@ -83,34 +70,7 @@ const jsonld = {
     </div>
   </section>
 
-  <!-- ═══ 01 · ARCHITEKTURA ═══ -->
-  <section class="sec" id="architektura">
-    <div class="wrap">
-      <header class="sec-h">
-        <span class="idx mono">{T.arch.idx}</span>
-        <h2>{T.arch.h2}</h2>
-        <p>{T.arch.p}</p>
-      </header>
-      <div class="stack" data-links={JSON.stringify(archLinks)}>
-        <svg class="arch-wires" aria-hidden="true"></svg>
-        {T.arch.layers.map(([lt, ls, items], li) => (
-          <div class={`layer layer-L${3 - li}`}>
-            <div class="layer-h"><span class="mono layer-k">L{3 - li}</span><div><h3>{lt}</h3><span class="muted">{ls}</span></div></div>
-            <ul class="layer-items">
-              {items.map(([it, isub], ii) => (
-                <li data-k={`L${3 - li}-${ii}`}>{layerLinks[li][ii] ? <a href={layerLinks[li][ii]}><b>{it}</b><span>{isub}</span></a> : <div><b>{it}</b><span>{isub}</span></div>}</li>
-              ))}
-            </ul>
-          </div>
-        ))}
-        <div class="flow mono" aria-hidden="true">
-          {T.arch.flow.map((f, i) => <>{i === 3 && <b class="flow-br"></b>}{i > 0 && <i></i>}<span>{f}</span></>)}
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ═══ 02 · REALIZACJE ═══ -->
+  <!-- ═══ 01 · REALIZACJE ═══ -->
   <section class="sec" id="moduly">
     <div class="wrap">
       <header class="sec-h">
@@ -128,7 +88,7 @@ const jsonld = {
     </div>
   </section>
 
-  <!-- ═══ 03 · INTERFEJSY (kotwica #konsola zostaje dla starych linków) ═══ -->
+  <!-- ═══ 02 · INTERFEJSY (kotwica #konsola zostaje dla starych linków) ═══ -->
   <section class="sec" id="konsola">
     <div class="wrap">
       <header class="sec-h">
@@ -162,7 +122,7 @@ const jsonld = {
     </div>
   </section>
 
-  <!-- ═══ 04 · AGENCI ═══ -->
+  <!-- ═══ 03 · AGENCI ═══ -->
   <section class="sec" id="agenci">
     <div class="wrap">
       <header class="sec-h">
@@ -186,13 +146,12 @@ const jsonld = {
         ))}
       </div>
       <div class="agent-links">
-        {has('agenci-ai') && <a class="link-more" href={`#${anchor('agenci-ai')}`}>{T.agents.more1} &rarr;</a>}
-        {has('glowy-agentow') && <a class="link-more" href={`#${anchor('glowy-agentow')}`}>{T.agents.more2} &rarr;</a>}
+        {has('agenci-ai') && <a class="link-more" href={`#${anchor('agenci-ai')}`}>{T.agents.more} &rarr;</a>}
       </div>
     </div>
   </section>
 
-  <!-- ═══ 05 · USŁUGI ═══ -->
+  <!-- ═══ 04 · USŁUGI ═══ -->
   <section class="sec" id="uslugi">
     <div class="wrap">
       <header class="sec-h">
@@ -217,7 +176,7 @@ const jsonld = {
     </div>
   </section>
 
-  <!-- ═══ 06 · DOŚWIADCZENIE I KOMPETENCJE ═══ -->
+  <!-- ═══ 05 · DOŚWIADCZENIE I KOMPETENCJE ═══ -->
   <section class="sec" id="doswiadczenie">
     <span id="operator" aria-hidden="true"></span>
     <div class="wrap">
@@ -284,7 +243,7 @@ const jsonld = {
     </div>
   </section>
 
-  <!-- ═══ 07 · KONTAKT ═══ -->
+  <!-- ═══ 06 · KONTAKT ═══ -->
   <section class="sec" id="kontakt">
     <div class="wrap"><div class="contact">
       <div class="contact-main">
@@ -384,7 +343,7 @@ const jsonld = {
   }));
 
   // ── Karuzele na telefonie: klasa is-end, gdy nie ma już nic dalej (zdejmuje wygaszenie prawego brzegu)
-  $$<HTMLElement>('.layer-items, .agents, .areas').forEach((c) => {
+  $$<HTMLElement>('.agents, .areas').forEach((c) => {
     const end = () => c.classList.toggle('is-end', c.scrollLeft + c.clientWidth >= c.scrollWidth - 4);
     c.addEventListener('scroll', end, { passive: true }); addEventListener('resize', end); end();
   });
@@ -429,46 +388,7 @@ const jsonld = {
   // ── Pojawianie się bloków
   if (!reduce) {
     const rio = new IntersectionObserver((es) => es.forEach((e) => { if (e.isIntersecting) { e.target.classList.add('in'); rio.unobserve(e.target); } }), { threshold: 0.12 });
-    $$('.sec-h, .layer, .bento .card, .console, .agent, .areas, .svc, .who > *, .contact > *').forEach((el) => { el.classList.add('rv'); rio.observe(el); });
-  }
-
-  // ── Żywa architektura: najechanie (lub dotknięcie) elementu warstwy podświetla jego powiązania i rysuje przewody.
-  const stack = $<HTMLElement>('.stack[data-links]');
-  if (stack) {
-    const links: [string, string][] = JSON.parse(stack.dataset.links || '[]');
-    const wires = $<SVGSVGElement>('.arch-wires', stack)!;
-    const items = $$<HTMLElement>('li[data-k]', stack);
-    const byK = new Map(items.map((li) => [li.dataset.k!, li]));
-    const nb = (k: string) => links.filter((l) => l.includes(k)).map(([a, b]) => (a === k ? b : a));
-    const clear = () => { stack.classList.remove('is-hl'); items.forEach((li) => li.classList.remove('is-src', 'is-rel')); wires.innerHTML = ''; };
-    const light = (k: string) => {
-      clear();
-      const src = byK.get(k); if (!src) return;
-      stack.classList.add('is-hl'); src.classList.add('is-src');
-      const rel = nb(k);
-      rel.forEach((r) => byK.get(r)?.classList.add('is-rel'));
-      // przewody tylko w układzie siatki (na telefonie warstwy są karuzelami)
-      if (matchMedia('(min-width:861px)').matches) {
-        const box = stack.getBoundingClientRect();
-        wires.setAttribute('viewBox', `0 0 ${box.width} ${box.height}`);
-        const pt = (el: HTMLElement, up: boolean) => { const r = el.getBoundingClientRect(); return [r.left + r.width / 2 - box.left, (up ? r.top : r.bottom) - box.top]; };
-        wires.innerHTML = rel.map((r) => {
-          const el = byK.get(r)!; const down = r.slice(1, 2) < k.slice(1, 2);
-          const [x1, y1] = pt(src, !down), [x2, y2] = pt(el, down);
-          const my = (y1 + y2) / 2;
-          return `<path d="M${x1} ${y1} C${x1} ${my} ${x2} ${my} ${x2} ${y2}"/><circle cx="${x2}" cy="${y2}" r="3.5"/>`;
-        }).join('');
-      }
-    };
-    items.forEach((li) => {
-      li.addEventListener('pointerenter', (e) => { if ((e as PointerEvent).pointerType === 'mouse') light(li.dataset.k!); });
-      li.addEventListener('focusin', () => light(li.dataset.k!));
-      li.addEventListener('click', (e) => { if (!li.querySelector('a') && !li.classList.contains('is-src')) { e.preventDefault(); light(li.dataset.k!); } });
-    });
-    stack.addEventListener('pointerleave', (e) => { if ((e as PointerEvent).pointerType === 'mouse') clear(); });
-    stack.addEventListener('focusout', (e) => { if (!stack.contains((e as FocusEvent).relatedTarget as Node)) clear(); });
-    items.forEach((li) => { const d = li.firstElementChild as HTMLElement | null; if (d && d.tagName === 'DIV') d.tabIndex = 0; });
-    addEventListener('resize', clear);
+    $$('.sec-h, .bento .card, .console, .agent, .areas, .svc, .who > *, .contact > *').forEach((el) => { el.classList.add('rv'); rio.observe(el); });
   }
 
   // ── Mapa ekosystemu: najechany węzeł podświetla swoją ścieżkę do rdzenia

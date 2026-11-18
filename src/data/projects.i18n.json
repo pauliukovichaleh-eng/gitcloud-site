@@ -26,31 +26,19 @@
       "gallery_alt": ["Knob control: tile menu, server and CPU chart, virtual machines, firewall restart with a PIN, then a voice conversation with Sally and Tony; simulator recording, sample data", "Conversation window: Sally's face in a hexagon, 24 voice segments around it, a question and an answer", "The same conversation with Tony: his face and colour, server status in the answer", "Sound page: server, microphone, music and agent voice volumes, the reason for silence on top", "System tile menu", "Claude session screen: session state and limit usage", "Music player with a progress bar", "CPU chart with an alarm threshold", "Virtual machines and containers with resources", "A critical command (firewall restart) requires a PIN"],
       "gallery_note": "A recording and screenshots from the screen simulator: the same code as the firmware, labels translated to Polish, sample data (made-up services, track and conversation); the 320×170 screen shown at 3:1 in the recording and 4:1 in the screenshots, section scrolling between the chart and the machine list cut from the recording."
     },
-    "glowy-agentow": {
-      "title": "3D avatars for voice assistants",
-      "lead": "Three 3D characters that speak with the agents' voices, with lip movement matched to speech and their own facial expressions.",
-      "image_alt": "Three 3D agent heads: Sally, Tony and Buzz",
-      "status": "Runs in the browser and in the desktop widget column",
-      "problem": "A voice assistant without a face is harder to follow in a conversation. The goal was lifelike facial expressions on own hardware, without paid 3D models.",
-      "solution": "Heads built in code with three.js, lip movement computed from speech. Each character has its own style of expressions and emotions. They run in the browser and in the desktop widget column, with colours from the core palette.",
-      "role": "Character design, animation and lip sync.",
-      "results": ["Lip sync accurate to 10 to 30 ms", "Own facial expressions and emotions for each character", "Recordings for this site made on the GPU, head and shoulders as live"],
-      "gallery_alt": ["Sally, Tony and Buzz: facial expressions and emotions, recorded on the GPU", "Sally: correspondence and deadlines", "Tony: infrastructure on duty", "Buzz: modernization and ideas"],
-      "stack": ["three.js", "WebGL", "Python", "WebSocket"]
-    },
     "agenci-ai": {
       "title": "AI agent team for operational work",
-      "lead": "Three agents with roles split as in a company: correspondence and deadlines, infrastructure on duty, modernization. Tasks are carried out by Claude.",
+      "lead": "Three agents with roles split as in a company: correspondence and deadlines, infrastructure on duty, modernization. They speak with a voice and have 3D faces. Tasks are carried out by Claude.",
       "status": "Runs daily, also at night",
       "problem": "Routine matters (alerts, mail, deadlines, updates) ate time every day, and a single general assistant mixed up responsibilities.",
-      "solution": "Each agent has its own role, skills and decision memory. Obvious matters the agent settles on its own, the rest reaches me in the panel as a card with options. Writing to people, fixes and code changes are done by Claude in separate sessions. Every case goes to the log: who did what, why and with what result.",
-      "role": "Architecture, agent code, runbooks and tests.",
-      "results": ["Alerts resolved at night, one report in the morning", "A decision for an agent with one tap", "A full log of agent cases"],
+      "solution": "Each agent has its own role, skills and decision memory. Obvious matters the agent settles on its own, the rest reaches me in the panel as a card with options. Writing to people, fixes and code changes are done by Claude in separate sessions. Every case goes to the log: who did what, why and with what result. The agents speak, and their 3D faces (three.js) move their lips in sync with speech.",
+      "role": "Architecture, agent code, runbooks, tests and 3D faces.",
+      "results": ["Alerts resolved at night, one report in the morning", "A decision for an agent with one tap", "A full log of agent cases", "3D faces with lip movement matched to speech (10 to 30 ms)"],
       "image_alt": "Agent panel: actions from the last 24 hours by agent, agent cards and the share of tasks resolved on their own, sample data",
-      "gallery_alt": ["A walk through the agent panel: tasks from the last 24 hours, details of one task, the cards of Tony, Sally and Buzz; screen recording, sample data", "Agents in the last 24 hours: what they did on their own, what went to the owner, task log", "Technical agent card: day summary and 14-day success rate", "Assistant card: tasks of the day, success rate and 3D avatar", "The same panel on a phone"],
+      "gallery_alt": ["A walk through the agent panel: tasks from the last 24 hours, details of one task, the cards of Tony, Sally and Buzz; screen recording, sample data", "Sally, Tony and Buzz: facial expressions and emotions, recorded on the GPU", "Agents in the last 24 hours: what they did on their own, what went to the owner, task log", "Technical agent card: day summary and 14-day success rate", "Assistant card: tasks of the day, success rate and 3D avatar", "The same panel on a phone"],
       "links_label": ["Operations panel: decisions and model costs"],
       "gallery_note": "A recording and screenshots of the panel running on sample data: a made-up task log and made-up agent results, no connection to the database or network; missing Polish interface labels translated, the schedule list hidden in the recording.",
-      "stack": ["Python", "FastAPI", "PostgreSQL", "LLM API"]
+      "stack": ["Python", "FastAPI", "PostgreSQL", "LLM API", "three.js", "WebGL"]
     },
     "panel-operacyjny": {
       "title": "Operations panel: decisions, agents and AI costs",
@@ -237,31 +225,19 @@
       "gallery_alt": ["Управление ручкой: меню плиток, сервер и график CPU, виртуальные машины, перезапуск файрвола с PIN-кодом, затем голосовой разговор с Салли и Тони; запись симулятора, примерные данные", "Окно разговора: лицо Салли в шестиугольнике, вокруг 24 сегмента голоса, вопрос и ответ", "Тот же разговор с Тони: его лицо и цвет, состояние сервера в ответе", "Страница «Звук»: громкость сервера, микрофона, музыки и голосов агентов, сверху причина тишины", "Меню плиток систем", "Экран сессии Claude: состояние сессии и расход лимита", "Музыкальный плеер с полосой прогресса", "График CPU с порогом тревоги", "Виртуальные машины и контейнеры с ресурсами", "Важная команда (перезапуск файрвола) требует PIN-кода"],
       "gallery_note": "Запись и снимки из симулятора экрана: тот же код, что в прошивке, надписи переведены на польский, примерные данные (выдуманные службы, трек и разговор); экран 320×170 в масштабе 3:1 в записи и 4:1 на снимках, прокрутка разделов между графиком и списком машин из записи вырезана."
     },
-    "glowy-agentow": {
-      "title": "3D-аватары для голосовых ассистентов",
-      "lead": "Три 3D-персонажа, которые говорят голосами агентов, с движением губ под речь и своей мимикой.",
-      "image_alt": "Три 3D-головы агентов: Салли, Тони и Базз",
-      "status": "Работает в браузере и в колонке виджетов рабочего стола",
-      "problem": "Голосовой ассистент без лица хуже воспринимается в разговоре. Цель была живая мимика на своём железе, без платных 3D-моделей.",
-      "solution": "Головы построены кодом на three.js, движение губ считается по речи. У каждого персонажа свой характер мимики и эмоций. Работают в браузере и в колонке виджетов рабочего стола, цвета берут из палитры ядра.",
-      "role": "Дизайн персонажей, анимация и синхронизация губ.",
-      "results": ["Синхронизация губ с точностью от 10 до 30 мс", "Своя мимика и эмоции у каждого персонажа", "Записи для сайта сняты на видеокарте, голова с плечами как вживую"],
-      "gallery_alt": ["Салли, Тони и Базз: мимика и эмоции, запись на видеокарте", "Sally: переписка и сроки", "Tony: дежурный по инфраструктуре", "Buzz: модернизация и идеи"],
-      "stack": ["three.js", "WebGL", "Python", "WebSocket"]
-    },
     "agenci-ai": {
       "title": "Команда AI-агентов для операционной работы",
-      "lead": "Три агента с разделением ролей, как в компании: переписка и сроки, дежурство по инфраструктуре, модернизация. Задачи выполняет Claude.",
+      "lead": "Три агента с разделением ролей, как в компании: переписка и сроки, дежурство по инфраструктуре, модернизация. Говорят голосом и имеют 3D-лица. Задачи выполняет Claude.",
       "status": "Работает ежедневно, в том числе ночью",
       "problem": "Рутинные дела (тревоги, почта, сроки, обновления) отнимали время каждый день, а один общий ассистент путал зоны ответственности.",
-      "solution": "У каждого агента своя роль, навыки и память решений. Очевидное агент решает сам, остальное приходит мне в панель карточкой с вариантами. Письма людям, починку и изменения в коде выполняет Claude в отдельных сессиях. Каждое дело попадает в журнал: кто, что, зачем и с каким итогом.",
-      "role": "Архитектура, код агентов, регламенты и тесты.",
-      "results": ["Тревоги решаются ночью, утром один отчёт", "Решение для агента одним касанием", "Полный журнал дел агентов"],
+      "solution": "У каждого агента своя роль, навыки и память решений. Очевидное агент решает сам, остальное приходит мне в панель карточкой с вариантами. Письма людям, починку и изменения в коде выполняет Claude в отдельных сессиях. Каждое дело попадает в журнал: кто, что, зачем и с каким итогом. Агенты говорят голосом, а 3D-лица (three.js) двигают губами в такт речи.",
+      "role": "Архитектура, код агентов, регламенты, тесты и 3D-лица.",
+      "results": ["Тревоги решаются ночью, утром один отчёт", "Решение для агента одним касанием", "Полный журнал дел агентов", "3D-лица с движением губ под речь (от 10 до 30 мс)"],
       "image_alt": "Панель агентов: действия за сутки по агентам, карточки агентов и доля дел, решённых самостоятельно, примерные данные",
-      "gallery_alt": ["Проход по панели агентов: дела за сутки, подробности одного дела, карточки Тони, Салли и Базза; запись экрана, примерные данные", "Агенты за сутки: что сделали сами, что передали владельцу, журнал дел", "Карточка технического агента: итог дня и успешность за 14 дней", "Карточка ассистентки: дела дня, успешность и 3D-аватар", "Та же панель на телефоне"],
+      "gallery_alt": ["Проход по панели агентов: дела за сутки, подробности одного дела, карточки Тони, Салли и Базза; запись экрана, примерные данные", "Салли, Тони и Базз: мимика и эмоции, запись на видеокарте", "Агенты за сутки: что сделали сами, что передали владельцу, журнал дел", "Карточка технического агента: итог дня и успешность за 14 дней", "Карточка ассистентки: дела дня, успешность и 3D-аватар", "Та же панель на телефоне"],
       "links_label": ["Операционная панель: решения и стоимость моделей"],
       "gallery_note": "Запись и снимки панели, запущенной на примерных данных: выдуманный журнал дел и выдуманные итоги агентов, без связи с базой и сетью; недостающие польские надписи интерфейса переведены, в записи скрыт список расписания.",
-      "stack": ["Python", "FastAPI", "PostgreSQL", "LLM API"]
+      "stack": ["Python", "FastAPI", "PostgreSQL", "LLM API", "three.js", "WebGL"]
     },
     "panel-operacyjny": {
       "title": "Операционная панель: решения, агенты и стоимость AI",

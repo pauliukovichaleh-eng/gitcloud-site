@@ -6,7 +6,6 @@
     "zlecenia": "Zlecenia dla klientów"
   },
   "featured": [
-    "glowy-agentow",
     "agenci-ai",
     "panel-operacyjny",
     "platforma-isp",
@@ -258,61 +257,10 @@
       "gallery_note": "Nagranie i zrzuty z symulatora ekranu: ten sam kod co w firmware, napisy przetłumaczone na polski, dane przykładowe (wymyślone usługi, utwór i rozmowa); ekran 320×170 pokazany w skali 3:1 w nagraniu i 4:1 na zrzutach, w nagraniu pominięte przewijanie sekcji między wykresem a listą maszyn."
     },
     {
-      "slug": "glowy-agentow",
-      "category": "wlasne",
-      "title": "Awatary 3D dla asystentów głosowych",
-      "lead": "Trzy postacie 3D, które mówią głosem agentów, z ruchem ust dopasowanym do mowy i własną mimiką.",
-      "year": "2026",
-      "status": "Działa w przeglądarce i w kolumnie widżetów pulpitu",
-      "image": "/img/projekty/glowy.jpg",
-      "image_alt": "Trzy głowy agentów 3D: Sally, Tony i Buzz",
-      "video": {
-        "src": "/img/projekty/glowy.mp4",
-        "poster": "/img/projekty/glowy.jpg"
-      },
-      "gallery": [
-        {
-          "video": "/img/projekty/glowy.mp4",
-          "src": "/img/projekty/glowy.jpg",
-          "alt": "Sally, Tony i Buzz: mimika i emocje, nagranie na karcie graficznej"
-        },
-        {
-          "video": "/img/projekty/glowa-sally.mp4",
-          "src": "/img/projekty/glowa-sally.jpg",
-          "alt": "Sally: korespondencja i terminy"
-        },
-        {
-          "video": "/img/projekty/glowa-tony.mp4",
-          "src": "/img/projekty/glowa-tony.jpg",
-          "alt": "Tony: dyżur infrastruktury"
-        },
-        {
-          "video": "/img/projekty/glowa-buzz.mp4",
-          "src": "/img/projekty/glowa-buzz.jpg",
-          "alt": "Buzz: modernizacja i pomysły"
-        }
-      ],
-      "problem": "Asystent głosowy bez twarzy jest mniej czytelny w rozmowie. Celem była żywa mimika na własnym sprzęcie, bez płatnych modeli 3D.",
-      "solution": "Głowy zbudowane kodem w three.js, ruch ust liczony z mowy. Każda postać ma własny charakter mimiki i emocji. Działają w przeglądarce i w kolumnie widżetów pulpitu, kolory biorą z palety rdzenia.",
-      "stack": [
-        "three.js",
-        "WebGL",
-        "Python",
-        "WebSocket"
-      ],
-      "role": "Projekt postaci, animacja i synchronizacja ust.",
-      "results": [
-        "Synchronizacja ust z dokładnością 10 do 30 ms",
-        "Własna mimika i emocje każdej postaci",
-        "Nagrania na stronę z karty graficznej, głowa z ramionami jak na żywo"
-      ],
-      "links": []
-    },
-    {
       "slug": "agenci-ai",
       "category": "wlasne",
       "title": "Zespół agentów AI do pracy operacyjnej",
-      "lead": "Trzech agentów z podziałem ról jak w firmie: korespondencja i terminy, dyżur infrastruktury, modernizacja. Zadania wykonuje Claude.",
+      "lead": "Trzech agentów z podziałem ról jak w firmie: korespondencja i terminy, dyżur infrastruktury, modernizacja. Mówią głosem i mają twarze 3D. Zadania wykonuje Claude.",
       "year": "2026",
       "status": "Działa codziennie, także w nocy",
       "image": "/img/projekty/agenci-okladka.webp",
@@ -324,6 +272,11 @@
           "w": 1280,
           "h": 720,
           "alt": "Przejście po panelu agentów: sprawy z ostatniej doby, szczegóły jednej sprawy, karty Tony'ego, Sally i Buzza; nagranie z ekranu, dane przykładowe"
+        },
+        {
+          "video": "/img/projekty/glowy.mp4",
+          "src": "/img/projekty/glowy.jpg",
+          "alt": "Sally, Tony i Buzz: mimika i emocje, nagranie na karcie graficznej"
         },
         {
           "src": "/img/projekty/panel-agenci.webp",
@@ -344,24 +297,30 @@
       ],
       "gallery_note": "Nagranie i zrzuty panelu uruchomionego na danych przykładowych: wymyślony dziennik spraw i wymyślone wyniki agentów, bez połączenia z bazą i siecią; brakujące polskie napisy interfejsu przetłumaczone, w nagraniu ukryta lista harmonogramu.",
       "problem": "Rutynowe sprawy (alarmy, poczta, terminy, aktualizacje) zabierały czas każdego dnia, a jeden ogólny asystent mylił kompetencje.",
-      "solution": "Każdy agent ma swoją rolę, umiejętności i pamięć decyzji. Sprawy oczywiste agent rozstrzyga sam, resztę dostaję w panelu jako kartę z wariantami. Pisanie do ludzi, naprawy i zmiany w kodzie wykonuje Claude w osobnych sesjach. Każda sprawa trafia do dziennika: kto, co, dlaczego i z jakim wynikiem.",
+      "solution": "Każdy agent ma swoją rolę, umiejętności i pamięć decyzji. Sprawy oczywiste agent rozstrzyga sam, resztę dostaję w panelu jako kartę z wariantami. Pisanie do ludzi, naprawy i zmiany w kodzie wykonuje Claude w osobnych sesjach. Każda sprawa trafia do dziennika: kto, co, dlaczego i z jakim wynikiem. Agenci mówią głosem, a twarze 3D (three.js) poruszają ustami zgodnie z mową.",
       "stack": [
         "Python",
         "FastAPI",
         "PostgreSQL",
-        "LLM API"
+        "LLM API",
+        "three.js",
+        "WebGL"
       ],
-      "role": "Architektura, kod agentów, procedury i testy.",
+      "role": "Architektura, kod agentów, procedury, testy i twarze 3D.",
       "results": [
         "Alarmy rozwiązywane w nocy, rano jeden raport",
         "Decyzja dla agenta jednym dotknięciem",
-        "Pełny dziennik spraw agentów"
+        "Pełny dziennik spraw agentów",
+        "Twarze 3D z ruchem ust zgodnym z mową (10 do 30 ms)"
       ],
       "links": [
         {
           "href": "/projekty/panel-operacyjny/",
           "label": "Panel operacyjny: decyzje i koszty modeli"
         }
+      ],
+      "aliases": [
+        "glowy-agentow"
       ]
     },
     {

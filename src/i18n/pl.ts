@@ -34,7 +34,7 @@ export default {
     h1a: 'Administruję systemami i sieciami, ',
     h1b: 'automatyzuję je z AI',
     h1c: '.',
-    lead: 'Centrum to rdzeń GitCloud: na nim stoją panel, pulpit i pilot, pracują agenci i nocny potok. Obok konsola dla operatora sieci i zlecenia dla sklepów. Przy każdym projekcie zadanie, rozwiązanie i wynik.',
+    lead: 'Centrum to rdzeń GitCloud: na nim stoją panel, pulpit i pilot, pracują agenci i nocny potok. Obok konsola dla operatora sieci i zlecenia dla sklepów.',
     cta1: 'Realizacje',
     cta2: 'Napisz do mnie',
   },
@@ -43,7 +43,7 @@ export default {
     ['Lata w IT', 'administracja systemów i sieci'],
   ],
   eco: {
-    title: 'Rdzeń GitCloud i to, co na nim działa: agenci AI, panel, pilot ESP32, noc, pulpit, asystent głosowy',
+    title: 'Rdzeń GitCloud i to, co na nim działa: agenci AI, panel, pilot ESP32, noc, pulpit, tarcza',
     aria: 'Mapa ekosystemu GitCloud',
     listAria: 'Moduły ekosystemu',
     nodes: [
@@ -52,22 +52,12 @@ export default {
       ['Pilot ESP32', 'ekran · pokrętło'],
       ['Noc', 'kopie · przegląd · raport'],
       ['Pulpit', 'konsola · pliki'],
-      ['Asystent głosowy', 'głos · twarz 3D'],
+      ['Tarcza', 'phishing · poczta · czaty'],
     ],
   },
-  arch: {
-    idx: '01 / architektura',
-    h2: 'Jak są zbudowane',
-    p: 'Jeden rdzeń i trzy warstwy: interfejs, agenci, dane. Panel, pulpit i pilot korzystają z tego samego rdzenia.',
-    layers: [
-      ['Interfejs', 'gdzie widzę wynik', [['Panel', 'decyzje, praca agentów i koszt modeli'], ['Pulpit i pilot', 'te same karty i powiadomienia z rdzenia'], ['Głos i twarz 3D', 'agenci mówią i reagują mimiką']]],
-      ['Agenci i automatyzacja', 'kto wykonuje pracę', [['Agenci z rolami', 'każdy ma swój zakres i umiejętności'], ['Decyzje kartą', 'pytanie z wariantami, odpowiedź jednym dotknięciem'], ['Dziennik spraw', 'kto, co, dlaczego i z jakim wynikiem']]],
-      ['Dane i infrastruktura', 'na czym to stoi', [['Wspólna baza', 'jedna baza danych dla usług systemu'], ['Bramka modeli', 'jeden punkt dostępu do modeli i kontrola kosztu'], ['Noc', 'kopie, próba odtworzenia, konserwacja, raport rano']]],
-    ],
-    flow: ['dane', 'agent', 'wariant', 'decyzja', 'dziennik'],
-  },
+
   mod: {
-    idx: '02 / realizacje',
+    idx: '01 / realizacje',
     h2: 'Realizacje',
     p: 'Przy każdej: zadanie, rozwiązanie i wynik. Nazw klientów nie podaję.',
     all: 'Wszystkie',
@@ -76,15 +66,14 @@ export default {
     deliveries: 'realizacji',
   },
   console: {
-    idx: '03 / interfejsy',
+    idx: '02 / interfejsy',
     h2: 'Interfejsy',
-    p: 'Prawdziwe ekrany na danych przykładowych: panel agentów, modele, pulpit, pilot ESP32 i konsola operatora sieci. Panel, pulpit i pilot mają wspólny rdzeń i paletę.',
+    p: 'Prawdziwe ekrany na danych przykładowych: modele w panelu, pulpit, pilot ESP32 i konsola operatora sieci.',
     tabsAria: 'Ekrany systemu',
     open: 'Otwórz zrzut w pełnym rozmiarze',
     alt: 'Zrzut ekranu',
     altDemo: 'dane przykładowe',
     shots: {
-      agenci: ['Agenci', 'Panel agentów: co każdy zrobił sam, co przekazał mnie i sprawy z dnia.'],
       modele: ['Modele', 'Modele językowe: saldo kont, wywołania dzień po dniu i wynik każdego modelu.'],
       pulpit: ['Pulpit', 'Pulpit: menedżer plików i konsola w stylu panelu.'],
       pilot: ['Pilot ESP32', 'Ekran pilota 320×170: kafelki systemów, alerty i polecenia pod pokrętłem.'],
@@ -93,7 +82,7 @@ export default {
     more: 'Opis projektu',
   },
   agents: {
-    idx: '04 / agenci',
+    idx: '03 / agenci',
     h2: 'Agenci',
     p: 'Każdy agent ma swój zakres i dziennik spraw. Czego nie rozstrzygnie sam, dostaję jako kartę z wariantami. Zadania wykonuje Claude. Agenci mówią głosem i twarzą 3D.',
     list: [
@@ -102,11 +91,10 @@ export default {
       ['modernizacja i pomysły', 'Sprawdza, co się zestarzało, i proponuje jedną lub dwie zmiany z ceną i zyskiem. Mówi rzadko i rzeczowo.'],
     ],
     alt: 'animowana twarz agenta',
-    more1: 'Jak działa zespół agentów',
-    more2: 'Jak powstały awatary i synchronizacja ust',
+    more: 'Jak działa zespół agentów',
   },
   svc: {
-    idx: '05 / usługi',
+    idx: '04 / usługi',
     h2: 'Usługi',
     p: 'Zdalnie, z ceną ustaloną po diagnozie. Każda zmiana z kopią, testem i opisem.',
     areas: [
@@ -130,7 +118,7 @@ export default {
     useme: (n: number, z: number, s: number) => `Profil na Useme: umowy ${n}, zakończone ${z}, sporne ${s}`,
   },
   exp: {
-    idx: '06 / doświadczenie',
+    idx: '05 / doświadczenie',
     h2: 'Doświadczenie i kompetencje',
     bio: [
       'Ponad cztery lata w administracji systemów i sieci, w firmach i środowiskach wielooddziałowych. Dziś łączę klasyczną administrację z automatyzacją i AI.',
@@ -159,7 +147,7 @@ export default {
     langs: [['polski', 'C2'], ['rosyjski', 'ojczysty'], ['białoruski', 'biegły'], ['angielski', 'B2']],
   },
   contact: {
-    idx: '07 / kontakt',
+    idx: '06 / kontakt',
     h2: 'Kontakt',
     p: 'Napisz kilka zdań: co nie działa albo co ma powstać. Odpowiadam zwykle tego samego dnia, najpierw z oceną i ceną.',
     btn: 'Napisz wiadomość',
@@ -177,7 +165,7 @@ export default {
     empty: 'Brak wyników',
     hint: '↑↓ wybór · Enter otwórz · Esc zamknij',
     g: { sec: 'Sekcje', proj: 'Realizacje', act: 'Polecenia', lang: 'Język' },
-    secs: [['ekosystem', 'Ekosystem'], ['architektura', 'Architektura'], ['moduly', 'Realizacje'], ['konsola', 'Interfejsy'], ['agenci', 'Agenci AI'], ['uslugi', 'Usługi'], ['doswiadczenie', 'Doświadczenie i kompetencje'], ['kontakt', 'Kontakt i FAQ']],
+    secs: [['ekosystem', 'Ekosystem'], ['moduly', 'Realizacje'], ['konsola', 'Interfejsy'], ['agenci', 'Agenci AI'], ['uslugi', 'Usługi'], ['doswiadczenie', 'Doświadczenie i kompetencje'], ['kontakt', 'Kontakt i FAQ']],
     mail: 'Napisz e-mail',
     copy: 'Skopiuj adres e-mail',
     cv: 'Pobierz CV (PDF)',
