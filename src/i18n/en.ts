@@ -6,7 +6,7 @@ const en: Dict = {
   locale: 'en_US',
   inLanguage: 'en',
   meta: {
-    title: 'Aleh Pauliukovich: systems administration, automation and AI | GitCloud',
+    title: 'Aleh Pauliukovich: engineer and developer, systems, networks and AI agents | GitCloud',
     description: 'Systems and network administration automated with AI: Proxmox, OPNsense, Linux, AI agents and Shoper stores. Projects with the task, solution and result.',
   },
   ui: {
@@ -30,8 +30,8 @@ const en: Dict = {
   nav: [['ekosystem', 'Ecosystem'], ['moduly', 'Work'], ['konsola', 'Interfaces'], ['agenci', 'Agents'], ['uslugi', 'Services'], ['doswiadczenie', 'About me']],
   tabs: ['Start', 'Work', 'Agents', 'Services', 'Profile', 'Contact'],
   hero: {
-    h1a: 'I run systems and networks ',
-    h1b: 'and automate them with AI',
+    h1a: 'I design and build systems: ',
+    h1b: 'from networks to AI agents',
     h1c: '.',
     lead: 'Systems, networks and AI agents on one GitCloud core. Details inside each project.',
     cta1: 'Work',
@@ -109,7 +109,7 @@ const en: Dict = {
   exp: {
     idx: '05 / about',
     h2: 'About me',
-    about: 'A systems and network administrator who automates. I take care of a company\'s infrastructure: servers, network, mail and backups, and hand repetitive work over to scripts and AI agents. I work remotely, to the point and in writing.',
+    about: 'I am an engineer and a developer. I design systems end to end and write the code myself: the GitCloud core and panel in Python (FastAPI, PostgreSQL), ESP32 remote firmware in C++, agents on language models, 3D faces in three.js. Infrastructure is described as code in Terraform and Ansible, on Proxmox and OPNsense. A change reaches production only after CI tests pass.',
     bio: [
       'Over four years in systems and network administration, in companies and multi-site environments. Today I combine classic administration with automation and AI.',
       'I own the full cycle: from diagnosis and design, through implementation, to operations and documentation.',
@@ -187,7 +187,7 @@ const en: Dict = {
   ld: {
     altNames: ['gitcloud.pl', 'Git Cloud'],
     orgDesc: 'Projects and client work by Aleh Pauliukovich: AI agents, automation, platforms for IT teams, online stores.',
-    job: 'System Administrator, automation and AI',
+    job: 'Systems engineer and developer',
     knows: ['AI agents', 'automation', 'LLM', 'Microsoft 365', 'Linux', 'PostgreSQL', 'Python', 'Terraform', 'networking'],
     list: 'Selected work',
   },

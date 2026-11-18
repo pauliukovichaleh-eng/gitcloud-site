@@ -6,7 +6,7 @@ export default {
   locale: 'pl_PL',
   inLanguage: 'pl-PL',
   meta: {
-    title: 'Aleh Pauliukovich: administracja systemów, automatyzacja i AI | GitCloud',
+    title: 'Aleh Pauliukovich: inżynier i programista, systemy, sieci i agenci AI | GitCloud',
     description: 'Administracja systemów i sieci z automatyzacją AI: Proxmox, OPNsense, Linux, agenci AI i sklepy na Shoperze. Projekty z zadaniem, rozwiązaniem i wynikiem.',
   },
   ui: {
@@ -30,8 +30,8 @@ export default {
   nav: [['ekosystem', 'Ekosystem'], ['moduly', 'Realizacje'], ['konsola', 'Interfejsy'], ['agenci', 'Agenci'], ['uslugi', 'Usługi'], ['doswiadczenie', 'O mnie']],
   tabs: ['Start', 'Realizacje', 'Agenci', 'Usługi', 'Profil', 'Kontakt'],
   hero: {
-    h1a: 'Administruję systemami i sieciami, ',
-    h1b: 'automatyzuję je z AI',
+    h1a: 'Projektuję i piszę systemy: ',
+    h1b: 'od sieci po agentów AI',
     h1c: '.',
     lead: 'Systemy, sieci i agenci AI na jednym rdzeniu GitCloud. Szczegóły w każdym projekcie.',
     cta1: 'Realizacje',
@@ -109,7 +109,7 @@ export default {
   exp: {
     idx: '05 / o mnie',
     h2: 'O mnie',
-    about: 'Administrator systemów i sieci, który automatyzuje. Biorę na siebie infrastrukturę firmy: serwery, sieć, pocztę i kopie, a powtarzalną pracę przekazuję skryptom i agentom AI. Pracuję zdalnie, konkretnie i na piśmie.',
+    about: 'Jestem inżynierem i programistą. Projektuję systemy w całości i sam piszę ich kod: rdzeń GitCloud i panel w Pythonie (FastAPI, PostgreSQL), firmware pilota ESP32 w C++, agentów na modelach językowych, twarze 3D w three.js. Infrastrukturę opisuję kodem w Terraformie i Ansible, na Proxmoxie i OPNsense. Zmiana trafia na produkcję dopiero po testach w CI.',
     bio: [
       'Ponad cztery lata w administracji systemów i sieci, w firmach i środowiskach wielooddziałowych. Dziś łączę klasyczną administrację z automatyzacją i AI.',
       'Odpowiadam za cały cykl: od diagnozy i projektu, przez wdrożenie, po utrzymanie i dokumentację.',
@@ -187,7 +187,7 @@ export default {
   ld: {
     altNames: ['gitcloud.pl', 'Git Cloud'],
     orgDesc: 'Projekty i zlecenia Aleha Pauliukovicha: agenci AI, automatyzacja, platformy dla zespołów IT, sklepy internetowe.',
-    job: 'Administrator systemów, automatyzacja i AI',
+    job: 'Inżynier systemów i programista',
     knows: ['agenci AI', 'automatyzacja', 'LLM', 'Microsoft 365', 'Linux', 'PostgreSQL', 'Python', 'Terraform', 'sieci'],
     list: 'Realizacje',
   },
