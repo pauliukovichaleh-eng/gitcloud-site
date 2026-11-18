@@ -37,7 +37,13 @@ const CV_MEDIA = { 390: 620, 820: 980, 1350: null };
 const LINK = /<link rel="stylesheet" href="(\/_astro\/[^"]+\.css)">/g;
 
 const walk = (d) => readdirSync(d).flatMap((f) => { const p = join(d, f); return statSync(p).isDirectory() ? walk(p) : [p]; });
-const pages = walk(DIST).filter((f) => f.endsWith('.html')).map((f) => ({ f, html: readFileSync(f, 'utf8') }))
+// Przekierowania (Redirect.astro: meta refresh, np. /projekty/zlecenia/ → /#moduly) nie mają pierwszego ekranu, a Astro
+// dokleja im arkusz trasy [slug]: arkusz się wycina, strony się nie mierzy (pomiar szedł za przekierowaniem, 18.11.2026).
+const REFRESH = /<meta http-equiv="refresh"/;
+const all = walk(DIST).filter((f) => f.endsWith('.html')).map((f) => ({ f, html: readFileSync(f, 'utf8') }));
+const redirects = all.filter((p) => REFRESH.test(p.html) && p.html.search(LINK) >= 0);
+redirects.forEach((p) => writeFileSync(p.f, p.html.replace(LINK, '')));
+const pages = all.filter((p) => !REFRESH.test(p.html))
   .filter((p) => [...p.html.matchAll(LINK)].length === 1)
   .filter((p) => !process.env.GC_CRITICAL_ONLY || p.f.includes(process.env.GC_CRITICAL_ONLY));
 if (!pages.length) { console.log('krytyczny: brak stron z arkuszem'); process.exit(0); }
@@ -228,6 +234,7 @@ for (const p of pages) {
 const full = Math.max(...[...roots.values()].map((r) => r.toString().length));
 const avg = out.length ? Math.round(out.reduce((s, [, n]) => s + n, 0) / out.length / 1024) : 0;
 console.log(`krytyczny: ${out.length} stron, w <style> średnio ${avg} KB z ${Math.round(full / 1024)} KB arkusza`
+  + (redirects.length ? `; przekierowania bez arkusza: ${redirects.length}` : '')
   + (skipped.length ? `; bez zmian (pierwszy ekran > ${MAX_SHARE * 100}% arkusza): ${skipped.join(', ')}` : ''));
 if (cvWarn.length) {
   const msg = `wysokości zastępcze w site.css nieaktualne (> ${CV_TOL * 100}%, zmierzyć ponownie):`;
