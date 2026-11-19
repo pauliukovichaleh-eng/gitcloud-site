@@ -2,6 +2,39 @@
   "_opis": "Dziennik zmian /zmiany/ (decyzja #748). Prowadzi go nocne odświeżanie (host/site-refresh): nowe wpisy NA POCZĄTKU. Pola: id (data-slug), date, area, project (slug z projects.json: wpis pokazuje się też na stronie projektu, decyzja #751) (strona|panel|agenci|glowy|pilot|isp|infra), kind (wizualna = z obrazami przed/po, techniczna = krótko, bez obrazów), img [{src, alt{pl,en,ru}, label: przed|po|kadr}], link (kotwica albo strona projektu), pl/en/ru {t, x}. Tylko to, co publiczne: bez klientów, pracodawców, domu, finansów, adresów IP.",
   "wpisy": [
     {
+      "id": "2026-11-18-cwiczenia-awarii",
+      "date": "2026-11-18",
+      "area": "infra",
+      "project": "platforma-danych",
+      "kind": "techniczna",
+      "link": "/projekty/platforma-danych/",
+      "pl": {"t": "Ćwiczenia awarii: serwer z kodu", "x": "Nocne ćwiczenie stawia serwer wirtualizacji od zera w zagnieżdżonej maszynie: Proxmox instaluje się sam z pliku odpowiedzi w repozytorium, potem rola Ansible, kontrole i drugi przebieg bez zmian. Te same ćwiczenia odtwarzają z kodu i nocnej kopii bazę PostgreSQL, sejf haseł i bramkę modeli językowych; braki, które wyszły, poprawiono w rolach."},
+      "en": {"t": "Disaster drills: a server from code", "x": "A nightly drill builds the virtualisation server from scratch in a nested VM: Proxmox installs itself from an answer file in the repository, then the Ansible role, checks and a second run with no changes. The same drills rebuild the PostgreSQL database, the password vault and the language model gateway from code and the nightly backup; the gaps they found were fixed in the roles."},
+      "ru": {"t": "Учения аварии: сервер из кода", "x": "Ночные учения поднимают сервер виртуализации с нуля во вложенной ВМ: Proxmox ставится сам по файлу ответов из репозитория, дальше роль Ansible, проверки и второй прогон без изменений. Те же учения восстанавливают из кода и ночной копии базу PostgreSQL, хранилище паролей и шлюз языковых моделей; найденные пробелы исправлены в ролях."}
+    },
+    {
+      "id": "2026-11-18-tabele-rdzenia",
+      "date": "2026-11-18",
+      "area": "panel",
+      "project": "rdzen-gitcloud",
+      "kind": "techniczna",
+      "link": "/projekty/rdzen-gitcloud/",
+      "pl": {"t": "Tabele i przyciski w rdzeniu", "x": "Tabele panelu i pulpitu mają szerokość kolumn ustawianą myszą jak w Excelu (dwuklik dopasowuje do tekstu, przeglądarka pamięta), numery stron zamiast „jeszcze N” i panel filtrów. Przyciski mają jedną skalę wysokości według roli: 36, 32, 28, 24 i 20 px."},
+      "en": {"t": "Tables and buttons in the core", "x": "Tables in the panel and on the desktop get column widths set with the mouse as in Excel (double click fits the text, the browser remembers), page numbers instead of \"N more\" and a filter bar. Buttons follow one height scale by role: 36, 32, 28, 24 and 20 px."},
+      "ru": {"t": "Таблицы и кнопки в ядре", "x": "В таблицах панели и рабочего стола ширину колонок задаёт мышь, как в Excel (двойной щелчок подгоняет по тексту, браузер запоминает), номера страниц вместо «ещё N» и панель фильтров. У кнопок одна шкала высоты по роли: 36, 32, 28, 24 и 20 px."}
+    },
+    {
+      "id": "2026-11-18-bramka-funkcji",
+      "date": "2026-11-18",
+      "area": "agenci",
+      "project": "agenci-ai",
+      "kind": "techniczna",
+      "link": "/projekty/agenci-ai/",
+      "pl": {"t": "Agenci: bramka pyta o to, czego dotknęła zmiana", "x": "Przebieg zestawu kontrolnego zapisuje, które funkcje kodu wykonało każde pytanie. Przed wlaniem zmiany bramka bierze z git diff zmienione funkcje i zadaje tylko pytania, które przez nie przechodzą, zamiast całego zestawu."},
+      "en": {"t": "Agents: the gate asks what the change touched", "x": "A run of the check set records which code functions each question executed. Before a change is merged, the gate takes the changed functions from git diff and asks only the questions that pass through them, instead of the whole set."},
+      "ru": {"t": "Агенты: ворота спрашивают то, что задела правка", "x": "Прогон проверочного набора записывает, какие функции кода исполнил каждый вопрос. Перед вливанием правки ворота берут из git diff изменённые функции и задают только вопросы, которые через них проходят, а не весь набор."}
+    },
+    {
       "id": "2026-11-18-buzz",
       "date": "2026-11-18",
       "area": "glowy",

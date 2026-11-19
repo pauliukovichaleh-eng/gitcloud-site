@@ -150,6 +150,10 @@
         {
           "src": "/img/projekty/rdzen-tokeny.jpg",
           "alt": "Jeden plik tokenów: narzędzie robi CSS, JSON i nagłówek C dla strony, panelu, pulpitu i pilota; bramki CI z zapadką pilnują kolorów, animacji, nieużywanego CSS, warstw kodu, kontraktu API i wydajności"
+        },
+        {
+          "src": "/img/projekty/rdzen-szyna.jpg",
+          "alt": "Szyna zdarzeń: alert monitoringu, czujnik albo plik zadania wysyła zdarzenie, a startują tylko czekające na nie zadania; harmonogram zapisany jako dane (on: temat, every: rzadki zapas), jednostki systemd z generatora rdzenia"
         }
       ],
       "gallery_note": "Schematy narysowane na podstawie repozytorium rdzenia.",

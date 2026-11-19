@@ -1,0 +1,31 @@
+<!doctype html><html lang="pl"><head><meta charset="utf-8"><link rel="stylesheet" href="base.css"><link rel="stylesheet" href="schemat.css">
+<!-- Galeria „Rdzeń GitCloud” (19.11.2026, plan nocny): szyna zdarzeń rdzenia (bus) zamiast timerów-odpytywaczy; harmonogram
+     jako dane (on: temat, every: zapas), jednostki systemd z generatora rdzenia (schedule). Liczby z dziennika 16.11. -->
+<style>.bg{background:radial-gradient(900px 560px at 50% 0%,#10303a 0,#030408 72%)}
+.c1{left:40px;width:250px;bottom:216px}.c2{left:630px;width:220px;bottom:216px}
+.bus{left:360px;top:34px;width:168px;height:250px;font-size:26px;flex-direction:column;gap:10px;text-align:center;padding:0 16px}
+.bus small{font:500 16px JBM,monospace;color:#7d8ba3}
+.a1{left:290px;width:70px;top:110px}.a2{left:560px;width:70px;top:110px}
+.c1 .m,.c2 .m{font-size:20px;padding:0 16px}
+.gate{position:absolute;left:880px;right:40px;top:34px;bottom:34px;display:flex;flex-direction:column;gap:10px;padding:0 16px}
+.gate h3{margin:0 0 4px;font:600 18px JBM,monospace;letter-spacing:.14em;text-transform:uppercase;color:#7d8ba3;text-align:center}
+.gate .m{flex:1;align-items:center;gap:12px;padding:0 16px;font-size:20px}
+.gate code{font:600 18px JBM,monospace;color:#5fb8c2}
+.acc{bottom:40px;right:380px;font-size:22px;flex-direction:column;gap:12px}
+.acc b{color:#b88bd0}</style></head><body><div class="bg">
+<div class="ph">szyna zdarzeń · harmonogram</div>
+<div class="p">
+ <div class="col c1"><h3>źródła</h3><div class="m">alert monitoringu</div><div class="m">czujnik</div><div class="m">plik zadania</div></div>
+ <div class="arr a1">→</div>
+ <div class="core bus">szyna<small>temat zdarzenia</small></div>
+ <div class="arr a2">→</div>
+ <div class="col c2"><h3>zadania</h3><div class="m">skan antywirusowy</div><div class="m">kopia</div><div class="m">agent</div></div>
+ <div class="acc"><span><b>●</b> zamiast ok. 25 timerów co 1-5 minut</span><span><b>●</b> rzadki przebieg zapasowy łapie zgubione</span></div>
+ <div class="gate"><h3>harmonogram</h3>
+  <div class="m"><span class="d"></span>zadanie jako dane</div>
+  <div class="m"><code>on</code>czeka na temat</div>
+  <div class="m"><code>every</code>zapas, rzadko</div>
+  <div class="m"><span class="d v"></span>generator w rdzeniu</div>
+  <div class="m"><span class="d v"></span>jednostki systemd</div>
+ </div>
+</div></div></body></html>

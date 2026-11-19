@@ -15,7 +15,7 @@ NAMES = {
     "b2b": [("b2b", "zl-baza-b2b"), ("b2b-raport", "zl-baza-b2b-raport"), ("b2b-wiadomosci", "zl-baza-b2b-wiadomosci")],
 }
 GALERIA = {
-    "rdzen": [("rdzen-serwis", "rdzen-serwis"), ("rdzen-tokeny", "rdzen-tokeny")],
+    "rdzen": [("rdzen-serwis", "rdzen-serwis"), ("rdzen-tokeny", "rdzen-tokeny"), ("rdzen-szyna", "rdzen-szyna")],
     "pracodawca": [("pracodawca-dostep", "pracodawca-dostep"), ("pracodawca-przeglad", "pracodawca-przeglad")],
 }
 only = set(sys.argv[1:])
