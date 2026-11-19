@@ -35,15 +35,21 @@ def tokens(css: str) -> dict:
     return out
 
 
-def render() -> str:
-    pal = json.loads((CORE / "gitcloud_core/static/palette.json").read_text(encoding="utf-8"))
-    tok = tokens((CORE / "gitcloud_core/static/tokens.css").read_text(encoding="utf-8"))
-    lines = ["/* Wygenerowane: tools/tokeny.py z gitcloud-core (palette.json + tokens.css), decyzja #692. Nie edytować ręcznie. */", ":root{"]
+def tokens_light(css: str) -> dict:
+    """Jasny ton rdzenia (19.11.2026, tone.py): blok :root[data-theme="neo"][data-tone="light"] na „Neo”."""
+    css = re.sub(r"/\*.*?\*/", "", css, flags=re.DOTALL)
+    m = re.search(r':root\[data-theme="neo"\]\[data-tone="light"\]\s*\{(.*?)\}', css, flags=re.DOTALL)
+    return {k: " ".join(v.split()) for k, v in re.findall(r"--([a-z0-9-]+)\s*:\s*([^;]+);", m.group(1) if m else "")}
+
+
+def block(pal: dict, tok: dict) -> list:
+    """Zmienne --gc-* jednego tonu: kolory z palety, materiały i pasek przewijania z tokenów (rozwinięte do liczb)."""
+    lines = []
     for k in COLORS:
         h = pal[k]
         lines.append(f"  --gc-{k}:{h}; --gc-{k}-rgb:{int(h[1:3], 16)},{int(h[3:5], 16)},{int(h[5:7], 16)};")
     for k in MATERIALS:
-        v = tok[k]
+        v = re.sub(r"linear-gradient\(var\(--fg\), var\(--fg\)\)[^,]*no-repeat,\s*", "", tok[k])   # засечка панели — nie na stronie
         if "var(" in v:
             raise SystemExit(f"tokeny: --{k} zależy od innej zmiennej ({v}) — dopisz rozwinięcie")
         lines.append(f"  --gc-{k}:{v};")
@@ -54,6 +60,21 @@ def render() -> str:
         if re.search(r"var\(--(?!gc-sb-)", v):
             raise SystemExit(f"tokeny: --{k} zależy od innej zmiennej ({v}) — dopisz rozwinięcie")
         lines.append(f"  --gc-{k}:{v};")
+    return lines
+
+
+def render() -> str:
+    pal = json.loads((CORE / "gitcloud_core/static/palette.json").read_text(encoding="utf-8"))
+    css = (CORE / "gitcloud_core/static/tokens.css").read_text(encoding="utf-8")
+    tok = tokens(css)
+    lines = ["/* Wygenerowane: tools/tokeny.py z gitcloud-core (palette.json + tokens.css), decyzja #692. Nie edytować ręcznie. */", ":root{"]
+    lines += block(pal, tok)
+    lines.append("}")
+    # 19.11.2026 (właściciel: «cały GitCloud — jasny motyw jednym przyciskiem»): jasny ton rdzenia — palette-light.json
+    # i blok data-tone="light" z tokens.css; stronę przełącza html[data-tone] (Base.astro: wybór gościa albo system)
+    lpal = json.loads((CORE / "gitcloud_core/static/palette-light.json").read_text(encoding="utf-8"))
+    lines.append(':root[data-tone="light"]{')
+    lines += block(lpal, {**tok, **tokens_light(css)})
     lines.append("}")
     sc = re.sub(r"/\*.*?\*/\s*", "", (CORE / "gitcloud_core/static/scroll.css").read_text(encoding="utf-8"), flags=re.DOTALL)
     sc = sc[:sc.index(".gc-scroll{")] if ".gc-scroll{" in sc else sc      # pasek dokumentu my.gitcloud.pl (app.js) — nie na stronie

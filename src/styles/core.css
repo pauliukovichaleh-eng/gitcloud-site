@@ -27,6 +27,34 @@
   --gc-sb-thumb-hover:linear-gradient(180deg, rgba(95,184,194,.6), rgba(184,139,208,.5));
   --gc-sb-color:rgba(95,184,194,.3);
 }
+:root[data-tone="light"]{
+  --gc-bg-deep:#f3f3f3; --gc-bg-deep-rgb:243,243,243;
+  --gc-fg:#171717; --gc-fg-rgb:23,23,23;
+  --gc-muted:#555555; --gc-muted-rgb:85,85,85;
+  --gc-card:#ffffff; --gc-card-rgb:255,255,255;
+  --gc-edge:#e4e4e4; --gc-edge-rgb:228,228,228;
+  --gc-neon:#1f1f1f; --gc-neon-rgb:31,31,31;
+  --gc-magenta:#7a7a7a; --gc-magenta-rgb:122,122,122;
+  --gc-c-ok:#4a7c59; --gc-c-ok-rgb:74,124,89;
+  --gc-c-ok-t:#3b6948; --gc-c-ok-t-rgb:59,105,72;
+  --gc-c-warn:#c96442; --gc-c-warn-rgb:201,100,66;
+  --gc-c-crit:#b3261e; --gc-c-crit-rgb:179,38,30;
+  --gc-rim-top:linear-gradient(180deg, rgba(255,255,255,.95) 0 1px, transparent 1px);
+  --gc-well:linear-gradient(180deg, #ebebeb, #e4e4e4);
+  --gc-well-top:inset 0 3px 6px -3px rgba(0,0,0,.14);
+  --gc-well-bot:inset 0 -1px 0 rgba(255,255,255,.9);
+  --gc-bevel-face:linear-gradient(180deg, rgba(255,255,255,.9), rgba(255,255,255,.55));
+  --gc-sink:inset 0 1px 2px rgba(0,0,0,.12), inset 0 -1px 0 rgba(255,255,255,.8);
+  --gc-hi-1:inset 0 1px 0 rgba(255,255,255,.9);
+  --gc-lift-btn:0 3px 8px -6px rgba(0,0,0,.18);
+  --gc-lift-sel:0 4px 10px -6px rgba(0,0,0,.22);
+  --gc-sb-size:6px;
+  --gc-sb-inset:2px;
+  --gc-sb-thumb-w:calc(var(--gc-sb-size) - 2 * var(--gc-sb-inset));
+  --gc-sb-thumb:linear-gradient(180deg, rgba(23,23,23,.28), rgba(23,23,23,.18));
+  --gc-sb-thumb-hover:linear-gradient(180deg, rgba(23,23,23,.5), rgba(23,23,23,.35));
+  --gc-sb-color:rgba(31,31,31,.3);
+}
 /* pasek przewijania — scroll.css rdzenia */
 *::-webkit-scrollbar{ width:var(--gc-sb-size); height:var(--gc-sb-size); background:transparent; }
 *::-webkit-scrollbar-track, *::-webkit-scrollbar-corner{ background:transparent; }
