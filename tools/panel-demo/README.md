@@ -23,7 +23,8 @@ z wariantami, dziennik decyzji z wynikami, dwie sesje Claude i limity. Zrzuty sa
 Okładka karty „Panel operacyjny” (16:9): wycinek 1280×720 ze zrzutu `/ai-router` w 2x (`DSF=2 python final.py … modele`),
 od punktu (190, 192): saldo poniżej etykiety kategorii karty także na telefonie (karta 2:1 ucina górę). WebP (jakość 82) do `public/img/projekty/panel-okladka.webp`.
 
-Okładka karty „Agenci AI” (16:9): wycinek 1280×720 ze zrzutu `/agenty` w 2x (`DSF=2 python final.py … <katalog>`),
+Okładka karty „Agenci AI” (16:9): wycinek ze zrzutu `/agenty` w 2x (`DSF=2 python final.py … <katalog>`) bez nagłówka
+„AGENTÓW” (pod etykietą kategorii na telefonie): obecny plik to stary kadr 1280×720 od y=72, 1152×648 → 1280×720,
 WebP (jakość 82) do `public/img/projekty/agenci-okladka.webp`.
 
 Film „Agenci AI” (`/img/projekty/agenci.mp4`, 1280×720, ok. 25 s): `python rolik.py <katalog>` nagrywa przejście
