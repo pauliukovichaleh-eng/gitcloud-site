@@ -24,7 +24,7 @@ COLORS = ["bg-deep", "fg", "muted", "card", "edge", "neon", "magenta", "c-ok", "
 # 11.11.2026 (właściciel: «скроллер — один стиль во всей экосистеме»): pasek przewijania z rdzenia — tokeny --sb-*
 # (rozwinięte do liczb palety) i reguły scroll.css (var(--sb-*) → var(--gc-sb-*)); strona własnego paska nie pisze
 SCROLL = ["sb-size", "sb-inset", "sb-thumb-w", "sb-thumb", "sb-thumb-hover", "sb-color"]
-MATERIALS = ["rim-top", "well", "well-top", "well-bot", "bevel-face", "sink", "hi-1", "lift-btn", "lift-sel"]
+MATERIALS = ["rim-top", "well", "well-top", "well-bot", "bevel-face", "sink", "hi-1", "lift-btn", "lift-sel", "panel-border"]
 
 
 def tokens(css: str) -> dict:

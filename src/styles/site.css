@@ -39,8 +39,8 @@
    (:root[data-tone="<motyw>"], tools/tokeny.py), tu tylko odcienie strony dla motywów konfigu (na razie jasne); motyw
    wybiera Base.astro (gość albo system) */
 :root[data-tone]{ color-scheme:light; --card2:var(--gc-card); --edge2:var(--gc-edge); --muted:var(--gc-muted);
-  --neon:var(--gc-neon); --neon-rgb:var(--gc-neon-rgb); --hi:var(--gc-fg); --on-accent:var(--gc-card); --sh:rgba(0,0,0,.18); --cyan-t:var(--muted);
-  --glass:var(--rim-top), linear-gradient(180deg, rgba(var(--gc-card-rgb),.94), rgba(var(--gc-card-rgb),.86)); }   /* tonem papieru rdzenia, nie bielą (481a845) */
+  --neon:var(--gc-neon); --neon-rgb:var(--gc-neon-rgb); --hi:var(--gc-fg); --panel-bd:var(--gc-panel-border); --on-accent:var(--gc-card); --sh:rgba(0,0,0,.18); --cyan-t:var(--muted);
+  --glass:var(--rim-top), linear-gradient(180deg, rgba(var(--gc-card-rgb),.94), rgba(var(--gc-card-rgb),.86)); }   /* tonem papieru rdzenia, nie bielą (481a845); papier na papierze oddziela kreska panelu rdzenia (--panel-bd) */
 html{ color-scheme:dark; scroll-behavior:smooth; scroll-padding-top:calc(var(--top) + 16px); -webkit-text-size-adjust:100%; }
 html,body{ overflow-x:clip; }
 body{ margin:0; background:var(--bg); color:var(--fg); font:400 15.5px/1.6 var(--sans); -webkit-font-smoothing:antialiased; overflow-x:hidden; }

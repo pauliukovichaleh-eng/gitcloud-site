@@ -22,6 +22,7 @@
   --gc-hi-1:inset 0 1px 0 rgba(255,255,255,.06);
   --gc-lift-btn:0 4px 10px -8px rgba(0,0,0,.9);
   --gc-lift-sel:0 6px 12px -8px rgba(0,0,0,.9);
+  --gc-panel-border:1px solid rgba(95,184,194,.12);
   --gc-sb-size:6px;
   --gc-sb-inset:2px;
   --gc-sb-thumb-w:calc(var(--gc-sb-size) - 2 * var(--gc-sb-inset));
@@ -52,6 +53,7 @@
   --gc-hi-1:inset 0 1px 0 rgba(255,255,255,.9);
   --gc-lift-btn:0 3px 8px -6px rgba(0,0,0,.18);
   --gc-lift-sel:0 4px 10px -6px rgba(0,0,0,.22);
+  --gc-panel-border:1px solid rgba(23,23,23,.08);
   --gc-sb-size:6px;
   --gc-sb-inset:2px;
   --gc-sb-thumb-w:calc(var(--gc-sb-size) - 2 * var(--gc-sb-inset));
