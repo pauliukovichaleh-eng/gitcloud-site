@@ -152,7 +152,7 @@ html:not(.cv-off) #kontakt{ content-visibility:auto; contain-intrinsic-size:auto
 .idx::before{ content:''; width:22px; height:2px; background:linear-gradient(90deg, var(--neon2), var(--cyan)); border-radius:2px; }
 .sec-h h2, .who-txt h2, .contact h2{ font-size:clamp(28px,4vw,42px); font-weight:800; }
 .sec-h p{ margin-top:14px; color:var(--muted); font-size:16.5px; max-width:64ch; }
-.link-more{ display:inline-block; margin-top:22px; color:var(--neon2); font-weight:600; text-decoration:none; font-size:14.5px; }
+.link-more{ display:inline-block; padding-block:3px; margin-top:22px; color:var(--neon2); font-weight:600; text-decoration:none; font-size:14.5px; }
 .link-more:hover{ text-decoration:underline; text-underline-offset:4px; }
 
 /* ── HERO ── */
@@ -308,7 +308,7 @@ html:not(.cv-off) #kontakt{ content-visibility:auto; contain-intrinsic-size:auto
 .foot-in{ display:flex; flex-wrap:wrap; align-items:center; gap:14px 28px; padding-top:22px; padding-bottom:28px; font-size:13px; color:var(--dim); }
 .foot-brand{ display:flex; align-items:center; gap:10px; }
 .foot-sys{ display:flex; align-items:center; gap:8px; font-size:12px; margin-right:auto; }
-.foot a{ color:var(--muted); }
+.foot a{ color:var(--muted); display:inline-block; padding-block:4px; }   /* cel dotyku ≥ 24 px (WCAG 2.5.8) */
 
 /* ── okno projektu ── */
 .pd{ --cc:var(--neon2); padding:0; border:0; background:transparent; color:var(--fg); width:min(1040px, calc(100vw - 24px)); max-height:calc(100dvh - 24px); margin:auto; }
@@ -346,7 +346,7 @@ html:not(.cv-off) #kontakt{ content-visibility:auto; contain-intrinsic-size:auto
 .pd-res li{ padding:11px 14px; border-radius:9px; background:var(--glass); font-size:14px; box-shadow:inset 2px 0 0 var(--ok); }
 .pd-links{ margin-top:28px; display:flex; flex-direction:column; gap:8px; }
 .pd-links .lbl{ margin-bottom:4px; }
-.pd-links a{ color:var(--neon2); text-decoration:none; font-weight:500; font-size:14.5px; }
+.pd-links a{ color:var(--neon2); text-decoration:none; font-weight:500; font-size:14.5px; padding-block:3px; }
 .pd-links a:hover{ text-decoration:underline; }
 @media (max-width:760px){ .pd-grid{ grid-template-columns:1fr; gap:20px; } }
 
@@ -574,9 +574,9 @@ html:not(.cv-off) #kontakt{ content-visibility:auto; contain-intrinsic-size:auto
 .pp{ --cc:var(--neon2); }
 .pp.cat-platformy{ --cc:var(--c-platformy); --cc-t:var(--c-platformy-t); } .pp.cat-zlecenia{ --cc:var(--c-zlecenia); --cc-t:var(--c-zlecenia-t); }
 .pp-in{ max-width:1040px; }
-.pp-crumbs{ font-size:12.5px; color:var(--dim); margin-bottom:14px; overflow:hidden; white-space:nowrap; text-overflow:ellipsis; }
+.pp-crumbs{ font-size:12.5px; line-height:26px; color:var(--dim); margin-bottom:14px; overflow:hidden; white-space:nowrap; text-overflow:ellipsis; }
 /* 18.11.2026: podkreślenie, nie tylko kolor (axe link-in-text-block: kontrast linku do tekstu 1.2:1, Lighthouse 0.96) */
-.pp-crumbs a{ color:var(--muted); text-decoration:underline; text-decoration-color:var(--gc-edge); text-underline-offset:3px; }
+.pp-crumbs a{ display:inline-block; color:var(--muted); text-decoration:underline; text-decoration-color:var(--gc-edge); text-underline-offset:3px; }
 .pp-crumbs a:hover{ color:var(--neon2); }
 .pp-body{ overflow:visible; border-radius:16px; background:var(--glass), var(--card2); border:0; box-shadow:var(--lift); }
 .pp-body h1{ font-size:clamp(28px,4vw,40px); margin:14px 0 10px; line-height:1.15; }
