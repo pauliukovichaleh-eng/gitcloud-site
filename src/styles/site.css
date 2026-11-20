@@ -421,7 +421,8 @@ html:not(.cv-off) #kontakt{ content-visibility:auto; contain-intrinsic-size:auto
   .eco-list span{ grid-row:span 2; width:34px; height:34px; display:grid; place-items:center; font-size:11px; color:var(--neon2); border-radius:9px;
     border:0; background:var(--well); box-shadow:var(--well-sh); }
   .eco-list b{ font-size:13.5px; color:var(--hi); line-height:1.2; }
-  .eco-list i{ font-style:normal; font-size:11px; color:var(--dim); font-family:var(--mono); white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+  .eco-list i{ display:flex; flex-wrap:wrap; column-gap:.6em; font-style:normal; font-size:11px; line-height:1.35; color:var(--dim); font-family:var(--mono); }
+  .eco-list em{ font-style:normal; white-space:nowrap; } .eco-list em:not(:last-child)::after{ content:','; }   /* podpis w całości, łamany po przecinku między pozycjami */
 
   /* moduły: zwarte karty */
   .filters{ flex-wrap:nowrap; margin-inline:calc(-1 * var(--pad)); padding-inline:var(--pad); }
