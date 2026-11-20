@@ -20,7 +20,7 @@ CORE = Path(os.environ.get("GC_CORE", Path.home() / "src/gitcloud-core"))
 OUT = ROOT / "src/styles/core.css"
 THEMES = ROOT / "src/data/themes.json"   # 19.11.2026: konfig motywów rdzenia dla przycisku (Base.astro)
 
-COLORS = ["bg-deep", "fg", "muted", "card", "edge", "neon", "magenta", "c-ok", "c-ok-t", "c-warn", "c-crit"]
+COLORS = ["bg-deep", "fg", "muted", "card", "edge", "neon", "magenta", "c-ok", "c-ok-t", "c-warn", "c-warn-t", "c-crit", "c-crit-t"]
 # 11.11.2026 (właściciel: «скроллер — один стиль во всей экосистеме»): pasek przewijania z rdzenia — tokeny --sb-*
 # (rozwinięte do liczb palety) i reguły scroll.css (var(--sb-*) → var(--gc-sb-*)); strona własnego paska nie pisze
 SCROLL = ["sb-size", "sb-inset", "sb-thumb-w", "sb-thumb", "sb-thumb-hover", "sb-color"]

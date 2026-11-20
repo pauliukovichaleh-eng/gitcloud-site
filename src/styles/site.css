@@ -14,6 +14,10 @@
   --accent:var(--gc-c-ok-t); --cyan:var(--gc-magenta); --cyan-rgb:var(--gc-magenta-rgb);   /* drugi akcent: liliowy (--magenta panelu); nazwa zostaje */
   --ok:var(--gc-c-ok); --warn:var(--gc-c-warn); --crit:var(--gc-c-crit);
   --c-wlasne:var(--neon2); --c-platformy:var(--cyan); --c-zlecenia:var(--warn);
+  /* 20.11.2026: tekst w kolorze stanu — warianty -t rdzenia (docs/COMPONENTS.md), w jasnym tonie zalewki --warn/--ok/--cyan
+     mają na bieli 3,5–4,4:1; liliowy nie ma -t, w jasnym tonie tekst = --muted */
+  --ok-t:var(--gc-c-ok-t); --warn-t:var(--gc-c-warn-t); --cyan-t:var(--cyan);
+  --c-platformy-t:var(--cyan-t); --c-zlecenia-t:var(--warn-t);
   /* materiał: szkło (karty), nisza (liczniki, podglądy), wypukłość (przyciski) — światło zawsze z góry */
   --rim-top:var(--gc-rim-top);
   --glass:var(--rim-top), linear-gradient(180deg, rgba(255,255,255,.045), rgba(255,255,255,.012) 55%, rgba(var(--neon2-rgb),.025));
@@ -35,7 +39,7 @@
    (:root[data-tone="<motyw>"], tools/tokeny.py), tu tylko odcienie strony dla motywów konfigu (na razie jasne); motyw
    wybiera Base.astro (gość albo system) */
 :root[data-tone]{ color-scheme:light; --card2:var(--gc-card); --edge2:var(--gc-edge); --muted:var(--gc-muted);
-  --neon:var(--gc-neon); --neon-rgb:var(--gc-neon-rgb); --hi:var(--gc-fg); --on-accent:var(--gc-card); --sh:rgba(0,0,0,.18);
+  --neon:var(--gc-neon); --neon-rgb:var(--gc-neon-rgb); --hi:var(--gc-fg); --on-accent:var(--gc-card); --sh:rgba(0,0,0,.18); --cyan-t:var(--muted);
   --glass:var(--rim-top), linear-gradient(180deg, rgba(255,255,255,.92), rgba(255,255,255,.78)); }
 html{ color-scheme:dark; scroll-behavior:smooth; scroll-padding-top:calc(var(--top) + 16px); -webkit-text-size-adjust:100%; }
 html,body{ overflow-x:clip; }
@@ -190,7 +194,7 @@ html:not(.cv-off) #kontakt{ content-visibility:auto; contain-intrinsic-size:auto
 .bento{ display:grid; grid-template-columns:repeat(3,1fr); gap:14px; }
 .card{ --cc:var(--neon2); display:flex; flex-direction:column; text-decoration:none; border-radius:var(--r); overflow:hidden; background:var(--panel-bg); border:var(--panel-bd);
   box-shadow:var(--lift); transition:transform .2s, box-shadow .2s; }
-.card.cat-platformy{ --cc:var(--c-platformy); } .card.cat-zlecenia{ --cc:var(--c-zlecenia); }
+.card.cat-platformy{ --cc:var(--c-platformy); --cc-t:var(--c-platformy-t); } .card.cat-zlecenia{ --cc:var(--c-zlecenia); --cc-t:var(--c-zlecenia-t); }
 .card:hover{ transform:translateY(-2px); box-shadow:inset 0 -2px 0 color-mix(in srgb, var(--cc) 70%, transparent), 0 22px 44px -24px var(--sh); }
 .card[hidden]{ display:none; }
 .card-media{ position:relative; aspect-ratio:16/9; background:var(--card2); overflow:hidden; box-shadow:inset 0 3px 8px -2px rgba(0,0,0,.7); }
@@ -204,9 +208,9 @@ html:not(.cv-off) #kontakt{ content-visibility:auto; contain-intrinsic-size:auto
   background:radial-gradient(420px 220px at 85% 0%, color-mix(in srgb, var(--cc) 24%, transparent), transparent 70%),
     linear-gradient(color-mix(in srgb, var(--cc) 8%, transparent) 1px, transparent 1px) 0 0/22px 22px,
     linear-gradient(90deg, color-mix(in srgb, var(--cc) 8%, transparent) 1px, transparent 1px) 0 0/22px 22px, var(--card2); }
-.gen-big{ font-size:clamp(26px,3vw,36px); font-weight:600; color:var(--cc); }
+.gen-big{ font-size:clamp(26px,3vw,36px); font-weight:600; color:var(--cc-t, var(--cc)); }
 .gen-sub{ font-size:12.5px; color:var(--dim); }
-.card-cat{ position:absolute; left:12px; top:12px; font-size:11.5px; letter-spacing:.06em; text-transform:uppercase; color:var(--cc);
+.card-cat{ position:absolute; left:12px; top:12px; font-size:11.5px; letter-spacing:.06em; text-transform:uppercase; color:var(--cc-t, var(--cc));
   padding:5px 9px; border-radius:6px; background:rgba(var(--bg-rgb),.82); border:0; box-shadow:inset 0 -2px 0 color-mix(in srgb, var(--cc) 60%, transparent); backdrop-filter:blur(6px); }
 .card-body{ display:flex; flex-direction:column; gap:10px; padding:18px 20px 20px; flex:1; }
 .card-body h3{ font-size:17.5px; color:var(--hi); }
@@ -242,14 +246,14 @@ html:not(.cv-off) #kontakt{ content-visibility:auto; contain-intrinsic-size:auto
 /* ── AGENCI ── */
 .agents{ display:grid; grid-template-columns:repeat(3,1fr); gap:14px; }
 .agent{ --ac:var(--neon2); border-radius:var(--r); overflow:hidden; background:var(--panel-bg); border:var(--panel-bd); box-shadow:var(--lift); transition:box-shadow .2s, transform .2s; }
-.agent-m{ --ac:var(--cyan); } .agent-b{ --ac:var(--neon2); } .agent-g{ --ac:var(--ok); }
+.agent-m{ --ac:var(--cyan); --ac-t:var(--cyan-t); } .agent-b{ --ac:var(--neon2); } .agent-g{ --ac:var(--ok); --ac-t:var(--ok-t); }
 .agent:hover{ transform:translateY(-2px); box-shadow:inset 0 -2px 0 color-mix(in srgb, var(--ac) 70%, transparent), var(--lift); }
 .agent-media{ position:relative; aspect-ratio:4/3; background:var(--bg); overflow:hidden; }
 .agent-media img{ width:100%; height:100%; object-fit:contain; object-position:50% 50%; }
-.agent-tag{ position:absolute; left:12px; bottom:12px; font-size:11.5px; color:var(--ac); padding:5px 9px; border-radius:6px; background:rgba(var(--bg-rgb),.82); border:0; box-shadow:inset 0 -2px 0 color-mix(in srgb, var(--ac) 60%, transparent); }
+.agent-tag{ position:absolute; left:12px; bottom:12px; font-size:11.5px; color:var(--ac-t, var(--ac)); padding:5px 9px; border-radius:6px; background:rgba(var(--bg-rgb),.82); border:0; box-shadow:inset 0 -2px 0 color-mix(in srgb, var(--ac) 60%, transparent); }
 .agent-body{ padding:18px 20px 22px; display:flex; flex-direction:column; gap:6px; }
 .agent-body h3{ font-size:22px; color:var(--hi); }
-.agent-role{ font-size:12.5px; color:var(--ac); text-transform:uppercase; letter-spacing:.06em; }
+.agent-role{ font-size:12.5px; color:var(--ac-t, var(--ac)); text-transform:uppercase; letter-spacing:.06em; }
 .agent-links{ display:flex; flex-wrap:wrap; gap:6px 28px; }
 @media (max-width:900px){ .agents{ grid-template-columns:1fr; } .agent{ display:grid; grid-template-columns:1fr 1fr; } }
 @media (max-width:560px){ .agent{ display:block; } }
@@ -257,7 +261,7 @@ html:not(.cv-off) #kontakt{ content-visibility:auto; contain-intrinsic-size:auto
 /* ── USŁUGI ── */
 .areas{ display:grid; grid-template-columns:repeat(4,1fr); gap:12px; }
 .area{ display:flex; flex-direction:column; gap:8px; padding:20px; border-radius:var(--r-m); background:var(--panel-bg); border:var(--panel-bd); }
-.area-n{ font-size:12px; color:var(--warn); }
+.area-n{ font-size:12px; color:var(--warn-t); }
 .area b{ color:var(--hi); font-size:16px; }
 .area > span:last-child{ font-size:13.5px; color:var(--muted); }
 .svc{ display:grid; grid-template-columns:1fr; gap:12px; margin-top:12px; }
@@ -308,7 +312,7 @@ html:not(.cv-off) #kontakt{ content-visibility:auto; contain-intrinsic-size:auto
 
 /* ── okno projektu ── */
 .pd{ --cc:var(--neon2); padding:0; border:0; background:transparent; color:var(--fg); width:min(1040px, calc(100vw - 24px)); max-height:calc(100dvh - 24px); margin:auto; }
-.pd.cat-platformy{ --cc:var(--c-platformy); } .pd.cat-zlecenia{ --cc:var(--c-zlecenia); }
+.pd.cat-platformy{ --cc:var(--c-platformy); --cc-t:var(--c-platformy-t); } .pd.cat-zlecenia{ --cc:var(--c-zlecenia); --cc-t:var(--c-zlecenia-t); }
 .pd::backdrop{ background:rgba(2,4,8,.72); backdrop-filter:blur(6px); }
 .pd[open]{ animation:pd-in .28s cubic-bezier(.2,.8,.2,1); }
 @keyframes pd-in{ from{ opacity:0; transform:translateY(14px) scale(.985); } }
@@ -335,7 +339,7 @@ html:not(.cv-off) #kontakt{ content-visibility:auto; contain-intrinsic-size:auto
 .pd-thumbs button.is-on, .pd-thumbs button:hover{ opacity:1; box-shadow:inset 0 -2px 0 var(--cc); }
 .pd-note{ font-size:12.5px; color:var(--dim); margin-top:8px; }
 .pd-grid{ display:grid; grid-template-columns:1fr 1fr; gap:28px; margin-top:28px; }
-.pd-grid .lbl{ color:var(--cc); margin-bottom:10px; }
+.pd-grid .lbl{ color:var(--cc-t, var(--cc)); margin-bottom:10px; }
 .pd-grid section .lbl:not(:first-child){ margin-top:20px; }
 .pd-grid p{ color:var(--fg); font-size:14.5px; line-height:1.65; }
 .pd-res{ list-style:none; padding:0; margin:0; display:grid; gap:8px; }
@@ -506,7 +510,7 @@ html:not(.cv-off) #kontakt{ content-visibility:auto; contain-intrinsic-size:auto
 
 /* ── etapy zleceń w oknie projektu ── */
 .pd-stages{ margin-top:26px; display:grid; gap:8px; }
-.pd-stages > .lbl{ color:var(--cc); margin-bottom:4px; }
+.pd-stages > .lbl{ color:var(--cc-t, var(--cc)); margin-bottom:4px; }
 .pd-stages > .lbl span{ color:var(--dim); margin-left:6px; }
 .pd-stages details{ border-radius:12px; background:var(--glass); border:0; }
 .pd-stages details[open]{ border-color:color-mix(in srgb, var(--cc) 40%, transparent); }
@@ -560,7 +564,7 @@ html:not(.cv-off) #kontakt{ content-visibility:auto; contain-intrinsic-size:auto
 /* zasady wyceny zamiast cennika */
 .deal{ display:flex; flex-direction:column; gap:6px; border-left:2px solid var(--neon2); }
 .deal b{ color:var(--hi); font-size:16px; }
-.deal b::before{ content:'✓ '; color:var(--ok); }
+.deal b::before{ content:'✓ '; color:var(--ok-t); }
 @media (max-width:620px){ .prices{ grid-template-columns:1fr !important; } .deal b{ font-size:15px; } }
 
 /* ── strona projektu /projekty/<slug>/ ── */
@@ -568,7 +572,7 @@ html:not(.cv-off) #kontakt{ content-visibility:auto; contain-intrinsic-size:auto
 .pd-open{ font-size:12px; color:var(--neon2); text-decoration:none; padding:7px 10px; border-radius:8px; border:0; background:var(--bevel-face); box-shadow:var(--bevel); white-space:nowrap; }
 .pd-open:hover{ border-color:var(--cc); color:var(--hi); }
 .pp{ --cc:var(--neon2); }
-.pp.cat-platformy{ --cc:var(--c-platformy); } .pp.cat-zlecenia{ --cc:var(--c-zlecenia); }
+.pp.cat-platformy{ --cc:var(--c-platformy); --cc-t:var(--c-platformy-t); } .pp.cat-zlecenia{ --cc:var(--c-zlecenia); --cc-t:var(--c-zlecenia-t); }
 .pp-in{ max-width:1040px; }
 .pp-crumbs{ font-size:12.5px; color:var(--dim); margin-bottom:14px; overflow:hidden; white-space:nowrap; text-overflow:ellipsis; }
 /* 18.11.2026: podkreślenie, nie tylko kolor (axe link-in-text-block: kontrast linku do tekstu 1.2:1, Lighthouse 0.96) */
@@ -650,12 +654,12 @@ html:not(.cv-off) #kontakt{ content-visibility:auto; contain-intrinsic-size:auto
 .zm-item h2{ margin:8px 0 6px; font-size:18px; }
 .zm-meta{ display:flex; flex-wrap:wrap; gap:10px; font-size:12px; color:var(--muted); }
 .zm-area{ color:var(--neon2); }
-.zm-kind.vis{ color:var(--c-platformy); }
+.zm-kind.vis{ color:var(--c-platformy-t); }
 .zm-img{ display:grid; gap:10px; margin:12px 0 4px; }
 .zm-img.n2{ grid-template-columns:1fr 1fr; }
 .zm-img figure{ margin:0; position:relative; }
 .zm-img img{ width:100%; height:auto; display:block; border-radius:var(--r-s); }
-.zm-img figcaption{ position:absolute; left:8px; top:8px; font-size:11px; padding:2px 8px; border-radius:6px; background:rgba(3,4,8,.7); }
+.zm-img figcaption{ position:absolute; left:8px; top:8px; font-size:11px; padding:2px 8px; border-radius:6px; background:rgba(var(--bg-rgb),.82); }
 @media (max-width:620px){ .zm-img.n2{ grid-template-columns:1fr; } .zm-item{ padding:14px; } }
 .zm-home .zm-item h3{ margin:8px 0 6px; font-size:16px; } .zm-home .zm-list{ margin-top:14px; } .zm-home .link-more{ display:inline-block; margin-top:14px; }
 .zm-item p{ margin-bottom:8px; }

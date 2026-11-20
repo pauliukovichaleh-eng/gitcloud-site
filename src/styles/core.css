@@ -10,7 +10,9 @@
   --gc-c-ok:#6cc49a; --gc-c-ok-rgb:108,196,154;
   --gc-c-ok-t:#93d9b6; --gc-c-ok-t-rgb:147,217,182;
   --gc-c-warn:#f0b552; --gc-c-warn-rgb:240,181,82;
+  --gc-c-warn-t:#f6c97c; --gc-c-warn-t-rgb:246,201,124;
   --gc-c-crit:#ee5a70; --gc-c-crit-rgb:238,90,112;
+  --gc-c-crit-t:#f4808f; --gc-c-crit-t-rgb:244,128,143;
   --gc-rim-top:linear-gradient(180deg, rgba(255,255,255,.07) 0 1px, transparent 1px);
   --gc-well:linear-gradient(180deg, rgba(0,0,0,.38), rgba(0,0,0,.16));
   --gc-well-top:inset 0 3px 8px -2px rgba(0,0,0,.7);
@@ -38,7 +40,9 @@
   --gc-c-ok:#4a7c59; --gc-c-ok-rgb:74,124,89;
   --gc-c-ok-t:#3b6948; --gc-c-ok-t-rgb:59,105,72;
   --gc-c-warn:#c96442; --gc-c-warn-rgb:201,100,66;
+  --gc-c-warn-t:#9a4a28; --gc-c-warn-t-rgb:154,74,40;
   --gc-c-crit:#b3261e; --gc-c-crit-rgb:179,38,30;
+  --gc-c-crit-t:#a1201a; --gc-c-crit-t-rgb:161,32,26;
   --gc-rim-top:linear-gradient(180deg, rgba(255,255,255,.95) 0 1px, transparent 1px);
   --gc-well:linear-gradient(180deg, #ebebeb, #e4e4e4);
   --gc-well-top:inset 0 3px 6px -3px rgba(0,0,0,.14);
