@@ -87,10 +87,20 @@ def render() -> str:
     return "\n".join(lines) + "\n"
 
 
+def icons() -> dict:
+    """Zestaw ikon rdzenia (gitcloud_core/static/icons.js): ścisły JSON między /*icons*/ a /*/icons*/."""
+    js = (CORE / "gitcloud_core/static/icons.js").read_text(encoding="utf-8")
+    return json.loads(re.search(r"/\*icons\*/(\{.*?\})/\*/icons\*/", js, flags=re.DOTALL).group(1))
+
+
 def themes() -> str:
-    """Konfig motywów rdzenia dla przycisku strony (Base.astro): kolejność, motyw bazowy, ikony."""
+    """Konfig motywów rdzenia dla przycisku strony (Base.astro): kolejność, motyw bazowy, ikony.
+
+    20.11.2026: rdzeń (#1853, 52add24) trzyma w themes.json nazwę ikony z icons.js, nie znaczniki — tu rozwijamy ją do
+    wnętrza <svg>; obrys (stroke, 1.7, round) daje Base.astro, jak gcIcon rdzenia."""
     c = json.loads((CORE / "gitcloud_core/themes.json").read_text(encoding="utf-8"))
-    return json.dumps({"base": c["base"], "order": c["order"], "icons": {k: v["icon"] for k, v in c["themes"].items()}},
+    ic = icons()
+    return json.dumps({"base": c["base"], "order": c["order"], "icons": {k: ic[v["icon"]] for k, v in c["themes"].items()}},
                       ensure_ascii=False, indent=1) + "\n"
 
 
