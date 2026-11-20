@@ -50,11 +50,18 @@ def trio(i):
     return c
 
 
+# 20.11.2026 (#1899): klatki clip.py z TONE=light → tylko awatary agenci/<n>-light.webp (dla my.gitcloud.pl, heads-from-site);
+# filmy i plakaty strony zostają ciemne
+LIGHT = os.environ.get("TONE") == "light"
+SUF = "-light" if LIGHT else ""
+
 # 1) animowane WebP 360 px (sekcja pokazuje do 320 px, na ekranach 2x wystarcza)
 for w, n in WHO:
     fs = [fr(w, i).resize((360, 360), Image.LANCZOS) for i in range(N)]
-    fs[0].save(SITE / f"agenci/{n}.webp", save_all=True, append_images=fs[1:], duration=67, loop=0, quality=48, method=6)
-    print(n, os.path.getsize(SITE / f"agenci/{n}.webp") // 1024, "KB")
+    fs[0].save(SITE / f"agenci/{n}{SUF}.webp", save_all=True, append_images=fs[1:], duration=67, loop=0, quality=48, method=6)
+    print(n + SUF, os.path.getsize(SITE / f"agenci/{n}{SUF}.webp") // 1024, "KB")
+if LIGHT:
+    sys.exit(0)
 
 # 2) filmy i plakaty (plakat = pierwsza klatka: film startuje bez skoku, wszyscy z otwartymi oczami)
 jobs = [(f"glowa-{n}", lambda i, w=w: single(w, i)) for w, n in WHO] + [("glowy", trio)]

@@ -25,6 +25,8 @@ SCRIPT = {   # (секунда, эмоция) — своя у каждого: С
     "buzz": [(0, "calm"), (1.8, "curious"), (3.6, "thoughtful"), (5.4, "calm")],
 }
 HEAD = {"buzz": "mark&buzz=1"}   # who na stronie → parametry head.js
+# 20.11.2026 (#1899): TONE=light — awatary w jasnym tonie (studio na białym) dla my.gitcloud.pl; domyślnie ciemny jak dotąd
+TONE = __import__("os").environ.get("TONE", "dark")
 VCLOCK = """(() => {
   let vt = 0; const q = [];
   performance.now = () => vt; const D0 = Date.now(); Date.now = () => D0 + vt;
@@ -40,7 +42,7 @@ with sync_playwright() as p:
     pg = b.new_page(device_scale_factor=3, viewport={"width": int(__import__("os").environ.get("SZ","480")), "height": int(__import__("os").environ.get("SZ","480"))})
     pg.set_default_timeout(180000)
     pg.add_init_script(VCLOCK)
-    pg.goto(f"http://127.0.0.1:8788/index.html?who={HEAD.get(who, who)}&offline=1&clip=1&withbody=1&cam={CAM}&pr=3&nobrowcards=1&tone=dark&mood={SCRIPT[who][0][1]}", wait_until="load")
+    pg.goto(f"http://127.0.0.1:8788/index.html?who={HEAD.get(who, who)}&offline=1&clip=1&withbody=1&cam={CAM}&pr=3&nobrowcards=1&tone={TONE}&mood={SCRIPT[who][0][1]}", wait_until="load")
     for _ in range(600):                                  # загрузка модели: шагаем время, пока голова не готова
         pg.evaluate("window.__step(33)")
         if pg.evaluate("!!window.gcReady"):
