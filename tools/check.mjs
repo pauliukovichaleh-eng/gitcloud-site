@@ -21,6 +21,12 @@ for (const f of files) {
   for (const d of DASHES) if (text.includes(d)) errs.push(`${f}: długi myślnik U+${d.codePointAt(0).toString(16).toUpperCase()}`);
   const m = text.match(PRIVATE_IP); if (m) errs.push(`${f}: prywatny adres IP ${m[0]}`);
 }
+// Kolor tekstu białą liczbą znika w jasnym tonie (Dyżurny 20.11): tekst nagłówków bierze var(--hi).
+// Wyjątki: karty og (zawsze ciemne) i CV (zawsze papier).
+const WHITE = /(?<![-\w])color\s*:\s*(?:#fff(?:fff)?\b|white\b)/i;
+for (const f of walk('src').filter((x) => /\.(astro|css)$/.test(x) && !/(^|\/)(og\/|Cv\.astro|core\.css)/.test(x))) {
+  readFileSync(f, 'utf8').split('\n').forEach((l, i) => { if (WHITE.test(l)) errs.push(`${f}:${i + 1}: biały tekst liczbą, użyj var(--hi)`); });
+}
 // Pliki robione przez tools/render.mjs: CV w PDF i karty og:image dla każdej strony, która je wskazuje.
 if (process.env.GC_NO_RENDER !== '1') {
   for (const f of ['dist/cv/aleh-pauliukovich-cv-pl.pdf', 'dist/cv/aleh-pauliukovich-cv-en.pdf']) if (!existsSync(f)) errs.push(`brak ${f}`);
