@@ -2,6 +2,39 @@
   "_opis": "Dziennik zmian /zmiany/ (decyzja #748). Prowadzi go nocne odświeżanie (host/site-refresh): nowe wpisy NA POCZĄTKU. Pola: id (data-slug), date, area, project (slug z projects.json: wpis pokazuje się też na stronie projektu, decyzja #751) (strona|panel|agenci|glowy|pilot|isp|infra), kind (wizualna = z obrazami przed/po, techniczna = krótko, bez obrazów), img [{src, alt{pl,en,ru}, label: przed|po|kadr}], link (kotwica albo strona projektu), pl/en/ru {t, x}. Tylko to, co publiczne: bez klientów, pracodawców, domu, finansów, adresów IP.",
   "wpisy": [
     {
+      "id": "2026-11-20-cwiczenia-awarii-dysk",
+      "date": "2026-11-20",
+      "area": "infra",
+      "project": "platforma-danych",
+      "kind": "techniczna",
+      "link": "/projekty/platforma-danych/",
+      "pl": {"t": "Ćwiczenia awarii: drugi przebieg", "x": "Powtórka ćwiczeń pokazała, że instalator daje partycji systemowej węzła tylko 60 ze 200 GB; rola Ansible rozciąga ją teraz na całą grupę LVM. Kolejność odtwarzania usług i pomocnicze skrypty trafiły do repozytorium, a strażnik ćwiczeń przestał blokować własne kroki przywracania kopii bazy."},
+      "en": {"t": "Disaster drills: the second run", "x": "The repeat drill showed that the installer gives the node's system partition only 60 of 200 GB; the Ansible role now extends it to the whole LVM group. The service restore order and helper scripts went into the repository, and the drill guard no longer blocks its own database backup restore steps."},
+      "ru": {"t": "Учения аварии: второй прогон", "x": "Повтор учений показал, что установщик даёт системному разделу узла только 60 из 200 ГБ; роль Ansible теперь растягивает его на всю группу LVM. Порядок восстановления служб и вспомогательные скрипты легли в репозиторий, а сторож учений больше не мешает своим же шагам восстановления копии базы."}
+    },
+    {
+      "id": "2026-11-19-jasny-motyw",
+      "date": "2026-11-19",
+      "area": "strona",
+      "project": "rdzen-gitcloud",
+      "kind": "techniczna",
+      "link": "/projekty/rdzen-gitcloud/",
+      "pl": {"t": "Jasny motyw w całym systemie", "x": "Rdzeń trzyma jeden wybór motywu i listę motywów w pliku konfiguracyjnym; panel, pulpit, głowy agentów, pilot ESP32 i ta strona biorą kolory stamtąd. Na stronie przełącznik jest w nagłówku, a jasny motyw jest szary, bez czystej bieli."},
+      "en": {"t": "A light theme across the system", "x": "The core keeps one theme choice and the list of themes in a config file; the panel, the desktop, the agent heads, the ESP32 remote and this site take their colours from there. On this site the switch sits in the header, and the light theme is grey, without pure white."},
+      "ru": {"t": "Светлая тема во всей системе", "x": "Ядро хранит один выбор темы и список тем в конфигурационном файле; панель, рабочий стол, головы агентов, пульт ESP32 и этот сайт берут цвета оттуда. На сайте переключатель в шапке, а светлая тема серая, без чистого белого."}
+    },
+    {
+      "id": "2026-11-19-glowy-mowa",
+      "date": "2026-11-19",
+      "area": "glowy",
+      "project": "agenci-ai",
+      "kind": "techniczna",
+      "link": "/projekty/agenci-ai/",
+      "pl": {"t": "Głowy: usta za głosem, spokojniejszy wzrok", "x": "Usta otwierają się według głośności głosu i zamykają w pauzach wewnątrz zdania, a na akcentowanej sylabie agent zerka na rozmówcę. Skok oka jest sprężyną około 0,1 s zamiast przeskoku, a każdy agent śmieje się po swojemu."},
+      "en": {"t": "Heads: lips follow the voice, a calmer gaze", "x": "The mouth opens with the loudness of the voice and closes in pauses inside a sentence, and on a stressed syllable the agent glances at the listener. An eye jump is a spring of about 0.1 s instead of a snap, and each agent laughs in their own way."},
+      "ru": {"t": "Головы: губы за голосом, спокойнее взгляд", "x": "Рот раскрывается по громкости голоса и смыкается в паузах внутри фразы, а на ударном слоге агент коротко смотрит на собеседника. Скачок глаза идёт пружиной около 0,1 с, а не рывком, и каждый агент смеётся по-своему."}
+    },
+    {
       "id": "2026-11-18-cwiczenia-awarii",
       "date": "2026-11-18",
       "area": "infra",

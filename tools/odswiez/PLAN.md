@@ -1,16 +1,19 @@
 # Plan prowadzenia strony (aktualizowany co noc)
 
-Ostatnia noc: 2026-11-19 (dziennik: 3 wpisy; głowy przenagrane i zostawione stare; panel bez zmian; schemat szyny zdarzeń)
+Ostatnia noc: 2026-11-20 (dziennik: 3 wpisy; głowy przenagrane w ciemnym tonie, różnica w 360 px niewidoczna, zostały stare; pilot i panel bez zmian w ciemnym motywie)
 
 ## Nieaktualne
 - Konsola ISP (public/img/demo): zrzuty z 05.11 w niebieskim motywie „Kolor”. Przenagrać, gdy platforma ISP dostanie
   ciemny motyw zbliżony do panelu; inaczej zostają.
 - Pulpit (pulpit-gitcloud): film pulpit.mp4 nagrany ręcznie, przepisu w repo nie ma. Przenagrać dopiero z przepisem
   (profil demo pulpitu, wymyślone pliki, bez prawdziwego ekranu). Od 14.11 pulpit ma szklane menu nad stroną.
-- Głowy: od 18.11 head.js ma cień kontaktowy na szyi pod szczęką i „spódnicę” wzdłuż szczęki. W kadrach 360 px
-  różnica prawie niewidoczna (19.11 przenagrane, zostały stare). Przenagrać razem z następną widoczną zmianą głów.
+- Głowy: od 18-19.11 cień pod szczęką i ciepłe podświetlenie od dołu; w kadrach 360 px prawie niewidoczne (19 i 20.11
+  przenagrane, zostały stare). Przenagrać razem z następną widoczną zmianą. clip.py wymusza teraz &tone=dark.
 
 ## Do pokazania
+- Jasny motyw (19.11): głowy mają jasne skórki (porcelanowa obudowa, srebrne włosy Sally), pilot paletę jasnego tonu.
+  Wpis wizualny „ten sam agent w dwóch motywach”: clip.py z &tone=light, kadr obok ciemnego; pilot przez render.py,
+  jeśli symulator umie jasny ton.
 - Nowy projekt w katalogu (decyzja właściciela #1312, 13.11): następny projekt z repozytoriów lub Useme, którego
   jeszcze nie ma na stronie; gałąź + zrzuty na danych przykładowych, PL/EN/RU.
 - Centrum bezpieczeństwa rdzenia (ocena od 0 do 100, „Napraw”, dziennik tarczy): kadr na danych przykładowych. W
