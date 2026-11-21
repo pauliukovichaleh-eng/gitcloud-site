@@ -2,6 +2,40 @@
   "_opis": "Dziennik zmian /zmiany/ (decyzja #748). Prowadzi go nocne odświeżanie (host/site-refresh): nowe wpisy NA POCZĄTKU. Pola: id (data-slug), date, area, project (slug z projects.json: wpis pokazuje się też na stronie projektu, decyzja #751) (strona|panel|agenci|glowy|pilot|isp|infra), kind (wizualna = z obrazami przed/po, techniczna = krótko, bez obrazów), img [{src, alt{pl,en,ru}, label: przed|po|kadr}], link (kotwica albo strona projektu), pl/en/ru {t, x}. Tylko to, co publiczne: bez klientów, pracodawców, domu, finansów, adresów IP.",
   "wpisy": [
     {
+      "id": "2026-11-20-pulpit-ustawienia",
+      "date": "2026-11-20",
+      "area": "strona",
+      "project": "pulpit-gitcloud",
+      "kind": "techniczna",
+      "link": "/projekty/pulpit-gitcloud/",
+      "pl": {"t": "Pulpit: Ustawienia i tryb Skupienie", "x": "Okno Ustawień ma cztery nowe działy: klawiatura i mysz, powiadomienia z godzinami ciszy, logowanie (twarz, odcisk palca, hasło, dziennik wejść) i system z aktualizacją oraz cofnięciem do poprzedniej wersji. Tryb Skupienie na 25, 50 lub 90 minut wycisza agentów i powiadomienia, a wieczorem ekran robi się cieplejszy według harmonogramu."},
+      "en": {"t": "Desktop: Settings and Focus mode", "x": "The Settings window has four new sections: keyboard and mouse, notifications with quiet hours, sign-in (face, fingerprint, password, login log) and system with updates and a rollback to the previous version. Focus mode for 25, 50 or 90 minutes silences the agents and notifications, and in the evening the screen turns warmer on a schedule."},
+      "ru": {"t": "Рабочий стол: Настройки и режим Фокус", "x": "В окне Настроек четыре новых раздела: клавиатура и мышь, уведомления с тихими часами, вход (лицо, отпечаток пальца, пароль, журнал входов) и система с обновлением и откатом на прошлую версию. Режим Фокус на 25, 50 или 90 минут заглушает агентов и уведомления, а вечером экран теплеет по расписанию."}
+    },
+    {
+      "id": "2026-11-20-szklo-rdzenia",
+      "date": "2026-11-20",
+      "area": "panel",
+      "project": "rdzen-gitcloud",
+      "kind": "wizualna",
+      "img": [{"src": "/img/zmiany/2026-11-20-szklo-rdzenia-przed.webp", "label": "przed", "alt": {"pl": "Strona agentów panelu: nagłówki sekcji wersalikami, bez przełącznika motywu", "en": "The panel agents page: section headings in capitals, no theme switch", "ru": "Страница агентов панели: заголовки разделов капсом, без переключателя темы"}}, {"src": "/img/zmiany/2026-11-20-szklo-rdzenia-po.webp", "label": "po", "alt": {"pl": "Ta sama strona: nagłówki zwykłymi literami, przełącznik motywu obok dzwonka", "en": "The same page: headings in normal case, a theme switch next to the bell", "ru": "Та же страница: заголовки обычными буквами, переключатель темы рядом с колокольчиком"}}],
+      "link": "/projekty/rdzen-gitcloud/",
+      "pl": {"t": "Rdzeń: szkło, ruch i spokojniejsze nagłówki", "x": "Nagłówki sekcji i liczników są pisane zwykłymi literami zamiast wersalików, obok dzwonka jest przełącznik motywu, a dolny pasek telefonu jest z matowego szkła. Menu i powiadomienia pojawiają się z lekkim sprężynowaniem, ikony mają jedną cieńszą linię; to tokeny rdzenia, więc panel, pulpit i głowy agentów zmieniły się razem, a głowy w jasnym motywie są oświetlone jak w studiu na białym tle."},
+      "en": {"t": "Core: glass, motion and quieter headings", "x": "Section and counter headings use normal case instead of capitals, a theme switch sits next to the bell, and the phone bottom bar is frosted glass. Menus and toasts appear with a slight spring and icons use one thinner stroke; these are core tokens, so the panel, the desktop and the agent heads changed together, and in the light theme the heads are lit like a studio on white."},
+      "ru": {"t": "Ядро: стекло, движение и спокойные заголовки", "x": "Заголовки разделов и счётчиков написаны обычными буквами вместо капса, рядом с колокольчиком переключатель темы, а нижняя панель телефона из матового стекла. Меню и уведомления появляются с лёгким пружинящим перелётом, значки нарисованы одной тонкой линией; это токены ядра, поэтому панель, рабочий стол и головы агентов изменились вместе, а головы в светлой теме освещены как студия на белом."}
+    },
+    {
+      "id": "2026-11-20-zywe-awarie",
+      "date": "2026-11-20",
+      "area": "infra",
+      "project": "platforma-danych",
+      "kind": "techniczna",
+      "link": "/projekty/platforma-danych/",
+      "pl": {"t": "Ćwiczenia z żywymi awariami i prognoza dysku", "x": "Raz w miesiącu ćwiczenie zabija procesy serwera WWW, PostgreSQL i nginx i sprawdza, czy podnoszą się same; po poprawkach podnoszą się. Monitoring przewiduje zapełnienie dysku na 14 dni naprzód z przyrostu za dobę, a zewnętrzny strażnik w chmurze przy padzie głównego serwera pokazuje na stronie błędu przyczynę i czas przerwy."},
+      "en": {"t": "Live failure drills and a disk forecast", "x": "Once a month a drill kills the web server, PostgreSQL and nginx processes and checks that they come back on their own; after the fixes they do. Monitoring forecasts a full disk 14 days ahead from the daily growth, and when the main server goes down an external watchdog in the cloud shows the cause and length of the outage on the error page."},
+      "ru": {"t": "Учения с живыми сбоями и прогноз диска", "x": "Раз в месяц учения убивают процессы веб-сервера, PostgreSQL и nginx и проверяют, что они поднимаются сами; после правок поднимаются. Мониторинг предсказывает заполнение диска на 14 дней вперёд по росту за сутки, а внешний сторож в облаке при падении главного сервера показывает на странице ошибки причину и время перерыва."}
+    },
+    {
       "id": "2026-11-20-cwiczenia-awarii-dysk",
       "date": "2026-11-20",
       "area": "infra",

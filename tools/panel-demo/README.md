@@ -6,6 +6,10 @@ i podprocesy, zapytania SQL obsługuje `fake.py` (wymyślony dziennik spraw agen
     cd ~/src/gitcloud-ai && PORT=18932 .venv/bin/python <repo>/tools/panel-demo/run.py &
     python final.py http://my.gitcloud.pl:18932 <katalog>    # Playwright, Chrome z MAP my.gitcloud.pl 127.0.0.1
 
+21.11.2026: dane `fake.py` liczą się od bieżącej godziny, więc w nocy lista „Dziś” wygląda dziwnie; panel uruchamiać
+pod `faketime '<data> 13:35:00'` (jak kadry z 18.11). Panel idzie za motywem systemu, a headless Chrome prosi o jasny:
+konteksty mają `DARK` (color_scheme dark) z `rolik_common.py`; prawdziwa pogoda w nagłówku (`.gc-wx`) jest w `HIDE_SEL`.
+
 `final.py` tłumaczy kilka brakujących napisów na polski i sprawdza, czy w kadrze nie ma cyrylicy. Wspólne dla zrzutów
 i filmów jest w `rolik_common.py`: zamiany napisów `PL`, `HIDE` (bez „Dom (tylko odczyt)”, przycisku mostu i paska
 finansów), kontrola cyrylicy `CYR`, kodowanie filmu `koduj`. Warsztaty (`workshop.py`) czytają prawdziwy stan z dysku,

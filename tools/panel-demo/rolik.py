@@ -4,12 +4,12 @@ from playwright.sync_api import sync_playwright
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 base, out = "http://my.gitcloud.pl:18932", sys.argv[1]
 os.makedirs(out + "/frames", exist_ok=True)
-from rolik_common import init, CYR, koduj
+from rolik_common import init, CYR, koduj, DARK
 INIT = init()
 frames, errs, cyr = [], [], {}
 with sync_playwright() as p:
     b = p.chromium.launch(executable_path="/usr/bin/google-chrome", args=["--host-resolver-rules=MAP my.gitcloud.pl 127.0.0.1"])
-    ctx = b.new_context(viewport={"width": 1280, "height": 720})
+    ctx = b.new_context(viewport={"width": 1280, "height": 720}, **DARK)
     ctx.add_cookies([{"name": "gc_lang", "value": "pl", "url": base}])
     ctx.add_init_script(INIT)
     pg = ctx.new_page()

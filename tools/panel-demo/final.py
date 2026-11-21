@@ -2,7 +2,7 @@
 import os, sys
 from playwright.sync_api import sync_playwright
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-from rolik_common import PL, TR, HIDE, CYR
+from rolik_common import PL, TR, HIDE, CYR, DARK
 base, out = sys.argv[1], sys.argv[2]   # [modele]
 SHOTS = [  # (имя, путь, ширина, высота, высота кадра)
     ("panel-agenci", "/agenty", 1440, 900, 790),
@@ -27,7 +27,7 @@ errs, cyr = [], {}
 with sync_playwright() as p:
     b = p.chromium.launch(executable_path="/usr/bin/google-chrome", args=["--host-resolver-rules=MAP my.gitcloud.pl 127.0.0.1"])
     for name, path, w, h, ch in SHOTS:
-        ctx = b.new_context(viewport={"width": w, "height": h}, device_scale_factor=2 if w < 500 else int(os.environ.get("DSF", "1")))
+        ctx = b.new_context(viewport={"width": w, "height": h}, device_scale_factor=2 if w < 500 else int(os.environ.get("DSF", "1")), **DARK)
         ctx.add_cookies([{"name": "gc_lang", "value": "pl", "url": base}])
         pg = ctx.new_page()
         pg.on("console", lambda m, n=name: m.type == "error" and errs.append(f"{n}: {m.text[:120]}"))

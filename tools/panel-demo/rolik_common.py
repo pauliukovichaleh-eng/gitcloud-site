@@ -24,7 +24,9 @@ PL = [
 # Funkcje JS (tekst do page.evaluate albo do skryptu startowego).
 TR = """(pl) => { const w = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT); let n;
   while ((n = w.nextNode())) { let t = n.nodeValue, o = t; for (const [a, b] of pl) t = t.replace(new RegExp(a, 'g'), b); if (t !== o) n.nodeValue = t; } }"""
-HIDE_SEL = "[data-key='hud-now'], [data-key='hud-cena'], .auth-user-chip"   # pasek finansów, «Dom (tylko odczyt)»
+HIDE_SEL = "[data-key='hud-now'], [data-key='hud-cena'], .auth-user-chip, .gc-wx"   # pasek finansów, «Dom (tylko odczyt)», pogoda (21.11: prawdziwa, po rosyjsku)
+# 21.11.2026: panel idzie za motywem systemu, a headless Chrome prosi o jasny; strona pokazuje kadry ciemne
+DARK = {"color_scheme": "dark"}
 # 10.11.2026: w kadrze bez „Dom (tylko odczyt)” w nagłówku, bez przycisku mostu „Sally ↔ Mark” (do 16.11 „Dom ↔ Praca”) i bez paska finansów (prywatne)
 HIDE = """() => { for (const e of document.querySelectorAll('body *')) { const t = (e.textContent || '').replace(/\\s+/g, ' ').trim();
   if (/^Dom \\(tylko odczyt\\)$/.test(t) || /^Салли ↔ Марк$/.test(t)) e.style.visibility = 'hidden'; }
