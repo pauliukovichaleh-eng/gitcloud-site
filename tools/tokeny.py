@@ -100,7 +100,9 @@ def themes() -> str:
     wnętrza <svg>; obrys (stroke, 1.7, round) daje Base.astro, jak gcIcon rdzenia."""
     c = json.loads((CORE / "gitcloud_core/themes.json").read_text(encoding="utf-8"))
     ic = icons()
-    return json.dumps({"base": c["base"], "order": c["order"], "icons": {k: ic[v["icon"]] for k, v in c["themes"].items()}},
+    # 21.11.2026: tryb «pora dnia» (time) liczy serwer panelu (tone.day) — strona statyczna go nie zna, gość dostaje auto i motywy
+    order = [k for k in c["order"] if k == "auto" or "scheme" in c["themes"][k]]
+    return json.dumps({"base": c["base"], "order": order, "icons": {k: ic[c["themes"][k]["icon"]] for k in order}},
                       ensure_ascii=False, indent=1) + "\n"
 
 
