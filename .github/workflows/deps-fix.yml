@@ -45,7 +45,6 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git checkout -- . ':!package-lock.json'   # build zostawia pliki; do commitu idzie tylko lock
           git commit -qm "Zależności: npm audit fix (deps-fix #2177)" -- package-lock.json
           git push -q origin HEAD:main
           gh workflow run deploy.yml -R "$GITHUB_REPOSITORY"   # push z GITHUB_TOKEN nie uruchamia deploy.yml sam
