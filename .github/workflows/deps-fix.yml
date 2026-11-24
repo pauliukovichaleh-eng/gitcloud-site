@@ -1,0 +1,51 @@
+# Automatyczna łatka zależności npm (24.11.2026, decyzja #2177). Uruchamia ją zadanie deps-fix serwera Sally
+# (gitcloud-automation/host/deps_fix.py), gdy Dependabot zgłasza podatność z poprawką w package-lock.json —
+# na serwerze nie ma node. npm audit fix tylko w lock, budowa jak w deploy.yml, commit do main, potem wdrożenie.
+# Błąd, gdy npm umiał coś naprawić, a nie naprawił (np. wymaga --force, czyli nowej wersji głównej) — wtedy ręcznie.
+name: deps-fix
+on:
+  workflow_dispatch:
+permissions:
+  contents: write
+  actions: write
+concurrency: deps-fix
+jobs:
+  fix:
+    runs-on: ubuntu-26.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          fetch-depth: 0 # build: lastmod w sitemap.xml z historii gita
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm audit fix --package-lock-only || true
+      - name: zostało coś, co npm umie naprawić?
+        run: |
+          npm audit --package-lock-only --json > audit.json || true
+          node -e 'const v=Object.values(require("./audit.json").vulnerabilities||{}).filter(x=>x.fixAvailable);
+            if(v.length){console.log("::error::npm nie naprawił: "+v.map(x=>x.name).join(", "));process.exit(1)}'
+          rm audit.json
+      - id: diff
+        run: git diff --quiet package-lock.json && echo "changed=0" >> "$GITHUB_OUTPUT" || echo "changed=1" >> "$GITHUB_OUTPUT"
+      - if: steps.diff.outputs.changed == '1'
+        run: npm ci
+      - name: Filmy z wydania „media” (jak w deploy.yml)
+        if: steps.diff.outputs.changed == '1'
+        run: gh release download media -R "$GITHUB_REPOSITORY" -p '*.mp4' -D public/img/projekty --clobber
+        env:
+          GH_TOKEN: ${{ github.token }}
+      - if: steps.diff.outputs.changed == '1'
+        run: npm run build
+      - name: commit i wdrożenie
+        if: steps.diff.outputs.changed == '1'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git commit -qm "Zależności: npm audit fix (deps-fix #2177)" -- package-lock.json
+          git push -q origin HEAD:main
+          gh workflow run deploy.yml -R "$GITHUB_REPOSITORY"   # push z GITHUB_TOKEN nie uruchamia deploy.yml sam
+        env:
+          GH_TOKEN: ${{ github.token }}
