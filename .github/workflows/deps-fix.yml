@@ -29,7 +29,8 @@ jobs:
             if(v.length){console.log("::error::npm nie naprawił: "+v.map(x=>x.name).join(", "));process.exit(1)}'
           rm audit.json
       - id: diff
-        run: git diff --quiet package-lock.json && echo "changed=0" >> "$GITHUB_OUTPUT" || echo "changed=1" >> "$GITHUB_OUTPUT"
+        # tylko zmiana wersji: sama normalizacja lock przez starszy npm (np. zniknięte pola "libc") to nie łatka
+        run: git diff -U0 package-lock.json | grep -q '^[-+] *"version"' && echo "changed=1" >> "$GITHUB_OUTPUT" || echo "changed=0" >> "$GITHUB_OUTPUT"
       - if: steps.diff.outputs.changed == '1'
         run: npm ci
       - name: Filmy z wydania „media” (jak w deploy.yml)
@@ -44,6 +45,7 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git checkout -- . ':!package-lock.json'   # build zostawia pliki; do commitu idzie tylko lock
           git commit -qm "Zależności: npm audit fix (deps-fix #2177)" -- package-lock.json
           git push -q origin HEAD:main
           gh workflow run deploy.yml -R "$GITHUB_REPOSITORY"   # push z GITHUB_TOKEN nie uruchamia deploy.yml sam
