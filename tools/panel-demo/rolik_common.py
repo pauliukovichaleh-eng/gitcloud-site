@@ -20,6 +20,7 @@ PL = [
     ["Решила", "Zdecydowała"], ["Отправила", "Wysłała"], ["Решил", "Zdecydował"], ["Отправил", "Wysłał"],
     ["Лимиты и маршруты", "Limity i trasy"], ["Расход", "Zużycie"], ["Прогоны", "Przebiegi"], ["вызовы", "wywołania"],  # moduł „Modele” rdzenia (14.11)
     ["пн (\\d)", "pn $1"], ["вт (\\d)", "wt $1"], ["ср (\\d)", "śr $1"], ["чт (\\d)", "czw $1"], ["пт (\\d)", "pt $1"], ["сб (\\d)", "sob $1"], ["вс (\\d)", "nd $1"],
+    ["^Кто тратит", "Kto zużywa"], ["Свой ответ", "Własna odpowiedź"],  # 25.11: nowe napisy rdzenia
 ]
 # Funkcje JS (tekst do page.evaluate albo do skryptu startowego).
 TR = """(pl) => { const w = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT); let n;

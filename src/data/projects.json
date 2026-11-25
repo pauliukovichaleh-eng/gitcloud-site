@@ -452,7 +452,7 @@
     {
       "slug": "tarcza-gitcloud",
       "category": "wlasne",
-      "title": "Tarcza GitCloud: ochrona przed phishingiem w poczcie i czatach",
+      "title": "Tarcza GitCloud: ochrona poczty i czatów przed phishingiem",
       "lead": "Każda przychodząca wiadomość z poczty i czatów przechodzi przez reguły i model językowy, zanim zobaczy ją człowiek. Groźne linki blokuje też domowy DNS.",
       "year": "2026",
       "status": "Działa na własnym serwerze, sprawdza każdą nową wiadomość",
