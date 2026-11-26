@@ -1,7 +1,7 @@
 # Plan prowadzenia strony (aktualizowany co noc)
 
-Ostatnia noc: 2026-11-25 (dziennik: 3 wpisy; panel: kadry modeli i decyzji przenagrane; pilot: 5 ekranów i film z
-nowym tłem-schematem; głowy bez widocznych zmian; Tarcza: krótszy title PL)
+Ostatnia noc: 2026-11-26 (dziennik: 3 wpisy; głowy: Buzz w swetrze, ciemny i jasny, film głów; pilot: ekran Claude
+z pomarańczowym stanem sesji; Sally i Tony bez widocznych zmian, panel bez zmian w kadrach)
 
 ## Nieaktualne
 - Panel: okładki agenci/panel i filmy agenci.mp4, panel.mp4 mają jeszcze nagłówki wersalikami sprzed 20.11 i stare
@@ -16,8 +16,10 @@ nowym tłem-schematem; głowy bez widocznych zmian; Tarcza: krótszy title PL)
 - Pulpit (pulpit-gitcloud): film pulpit.mp4 nagrany ręcznie, przepisu w repo nie ma. Od 24.11 pulpit ma okno „Hasła”,
   własne okna wyboru pliku i druku, nową kartę przeglądarki w stylu GitCloud. Przenagrać dopiero z przepisem
   (profil demo pulpitu, wymyślone pliki, bez prawdziwego ekranu).
-- Głowy: podświetlenie od dołu mocniejsze od 23.11 (0,9 → 1,6), sprawdzone parą kadrów: w 360 px nadal prawie
-  niewidoczne, więc bez przenagrania. Przenagrać z następną widoczną zmianą (dark i TONE=light).
+- Pilot: film pilot.mp4 ma jeszcze stary pasek stanu (różnica kilku pikseli w oknie rozmowy, 26.11 bez przenagrania);
+  przenagrać rolik.py razem z następną widoczną zmianą ekranów z filmu.
+- Pulpit: od 25.11 kolor Claude pomarańczowy (znak, karta konsoli, powiadomienia), tło stołu do wyboru (schemat,
+  miasto, bez tła); kadry pulpit-* starsze. Czeka na przepis nagrania pulpitu (niżej).
 
 ## Do pokazania
 - Jasny motyw: wpis „ten sam agent w dwóch motywach”: głowa jasna obok ciemnej; pilot w jasnym motywie ma teraz
@@ -28,13 +30,15 @@ nowym tłem-schematem; głowy bez widocznych zmian; Tarcza: krótszy title PL)
 - Wyszukiwanie Ctrl+K po danych (decyzje, katalog) i okna Issue/PR GitHub w panelu: kadr na danych przykładowych.
 - Tabele rdzenia (szerokość kolumn myszą, numery stron, panel filtrów): przy nagraniu panelu tabela z filtrami.
 - Nić sprawy w ruchu: pętla kilku sekund (dane w tools/panel-demo/fake_dec.py, PLANS), screencast jak rolik.py.
+- GitCloud Mesh (fork MeshCore, LoRa, ekran OLED urządzenia przenośnego): kandydat na kartę projektu lub kadr;
+  zdjęcia ekranu tylko z danymi przykładowymi, bez lokalizacji.
 - Czat głów na pulpicie: kadr z trzema awatarami na danych przykładowych.
 
 ## Nie udało się / ograniczenia
 - Pilot: wiersz trybów ze sprawą w toku jeszcze nie występuje w scenariuszu.
 
 ## SEO (Marek, obchód 22.11)
-- Title > 70 znaków: główna PL/EN/RU zostaje, to pozycjonowanie właściciela. Tarcza PL skrócona 25.11 (69 znaków).
+- Title > 70 znaków: główna PL/EN/RU zostaje, to pozycjonowanie właściciela. Poza tym obchód bez uwag.
 
 ## Pomysły
 - Krótki film „noc w GitCloud”: co robią zadania nocne (kopie, przegląd kodu, łatki zależności, dokumentacja) na
