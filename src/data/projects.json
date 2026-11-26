@@ -261,6 +261,49 @@
       "gallery_note": "Nagranie i zrzuty z symulatora ekranu: ten sam kod co w firmware, napisy przetłumaczone na polski, dane przykładowe (wymyślone usługi, utwór i rozmowa); ekran 320×170 pokazany w skali 3:1 w nagraniu i 4:1 na zrzutach, w nagraniu pominięte przewijanie sekcji między wykresem a listą maszyn."
     },
     {
+      "slug": "gitcloud-mesh",
+      "category": "wlasne",
+      "title": "GitCloud Mesh: serwer w miejskiej sieci radiowej LoRa",
+      "lead": "Zapasowy kanał do serwera bez internetu i telefonu: własna baza LoRa i przenośny tracker na forku otwartego MeshCore, w tej samej sieci co publiczne przekaźniki miasta.",
+      "year": "2026",
+      "status": "Działa od listopada 2026",
+      "image": "/img/projekty/mesh-okladka.webp",
+      "image_alt": "Schemat: serwer, baza LoRa, publiczna sieć MeshCore miasta, tracker z ekranem OLED i telefon, połączone w obie strony",
+      "gallery": [
+        {
+          "src": "/img/projekty/mesh-okladka.webp",
+          "alt": "Droga wiadomości: serwer, baza, sieć miasta, tracker, telefon"
+        },
+        {
+          "src": "/img/projekty/mesh-pin.jpg",
+          "alt": "Polecenie przez radio: ekran GitCloud na trackerze, strażnik sprawdza klucz właściciela, PIN i białą listę, odpowiedź wraca na ekran"
+        },
+        {
+          "src": "/img/projekty/mesh-fork.jpg",
+          "alt": "Fork MeshCore: nowe wydanie wchodzi różnicą tagów, jedna kopia dla bazy i trackera, zasady eteru w rdzeniu"
+        }
+      ],
+      "problem": "Gdy pada internet albo serwer milknie, alerty przez telefon nie dochodzą. Potrzebny był niezależny kanał, który działa poza domem i nie wymaga własnej infrastruktury radiowej.",
+      "solution": "Baza na ESP32-S3 z radiem SX1262 rozmawia z serwerem przez Wi-Fi i Bluetooth (sygnał życia z HMAC co 10 s) i jest węzłem publicznej sieci MeshCore. Przenośny tracker na nRF52840 pokazuje stan serwera i wiadomości, także cyrylicą, a polecenia przyjmuje z PIN-em wpisywanym dżojstikiem; serwer wykonuje tylko te z białej listy i tylko od kluczy właściciela. Oba urządzenia budują się z jednego forka MeshCore w repozytorium, protokół eteru zostaje bez zmian, a wspólne zasady (klucze, ramki, kolejka) żyją w rdzeniu GitCloud.",
+      "stack": [
+        "C++",
+        "ESP32-S3",
+        "nRF52840",
+        "LoRa SX1262",
+        "MeshCore",
+        "PlatformIO",
+        "Python"
+      ],
+      "role": "Wybór sprzętu i protokołu, firmware bazy i trackera, utrzymanie forka, usługa strażnika na serwerze i testy.",
+      "results": [
+        "Test z pokoju: 2 pakiety z sieci miasta w 8 minut, po 4 i 10 przeskokach",
+        "Wiadomość do 150 bajtów z potwierdzeniem i ponowieniem",
+        "Jedna kopia firmware dla dwóch urządzeń, aktualizacja z MeshCore różnicą tagów"
+      ],
+      "links": [],
+      "gallery_note": "Schematy narysowane na podstawie repozytorium firmware i dokumentacji bazy; bez kluczy, adresów i identyfikatorów węzłów."
+    },
+    {
       "slug": "agenci-ai",
       "category": "wlasne",
       "title": "Zespół agentów AI do pracy operacyjnej",

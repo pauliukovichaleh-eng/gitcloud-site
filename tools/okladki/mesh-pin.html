@@ -1,0 +1,23 @@
+<!doctype html><html lang="pl"><head><meta charset="utf-8"><link rel="stylesheet" href="base.css"><link rel="stylesheet" href="schemat.css">
+<!-- Galeria „GitCloud Mesh” (26.11.2026): polecenie z trackera przez radio. Ekran GitCloud na trackerze (Status, Serwer mówi,
+     Polecenia z PIN-em dżojstikiem), strażnik sprawdza klucz właściciela, PIN i białą listę. Na podstawie docs/BASE.md. -->
+<style>.bg{background:radial-gradient(900px 560px at 50% 0%,#10303a 0,#030408 72%)}
+.c1{left:40px;width:300px}.c2{left:884px;width:284px}
+.mid{position:absolute;left:420px;width:384px;top:34px;bottom:34px;display:flex;flex-direction:column;gap:12px}
+.mid h3{margin:0 0 4px;font:600 18px JBM,monospace;letter-spacing:.14em;text-transform:uppercase;color:#7d8ba3;text-align:center}
+.mid .m{flex:1;align-items:center;gap:14px;padding:0 20px;font-size:22px}
+.a1{left:340px;width:80px;top:230px}.a2{left:804px;width:80px;top:230px}
+.c2 .m{font-size:21px}</style></head><body><div class="bg">
+<div class="ph">polecenie przez radio</div>
+<div class="p">
+ <div class="col c1"><h3>tracker</h3><div class="m">Status serwera</div><div class="m">Serwer mówi</div><div class="m"><span class="em">●</span>Polecenia</div><div class="m">PIN dżojstikiem</div></div>
+ <div class="arr a1">→</div>
+ <div class="mid"><h3>strażnik serwera</h3>
+  <div class="m"><span class="d"></span>klucz właściciela</div>
+  <div class="m"><span class="d"></span>zgubiony węzeł zablokowany</div>
+  <div class="m"><span class="d v"></span>PIN</div>
+  <div class="m"><span class="d v"></span>tylko biała lista</div>
+ </div>
+ <div class="arr a2">→</div>
+ <div class="col c2"><h3>odpowiedź</h3><div class="m">wynik na ekran</div><div class="m">obcy węzeł: tylko ślad</div><div class="m">pilne, gdy telefon milczy</div></div>
+</div></div></body></html>
