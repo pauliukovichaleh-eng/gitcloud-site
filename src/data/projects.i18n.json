@@ -26,6 +26,26 @@
       "gallery_alt": ["Knob control: tile menu, server and CPU chart, virtual machines, firewall restart with a PIN, then a voice conversation with Sally and Tony; simulator recording, sample data", "Conversation window: Sally's face in a hexagon, 24 voice segments around it, a question and an answer", "The same conversation with Tony: his face and colour, server status in the answer", "Sound page: server, microphone, music and agent voice volumes, the reason for silence on top", "System tile menu", "Claude session screen: session state and limit usage", "Music player with a progress bar", "CPU chart with an alarm threshold", "Virtual machines and containers with resources", "A critical command (firewall restart) requires a PIN"],
       "gallery_note": "A recording and screenshots from the screen simulator: the same code as the firmware, labels translated to Polish, sample data (made-up services, track and conversation); the 320×170 screen shown at 3:1 in the recording and 4:1 in the screenshots, section scrolling between the chart and the machine list cut from the recording."
     },
+    "gitcloud-mesh": {
+      "title": "GitCloud Mesh: the server on a city LoRa radio network",
+      "lead": "A backup channel to the server without internet or a phone: a custom LoRa base and a handheld tracker on a fork of the open MeshCore, on the same network as the city's public repeaters.",
+      "status": "Running since November 2026",
+      "problem": "When the internet goes down or the server falls silent, alerts via phone do not arrive. An independent channel was needed that works away from home and needs no radio infrastructure of its own.",
+      "solution": "A base on ESP32-S3 with an SX1262 radio talks to the server over Wi-Fi and Bluetooth (an HMAC heartbeat every 10 s) and is a node of the public MeshCore network. A handheld nRF52840 tracker shows server status and messages, Cyrillic included, and takes commands with a PIN entered by joystick; the server runs only allow-listed commands and only from the owner's keys. Both devices build from one MeshCore fork in the repository, the radio protocol stays unchanged, and the shared rules (keys, frames, queue) live in the GitCloud core.",
+      "role": "Hardware and protocol choice, base and tracker firmware, fork maintenance, server watchdog service and tests.",
+      "results": [
+        "Indoor test: 2 packets from the city network in 8 minutes, after 4 and 10 hops",
+        "Messages up to 150 bytes with acknowledgement and retry",
+        "One firmware copy for two devices, MeshCore updates applied as a tag diff"
+      ],
+      "image_alt": "Diagram: server, LoRa base, the city's public MeshCore network, a tracker with an OLED screen and a phone, linked both ways",
+      "gallery_alt": [
+        "Message path: server, base, city network, tracker, phone",
+        "A command over radio: the GitCloud screen on the tracker, the watchdog checks the owner key, PIN and allow list, the answer returns to the screen",
+        "MeshCore fork: a new release comes in as a tag diff, one copy for the base and the tracker, radio rules in the core"
+      ],
+      "gallery_note": "Diagrams drawn from the firmware repository and base documentation; no keys, addresses or node identifiers."
+    },
     "agenci-ai": {
       "title": "AI agent team for operational work",
       "lead": "Three agents with roles split as in a company: correspondence and deadlines, infrastructure on duty, modernization. They speak with a voice and have 3D faces. Tasks are carried out by Claude.",
@@ -224,6 +244,26 @@
       "image_alt": "Пульт с ручкой: меню плиток, график CPU, экран сессии Claude и PIN для важной команды, снимки из симулятора, примерные данные",
       "gallery_alt": ["Управление ручкой: меню плиток, сервер и график CPU, виртуальные машины, перезапуск файрвола с PIN-кодом, затем голосовой разговор с Салли и Тони; запись симулятора, примерные данные", "Окно разговора: лицо Салли в шестиугольнике, вокруг 24 сегмента голоса, вопрос и ответ", "Тот же разговор с Тони: его лицо и цвет, состояние сервера в ответе", "Страница «Звук»: громкость сервера, микрофона, музыки и голосов агентов, сверху причина тишины", "Меню плиток систем", "Экран сессии Claude: состояние сессии и расход лимита", "Музыкальный плеер с полосой прогресса", "График CPU с порогом тревоги", "Виртуальные машины и контейнеры с ресурсами", "Важная команда (перезапуск файрвола) требует PIN-кода"],
       "gallery_note": "Запись и снимки из симулятора экрана: тот же код, что в прошивке, надписи переведены на польский, примерные данные (выдуманные службы, трек и разговор); экран 320×170 в масштабе 3:1 в записи и 4:1 на снимках, прокрутка разделов между графиком и списком машин из записи вырезана."
+    },
+    "gitcloud-mesh": {
+      "title": "GitCloud Mesh: сервер в городской радиосети LoRa",
+      "lead": "Запасной канал к серверу без интернета и телефона: своя база LoRa и карманный трекер на форке открытого MeshCore, в той же сети, что и публичные ретрансляторы города.",
+      "status": "Работает с ноября 2026",
+      "problem": "Когда падает интернет или сервер замолкает, тревоги через телефон не доходят. Нужен был независимый канал, который работает вне дома и не требует своей радиоинфраструктуры.",
+      "solution": "База на ESP32-S3 с радио SX1262 говорит с сервером по Wi-Fi и Bluetooth (сигнал жизни с HMAC каждые 10 с) и служит узлом публичной сети MeshCore. Карманный трекер на nRF52840 показывает состояние сервера и сообщения, в том числе кириллицей, а команды принимает с PIN-кодом, набранным джойстиком; сервер выполняет только команды из белого списка и только от ключей владельца. Оба устройства собираются из одного форка MeshCore в репозитории, протокол эфира не меняется, а общие правила (ключи, кадры, очередь) живут в ядре GitCloud.",
+      "role": "Выбор железа и протокола, прошивка базы и трекера, поддержка форка, служба сторожа на сервере и тесты.",
+      "results": [
+        "Тест из комнаты: 2 пакета из сети города за 8 минут, через 4 и 10 прыжков",
+        "Сообщение до 150 байт с подтверждением и повтором",
+        "Одна копия прошивки на два устройства, обновление MeshCore разницей тегов"
+      ],
+      "image_alt": "Схема: сервер, база LoRa, публичная сеть MeshCore города, трекер с экраном OLED и телефон, связь в обе стороны",
+      "gallery_alt": [
+        "Путь сообщения: сервер, база, сеть города, трекер, телефон",
+        "Команда по радио: экран GitCloud на трекере, сторож проверяет ключ владельца, PIN и белый список, ответ возвращается на экран",
+        "Форк MeshCore: новый релиз входит разницей тегов, одна копия для базы и трекера, правила эфира в ядре"
+      ],
+      "gallery_note": "Схемы нарисованы по репозиторию прошивки и документации базы; без ключей, адресов и идентификаторов узлов."
     },
     "agenci-ai": {
       "title": "Команда AI-агентов для операционной работы",

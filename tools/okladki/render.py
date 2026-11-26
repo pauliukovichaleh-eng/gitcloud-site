@@ -16,6 +16,7 @@ NAMES = {
 }
 GALERIA = {
     "rdzen": [("rdzen-serwis", "rdzen-serwis"), ("rdzen-tokeny", "rdzen-tokeny"), ("rdzen-szyna", "rdzen-szyna")],
+    "mesh": [("mesh-pin", "mesh-pin"), ("mesh-fork", "mesh-fork")],
     "pracodawca": [("pracodawca-dostep", "pracodawca-dostep"), ("pracodawca-przeglad", "pracodawca-przeglad")],
 }
 only = set(sys.argv[1:])

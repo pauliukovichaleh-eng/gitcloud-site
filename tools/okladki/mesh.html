@@ -1,0 +1,30 @@
+<!doctype html><html lang="pl"><head><meta charset="utf-8"><link rel="stylesheet" href="base.css"><link rel="stylesheet" href="schemat.css">
+<!-- Okładka projektu „GitCloud Mesh” (26.11.2026, karta #2372): droga wiadomości serwer → baza LoRa → sieć MeshCore miasta
+     → tracker → telefon. Na podstawie gitcloud-remote docs/BASE.md. Bez zrzutów, kluczy i identyfikatorów węzłów.
+     Lewy górny róg pusty (etykieta kategorii). Render: zrzut 1280x720 → public/img/projekty/mesh-okladka.webp (q86) -->
+<style>.bg{background:radial-gradient(900px 560px at 50% 0%,#10303a 0,#030408 72%)}
+.st{box-sizing:border-box;position:absolute;top:60px;width:196px;height:250px;flex-direction:column;justify-content:center;gap:12px;padding:0 18px;font-size:24px;text-align:center}
+.st small{font:500 15px/1.4 JBM,monospace;color:#7d8ba3}
+.s1{left:30px}.s2{left:270px}.s3{left:510px}.s4{left:750px}.s5{left:990px}
+.st.core{font-family:Onest,sans-serif;letter-spacing:0;display:flex}
+.ar{position:absolute;top:150px;width:42px;font-size:32px}
+.r1{left:226px}.r2{left:466px}.r3{left:706px}.r4{left:946px}
+.lk{position:absolute;top:330px;width:196px;text-align:center;font:500 15px JBM,monospace;color:#5fb8c2}
+.acc{bottom:40px;flex-direction:column;gap:14px;font-size:21px}
+.acc b{color:#b88bd0}</style></head><body><div class="bg">
+<div class="ph">gitcloud mesh · LoRa 868 MHz</div>
+<div class="p">
+ <div class="m st s1">serwer<small>strażnik, agenci</small></div>
+ <div class="arr ar r1">⇄</div>
+ <div class="core st s2">baza<small>ESP32-S3<br>SX1262</small></div>
+ <div class="arr ar r2">⇄</div>
+ <div class="m st s3">sieć miasta<small>publiczne przekaźniki MeshCore</small></div>
+ <div class="arr ar r3">⇄</div>
+ <div class="core st s4">tracker<small>nRF52840<br>OLED, dżojstik</small></div>
+ <div class="arr ar r4">⇄</div>
+ <div class="m st s5">telefon<small>aplikacja MeshCore</small></div>
+ <div class="lk" style="left:150px">Wi-Fi + BLE, HMAC</div>
+ <div class="lk" style="left:390px;width:436px">szyfrowane DM</div>
+ <div class="lk" style="left:870px">BLE</div>
+ <div class="acc"><span><b>●</b> serwer milczy albo padł internet: baza sama nadaje alarm przez radio</span><span><b>●</b> wiadomość do 150 bajtów, potwierdzenie, ponowienie, na końcu zalanie sieci</span><span><b>●</b> protokół eteru bez zmian: działa z siecią miasta i zwykłą aplikacją</span></div>
+</div></div></body></html>
