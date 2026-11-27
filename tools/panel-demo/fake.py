@@ -90,4 +90,10 @@ def patch():
     # 12.11.2026: warsztaty czytają prawdziwy stan z dysku (kręgi Claude, pomiary) — w demo ich nie ma
     from gitcloud_ai import workshop
     workshop.view = lambda *a, **k: None
+    # 27.11.2026: Infra › ćwiczenia „żywe awarie” — usługi i czasy jak w prawdziwym przebiegu 20.11 (20.11 22:30; bez usługi finansów, prywatnej)
+    from gitcloud_ai import infra
+    infra.live_drill = lambda: {"at": 1795210221, "bad": [], "rows": [
+        {"name": n, "ok": True, "secs": t, "note": f"поднялась сама за {t} с"}
+        for n, t in (("caddy", 4), ("gitcloud-ai", 6), ("agent", 6), ("gc-bus-pg", 30), ("postgresql", 11), ("nginx", 5),
+                     ("notify-router", 17), ("llm-gateway", 6))]}
     workshop.claude_rows = lambda *a, **k: []

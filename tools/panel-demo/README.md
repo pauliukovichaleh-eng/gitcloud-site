@@ -56,3 +56,7 @@ Karta strażnika Claude (Face ID, 27.11.2026): panel z `DEMO_GUARD=1` dostaje na
 (jak `guard_card.py`: polecenie, folder, „Zezwól” / „Odmów”). Zrzut karty w jasnym tonie:
 `python final.py http://my.gitcloud.pl:18932 <katalog> faceid` (komputer i telefon). Ton jasny ustawia localStorage
 przeglądarki, a `POST /tone` jest odcięty, bo plik tonu jest wspólny z prawdziwym panelem.
+
+Ćwiczenia „żywe awarie” (Infra › Usługi, 27.11.2026): `fake.py` podmienia `infra.live_drill` na usługi i czasy z prawdziwego
+przebiegu 20.11 (bez prywatnej usługi finansów). Zrzut rozwiniętej sekcji w jasnym tonie:
+`python final.py http://my.gitcloud.pl:18932 <katalog> uczenia` (komputer i telefon).
