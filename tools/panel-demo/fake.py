@@ -1,5 +1,4 @@
 """Выдуманные данные для демо-панели (06.11.2026): журнал дел агентов на польском, без реальных систем и людей."""
-import os
 import random
 from datetime import datetime, timedelta, timezone
 
@@ -103,7 +102,7 @@ def patch():
     from gitcloud_core.modules import agents as ag_mod
 
     def _uch():
-        pl = ucheniya.plan(os.path.expanduser(ag_page.UCH_PLAN))
+        pl = infra.uch_plan()
         for s in pl:
             s["sc"] = [c for c in s["sc"] if c["id"] != "kill:bank"]
         return ag_mod.ucheniya(pl, [r for r in ucheniya.chitat() if r["sc"] != "kill:bank"])
