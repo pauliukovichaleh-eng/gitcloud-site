@@ -1,4 +1,5 @@
 """Выдуманные данные для демо-панели (06.11.2026): журнал дел агентов на польском, без реальных систем и людей."""
+import os
 import random
 from datetime import datetime, timedelta, timezone
 
@@ -96,4 +97,15 @@ def patch():
         {"name": n, "ok": True, "secs": t, "note": f"поднялась сама за {t} с"}
         for n, t in (("caddy", 4), ("gitcloud-ai", 6), ("agent", 6), ("gc-bus-pg", 30), ("postgresql", 11), ("nginx", 5),
                      ("notify-router", 17), ("llm-gateway", 6))]}
+    # 27.11.2026: Agenci › Ćwiczenia — prawdziwy plan i dziennik ćwiczeń serwera Sally, bez usługi finansów (prywatnej)
+    from gitcloud_ai import agents as ag_page
+    from gitcloud_core import ucheniya
+    from gitcloud_core.modules import agents as ag_mod
+
+    def _uch():
+        pl = ucheniya.plan(os.path.expanduser(ag_page.UCH_PLAN))
+        for s in pl:
+            s["sc"] = [c for c in s["sc"] if c["id"] != "kill:bank"]
+        return ag_mod.ucheniya(pl, [r for r in ucheniya.chitat() if r["sc"] != "kill:bank"])
+    ag_page._ucheniya = _uch
     workshop.claude_rows = lambda *a, **k: []

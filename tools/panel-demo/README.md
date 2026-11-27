@@ -60,3 +60,7 @@ przeglądarki, a `POST /tone` jest odcięty, bo plik tonu jest wspólny z prawdz
 Ćwiczenia „żywe awarie” (Infra › Usługi, 27.11.2026): `fake.py` podmienia `infra.live_drill` na usługi i czasy z prawdziwego
 przebiegu 20.11 (bez prywatnej usługi finansów). Zrzut rozwiniętej sekcji w jasnym tonie:
 `python final.py http://my.gitcloud.pl:18932 <katalog> uczenia` (komputer i telefon).
+
+27.11.2026: zakładka «Ćwiczenia» agentów (`/agenty`, klucz `e`): `fake.py` podaje prawdziwy plan i dziennik ćwiczeń serwera Sally
+bez usługi finansów. Zrzuty: `python final.py http://my.gitcloud.pl:18932 <katalog> cwiczenia` (jasny ton; do posta — wersja telefonu,
+na komputerze siatka dwóch kolumn zostawia lukę).

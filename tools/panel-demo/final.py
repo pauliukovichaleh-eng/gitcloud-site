@@ -27,13 +27,16 @@ elif mode == "faceid":   # 27.11.2026: karta strażnika (panel z DEMO_GUARD=1), 
     SHOTS = [("decyzje-faceid", "/", 1440, 1000, 0), ("decyzje-faceid-tel", "/", 390, 844, 0)]
 elif mode == "uczenia":   # 27.11.2026: Infra › Usługi › ćwiczenia „żywe awarie” (fake.py), jasny ton, sekcja rozwinięta
     SHOTS = [("infra-uczenia", "/infra", 1440, 1000, 0), ("infra-uczenia-tel", "/infra", 390, 844, 0)]
+elif mode == "cwiczenia":   # 27.11.2026: Agenci › zakładka «Ćwiczenia» (fake.py: prawdziwy plan i dziennik), jasny ton, cała zakładka
+    SHOTS = [("agenci-cwiczenia", "/agenty", 1440, 1000, 0), ("agenci-cwiczenia-tel", "/agenty", 390, 844, 0)]
+LIGHT = ("faceid", "uczenia", "cwiczenia")
 errs, cyr = [], {}
 with sync_playwright() as p:
     b = p.chromium.launch(executable_path="/usr/bin/google-chrome", args=["--host-resolver-rules=MAP my.gitcloud.pl 127.0.0.1"])
     for name, path, w, h, ch in SHOTS:
-        ctx = b.new_context(viewport={"width": w, "height": h}, device_scale_factor=2 if w < 500 else int(os.environ.get("DSF", "1")), **({} if mode in ("faceid", "uczenia") else DARK))
+        ctx = b.new_context(viewport={"width": w, "height": h}, device_scale_factor=2 if w < 500 else int(os.environ.get("DSF", "1")), **({} if mode in LIGHT else DARK))
         ctx.add_cookies([{"name": "gc_lang", "value": "pl", "url": base}])
-        if mode in ("faceid", "uczenia"):   # jasny ton tylko w tej przeglądarce; zapis tonu na serwer (POST /tone) — odcięty, to wspólny plik hosta
+        if mode in LIGHT:   # jasny ton tylko w tej przeglądarce; zapis tonu na serwer (POST /tone) — odcięty, to wspólny plik hosta
             ctx.add_init_script("localStorage.setItem('gc-tone', JSON.stringify({m: 'light', at: 9e12}))")
             ctx.route("**/tone/**", lambda r: r.abort())
         pg = ctx.new_page()
@@ -44,7 +47,16 @@ with sync_playwright() as p:
         if mode == "tarcza":   # ochrona mieszkania to prywatna część domu, nie tarcza; zrzut bez niej
             pg.add_style_tag(content="[data-key=guard]{display:none!important}")
         hs = pg.evaluate("document.documentElement.scrollWidth > innerWidth")
-        if mode == "uczenia":
+        if mode == "cwiczenia":   # kadr: wszystkie bloki zakładki (na komputerze dwie kolumny, bez pustej pracowni demo)
+            pg.add_style_tag(content=".ai-page[data-pane-on][data-pane-on][data-pane-on] > section[data-key=ws-none], #gc-tabbar{display:none!important}")
+            pg.evaluate("document.querySelector('[data-pane-btn=e]').click()"); pg.wait_for_timeout(800)
+            pg.locator('[data-key=uch-hud]').scroll_into_view_if_needed(); pg.wait_for_timeout(2500); pg.evaluate(TR, PL)
+            bb = pg.evaluate("""() => { const r = [...document.querySelectorAll('[data-pane=e]')].filter(e => e.offsetParent).map(e => e.getBoundingClientRect());
+              const x = Math.min(...r.map(a => a.left)), y = Math.min(...r.map(a => a.top));
+              return {x, y: y + scrollY, width: Math.max(...r.map(a => a.right)) - x, height: Math.max(...r.map(a => a.bottom)) - y}; }""")
+            cyr[name] = pg.evaluate(CYR, {"y": bb["y"] - pg.evaluate("scrollY"), "h": bb["height"], "w": w})
+            pg.screenshot(path=f"{out}/{name}.png", clip={"x": max(bb["x"] - 12, 0), "y": bb["y"] - 12, "width": min(bb["width"] + 24, w), "height": bb["height"] + 24}, full_page=True)
+        elif mode == "uczenia":
             pg.click('[data-pane-btn="c"]'); pg.wait_for_timeout(600)
             el = pg.locator('[data-mon="drill"]').first
             el.locator('[data-mon-fold]').first.click(); pg.wait_for_timeout(600); pg.evaluate(TR, PL)
