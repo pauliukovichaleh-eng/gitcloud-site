@@ -1,5 +1,6 @@
 """Выдуманные карточки «Решения» и сессии Claude для пульта Claude на Главной демо-панели (круг 19, 06.11.2026).
 Вопросы, варианты, итоги и названия сессий выдуманы; реальных людей, заказчиков и систем нет."""
+import os
 import time
 from datetime import datetime, timedelta, timezone
 
@@ -27,6 +28,14 @@ DONE = [  # (źródło, min temu zadane, min do odpowiedzi, pytanie, wybrany, wy
     ("morning", 420, 0, "Raport dzienny o 05:12 czy o 07:00?", "O 07:00", "Harmonogram zmieniony", True),
     ("handoff_sally", 610, 26, "Spotkanie w czwartek: przenieść na 10:00?", "Tak, 10:00", "Kalendarz zaktualizowany", False),
 ]
+# 27.11.2026: DEMO_GUARD=1 — karta strażnika Claude (#2112, #2147) jak z gitcloud-remote agent/guard_card.py: niebezpieczne
+# polecenie, właściciela nie ma przy biurku; „Zezwól” podpisuje Face ID na telefonie. Bez zmiennej demo jak dotąd (filmy klikają 900).
+if os.environ.get("DEMO_GUARD"):
+    OPEN.insert(0, ("guard", 1, "Claude prosi: wymuszone nadpisanie gałęzi demo na GitHubie",
+                    "Właściciela nie ma przy biurku: zamiast twarzy odpowiedź z telefonu. Polecenie: git push --force origin demo\n"
+                    "Folder: ~/src/demo-site · sesja strona: portfolio",
+                    [{"k": "1", "label": "Zezwól", "desc": "Jednorazowo: to polecenie w tym folderze, 30 minut", "rec": False},
+                     {"k": "2", "label": "Odmów", "desc": "Krok poczeka na Twój powrót", "rec": False}]))
 Q = []
 for i, (src, m, q, ctx, opts) in enumerate(OPEN):
     Q.append({"id": 900 + i, "at": NOW - timedelta(minutes=m), "source": src, "question": q, "context": ctx, "options": opts,

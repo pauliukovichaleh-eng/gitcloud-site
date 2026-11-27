@@ -23,12 +23,17 @@ elif mode == "decyzje":
     SHOTS = DECYZJE
 elif mode == "tarcza":
     SHOTS = TARCZA
+elif mode == "faceid":   # 27.11.2026: karta strażnika (panel z DEMO_GUARD=1), jasny motyw, szczegóły rozwinięte
+    SHOTS = [("decyzje-faceid", "/", 1440, 1000, 0), ("decyzje-faceid-tel", "/", 390, 844, 0)]
 errs, cyr = [], {}
 with sync_playwright() as p:
     b = p.chromium.launch(executable_path="/usr/bin/google-chrome", args=["--host-resolver-rules=MAP my.gitcloud.pl 127.0.0.1"])
     for name, path, w, h, ch in SHOTS:
-        ctx = b.new_context(viewport={"width": w, "height": h}, device_scale_factor=2 if w < 500 else int(os.environ.get("DSF", "1")), **DARK)
+        ctx = b.new_context(viewport={"width": w, "height": h}, device_scale_factor=2 if w < 500 else int(os.environ.get("DSF", "1")), **({} if mode == "faceid" else DARK))
         ctx.add_cookies([{"name": "gc_lang", "value": "pl", "url": base}])
+        if mode == "faceid":   # jasny ton tylko w tej przeglądarce; zapis tonu na serwer (POST /tone) — odcięty, to wspólny plik hosta
+            ctx.add_init_script("localStorage.setItem('gc-tone', JSON.stringify({m: 'light', at: 9e12}))")
+            ctx.route("**/tone/**", lambda r: r.abort())
         pg = ctx.new_page()
         pg.on("console", lambda m, n=name: m.type == "error" and errs.append(f"{n}: {m.text[:120]}"))
         pg.on("response", lambda r, n=name: r.status >= 400 and errs.append(f"{n}: {r.status} {r.url}"))
@@ -37,7 +42,13 @@ with sync_playwright() as p:
         if mode == "tarcza":   # ochrona mieszkania to prywatna część domu, nie tarcza; zrzut bez niej
             pg.add_style_tag(content="[data-key=guard]{display:none!important}")
         hs = pg.evaluate("document.documentElement.scrollWidth > innerWidth")
-        if mode == "decyzje":
+        if mode == "faceid":
+            el = pg.locator('[data-dq-id="900"]').first
+            pg.evaluate("document.querySelector('[data-dq-id=\"900\"] .gc-dq-more').open = true"); pg.evaluate(TR, PL)
+            el.scroll_into_view_if_needed(); pg.wait_for_timeout(300); bb = el.bounding_box()
+            cyr[name] = pg.evaluate(CYR, {"y": bb["y"], "h": bb["height"], "w": w})
+            pg.screenshot(path=f"{out}/{name}.png", clip={"x": bb["x"] - 12, "y": bb["y"] - 12, "width": bb["width"] + 24, "height": bb["height"] + 24})
+        elif mode == "decyzje":
             pg.add_style_tag(content="#gc-tabbar{display:none!important}")
             el = pg.locator('[data-key="decide"]').first
             if name.endswith("szczegoly"):   # подробности первой карточки и журнал решений раскрыты

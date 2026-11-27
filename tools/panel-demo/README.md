@@ -51,3 +51,8 @@ Strona «Bezpieczeństwo» (`/bezopasnost`, projekt „Tarcza GitCloud”): `fak
 `DSF=2 python final.py http://my.gitcloud.pl:18932 <katalog> tarcza` (komputer, telefon, wycinek od «Tarcza wiadomości»).
 WebP (jakość 82): `tarcza-panel` (1440 px), `tarcza-tel`, `tarcza-listy`; okładka 16:9 = wycinek (232, 316, 2600×1463) z 2x
 zrzutu komputera → 1280×720. Potem `node tools/miniatury.mjs`.
+
+Karta strażnika Claude (Face ID, 27.11.2026): panel z `DEMO_GUARD=1` dostaje na górze wymyśloną kartę „Claude prosi: …”
+(jak `guard_card.py`: polecenie, folder, „Zezwól” / „Odmów”). Zrzut karty w jasnym tonie:
+`python final.py http://my.gitcloud.pl:18932 <katalog> faceid` (komputer i telefon). Ton jasny ustawia localStorage
+przeglądarki, a `POST /tone` jest odcięty, bo plik tonu jest wspólny z prawdziwym panelem.
