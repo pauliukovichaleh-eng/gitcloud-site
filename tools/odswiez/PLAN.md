@@ -1,7 +1,7 @@
 # Plan prowadzenia strony (aktualizowany co noc)
 
-Ostatnia noc: 2026-11-26 (dziennik: 3 wpisy; głowy: Buzz w swetrze, ciemny i jasny, film głów; pilot: ekran Claude
-z pomarańczowym stanem sesji; Sally i Tony bez widocznych zmian, panel bez zmian w kadrach)
+Ostatnia noc: 2026-11-27 (dziennik: 3 wpisy; głowy: dzianina Buzza z fakturą, ciemny i jasny, glowa-buzz.mp4 i
+glowy.mp4; Sally i Tony bez widocznych zmian w kadrach; panel: zmiany tylko w prywatnych zakładkach, bez nagrania)
 
 ## Nieaktualne
 - Panel: okładki agenci/panel i filmy agenci.mp4, panel.mp4 mają jeszcze nagłówki wersalikami sprzed 20.11 i stare
@@ -14,14 +14,17 @@ z pomarańczowym stanem sesji; Sally i Tony bez widocznych zmian, panel bez zmia
 - Konsola ISP (public/img/demo): zrzuty z 05.11 w niebieskim motywie „Kolor”. Przenagrać, gdy platforma ISP dostanie
   ciemny motyw zbliżony do panelu; inaczej zostają.
 - Pulpit (pulpit-gitcloud): film pulpit.mp4 nagrany ręcznie, przepisu w repo nie ma. Od 24.11 pulpit ma okno „Hasła”,
-  własne okna wyboru pliku i druku, nową kartę przeglądarki w stylu GitCloud. Przenagrać dopiero z przepisem
+  własne okna wyboru pliku i druku, nową kartę przeglądarki w stylu GitCloud, od 25.11 pomarańczowy Claude i tło
+  stołu do wyboru, od 26.11 kolejność menu przeciąganiem. Przenagrać dopiero z przepisem
   (profil demo pulpitu, wymyślone pliki, bez prawdziwego ekranu).
 - Pilot: film pilot.mp4 ma jeszcze stary pasek stanu (różnica kilku pikseli w oknie rozmowy, 26.11 bez przenagrania);
   przenagrać rolik.py razem z następną widoczną zmianą ekranów z filmu.
-- Pulpit: od 25.11 kolor Claude pomarańczowy (znak, karta konsoli, powiadomienia), tło stołu do wyboru (schemat,
-  miasto, bez tła); kadry pulpit-* starsze. Czeka na przepis nagrania pulpitu (niżej).
 
 ## Do pokazania
+- Głowy: od 26.11 dolne zęby równym rzędem i język do podniebienia przy „n/l”; klipy emocji mają usta zamknięte,
+  więc zmiany nie widać. Pomysł: krótki klip mówiącej głowy (zbliżenie ust) na wymyślonej kwestii.
+- Linia „Agenci · robią” (widżet Claude na pulpicie, pilot): kadr dopiero z przepisem nagrania pulpitu;
+  ekran Status pilota nie wchodzi na stronę.
 - Jasny motyw: wpis „ten sam agent w dwóch motywach”: głowa jasna obok ciemnej; pilot w jasnym motywie ma teraz
   schemat na jasnym papierze (render.py: sprawdzić, czy symulator przełącza ton).
 - Pilot: twarze Tony i Buzz w oknie rozmowy (3.227.2) zamiast starych; scenariusz-glos.txt pokazuje Tony; dodać kadr Buzza.
