@@ -7,7 +7,7 @@ public/img/zmiany/) i aktualizuje plan `PLAN.md`. Bez zmian w żadnym repo: nic 
 
 | Grupa  | Źródło (repo: ścieżki)                                         | Pliki na stronie                                              | Narzędzie |
 |--------|----------------------------------------------------------------|---------------------------------------------------------------|-----------|
-| glowy  | gitcloud-remote: head/ (bez dist/)                             | img/agenci/*.webp, projekty/glowa-*, glowy*, mini/glowa-*     | tools/glowy/clip.py |
+| glowy  | gitcloud-core: gitcloud_core/static/head (od 27.11)            | img/agenci/*.webp, projekty/glowa-*, glowy*, mini/glowa-*     | tools/glowy/clip.py |
 | pilot  | gitcloud-remote: firmware/src, sim/                            | projekty/pilot-*, pilot.mp4                                   | tools/pilot/render.py, rolik.py |
 | panel  | gitcloud-ai: gitcloud_ai/templates, static, i18n               | projekty/panel-*, agenci*, panel.mp4, okładki                 | tools/panel-demo (README) |
 | isp    | gitcloud: wszystko poza docs/ i tests/                         | img/demo/*.webp                                               | tools/isp/shoot.py |

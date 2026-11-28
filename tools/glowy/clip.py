@@ -1,6 +1,6 @@
 """Klatki głów agentów na stronę (public/img/agenci/*.webp, projekty/glowa-*.mp4). Przeniesione 07.11.2026 z
-~/exports/agent-faces-2026-11-05/v2/clipgpu.py dla nocnego odświeżania (decyzja #748). Głowa: ~/src/gitcloud-remote/head
-na http://127.0.0.1:8788 (python3 -m http.server). NAGRYWAĆ NA KARCIE GRAFICZNEJ (ANGLE gl-egl, Radeon; Vulkan w headless
+~/exports/agent-faces-2026-11-05/v2/clipgpu.py dla nocnego odświeżania (decyzja #748). Głowa: od 27.11 w rdzeniu,
+na http://127.0.0.1:8788: `cd ~/src/gitcloud-core && PYTHONPATH=. python3 -m gitcloud_core.golova serve 8788`. NAGRYWAĆ NA KARCIE GRAFICZNEJ (ANGLE gl-egl, Radeon; Vulkan w headless
 nie rysuje), nie SwiftShader. Tony w head.js = „vale”; &nobrowcards=1 (brwi jak w eterze); &tone=dark (19.11 head.js ma skórki
 jasnego tonu, a headless Chrome prosi o jasny motyw systemu, a strona pokazuje ciemne). Kadr z ramionami (12.11.2026):
 &withbody=1 pokazuje tors, który ?clip chowa; kamera CAM odsunięta tak, by w kwadracie ramiona mieściły się całe, a głowy

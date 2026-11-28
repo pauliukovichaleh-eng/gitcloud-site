@@ -36,9 +36,11 @@ with sync_playwright() as p:
     for name, path, w, h, ch in SHOTS:
         ctx = b.new_context(viewport={"width": w, "height": h}, device_scale_factor=2 if w < 500 else int(os.environ.get("DSF", "1")), **({} if mode in LIGHT else DARK))
         ctx.add_cookies([{"name": "gc_lang", "value": "pl", "url": base}])
-        if mode in LIGHT:   # jasny ton tylko w tej przeglądarce; zapis tonu na serwer (POST /tone) — odcięty, to wspólny plik hosta
-            ctx.add_init_script("localStorage.setItem('gc-tone', JSON.stringify({m: 'light', at: 9e12}))")
-            ctx.route("**/tone/**", lambda r: r.abort())
+        # ton tylko w tej przeglądarce (28.11.2026: także ciemny — panel bierze ton ze wspólnego pliku hosta, a nie z motywu
+        # systemu, więc same DARK dawały jasny kadr); zapis tonu na serwer (POST /tone) — odcięty, to wspólny plik hosta
+        tone = "light" if mode in LIGHT else "dark"
+        ctx.add_init_script(f"localStorage.setItem('gc-tone', JSON.stringify({{m: '{tone}', at: 9e12}}))")
+        ctx.route("**/tone/**", lambda r: r.abort())
         pg = ctx.new_page()
         pg.on("console", lambda m, n=name: m.type == "error" and errs.append(f"{n}: {m.text[:120]}"))
         pg.on("response", lambda r, n=name: r.status >= 400 and errs.append(f"{n}: {r.status} {r.url}"))

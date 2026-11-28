@@ -53,7 +53,7 @@ const jsonld = {
 const recent = zmiany.filter((z) => z.project === p.slug).slice(0, 3);
 const og = lang === 'pl' ? `/img/og/p-${p.slug}.png` : `/img/og/p-${p.slug}-${lang}.png`;
 ---
-<Base title={p.title.startsWith('GitCloud') ? p.title : `${p.title} | GitCloud`} description={cut(p.lead, 158)} path={path} jsonld={jsonld} nav={false} og={og} lang={lang} alternates altPaths={altPaths}>
+<Base title={p.title.includes('GitCloud') ? p.title : `${p.title} | GitCloud`} description={cut(p.lead, 158)} path={path} jsonld={jsonld} nav={false} og={og} lang={lang} alternates altPaths={altPaths}>
   {lcp && <link slot="head" rel="preload" as="image" href={lcp} imagesrcset={lcpSet} imagesizes={lcpSet ? '(max-width: 980px) 100vw, 860px' : undefined} fetchpriority="high" />}
   <section class={`sec pp cat-${p.category}`}>
     <div class="wrap pp-in">

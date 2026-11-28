@@ -2,7 +2,7 @@
 
 Uruchomienie: ~/job-hunter/.venv/bin/python -I tools/glowy/wyjscie.py <katalog klatek clip.py> [katalog roboczy]
 Klatki <who>_NNN.png (kwadrat, głowa z ramionami i piersią) — fr() przycina do ramion (PLECY). Kadry filmów stoją ramionami na dolnej krawędzi,
-żeby tors nie wisiał w powietrzu; tło jak w head.js (5, 7, 11).
+żeby tors nie wisiał w powietrzu; tło z rogu klatki (jak rysuje head.js).
 """
 import os
 import subprocess
@@ -15,7 +15,9 @@ from PIL import Image, ImageChops
 SITE = Path(__file__).resolve().parents[2] / "public/img"
 C = Path(sys.argv[1])
 T = Path(sys.argv[2]) if len(sys.argv) > 2 else Path(tempfile.mkdtemp(prefix="glowy-"))
-BG = (5, 7, 11)
+# 28.11.2026: tło z samej klatki (róg), nie liczbą — głowa w rdzeniu rysuje tło tokenem --bg-deep (#030408), stała
+# (5, 7, 11) dawała w filmach widoczny szew wokół kwadratu głowy
+BG = Image.open(C / "sally_000.png").convert("RGB").getpixel((0, 0))
 N = 99   # 6,6 s × 15 kl./s
 WHO = [("sally", "sally"), ("vale", "tony"), ("buzz", "buzz")]   # 18.11.2026: Buzz zamiast Marka
 

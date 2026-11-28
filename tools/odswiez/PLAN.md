@@ -1,9 +1,13 @@
 # Plan prowadzenia strony (aktualizowany co noc)
 
-Ostatnia noc: 2026-11-27 (dziennik: 3 wpisy; głowy: dzianina Buzza z fakturą, ciemny i jasny, glowa-buzz.mp4 i
-glowy.mp4; Sally i Tony bez widocznych zmian w kadrach; panel: zmiany tylko w prywatnych zakładkach, bez nagrania)
+Ostatnia noc: 2026-11-28 (dziennik: 3 wpisy; głowy: Sally (pasma włosów, ramiona bez prześwietlenia) i Tony (powieki)
+przenagrani, ciemny i jasny, glowa-sally.mp4, glowa-tony.mp4, glowy.mp4; Buzz bez widocznej zmiany, stary plik;
+panel: nowa zakładka „Ćwiczenia” nie wchodzi w kadry strony, bez nagrania)
 
 ## Nieaktualne
+- Panel, przepis: od 28.11 `final.py` wymusza ton w przeglądarce (panel bierze ton ze wspólnego pliku hosta, same `DARK`
+  dawały jasny kadr). Blok „w toku” na /agenty i karta Tony'ego pokazują prawdziwy stan nauki („lekcja u Claude”, tytuł
+  alarmu cyrylicą): przed przenagraniem panelu podmienić go w `fake.py` na wymyślony; `rolik.py` sprawdzić pod tonem.
 - Panel: okładki agenci/panel i filmy agenci.mp4, panel.mp4 mają jeszcze nagłówki wersalikami sprzed 20.11 i stare
   etykiety stanu słowami (od 24.11 ikony stanu rdzenia). Przenagrać jak 25.11 kadry modeli: `faketime '<data> 13:35'`,
   `DARK`, bez pogody (tools/panel-demo/README.md). Grupa „panel” w tabeli odświeżania nie patrzy na gitcloud-core,
@@ -21,6 +25,9 @@ glowy.mp4; Sally i Tony bez widocznych zmian w kadrach; panel: zmiany tylko w pr
   przenagrać rolik.py razem z następną widoczną zmianą ekranów z filmu.
 
 ## Do pokazania
+- Panel: zakładka „Ćwiczenia” agentów (plan, wykres i tabela czasów odtwarzania) i tabela ćwiczeń w Infra: kadr na
+  stronę projektu Platforma danych (przepis `final.py … cwiczenia` jest, plan i dziennik prawdziwe bez usługi finansów;
+  sprawdzić OCR, czy nie ma nazw prywatnych usług).
 - Głowy: od 26.11 dolne zęby równym rzędem i język do podniebienia przy „n/l”; klipy emocji mają usta zamknięte,
   więc zmiany nie widać. Pomysł: krótki klip mówiącej głowy (zbliżenie ust) na wymyślonej kwestii.
 - Linia „Agenci · robią” (widżet Claude na pulpicie, pilot): kadr dopiero z przepisem nagrania pulpitu;
@@ -41,7 +48,8 @@ glowy.mp4; Sally i Tony bez widocznych zmian w kadrach; panel: zmiany tylko w pr
 - Pilot: wiersz trybów ze sprawą w toku jeszcze nie występuje w scenariuszu.
 
 ## SEO (Marek, obchód 22.11)
-- Title > 70 znaków: główna PL/EN/RU zostaje, to pozycjonowanie właściciela. Poza tym obchód bez uwag.
+- Title > 70 znaków: główna PL/EN/RU zostaje, to pozycjonowanie właściciela.
+  Tarcza (73 znaki w obchodzie) ma już 69; od 28.11 projekty z „GitCloud” w nazwie bez powtórzonego „| GitCloud”.
 
 ## Pomysły
 - Krótki film „noc w GitCloud”: co robią zadania nocne (kopie, przegląd kodu, łatki zależności, dokumentacja) na
