@@ -1,10 +1,10 @@
 /* Wygenerowane: tools/tokeny.py z gitcloud-core (palette.json + tokens.css), decyzja #692. Nie edytować ręcznie. */
 :root{
-  --gc-bg-deep:#030408; --gc-bg-deep-rgb:3,4,8;
-  --gc-fg:#e6f1ff; --gc-fg-rgb:230,241,255;
-  --gc-muted:#8392a8; --gc-muted-rgb:131,146,168;
-  --gc-card:#0b0f16; --gc-card-rgb:11,15,22;
-  --gc-edge:#121823; --gc-edge-rgb:18,24,35;
+  --gc-bg-deep:#0e1014; --gc-bg-deep-rgb:14,16,20;
+  --gc-fg:#d8dde4; --gc-fg-rgb:216,221,228;
+  --gc-muted:#9da6b3; --gc-muted-rgb:157,166,179;
+  --gc-card:#191c21; --gc-card-rgb:25,28,33;
+  --gc-edge:#272c34; --gc-edge-rgb:39,44,52;
   --gc-neon:#5fb8c2; --gc-neon-rgb:95,184,194;
   --gc-magenta:#b88bd0; --gc-magenta-rgb:184,139,208;
   --gc-c-ok:#6cc49a; --gc-c-ok-rgb:108,196,154;
